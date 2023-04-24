@@ -29,9 +29,14 @@ author:
   name: John Preuß Mattsson
   org: Ericsson AB
   abbrev: Ericsson
-  street: SE-164 80 Stockholm
   country: Sweden
   email: john.mattsson@ericsson.com
+- initials: M.
+  surname: Campagna
+  name: Matthew Campagna
+  org: University of Waterloo
+  country: Canada
+  email: mcampagna@gmail.com
 
 normative:
 
