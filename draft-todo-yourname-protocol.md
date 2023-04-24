@@ -19,11 +19,11 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+title: "GCM-SST: Galois Counter Mode (GCM) with Secure Short Tags"
+abbrev: "GCM-SST"
 category: info
 
-docname: draft-todo-yourname-protocol-latest
+docname: draft-mattsson-cfrg-aes-gcm-sst
 submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
