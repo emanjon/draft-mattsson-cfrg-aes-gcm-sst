@@ -71,8 +71,9 @@ TODO Security
 
 # IANA Considerations
 
-This document has no IANA actions.
-
+IANA is requested to assign the entries in Table X to the "AEAD Algorithms" registry
+under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading
+with this document as reference.
 
 --- back
 
