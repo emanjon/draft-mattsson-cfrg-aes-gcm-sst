@@ -4,8 +4,9 @@
 
 Crypto Forum                                           J. Preuß Mattsson
 Internet-Draft                                                  Ericsson
-Intended status: Informational                             24 April 2023
-Expires: 26 October 2023
+Intended status: Informational                               M. Campagna
+Expires: 26 October 2023                          University of Waterloo
+                                                           24 April 2023
 
 
        GCM-SST: Galois Counter Mode (GCM) with Secure Short Tags
@@ -69,7 +70,7 @@ Table of Contents
    4.  IANA Considerations
    5.  Normative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -106,10 +107,15 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    John Preuß Mattsson
    Ericsson AB
-   SE-164 80 Stockholm
    Sweden
    Email: john.mattsson@ericsson.com
+
+
+   Matthew Campagna
+   University of Waterloo
+   Canada
+   Email: mcampagna@gmail.com
