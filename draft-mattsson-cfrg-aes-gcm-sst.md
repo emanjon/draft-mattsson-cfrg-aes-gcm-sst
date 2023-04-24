@@ -4,7 +4,7 @@ abbrev: "GCM-SST"
 category: info
 
 docname: draft-mattsson-cfrg-aes-gcm-sst-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
+submissiontype: IRTF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
 consensus: true
@@ -24,10 +24,14 @@ venue:
   latest: "https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/draft-mattsson-cfrg-aes-gcm-sst.html"
 
 author:
- -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: "john.mattsson@ericsson.com"
+- initials: J.
+  surname: Preuß Mattsson
+  name: John Preuß Mattsson
+  org: Ericsson AB
+  abbrev: Ericsson
+  street: SE-164 80 Stockholm
+  country: Sweden
+  email: john.mattsson@ericsson.com
 
 normative:
 
