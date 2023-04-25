@@ -46,7 +46,7 @@ informative:
 
   GCM:
     target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
-    title: Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC
+    title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
     seriesinfo:
       "NIST": "Special Publication 800-38D"
     author:
@@ -56,7 +56,7 @@ informative:
 
   Ferguson:
     target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/CWC-GCM/Ferguson2.pdf
-    title: Authentication weaknesses in GCM
+    title: "Authentication weaknesses in GCM"
     author:
       -
         ins: N. Ferguson
@@ -64,7 +64,7 @@ informative:
 
   Nyberg:
     target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf
-    title: Galois MAC with forgery probability close to ideal
+    title: "Galois MAC with forgery probability close to ideal"
     author:
       -
         ins: K. Nyberg
@@ -76,7 +76,7 @@ informative:
 
   Mattsson:
     target: https://eprint.iacr.org/2015/477.pdf
-    title: Authentication Key Recovery on Galois/Counter Mode (GCM)
+    title: "Authentication Key Recovery on Galois/Counter Mode (GCM)"
     author:
       -
         ins: J. Mattsson
