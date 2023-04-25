@@ -156,6 +156,11 @@ They differ only in the size of the AES key used and the tag length.
 
 ｜ Numeric ID ｜ Name ｜ K\_LEN ｜ tag_length ｜
 ｜ TDB1 ｜ AEAD\_AES\_128\_GCM\_SST\_4 ｜ 16 ｜ 4 ｜
+｜ TDB2 ｜ AEAD_AES_128_GCM_SST_8 ｜ 16 ｜ 8 ｜
+｜ TDB3 ｜ AEAD_AES_128_GCM_SST_10 ｜ 16 ｜ 10 ｜
+｜ TDB4 ｜ AEAD_AES_256_GCM_SST_4 ｜ 32 ｜ 4 ｜
+｜ TDB5 ｜ AEAD_AES_256_GCM_SST_8 ｜ 32 ｜ 8 ｜
+｜ TDB6 ｜ AEAD_AES_256_GCM_SST_10 ｜ 32 ｜ 10 ｜
 
 Common parameters for the six AEADs:
 
