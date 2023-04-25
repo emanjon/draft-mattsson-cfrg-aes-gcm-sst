@@ -125,40 +125,27 @@ The minimum and maximum length of all parameters depends on the keystream genera
 
 The keystream generator produces a keystream of 128-bit quadwords Z.
 
-GCM-SST internally uses three internal 16 bytes subkeys H, Q, M where
-
-H = Z/[0]/
-Q = Z/[1]/
-M = Z/[2]/
-
 First A and P are zero-padded to multiples of 128-bit quadwords and combined into a single message S.
 
-S = zeropad(A) ｜｜ zeropad(P) ｜｜ len(A) ｜｜ len(C)
-
 where len(A) and len(C) are the 64-bit representations of the bit lengths of A and C, respectively.
-
-Then X is defined as:
-
-X[0] = 0
-X[i] = ( X[i-1] XOR S[i] ) * H
 
 m is the number of 128-bit blocks in zeropad(A), n is the number of 128-bit blocks in zeropad(P)
 
 Steps:
 
-1. Let H = Z[0], Q = Z[1], M = Z[2]
-2. Let ct = zeropad(P) XOR Z[3, n+3]
+1. Let H = Z\[0\], Q = Z\[1\], M = Z\[2\]
+2. Let ct = zeropad(P) XOR Z\[3, n + 3\]
 3. Let S = zeropad(A) ｜｜ ct ｜｜ len(A) ｜｜ len(P)
-4. X = POLYVAL(H, S[0], s[1], ..., s[m + n - 1])
-5. T = POLYVAL(Q, X XOR s[m + n]) XOR M
-6. return (trim(ct, len(P)), rim(T, tag_length))
+4. X = POLYVAL(H, S\[0\], S\[1\], ..., S\[m + n - 1\])
+5. T = POLYVAL(Q, X XOR S\[m + n\]) XOR M
+6. return (trim(ct, len(P)), trim(T, tag_length))
 
 
 ## Instansizating GCM-SSM with AES
 
 When GCM-SSM is instanciated with AES, then
 
-Z[i] = AES-ENC(K, N || i)
+Z\[i\] = AES-ENC(K, N || i)
 
 where AES is the AES encrypt function with key K and IV = N || i and where i is the 32-bit representation.
 
