@@ -204,4 +204,4 @@ with this document as reference.
 # Acknowledgments
 {:numbered="false"}
 
-TODO acknowledge.
+The authors want to thank {{{Richard Barnes}}}, and {{{XXX}}} for their valuable comments and feedback.
