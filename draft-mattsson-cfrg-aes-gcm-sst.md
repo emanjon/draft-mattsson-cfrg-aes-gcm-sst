@@ -89,7 +89,7 @@ informative:
 
 --- abstract
 
-This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just a block cipher. The two main differences compared to GCM is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. The document registers several instantiations of GCM-SST using AES in counter mode (AES-CTR) as the keystream generator.
+This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just a block cipher. The two main differences compared to GCM is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probabilities close to ideal. The document registers several instantiations of GCM-SST using AES in counter mode (AES-CTR) as the keystream generator.
 
 This document is the product of the Crypto Forum Research Group.
 
