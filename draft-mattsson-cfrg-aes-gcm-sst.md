@@ -127,9 +127,9 @@ The keystream generator produces a keystream of 128-bit quadwords Z.
 
 GCM-SST internally uses three internal 16 bytes subkeys H, Q, M where
 
-H = Z[0]
-Q = Z[1]
-M = Z[2]
+H = Z/[0]/
+Q = Z/[1]/
+M = Z/[2]/
 
 First A and P are zero-padded to multiples of 128-bit quadwords and combined into a single message S.
 
