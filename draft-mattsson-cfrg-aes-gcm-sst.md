@@ -144,7 +144,7 @@ zeropad(x) right pads a octet string x to a multiple of 16 bytes
 n is the number of 128-bit blocks in zeropad(P)
 m is the number of 128-bit blocks in zeropad(A)
 \｜\｜ is concatenation
-uint64(x) encodes and integer x as a little endian uint64 
+uint64(x) encodes and integer x as a little endian uint64
 POLYVAL is defined in RFC 8452
 trim(x, y) truncates a octet string x to y octets
 
