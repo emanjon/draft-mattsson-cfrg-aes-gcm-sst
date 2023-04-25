@@ -41,7 +41,7 @@ author:
 normative:
 
   RFC8452:
-  
+
 informative:
 
   GCM:
@@ -101,7 +101,7 @@ informative:
    (AEAD) algorithm. GCM-SST is defined with a general interface so that it can be used with any keystream generator. The main difference
    compared to GCM is that GCM-SST uses an additional secret point Q, which enables short tags forgery probability close to ideal. The document
    also registers several instansiations of GCM-SST useing AES-CTR as the keystream generator.
-   
+
 AES in Galois Counter Mode (AES-GCM) is a very widely used algorithm due to its good performance in both software and hardware as well as it's provable security. During the NIST standardization, Fergoson pointed out two weaknesses in the GCM authentication function. The weaknesses are especially concerning when GCM is used with short tags. The first weakness significantly increases the probability of successful forgery. The second weakness reveals the authentication key H if the attacker manages to create successful forgeries. With knowledge of the authentication key H, the attacker always succeeds with subsequent forgeries. The probability of successful multiple forgeries is therefore significantly increased.
 
 As a response to the weaknesses Ferguson found, Nyberg et. al. explained how small changes based on proven theoretical constuctions mitigates Ferguson weaknesses. Unfortunatly NIST did not follow the advice from Nyberg et. al. and instead specified Appendic D. The calcualtions and security levels behind the Appendix was not disclosed. As shown by Mattsson et al., NISTs assumption that an attacker do get knowledge about tag failure is not realistic and NIST appeared to have used a non-optimal attack to calculate the limits. Due to the remaining weaknesses, GCM is not often used with short tags. The result is decreased performance from larger than needed tags, or decreased performance from using other constructions such as AES-CTR with HMAC-SHA-256.
