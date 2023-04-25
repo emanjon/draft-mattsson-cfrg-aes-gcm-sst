@@ -81,6 +81,24 @@ S = zeropad(A) ｜｜ zeropad(P) ｜｜ len(A) ｜｜ len(C)
 
 where len(A) and len(C) are the 64-bit representations of the bit lengths of A and C, respectively.
 
+Then X is defined as:
+
+X[0] = 0
+X[i] = ( X[i-1] XOR S[i] ) * H
+
+m is the number of 128-bit blocks in zeropad(A), n is the number of 128-bit blocks in zeropad(P)
+
+Steps:
+
+1. Let H = Z[0]
+2. Let Q = Z[1]
+3. Let M = Z[2]
+4. Let ct = zeropad(P) XOR Z[3, n+3] 
+5. Let S = zeropad(A) ｜｜ zeropad(P) ｜｜ len(A) ｜｜ len(P)
+6. X = POLYVAL(H, S[0], s[1], ..., s[m+n-1])
+7. T = POLYVAL(Q, X XOR s[m+n-1])
+10. Let T = X2 XOR M
+12. return ct ｜｜ trim(T, tag_length)
 
 
 
