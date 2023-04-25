@@ -58,6 +58,23 @@ informative:
 
 TODO Introduction
 
+# GCM-SST with a Keystream Interface.
+
+GCM-SST adheres to an AEAD interface and takes four bytestring parameters.
+
+K, N, P, A
+
+The keystream generator is instanziated with K and N. The keystream MUST NOT depend on P and A.
+The minimum and maximum length of all parameters depends on the keystream generator.
+
+The keystream generator produces keystream Z which is a byte string.
+
+GCM-SST internally uses three 16 bytes keys H, Q, 
+
+
+## Instansizating GCM-SSM with AES-CTR
+
+## AEAD Instances
 
 # Conventions and Definitions
 
