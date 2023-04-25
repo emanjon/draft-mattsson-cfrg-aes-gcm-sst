@@ -216,7 +216,7 @@ Table of Contents
        |       TBD6 | AEAD_AES_256_GCM_SST_10 |    32 |         10 |
        +------------+-------------------------+-------+------------+
 
-                  Table 1: CRYPTO Chunk protection engines
+                          Table 1: AEAD Algorithms
 
    Common parameters for the six AEADs:
 
@@ -234,8 +234,8 @@ Table of Contents
 
 5.  IANA Considerations
 
-   IANA is requested to assign the entries in Table X (first two
-   columns) to the "AEAD Algorithms" registry under the "Authenticated
+   IANA is requested to assign the entries in the first two columns of
+   Table 1 to the "AEAD Algorithms" registry under the "Authenticated
    Encryption with Associated Data (AEAD) Parameters" heading with this
    document as reference.
 
