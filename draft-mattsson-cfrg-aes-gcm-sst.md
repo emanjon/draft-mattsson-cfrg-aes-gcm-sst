@@ -69,12 +69,54 @@ The minimum and maximum length of all parameters depends on the keystream genera
 
 The keystream generator produces keystream Z which is a byte string.
 
-GCM-SST internally uses three 16 bytes keys H, Q, 
+GCM-SST internally uses three internal 16 bytes subkeys H, Q, M where
+
+H = Z[0]
+Q = Z[1]
+M = Z[2]
+
 
 
 ## Instansizating GCM-SSM with AES-CTR
 
+
+
 ## AEAD Instances
+
+We define six AEADs, in the format of RFC 5116, that use AES-GCM-SST:
+AEAD_AES_128_GCM_SST_4, AEAD_AES_128_GCM_SST_8, AEAD_AES_128_GCM_SST_10,
+AEAD_AES_256_GCM_SST_4, AEAD_AES_256_GCM_SST_8, AEAD_AES_256_GCM_SST_10,
+They differ only in the size of the AES key used and the tag length.
+
+Common parameters for the six AEADs:
+
+* P_MAX (maximum size of the plaintext) is 2^36 octets.
+
+* A_MAX (maximum size of the associated data) is 2^36 octets.
+
+* N_MIN = N_MAX = 12 octets.
+
+* C_MAX = P_MAX + tag length.
+
+For AEAD_AES_128_GCM_SST_4, AEAD_AES_128_GCM_SST_8, AEAD_AES_128_GCM_SST_10:
+
+* K_LEN (key length) is 16 octets.
+
+For AEAD_AES_256_GCM_SST_4, AEAD_AES_256_GCM_SST_8, AEAD_AES_256_GCM_SST_10:
+
+* K_LEN (key length) is 32 octets.
+
+For AEAD_AES_256_GCM_SST_4, AEAD_AES_256_GCM_SST_4:
+
+* tag length is 4 octets.
+
+For AEAD_AES_256_GCM_SST_8, AEAD_AES_256_GCM_SST_8:
+
+* tag length is 8 octets.
+
+For AEAD_AES_256_GCM_SST_10, AEAD_AES_256_GCM_SST_10:
+
+* tag length is 10 octets.
 
 # Conventions and Definitions
 
