@@ -165,7 +165,7 @@ They differ only in the size of the AES key used and the tag length.
 | TBD4 | AEAD_AES_256_GCM_SST_4 | 32 | 4 |
 | TBD5 | AEAD_AES_256_GCM_SST_8 | 32 | 8 |
 | TBD6 | AEAD_AES_256_GCM_SST_10 | 32 | 10 |
-{: #iana-protection-engines-table title="CRYPTO Chunk protection engines" cols="r l r r"}
+{: #iana-algs title="AEAD Algorithms" cols="r l r r"}
 
 Common parameters for the six AEADs:
 
@@ -183,7 +183,7 @@ TODO Security
 
 # IANA Considerations
 
-IANA is requested to assign the entries in Table X (first two columns) to the "AEAD Algorithms" registry
+IANA is requested to assign the entries in the first two columns of {{iana-algs}} to the "AEAD Algorithms" registry
 under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading
 with this document as reference.
 
