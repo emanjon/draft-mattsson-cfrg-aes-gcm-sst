@@ -115,7 +115,6 @@ matter the security levels they were assumed to give. As shown by Mattsson et al
 
 This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations for Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a block cipher. The two main differences compared to GCM is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. Instead of GHASH {{GCM}}, GCM-SST makes use of the faster POLYVAL function {{ RFC8452}}. The specification is also made generic, so that any keystream generator can be used, not just a 128-bit block cipher. The document also registers several instantiations of GCM-SST using AES in counter mode (AES-CTR) as the keystream generator.
 
-
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
@@ -139,48 +138,44 @@ m is the number of 128-bit blocks in zeropad(A), n is the number of 128-bit bloc
 
 Steps:
 
-1. Let H = Z\[0\], Q = Z\[1\], M = Z\[2\]
-2. Let ct = zeropad(P) XOR Z\[3, n + 3\]
-3. Let S = zeropad(A) ｜｜ ct ｜｜ len(A) ｜｜ len(P)
-4. X = POLYVAL(H, S\[0\], S\[1\], ..., S\[m + n - 1\])
-5. T = POLYVAL(Q, X XOR S\[m + n\]) XOR M
+1. Let H = Z[0], Q = Z[1], M = Z[2]
+2. Let ct = zeropad(P) XOR Z[3, n + 3]
+3. Let S = zeropad(A) \｜\｜ ct \｜\｜ len(A) \｜\｜ len(P)
+4. X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
+5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
 6. return (trim(ct, len(P)), trim(T, tag_length))
-
 
 ## Instansizating GCM-SSM with AES
 
 When GCM-SSM is instanciated with AES, then
 
-Z\[i\] = AES-ENC(K, N || i)
+Z[i] = AES-ENC(K, N \|\| i)
 
-where AES is the AES encrypt function with key K and IV = N || i and where i is the 32-bit representation.
+where AES is the AES encrypt function with key K and IV = N \|\| i and where i is the 32-bit representation.
 
 ## AEAD Instances
 
-We define six AEADs, in the format of RFC 5116, that use AES-GCM-SST:
+We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST:
 They differ only in the size of the AES key used and the tag length.
 
-｜ Numeric ID ｜ Name ｜ K\_LEN ｜ tag_length ｜
-｜ TDB1 ｜ AEAD\_AES\_128\_GCM\_SST\_4 ｜ 16 ｜ 4 ｜
-｜ TDB2 ｜ AEAD_AES_128_GCM_SST_8 ｜ 16 ｜ 8 ｜
-｜ TDB3 ｜ AEAD_AES_128_GCM_SST_10 ｜ 16 ｜ 10 ｜
-｜ TDB4 ｜ AEAD_AES_256_GCM_SST_4 ｜ 32 ｜ 4 ｜
-｜ TDB5 ｜ AEAD_AES_256_GCM_SST_8 ｜ 32 ｜ 8 ｜
-｜ TDB6 ｜ AEAD_AES_256_GCM_SST_10 ｜ 32 ｜ 10 ｜
+| Numeric ID | Name | K_LEN | tag_length |
+| TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 4 |
+| TBD2 | AEAD_AES_128_GCM_SST_8 | 16 | 8 |
+| TBD3 | AEAD_AES_128_GCM_SST_10 | 16 | 10 |
+| TBD4 | AEAD_AES_256_GCM_SST_4 | 32 | 4 |
+| TBD5 | AEAD_AES_256_GCM_SST_8 | 32 | 8 |
+| TBD6 | AEAD_AES_256_GCM_SST_10 | 32 | 10 |
+{: #iana-protection-engines-table title="CRYPTO Chunk protection engines" cols="r l r r"}
 
 Common parameters for the six AEADs:
 
-* P_MAX (maximum size of the plaintext) is 2^36 octets.
+* P_MAX (maximum size of the plaintext) is 2^36 - 47 octets.
 
-* A_MAX (maximum size of the associated data) is 2^36 octets.
+* A_MAX (maximum size of the associated data) is 2^61 - 1 octets.
 
-* N_MIN = N_MAX = 12 octets.
+* N_MIN and N_MAX are both 12 octets
 
 * C_MAX = P_MAX + tag_length.
-
-* K_LEN (key length) is 16 or 32 octets.
-
-* tag length is 4, 8, or 10 octets.
 
 # Security Considerations
 
