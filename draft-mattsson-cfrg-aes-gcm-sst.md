@@ -44,6 +44,9 @@ normative:
 
 informative:
 
+  RFC3711:
+  I-D.ietf-sframe-enc:
+
   GCM:
     target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
     title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
@@ -94,18 +97,14 @@ This document is the product of the Crypto Forum Research Group.
 
 # Introduction
 
-   This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data
-   (AEAD) algorithm. GCM-SST is defined with a general interface so that it can be used with any keystream generator. The main difference
-   compared to GCM is that GCM-SST uses an additional secret point Q, which enables short tags forgery probability close to ideal. The document
-   also registers several instansiations of GCM-SST useing AES-CTR as the keystream generator.
+AES in Galois Counter Mode (AES-GCM) {{GCM}} is a very widely used AEAD algorithm due to its good performance in both software and hardware as well as its provable security. During the NIST standardization, Ferguson pointed out two weaknesses in the GCM authentication function {{Ferguson}}. The weaknesses are especially concerning when GCM is used with short tags. The first weakness significantly increases the probability of successful forgery. The second weakness reveals the subkey H if the attacker manages to create successful forgeries. With knowledge of the subkey H, the attacker always succeeds with subsequent forgeries. The probability of successful multiple forgeries is therefore significantly increased.
 
-AES in Galois Counter Mode (AES-GCM) is a very widely used algorithm due to its good performance in both software and hardware as well as it's provable security. During the NIST standardization, Fergoson pointed out two weaknesses in the GCM authentication function. The weaknesses are especially concerning when GCM is used with short tags. The first weakness significantly increases the probability of successful forgery. The second weakness reveals the authentication key H if the attacker manages to create successful forgeries. With knowledge of the authentication key H, the attacker always succeeds with subsequent forgeries. The probability of successful multiple forgeries is therefore significantly increased.
+As a response to the weaknesses Ferguson found, Nyberg et. al. {{Nyberg}} explained how small changes based on proven theoretical constructions mitigates Ferguson weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et. al. and instead specified additional requirements for use with short tags in Appendix C of {{GCM}}. The calculations and security levels behind the Appendix was not disclosed. As shown by Mattsson et al. {{Mattsson}}, NIST’s assumption that an attacker do not get knowledge about tag failure is not realistic and NIST appeared to have used a non-optimal attack to calculate the limits. 
 
-As a response to the weaknesses Ferguson found, Nyberg et. al. explained how small changes based on proven theoretical constuctions mitigates Ferguson weaknesses. Unfortunatly NIST did not follow the advice from Nyberg et. al. and instead specified Appendic D. The calcualtions and security levels behind the Appendix was not disclosed. As shown by Mattsson et al., NISTs assumption that an attacker do get knowledge about tag failure is not realistic and NIST appeared to have used a non-optimal attack to calculate the limits. Due to the remaining weaknesses, GCM is not often used with short tags. The result is decreased performance from larger than needed tags, or decreased performance from using other constructions such as AES-CTR with HMAC-SHA-256.
+32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very
+common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are suitable for media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, you don't care a ton about forgery of any individual packet. Due to the weaknesses found by Ferguson, GCM is not often used with short tags. The result is decreased performance from larger than needed tags, or decreased performance from using other constructions such as AES-CTR combined with HMAC {{RFC3711}}{{I-D.ietf-sframe-enc}}.
 
-In this document we specify Galois Counter Mode with Secure Short Tags (GCM-SST). GCM-SST is very similar to GCM but incoperated the two suggestions from Nyberg et. al. namely to use a second authentication key Q for the last step and do derive the authentication keys from the nonce N. As proven by Nyberg et. al. this creates a Polynomial MAC with forgery probability close to ideal. In addition to the two changes suggested by Nyberg et all. GCM-SST also make the two following changes compared to GCM
-- Instead of GHASH, the faster POLYVAL function is used.
-- The specification is made general so that any keystream generator can be used. Not just a 128-bit block cipher.
+This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations for Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a block cipher. The two main differences compared to GCM is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. Instead of GHASH {{GCM}}, GCM-SST makes use of the faster POLYVAL function {{ RFC8452}}. The specification is also made generic, so that any keystream generator can be used, not just a 128-bit block cipher. The document also registers several instantiations of GCM-SST using AES in counter mode (AES-CTR) as the keystream generator.
 
 # Conventions and Definitions
 
