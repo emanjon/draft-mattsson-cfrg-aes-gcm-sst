@@ -90,9 +90,9 @@ Table of Contents
 1.  Introduction
 
    AES in Galois Counter Mode (AES-GCM) [GCM] is a widely used AEAD
-   algorithm due to its attractive performance in both software and
-   hardware as well as its provable security.  During the NIST
-   standardization, Ferguson pointed out two weaknesses in the GCM
+   algorithm [RFC5116] due to its attractive performance in both
+   software and hardware as well as its provable security.  During the
+   NIST standardization, Ferguson pointed out two weaknesses in the GCM
    authentication function [Ferguson].  The weaknesses are especially
    concerning when GCM is used with short tags.  The first weakness
    significantly increases the probability of successful forgery.  The
