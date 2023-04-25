@@ -165,9 +165,15 @@ where AES is the AES encrypt function with key K and IV = N || i and where i is 
 ## AEAD Instances
 
 We define six AEADs, in the format of RFC 5116, that use AES-GCM-SST:
-AEAD_AES_128_GCM_SST_4, AEAD_AES_128_GCM_SST_8, AEAD_AES_128_GCM_SST_10,
-AEAD_AES_256_GCM_SST_4, AEAD_AES_256_GCM_SST_8, AEAD_AES_256_GCM_SST_10,
 They differ only in the size of the AES key used and the tag length.
+
+｜ Numeric ID ｜ Name ｜ K_LEN ｜ tag_length ｜
+｜ TDB1 ｜ AEAD_AES_128_GCM_SST_4 ｜ 16 ｜ 4 ｜
+｜ TDB1 ｜ AEAD_AES_128_GCM_SST_8 ｜ 16 ｜ 8 ｜
+｜ TDB1 ｜ AEAD_AES_128_GCM_SST_10 ｜ 16 ｜ 10 ｜
+｜ TDB1 ｜ AEAD_AES_256_GCM_SST_4 ｜ 32 ｜ 4 ｜
+｜ TDB1 ｜ AEAD_AES_256_GCM_SST_8 ｜ 32 ｜ 8 ｜
+｜ TDB1 ｜ AEAD_AES_256_GCM_SST_10 ｜ 32 ｜ 10 ｜
 
 Common parameters for the six AEADs:
 
@@ -179,25 +185,9 @@ Common parameters for the six AEADs:
 
 * C_MAX = P_MAX + tag_length.
 
-For AEAD_AES_128_GCM_SST_4, AEAD_AES_128_GCM_SST_8, AEAD_AES_128_GCM_SST_10:
+* K_LEN (key length) is 16 or 32 octets.
 
-* K_LEN (key length) is 16 octets.
-
-For AEAD_AES_256_GCM_SST_4, AEAD_AES_256_GCM_SST_8, AEAD_AES_256_GCM_SST_10:
-
-* K_LEN (key length) is 32 octets.
-
-For AEAD_AES_256_GCM_SST_4, AEAD_AES_256_GCM_SST_4:
-
-* tag length is 4 octets.
-
-For AEAD_AES_256_GCM_SST_8, AEAD_AES_256_GCM_SST_8:
-
-* tag length is 8 octets.
-
-For AEAD_AES_256_GCM_SST_10, AEAD_AES_256_GCM_SST_10:
-
-* tag length is 10 octets.
+* tag length is 4, 8, or 10 octets.
 
 # Security Considerations
 
@@ -215,7 +205,7 @@ TODO Security
 
 # IANA Considerations
 
-IANA is requested to assign the entries in Table X to the "AEAD Algorithms" registry
+IANA is requested to assign the entries in Table X (first two columns) to the "AEAD Algorithms" registry
 under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading
 with this document as reference.
 
