@@ -99,7 +99,7 @@ informative:
 
 TODO Introduction
 
-# Requirements Language
+# Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
@@ -187,11 +187,6 @@ For AEAD_AES_256_GCM_SST_8, AEAD_AES_256_GCM_SST_8:
 For AEAD_AES_256_GCM_SST_10, AEAD_AES_256_GCM_SST_10:
 
 * tag length is 10 octets.
-
-# Conventions and Definitions
-
-{::boilerplate bcp14-tagged}
-
 
 # Security Considerations
 
