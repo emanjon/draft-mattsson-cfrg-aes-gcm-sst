@@ -1211,11 +1211,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-2-2">K, N, P, A<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">The keystream generator is instanziated with K and N. The keystream <span class="bcp14">MUST NOT</span> depend on P and A.
 The minimum and maximum length of all parameters depends on the keystream generator.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">The keystream generator produces keystream Z which is a byte string.<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-4">The keystream generator produces a keystream of 128-bit quadwords Z.<a href="#section-2-4" class="pilcrow">¶</a></p>
 <p id="section-2-5">GCM-SST internally uses three internal 16 bytes subkeys H, Q, M where<a href="#section-2-5" class="pilcrow">¶</a></p>
 <p id="section-2-6">H = Z[0]
 Q = Z[1]
 M = Z[2]<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">First A and P are zero-padded to multiples of 128-bit quadwords and combined into a single message S.<a href="#section-2-7" class="pilcrow">¶</a></p>
+<p id="section-2-8">S = zeropad(A) ｜｜ zeropad(P) ｜｜ len(A) ｜｜ len(C)<a href="#section-2-8" class="pilcrow">¶</a></p>
+<p id="section-2-9">where len(A) and len(C) are the 64-bit representations of the bit lengths of A and C, respectively.<a href="#section-2-9" class="pilcrow">¶</a></p>
 <div id="instansizating-gcm-ssm-with-aes-ctr">
 <section id="section-2.1">
         <h3 id="name-instansizating-gcm-ssm-with">
