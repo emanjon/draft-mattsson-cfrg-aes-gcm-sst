@@ -147,7 +147,7 @@ m is the number of 128-bit blocks in zeropad(A), n is the number of 128-bit bloc
 Steps:
 
 1. Let H = Z[0], Q = Z[1], M = Z[2]
-2. Let ct = zeropad(P) XOR Z[3, n+3] 
+2. Let ct = zeropad(P) XOR Z[3, n+3]
 3. Let S = zeropad(A) ｜｜ ct ｜｜ len(A) ｜｜ len(P)
 4. X = POLYVAL(H, S[0], s[1], ..., s[m + n - 1])
 5. T = POLYVAL(Q, X XOR s[m + n]) XOR M
