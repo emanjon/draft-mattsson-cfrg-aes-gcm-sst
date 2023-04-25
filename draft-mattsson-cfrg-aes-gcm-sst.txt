@@ -220,7 +220,7 @@ Table of Contents
 
    *  P_MAX (maximum size of the plaintext) is 2^36 - 47 octets.
 
-   *  A_MAX (maximum size of the associated data) is 2^61 - 1 octets.
+   *  A_MAX (maximum size of the associated data) is 2^36 - 47 octets.
 
    *  N_MIN and N_MAX are both 12 octets
 
@@ -228,7 +228,9 @@ Table of Contents
 
 4.  Security Considerations
 
-   TODO Security
+   For the AEAD Algorithms in Table 1 the worst case forgery probability
+   is bounded by ≈ 2^t where t is the tag length in bits.  This is true
+   for all allowed plaintext and associated data lengths.
 
 5.  IANA Considerations
 
