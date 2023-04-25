@@ -48,6 +48,14 @@ informative:
   RFC3711:
   I-D.ietf-sframe-enc:
 
+  MoQ:
+    target: https://datatracker.ietf.org/wg/moq/about/
+    title: "Media Over QUIC"
+    author:
+      -
+        ins: IETF
+    date: September 2022
+
   GCM:
     target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
     title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
