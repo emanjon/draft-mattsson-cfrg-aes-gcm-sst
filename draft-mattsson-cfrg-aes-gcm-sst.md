@@ -121,37 +121,41 @@ This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) A
 
 # GCM-SST with a Keystream Interface.
 
-GCM-SST adheres to an AEAD interface and takes four bytestring parameters.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and takes four byte string parameters. A secret key K,
+A nonce N, A plaintext P, and the associated data A. The keystream generator is instanziated with K and N.
+The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the
+keystream generator.
 
-K, N, P, A
-
-The keystream generator is instanziated with K and N. The keystream MUST NOT depend on P and A.
-The minimum and maximum length of all parameters depends on the keystream generator.
-
-The keystream generator produces a keystream of 128-bit quadwords Z.
-
-First A and P are zero-padded to multiples of 128-bit quadwords and combined into a single message S.
-
-where len(A) and len(C) are the 64-bit representations of the bit lengths of A and C, respectively.
-
-m is the number of 128-bit blocks in zeropad(A), n is the number of 128-bit blocks in zeropad(P)
+The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string.
+The three first strings z[0], z[1], z[2] are used as the the three subkeys H, Q, and M. The n
+next keystream string are used to encrypt the plaintext.
 
 Steps:
 
 1. Let H = Z[0], Q = Z[1], M = Z[2]
 2. Let ct = zeropad(P) XOR Z[3, n + 3]
-3. Let S = zeropad(A) \｜\｜ ct \｜\｜ len(A) \｜\｜ len(P)
+3. Let S = zeropad(A) \｜\｜ ct \｜\｜ uint64(len(A)) \｜\｜ uint64(len(P))
 4. X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
 5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
 6. return (trim(ct, len(P)), trim(T, tag_length))
+
+where
+zeropad(x) right pads a octet string x to a multiple of 16 bytes
+n is the number of 128-bit blocks in zeropad(P)
+m is the number of 128-bit blocks in zeropad(A)
+\｜\｜ is concatenation
+uint64(x) encodes and integer x as a little endian uint64 
+POLYVAL is defined in RFC 8452
+trim(x, y) truncates a octet string x to y octets
 
 ## Instansizating GCM-SSM with AES
 
 When GCM-SSM is instanciated with AES, then
 
-Z[i] = AES-ENC(K, N \|\| i)
+Z[i] = AES-ENC(K, N \|\| uint32(i))
 
-where AES is the AES encrypt function with key K and IV = N \|\| i and where i is the 32-bit representation.
+where AES is the AES encrypt function with key K and plaintext N \|\| uint32(i) where
+uint32(i) is the little endian uint32 encoding of the integer i.
 
 ## AEAD Instances
 
