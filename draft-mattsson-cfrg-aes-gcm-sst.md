@@ -108,7 +108,7 @@ As a response to the weaknesses Ferguson found, Nyberg et. al. explained how sma
 
 In this document we specify Galois Counter Mode with Secure Short Tags (GCM-SST). GCM-SST is very similar to GCM but incoperated the two suggestions from Nyberg et. al. namely to use a second authentication key Q for the last step and do derive the authentication keys from the nonce N. As proven by Nyberg et. al. this creates a Polynomial MAC with forgery probability close to ideal. In addition to the two changes suggested by Nyberg et all. GCM-SST also make the two following changes compared to GCM
 - Instead of GHASH, the faster POLYVAL function is used.
-- The specification is made general so that any keystream generator can be used. Not just a 128-bit block cipher.   
+- The specification is made general so that any keystream generator can be used. Not just a 128-bit block cipher.
 
 # Conventions and Definitions
 
@@ -191,17 +191,7 @@ Common parameters for the six AEADs:
 
 # Security Considerations
 
-During the NIST standardization, Ferguson pointed out some 
-
-
-In 2005, Ferguson [3] pointed out some linear relations that reduce the strength of (in particular) shortened tags constructed with the GMAC algorithm. To mitigate this, we follow the suggestion in [5] and generate a second secret value 𝑄, which is used instead of 𝐻 in the last multiplication before the padding secret 𝑃 is added.
-
-The integrity protection algorithm is based on the GMAC construction from AES-GCM [1] which in turn is based on the ideas of polynomial hashing by Wegman and Carter [4]. However, Mac5G uses the irreducible polynomial from AES-GCM-SIV [2] to define the Galois Field 𝐺𝐹(2"#$), together with the modified multiplication also found in [2]. This results in more efficient software implementations on Little Endian architectures.
-
-In 2005, Ferguson [3] pointed out some linear relations that reduce the strength of (in particular) shortened tags constructed with the GMAC algorithm. To mitigate this, we follow the suggestion in [5] and generate a second secret value 𝑄, which is used instead of 𝐻 in the last multiplication before the padding secret 𝑃 is added.
-
 TODO Security
-
 
 # IANA Considerations
 
