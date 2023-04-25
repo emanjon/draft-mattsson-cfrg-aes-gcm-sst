@@ -123,8 +123,8 @@ Table of Contents
    of individual packets is not a big concern.  Due to its weaknesses,
    GCM is not often used with short tags.  The result is decreased
    performance from larger than needed tags [MoQ], or decreased
-   performance from using other constructions such as AES-CTR combined
-   with HMAC [RFC3711][I-D.ietf-sframe-enc].
+   performance from using other much slower constructions such as AES-
+   CTR combined with HMAC [RFC3711][I-D.ietf-sframe-enc].
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
