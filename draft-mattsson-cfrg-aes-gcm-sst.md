@@ -97,7 +97,18 @@ informative:
 
 # Introduction
 
-TODO Introduction
+   This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data
+   (AEAD) algorithm. GCM-SST is defined with a general interface so that it can be used with any keystream generator. The main difference
+   compared to GCM is that GCM-SST uses an additional secret point Q, which enables short tags forgery probability close to ideal. The document
+   also registers several instansiations of GCM-SST useing AES-CTR as the keystream generator.
+   
+AES in Galois Counter Mode (AES-GCM) is a very widely used algorithm due to its good performance in both software and hardware as well as it's provable security. During the NIST standardization, Fergoson pointed out two weaknesses in the GCM authentication function. The weaknesses are especially concerning when GCM is used with short tags. The first weakness significantly increases the probability of successful forgery. The second weakness reveals the authentication key H if the attacker manages to create successful forgeries. With knowledge of the authentication key H, the attacker always succeeds with subsequent forgeries. The probability of successful multiple forgeries is therefore significantly increased.
+
+As a response to the weaknesses Ferguson found, Nyberg et. al. explained how small changes based on proven theoretical constuctions mitigates Ferguson weaknesses. Unfortunatly NIST did not follow the advice from Nyberg et. al. and instead specified Appendic D. The calcualtions and security levels behind the Appendix was not disclosed. As shown by Mattsson et al., NISTs assumption that an attacker do get knowledge about tag failure is not realistic and NIST appeared to have used a non-optimal attack to calculate the limits. Due to the remaining weaknesses, GCM is not often used with short tags. The result is decreased performance from larger than needed tags, or decreased performance from using other constructions such as AES-CTR with HMAC-SHA-256.
+
+In this document we specify Galois Counter Mode with Secure Short Tags (GCM-SST). GCM-SST is very similar to GCM but incoperated the two suggestions from Nyberg et. al. namely to use a second authentication key Q for the last step and do derive the authentication keys from the nonce N. As proven by Nyberg et. al. this creates a Polynomial MAC with forgery probability close to ideal. In addition to the two changes suggested by Nyberg et all. GCM-SST also make the two following changes compared to GCM
+- Instead of GHASH, the faster POLYVAL function is used.
+- The specification is made general so that any keystream generator can be used. Not just a 128-bit block cipher.   
 
 # Conventions and Definitions
 
@@ -135,21 +146,21 @@ m is the number of 128-bit blocks in zeropad(A), n is the number of 128-bit bloc
 
 Steps:
 
-1. Let H = Z[0]
-2. Let Q = Z[1]
-3. Let M = Z[2]
-4. Let ct = zeropad(P) XOR Z[3, n+3] 
-5. Let S = zeropad(A) ｜｜ ct ｜｜ 8 * len(A) ｜｜ 8 * len(P)
-6. X = POLYVAL(H, S[0], s[1], ..., s[m + n - 1])
-7. T = POLYVAL(Q, X XOR s[m + n]) XOR M
-12. return trim(ct, len(P)) ｜｜ trim(T, tag_length)
+1. Let H = Z[0], Q = Z[1], M = Z[2]
+2. Let ct = zeropad(P) XOR Z[3, n+3] 
+3. Let S = zeropad(A) ｜｜ ct ｜｜ len(A) ｜｜ len(P)
+4. X = POLYVAL(H, S[0], s[1], ..., s[m + n - 1])
+5. T = POLYVAL(Q, X XOR s[m + n]) XOR M
+6. return (trim(ct, len(P)), rim(T, tag_length))
 
 
+## Instansizating GCM-SSM with AES
 
+When GCM-SSM is instanciated with AES, then
 
-## Instansizating GCM-SSM with AES-CTR
+Z[i] = AES-ENC(K, N || i)
 
-
+where AES is the AES encrypt function with key K and IV = N || i and where i is the 32-bit representation.
 
 ## AEAD Instances
 
@@ -166,7 +177,7 @@ Common parameters for the six AEADs:
 
 * N_MIN = N_MAX = 12 octets.
 
-* C_MAX = P_MAX + tag length.
+* C_MAX = P_MAX + tag_length.
 
 For AEAD_AES_128_GCM_SST_4, AEAD_AES_128_GCM_SST_8, AEAD_AES_128_GCM_SST_10:
 
@@ -189,6 +200,15 @@ For AEAD_AES_256_GCM_SST_10, AEAD_AES_256_GCM_SST_10:
 * tag length is 10 octets.
 
 # Security Considerations
+
+During the NIST standardization, Ferguson pointed out some 
+
+
+In 2005, Ferguson [3] pointed out some linear relations that reduce the strength of (in particular) shortened tags constructed with the GMAC algorithm. To mitigate this, we follow the suggestion in [5] and generate a second secret value 𝑄, which is used instead of 𝐻 in the last multiplication before the padding secret 𝑃 is added.
+
+The integrity protection algorithm is based on the GMAC construction from AES-GCM [1] which in turn is based on the ideas of polynomial hashing by Wegman and Carter [4]. However, Mac5G uses the irreducible polynomial from AES-GCM-SIV [2] to define the Galois Field 𝐺𝐹(2"#$), together with the modified multiplication also found in [2]. This results in more efficient software implementations on Little Endian architectures.
+
+In 2005, Ferguson [3] pointed out some linear relations that reduce the strength of (in particular) shortened tags constructed with the GMAC algorithm. To mitigate this, we follow the suggestion in [5] and generate a second secret value 𝑄, which is used instead of 𝐻 in the last multiplication before the padding secret 𝑃 is added.
 
 TODO Security
 
