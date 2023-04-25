@@ -40,8 +40,49 @@ author:
 
 normative:
 
+  RFC8452:
+  
 informative:
 
+  GCM:
+    target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
+    title: Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC
+    seriesinfo:
+      "NIST": "Special Publication 800-38D"
+    author:
+      -
+        ins: M. Dworkin
+    date: November 2007
+
+  Ferguson:
+    target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/CWC-GCM/Ferguson2.pdf
+    title: Authentication weaknesses in GCM
+    author:
+      -
+        ins: N. Ferguson
+    date: May 2005
+
+  Nyberg:
+    target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf
+    title: Galois MAC with forgery probability close to ideal
+    author:
+      -
+        ins: K. Nyberg
+      -
+        ins: H. Gilbert
+      -
+        ins: M. Robshaw
+    date: June 2005
+
+  Mattsson:
+    target: https://eprint.iacr.org/2015/477.pdf
+    title: Authentication Key Recovery on Galois/Counter Mode (GCM)
+    author:
+      -
+        ins: J. Mattsson
+      -
+        ins: M. Westerlund
+    date: May 2015
 
 --- abstract
 
@@ -57,6 +98,10 @@ informative:
 # Introduction
 
 TODO Introduction
+
+# Requirements Language
+
+{::boilerplate bcp14-tagged}
 
 # GCM-SST with a Keystream Interface.
 
@@ -94,11 +139,10 @@ Steps:
 2. Let Q = Z[1]
 3. Let M = Z[2]
 4. Let ct = zeropad(P) XOR Z[3, n+3] 
-5. Let S = zeropad(A) ｜｜ zeropad(P) ｜｜ len(A) ｜｜ len(P)
-6. X = POLYVAL(H, S[0], s[1], ..., s[m+n-1])
-7. T = POLYVAL(Q, X XOR s[m+n-1])
-10. Let T = X2 XOR M
-12. return ct ｜｜ trim(T, tag_length)
+5. Let S = zeropad(A) ｜｜ ct ｜｜ 8 * len(A) ｜｜ 8 * len(P)
+6. X = POLYVAL(H, S[0], s[1], ..., s[m + n - 1])
+7. T = POLYVAL(Q, X XOR s[m + n]) XOR M
+12. return trim(ct, len(P)) ｜｜ trim(T, tag_length)
 
 
 
