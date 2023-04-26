@@ -175,7 +175,7 @@ Table of Contents
    chunks are used to encrypt the plaintext.  Instead of GHASH [GCM],
    GCM-SST makes use of the POLYVAL function [RFC8452], which results in
    more efficient software implementations on little-endian
-   architectures.  The subkeys H and Q are field elements and used in
+   architectures.  The subkeys H and Q are field elements used in
    POLYVAL while the subkey M is used for the final masking of the tag.
 
 3.1.  Encryption
