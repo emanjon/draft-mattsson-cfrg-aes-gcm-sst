@@ -116,7 +116,9 @@ Table of Contents
    et al.  [Mattsson], feedback of successful or unsuccessful forgery
    attempts is almost always possible, contradicting NIST's assumptions
    for short tags.  NIST also appears to have used non-optimal attacks
-   to calculate the parameters.
+   to calculate the parameters.  An detailed evaluation of GCM is given
+   by [Rogaway], it is very critical of GCM with short tags and
+   recommends disallowing GCM with tags shorter than 96-bits.
 
    32-bit tags are standard in most radio link layers including 5G,
    64-bit tags are very common in transport and application layers of
