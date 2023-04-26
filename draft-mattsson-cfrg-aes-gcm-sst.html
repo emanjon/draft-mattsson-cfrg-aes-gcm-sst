@@ -1236,7 +1236,7 @@ next keystream string are used to encrypt the plaintext.<a href="#section-3-2" c
 </li>
         <li id="section-3-4.2">Let ct = zeropad(P) XOR Z[3, n + 3]<a href="#section-3-4.2" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-4.3">Let S = zeropad(A) \&amp;#65372;\&amp;#65372; ct \&amp;#65372;\&amp;#65372; uint64(len(A)) \&amp;#65372;\&amp;#65372; uint64(len(P))<a href="#section-3-4.3" class="pilcrow">¶</a>
+        <li id="section-3-4.3">Let S = zeropad(A) || ct || uint64(len(A)) || uint64(len(P))<a href="#section-3-4.3" class="pilcrow">¶</a>
 </li>
         <li id="section-3-4.4">X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])<a href="#section-3-4.4" class="pilcrow">¶</a>
 </li>
@@ -1249,7 +1249,7 @@ next keystream string are used to encrypt the plaintext.<a href="#section-3-2" c
 zeropad(x) right pads a octet string x to a multiple of 16 bytes
 n is the number of 128-bit blocks in zeropad(P)
 m is the number of 128-bit blocks in zeropad(A)
-\｜\｜ is concatenation
+|| is concatenation
 uint64(x) encodes and integer x as a little endian uint64
 POLYVAL is defined in RFC 8452
 trim(x, y) truncates a octet string x to y octets<a href="#section-3-5" class="pilcrow">¶</a></p>
