@@ -123,7 +123,7 @@ Table of Contents
    and ephemeral, so on the one hand, they are very sensitive in
    percentage terms to crypto overhead, and on the other hand, forgery
    of individual packets is not a big concern.  Due to its weaknesses,
-   GCM is not often used with short tags.  The result is decreased
+   GCM is typically not used with short tags.  The result is decreased
    performance from larger than needed tags [MoQ], or decreased
    performance from using much slower constructions such as AES-CTR
    combined with HMAC [RFC3711][I-D.ietf-sframe-enc].
