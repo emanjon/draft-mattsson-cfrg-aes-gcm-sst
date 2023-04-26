@@ -1239,25 +1239,25 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-encryption">
 <a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-encryption" class="section-name selfRef">Encryption</a>
         </h3>
-<p id="section-3.1-1">Input: Four variable-length octet strings, key K, nonce N, plaintext P, and associated data A.
-Output: One variable-length octet string the ciphertext ct, and one fixed-length octet string the tag T of length tag_length.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3.1-2">
-<li id="section-3.1-2.1">H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.1-2.1" class="pilcrow">¶</a>
+<p id="section-3.1-1">Input: Four variable-length octet strings, key K, nonce N, plaintext P, and associated data A.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Output: One variable-length octet string the ciphertext ct, and one fixed-length octet string the tag T of length tag_length.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.1-3">
+<li id="section-3.1-3.1">H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.1-3.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-2.2">ct = P XOR trim(Z[4, n + 3], len(P))<a href="#section-3.1-2.2" class="pilcrow">¶</a>
+          <li id="section-3.1-3.2">ct = P XOR trim(Z[4, n + 3], len(P))<a href="#section-3.1-3.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-2.3">S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.1-2.3" class="pilcrow">¶</a>
+          <li id="section-3.1-3.3">S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.1-3.3" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-2.4">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.1-2.4" class="pilcrow">¶</a>
+          <li id="section-3.1-3.4">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.1-3.4" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-2.5">Tf = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.1-2.5" class="pilcrow">¶</a>
+          <li id="section-3.1-3.5">Tf = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.1-3.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-2.6">T = trim(Tf, tag_length)<a href="#section-3.1-2.6" class="pilcrow">¶</a>
+          <li id="section-3.1-3.6">T = trim(Tf, tag_length)<a href="#section-3.1-3.6" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-2.7">return ct, T<a href="#section-3.1-2.7" class="pilcrow">¶</a>
+          <li id="section-3.1-3.7">return ct, T<a href="#section-3.1-3.7" class="pilcrow">¶</a>
 </li>
         </ol>
-<p id="section-3.1-3">where
+<p id="section-3.1-4">where
 * = is the assignment operator
 * trim(x, y) truncates a octet string x to y octets
 * len(x) returns the length of the octet string x
@@ -1267,7 +1267,7 @@ Output: One variable-length octet string the ciphertext ct, and one fixed-length
 * || is concatenation of octet strings
 * uint64(x) encodes an integer x as a little endian uint64
 * POLYVAL is defined in RFC 8452
-* XOR is bitwise exclusive OR operation<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+* XOR is bitwise exclusive OR operation<a href="#section-3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="decryption">
@@ -1275,22 +1275,22 @@ Output: One variable-length octet string the ciphertext ct, and one fixed-length
         <h3 id="name-decryption">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-decryption" class="section-name selfRef">Decryption</a>
         </h3>
-<p id="section-3.2-1">Input: Four variable-length octet strings, key K, nonce N, ciphertext ct, and associated data A, and one fixed-length octet string T.
-Output: The variable-length octet string plaintext P or "verification failed" error.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3.2-2">
-<li id="section-3.2-2.1">Let H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.2-2.1" class="pilcrow">¶</a>
+<p id="section-3.2-1">Input: Four variable-length octet strings, key K, nonce N, ciphertext ct, and associated data A, and one fixed-length octet string T.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Output: The variable-length octet string plaintext P or "verification failed" error.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-3">
+<li id="section-3.2-3.1">Let H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.2-3.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-2.2">Let S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.2-2.2" class="pilcrow">¶</a>
+          <li id="section-3.2-3.2">Let S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.2-3.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-2.3">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.2-2.3" class="pilcrow">¶</a>
+          <li id="section-3.2-3.3">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.2-3.3" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-2.4">Tf = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-2.4" class="pilcrow">¶</a>
+          <li id="section-3.2-3.4">Tf = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-3.4" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-2.5">T' = trim(Tf, tag_length)<a href="#section-3.2-2.5" class="pilcrow">¶</a>
+          <li id="section-3.2-3.5">T' = trim(Tf, tag_length)<a href="#section-3.2-3.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-2.6">Let P = ct XOR trim( Z[4, n + 3], len(ct) )<a href="#section-3.2-2.6" class="pilcrow">¶</a>
+          <li id="section-3.2-3.6">Let P = ct XOR trim( Z[4, n + 3], len(ct) )<a href="#section-3.2-3.6" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-2.7">If T' == T, then return P; else return "verification failed" error.<a href="#section-3.2-2.7" class="pilcrow">¶</a>
+          <li id="section-3.2-3.7">If T' == T, then return P; else return "verification failed" error.<a href="#section-3.2-3.7" class="pilcrow">¶</a>
 </li>
         </ol>
 </section>
