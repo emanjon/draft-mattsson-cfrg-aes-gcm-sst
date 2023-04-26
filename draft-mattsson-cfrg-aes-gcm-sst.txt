@@ -323,6 +323,8 @@ Table of Contents
 
    masking with the secret value 𝑃.
 
+   concatenation of ct and T
+
 6.  IANA Considerations
 
    IANA is requested to assign the entries in the first two columns of
