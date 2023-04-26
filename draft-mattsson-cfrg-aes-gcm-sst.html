@@ -1364,15 +1364,15 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-aes-with-galois-counter-mod">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-aes-with-galois-counter-mod" class="section-name selfRef">AES with Galois Counter Mode with Secure Short Tags</a>
       </h2>
-<p id="section-4-1">When GCM-SSM is instanciated with AES <span>[<a href="#AES" class="cite xref">AES</a>]</span>, then the keystream generator is AES in counter mode<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">When GCM-SSM is instanciated with AES, then the keystream generator is AES in counter mode<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">Z[i] = AES-ENC(K, N || uint32(i))<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">where AES-ENC is the AES encrypt function and uint32(i) is the little endian uint32 encoding of the integer i.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-3">where AES-ENC is the AES encrypt function <span>[<a href="#AES" class="cite xref">AES</a>]</span> and uint32(i) is the little endian uint32 encoding of the integer i.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <div id="aead-instances">
 <section id="section-4.1">
         <h3 id="name-aead-instances">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-aead-instances" class="section-name selfRef">AEAD Instances</a>
         </h3>
-<p id="section-4.1-1">We define six AEADs, in the format of <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, that use AES-GCM-SST. They differ only in the size of the AES key used and the tag length.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">We define six AEADs, in the format of <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, that use AES-GCM-SST. They differ only in the key length (K_LEN) and the and tag length.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <span id="name-aead-algorithms"></span><div id="iana-algs">
 <table class="center" id="table-1">
           <caption>
@@ -1435,7 +1435,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li class="normal" id="section-4.1-4.3">N_MIN and N_MAX (minimum and maximum size of the nonce) are both 12 octets<a href="#section-4.1-4.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-4.4">C_MAX (maximum size of the ciphertext) is P_MAX + tag_length where tag_length can be between 4 and 16 bytes.<a href="#section-4.1-4.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-4.4">C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length where tag_length can be between 4 and 16 bytes.<a href="#section-4.1-4.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1457,9 +1457,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-5-7">Updated P_LEN and A_LEN<a href="#section-5-7" class="pilcrow">¶</a></p>
 <p id="section-5-8">Write about 12 byte nonce only<a href="#section-5-8" class="pilcrow">¶</a></p>
 <p id="section-5-9">Security based on AES<a href="#section-5-9" class="pilcrow">¶</a></p>
-<p id="section-5-10">masking with the secret value 𝑃.<a href="#section-5-10" class="pilcrow">¶</a></p>
-<p id="section-5-11">concatenation of ct and T<a href="#section-5-11" class="pilcrow">¶</a></p>
-<p id="section-5-12">tag length 4 16<a href="#section-5-12" class="pilcrow">¶</a></p>
+<p id="section-5-10">tag_length can be between 4 and 16 bytes.<a href="#section-5-10" class="pilcrow">¶</a></p>
+<p id="section-5-11">tag length 4 16<a href="#section-5-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">

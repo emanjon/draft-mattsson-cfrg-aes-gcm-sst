@@ -286,18 +286,18 @@ Table of Contents
 
 4.  AES with Galois Counter Mode with Secure Short Tags
 
-   When GCM-SSM is instanciated with AES [AES], then the keystream
-   generator is AES in counter mode
+   When GCM-SSM is instanciated with AES, then the keystream generator
+   is AES in counter mode
 
    Z[i] = AES-ENC(K, N || uint32(i))
 
-   where AES-ENC is the AES encrypt function and uint32(i) is the little
-   endian uint32 encoding of the integer i.
+   where AES-ENC is the AES encrypt function [AES] and uint32(i) is the
+   little endian uint32 encoding of the integer i.
 
 4.1.  AEAD Instances
 
    We define six AEADs, in the format of [RFC5116], that use AES-GCM-
-   SST.  They differ only in the size of the AES key used and the tag
+   SST.  They differ only in the key length (K_LEN) and the and tag
    length.
 
        +============+=========================+=======+============+
@@ -327,8 +327,8 @@ Table of Contents
    *  N_MIN and N_MAX (minimum and maximum size of the nonce) are both
       12 octets
 
-   *  C_MAX (maximum size of the ciphertext) is P_MAX + tag_length where
-      tag_length can be between 4 and 16 bytes.
+   *  C_MAX (maximum size of the ciphertext and tag) is P_MAX +
+      tag_length where tag_length can be between 4 and 16 bytes.
 
 5.  Security Considerations
 
@@ -363,9 +363,7 @@ Table of Contents
 
    Security based on AES
 
-   masking with the secret value 𝑃.
-
-   concatenation of ct and T
+   tag_length can be between 4 and 16 bytes.
 
    tag length 4 16
 
