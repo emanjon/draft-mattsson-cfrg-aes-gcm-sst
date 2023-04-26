@@ -152,7 +152,7 @@ GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function tak
 
 Encrypt(K, N, A, P)
 
-The Encrypt function encrypts a message and returns the ciphertext along with an authentication tag that verifies the authenticity of the message and associated data, if provided.
+The Encrypt function encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.
 
 Security:
 
@@ -187,7 +187,7 @@ Steps:
 
 Decrypt(K, N, A, ct, tag)
 
-The Decrypt function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the message on success or an error if tag verification failed.
+The Decrypt function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if tag verification failed.
 
 Security:
 
@@ -260,13 +260,13 @@ Common parameters for the six AEADs:
 
 GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution.
 
-With AES-GCM-SST, up to 2^32 random nonces MAY be used with the same key while still keeping the collision probability under the 2^-32 that NIST requires {{GCM}}. In general if r random nonces are used with the same key, the collision probability is r^2 / 2^97
+With AES-GCM-SST, up to 2^32 random nonces MAY be used with the same key while still keeping the collision probability under the 2^-32 that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is r^2 / 2^97.
 
-If tag verification fails, the decrypted message and expected_tag MUST NOT be given as output and MUST be overwritten with zeros.
+If tag verification fails, the plaintext and expected_tag MUST NOT be given as output and MUST be overwritten with zeros.
 
 The confidentiality offered against passive attackers is equal to GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
-For the AEAD Algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2^-t where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintex and associated data. Just like {{RFC5116}} GCM-SST only allows 96-bit nonces.
+For the AEAD Algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2^-t where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like {{RFC5116}} GCM-SST only allows 96-bit nonces.
 
 The tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}.
 
