@@ -5,8 +5,8 @@
 Crypto Forum                                           J. Preuß Mattsson
 Internet-Draft                                                  Ericsson
 Intended status: Informational                               M. Campagna
-Expires: 27 October 2023                          University of Waterloo
-                                                           25 April 2023
+Expires: 28 October 2023                          University of Waterloo
+                                                           26 April 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 October 2023.
+   This Internet-Draft will expire on 28 October 2023.
 
 Copyright Notice
 
