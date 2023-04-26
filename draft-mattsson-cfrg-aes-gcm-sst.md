@@ -204,11 +204,11 @@ C = ct \|\| tag
 
 # AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
 
-When GCM-SSM is instanciated with AES {{AES}}, then the keystream generator is AES in counter mode
+When GCM-SSM is instanciated with AES, then the keystream generator is AES in counter mode
 
 Z[i] = AES-ENC(K, N \|\| uint32(i))
 
-where AES-ENC is the AES encrypt function and uint32(i) is the little endian uint32 encoding of the integer i.
+where AES-ENC is the AES encrypt function {{AES}} and uint32(i) is the little endian uint32 encoding of the integer i.
 
 ## AEAD Instances
 
