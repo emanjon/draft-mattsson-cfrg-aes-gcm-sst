@@ -124,34 +124,6 @@ This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) A
 
 This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where where AES {{AES}} in counter mode is used as the keystream generator. See Section {{AES-GCM-SST}}.
 
-~~~~~~~~~~~~~~~~~~~~~~~ aasvg
-Internet-Draft              C509 Certificates               January 2023
-
- rekeying with psk_ke
- static exfiltration of psk in T₃:
-+-----+-----+-----+-----+-----+-----+-----+-----+     +-----+-----+
-|  ✘  |  ✘  |  ✘  |  ✘  |  ✘  |  ✘  |  ✘  |  ✘  | ... |  ✘  |  ✘  |
-+-----+-----+-----+-----+-----+-----+-----+-----+     +-----+-----+
-   T₀    T₁    T₂    T₃    T₄    T₅    T₆    T₇   ...   Tₙ₋₁   Tₙ
- <--------------------------------------------------------------->
-
- rekeying with key_update
- static exfiltration of application_traffic_secret in T₃:
-+-----+-----+-----+-----+-----+-----+-----+-----+     +-----+-----+
-|  ✔  |  ✔  |  ✔  |  ✘  |  ✘  |  ✘  |  ✘  |  ✘  | ... |  ✘  |  ✘  |
-+-----+-----+-----+-----+-----+-----+-----+-----+     +-----+-----+
-   T₀    T₁    T₂    T₃    T₄    T₅    T₆    T₇   ...   Tₙ₋₁   Tₙ
-                   <--------------------------------------------->
-
- rekeying with (ec)dhe
- static exfiltration of all keys in T₃:
-+-----+-----+-----+-----+-----+-----+-----+-----+     +-----+-----+
-|  ✔  |  ✔  |  ✔  |  ✘  |  ✔  |  ✔  |  ✔  |  ✔  | ... |  ✔  |  ✔  |
-+-----+-----+-----+-----+-----+-----+-----+-----+     +-----+-----+
-   T₀    T₁    T₂    T₃    T₄    T₅    T₆    T₇   ...   Tₙ₋₁   Tₙ
-                   <--->
-~~~~~~~~~~~~~~~~~~~~~~~
-
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
