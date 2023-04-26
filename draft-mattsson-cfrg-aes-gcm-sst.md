@@ -183,7 +183,7 @@ Output: The variable-length octet string plaintext P or "verification failed" er
 
 Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single string. In the latter case, the tag MUST immediately follow the ciphertext:
 
-C = ct || tag
+C = ct \|\| tag
 
 # AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
 
