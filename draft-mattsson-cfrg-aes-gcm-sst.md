@@ -196,7 +196,7 @@ Steps:
 
 ## Encoding (ct, tag) Tuples
 
-Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single string. In the latter case, the tag MUST immediately follow the ciphertext:
+Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
 
 C = ct \|\| tag
 
