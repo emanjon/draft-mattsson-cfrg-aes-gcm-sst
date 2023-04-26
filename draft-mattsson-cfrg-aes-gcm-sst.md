@@ -120,7 +120,7 @@ This document also registers several instances of Advanced Encryption Standard (
 
 {::boilerplate bcp14-tagged}
 
-# Galois Counter Mode with Secure Short Tags {#GCM-SST}
+# Galois Counter Mode with Secure Short Tags (GCM-SST) {#GCM-SST}
 
 GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four octet string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instantiated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit chunks where z[1] is the first chunks. The first three chunks z[1], z[2], and z[3] are used as the three subkeys H, Q, and M. The following keystream chunks are used to encrypt the plaintext.
 
@@ -162,7 +162,7 @@ Output: The variable length octet string plaintext P or "verification failed" er
 6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
 7. If T' == T, then return P; else return "verification failed" error.
 
-## AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
+# AES with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) {#AES-GCM-SST}
 
 When GCM-SSM is instanciated with AES, then
 
