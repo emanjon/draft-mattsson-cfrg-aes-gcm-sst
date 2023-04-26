@@ -150,15 +150,15 @@ Output: One variable-length octet string the ciphertext ct, and one fixed-length
 where
 
 * = is the assignment operator
-* trim(x, y) truncates a octet string x to y octets
+* trim(x, y) truncates an octet string x to y octets
 * len(x) returns the length of the octet string x
-* zeropad(x) right pads a octet string x to a multiple of 16 bytes
-* n is the number of 128-bit blocks in zeropad(P)
-* m is the number of 128-bit blocks in zeropad(A)
+* zeropad(x) right pads an octet string x to a multiple of 16 bytes
+* n is the number of 128-bit chunks in zeropad(P)
+* m is the number of 128-bit chunks in zeropad(A)
 * \|\| is concatenation of octet strings
 * uint64(x) encodes an integer x as a little endian uint64
 * POLYVAL is defined in RFC 8452
-* XOR is bitwise exclusive OR operation
+* XOR is the bitwise exclusive OR operation
 
 ## Decryption
 
