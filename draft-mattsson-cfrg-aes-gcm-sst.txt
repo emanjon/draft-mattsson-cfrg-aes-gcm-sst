@@ -324,8 +324,8 @@ Table of Contents
 3.3.  Encoding (ct, tag) Tuples
 
    Applications MAY keep the ciphertext and the authentication tag in
-   distinct structures or encode both as a single string C.  In the
-   latter case, the tag MUST immediately follow the ciphertext ct:
+   distinct structures or encode both as a single octet string C.  In
+   the latter case, the tag MUST immediately follow the ciphertext ct:
 
    C = ct || tag
 
@@ -336,8 +336,7 @@ Table of Contents
 
    Z[i] = AES-ENC(K, N || LE32(i))
 
-   where AES-ENC is the AES encrypt function [AES] and uint32(i) is the
-   little endian uint32 encoding of the integer i.
+   where AES-ENC is the AES encrypt function [AES].
 
 4.1.  AEAD Instances
 
@@ -384,12 +383,12 @@ Table of Contents
    a uniform distribution.
 
    With AES-GCM-SST, up to 2^32 random nonces MAY be used with the same
-   key while still keeping the collision probability under the 2^-32
-   that NIST requires [GCM].  If r random nonces are used with the same
-   key, the collision probability for AES-GCM-SST is r^2 / 2^97.
+   key while still keeping the collision probability under 2^-32 that
+   NIST requires [GCM].  If r random nonces are used with the same key,
+   the collision probability for AES-GCM-SST is ≈ r^2 / 2^97.
 
    If tag verification fails, the plaintext and expected_tag MUST NOT be
-   given as output and MUST be overwritten with zeros.
+   given as output.
 
    The confidentiality offered against passive attackers is equal to GCM
    [GCM] and given by the birthday bound.  The maximum size of the
