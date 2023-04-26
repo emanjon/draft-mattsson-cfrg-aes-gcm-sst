@@ -135,8 +135,8 @@ Table of Contents
    additional subkey Q and that new subkeys H and Q are derived for each
    nonce.  This enables short tags with forgery probability close to
    ideal.  Instead of GHASH [GCM], GCM-SST makes use of the faster
-   POLYVAL function [RFC8452].  The specification is also made generic,
-   so that any keystream generator can be used, not just a 128-bit block
+   POLYVAL function [RFC8452].  The specification is made generic, so
+   that any keystream generator can be used, not just a 128-bit block
    cipher.  The document also registers several instantiations of GCM-
    SST using AES in counter mode (AES-CTR) as the keystream generator.
 
