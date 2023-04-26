@@ -181,9 +181,9 @@ Table of Contents
 
    *  LE64(x): the little-endian encoding of 64-bit integer x.
 
-   *  X[y] is the 128-bit chunk number y in the array X.
+   *  A[y] is the 128-bit chunk y in the array A.
 
-   *  X[y:z] are the chunks y to z in the array X.
+   *  A[x:y] are the chunks x to y in the array A.
 
 3.  Galois Counter Mode with Secure Short Tags
 
