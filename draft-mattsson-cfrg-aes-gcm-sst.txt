@@ -140,12 +140,12 @@ Table of Contents
    function [RFC8452], which results in more efficient software
    implementations on little-endian architectures.  The specification is
    made generic, so that any keystream generator can be used, not just a
-   128-bit block cipher.  See Section Section 3}.
+   128-bit block cipher.  See Section Section 3.
 
    This document also registers several instances of Advanced Encryption
    Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-
-   GCM-SST) where where AES in counter mode is used as the keystream
-   generator.  See Section Section 4}.
+   GCM-SST) where where AES [AES] in counter mode is used as the
+   keystream generator.  See Section Section 4.
 
 2.  Conventions and Definitions
 
