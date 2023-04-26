@@ -1243,7 +1243,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
         <li class="normal" id="section-2-3.5">len(x) is the length of x in bits.<a href="#section-2-3.5" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-2-3.6">zeropad(x) right pads an octet string with zeroes x to a multiple of 128 bits<a href="#section-2-3.6" class="pilcrow">¶</a>
+        <li class="normal" id="section-2-3.6">zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits<a href="#section-2-3.6" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-2-3.7">truncate(x, y) is the truncation operation.  The first y bits of x are kept<a href="#section-2-3.7" class="pilcrow">¶</a>
 </li>
@@ -1257,7 +1257,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
         <li class="normal" id="section-2-3.12">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.12" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-2-3.13">A[y] is the 128-bit chunk y in the array A<a href="#section-2-3.13" class="pilcrow">¶</a>
+        <li class="normal" id="section-2-3.13">A[y] is the 128-bit chunk number y in the array A<a href="#section-2-3.13" class="pilcrow">¶</a>
 </li>
         <li class="normal" id="section-2-3.14">A[x:y] are the range of chunks x to y in the array A<a href="#section-2-3.14" class="pilcrow">¶</a>
 </li>
@@ -1395,7 +1395,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-aes-with-galois-counter-mod">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-aes-with-galois-counter-mod" class="section-name selfRef">AES with Galois Counter Mode with Secure Short Tags</a>
       </h2>
-<p id="section-4-1">When GCM-SSM is instantiated with AES, then the keystream generator is AES in counter mode<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">Z[i] = AES-ENC(K, N || LE32(i))<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">where AES-ENC is the AES encrypt function <span>[<a href="#AES" class="cite xref">AES</a>]</span>.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <div id="aead-instances">

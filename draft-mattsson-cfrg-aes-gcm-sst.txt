@@ -167,7 +167,7 @@ Table of Contents
 
    *  len(x) is the length of x in bits.
 
-   *  zeropad(x) right pads an octet string with zeroes x to a multiple
+   *  zeropad(x) right pads an octet string x with zeroes to a multiple
       of 128 bits
 
    *  truncate(x, y) is the truncation operation.  The first y bits of x
@@ -183,7 +183,7 @@ Table of Contents
 
    *  LE64(x) is the little-endian encoding of 64-bit integer x
 
-   *  A[y] is the 128-bit chunk y in the array A
+   *  A[y] is the 128-bit chunk number y in the array A
 
    *  A[x:y] are the range of chunks x to y in the array A
 
@@ -331,8 +331,8 @@ Table of Contents
 
 4.  AES with Galois Counter Mode with Secure Short Tags
 
-   When GCM-SSM is instantiated with AES, then the keystream generator
-   is AES in counter mode
+   When GCM-SSM is instantiated with AES, the keystream generator is AES
+   in counter mode
 
    Z[i] = AES-ENC(K, N || LE32(i))
 
