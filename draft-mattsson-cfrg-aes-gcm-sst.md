@@ -117,7 +117,7 @@ Advanced Encryption Standard (AES) in Galois Counter Mode (AES-GCM) {{GCM}} is a
 
 As a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based on proven theoretical constructions mitigate the weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et al. and instead specified additional requirements for use with short tags in Appendix C of {{GCM}}. NIST did not give any motivations for the specific choice of parameters, or for that matter the security levels they were assumed to give. As shown by Mattsson et al. {{Mattsson}}, feedback of successful or unsuccessful forgery attempts is almost always possible, contradicting NIST's assumptions for short tags. NIST also appears to have used non-optimal attacks to calculate the parameters.
 
-32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is typically not used with short tags. The result is decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{I-D.ietf-sframe-enc}}.
+32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is typically not used with short tags. The result is decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{I-D.ietf-sframe-enc}}. Short tags might also be useful to protect packets transporting a signed payload such a signed firmware update.
 
 This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. See Section {{GCM-SST}}.
 
@@ -235,28 +235,16 @@ Common parameters for the six AEADs:
 
 # Security Considerations
 
-For the AEAD Algorithms in {{iana-algs}} the worst case forgery probability is bounded by ≈ 2^t where t is the tag length in bits. This is true for all allowed plaintext and associated data lengths.
+The confidentiality offered against passive attackers is equal to GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
-No other than 96-bit
+For the AEAD Algorithms in {{iana-algs}} the worst case forgery probability is bounded by ≈ 2^-t where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintextext and associated data. Just like {{RFC5116}} GCM-SST only allows 96-bit nonces.
+
+The tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}.
+
+In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero which would be so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favour of complicating the flow with additional checks and regeneration of values. For AES-GCM-SST either of the keys but not both can be zero. 
+
 
 256 combined with short tags.
-
-However, the field and the multiplication operation are taken from the POLYVAL function in the
- AES-SIV construction [x]. This has the advantage that it can be faster in software implementations and at the same time it can optionally reuse existing hardware implementations of GHASH from AES- GCM [3] (with some byte reversals and a simple multiplication).
-
-Write why AES with 256 blocks would be good
-
-  NOTE: There is a very small possibility that either or both of 𝐻 and 𝑄 are zero, since they are produced (pseudo-)randomly from the keystream generator. In such a case, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favour of complicating the flow with additional checks and regeneration of values.
-
-  Updated P_LEN and A_LEN
-
-  Write about 12 byte nonce only
-
-  Security based on AES
-
-tag_length can be between 4 and 16 bytes.
-
-   tag length 4 16
 
 # IANA Considerations
 
