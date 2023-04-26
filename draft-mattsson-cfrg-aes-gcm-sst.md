@@ -133,7 +133,7 @@ Steps:
 
 1. Let H = Z[0], Q = Z[1], M = Z[2]
 2. Let ct = zeropad(P) XOR Z[3, n + 3]
-3. Let S = zeropad(A) \｜\｜ ct \｜\｜ uint64(len(A)) \｜\｜ uint64(len(P))
+3. Let S = zeropad(A) \|\| ct \|\| uint64(len(A)) \|\| uint64(len(P))
 4. X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
 5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
 6. return (trim(ct, len(P)), trim(T, tag_length))
@@ -142,7 +142,7 @@ where
 zeropad(x) right pads a octet string x to a multiple of 16 bytes
 n is the number of 128-bit blocks in zeropad(P)
 m is the number of 128-bit blocks in zeropad(A)
-\｜\｜ is concatenation
+\|\| is concatenation
 uint64(x) encodes and integer x as a little endian uint64
 POLYVAL is defined in RFC 8452
 trim(x, y) truncates a octet string x to y octets
