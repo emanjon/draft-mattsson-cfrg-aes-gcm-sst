@@ -219,7 +219,7 @@ Steps:
 5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
 6. expected_tag = truncate(T, tag_length)
 7. If tag != expected_tag, return "verification failed" error and abort
-8. P = ct XOR truncate( Z[4:n + 3], len(ct) )
+8. P = ct XOR truncate(Z[4:n + 3], len(ct))
 9. return P
 
 ## Encoding (ct, tag) Tuples
