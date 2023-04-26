@@ -1309,13 +1309,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li id="section-3.2-3.3">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.2-3.3" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.4">Tf = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-3.4" class="pilcrow">¶</a>
+          <li id="section-3.2-3.4">T = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-3.4" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.5">T' = trim(Tf, tag_length)<a href="#section-3.2-3.5" class="pilcrow">¶</a>
+          <li id="section-3.2-3.5">expected_tag = trim(T, tag_length)<a href="#section-3.2-3.5" class="pilcrow">¶</a>
 </li>
           <li id="section-3.2-3.6">Let P = ct XOR trim( Z[4, n + 3], len(ct) )<a href="#section-3.2-3.6" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.7">If T' == T, then return P; else return "verification failed" error.<a href="#section-3.2-3.7" class="pilcrow">¶</a>
+          <li id="section-3.2-3.7">If tag == expected_tag, then return P; else return "verification failed" error.<a href="#section-3.2-3.7" class="pilcrow">¶</a>
 </li>
         </ol>
 </section>
