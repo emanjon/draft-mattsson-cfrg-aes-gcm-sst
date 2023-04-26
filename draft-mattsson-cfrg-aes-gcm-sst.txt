@@ -128,10 +128,10 @@ Table of Contents
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
-   algorithm following the recommendations for Nyberg et al.  [Nyberg].
+   algorithm following the recommendations from Nyberg et al.  [Nyberg].
    GCM-SST is defined with a general interface so that it can be used
    with any keystream generator, not just a 128-bit block cipher.  The
-   two main differences compared to GCM is that GCM-SST uses an
+   two main differences compared to GCM [GCM] is that GCM-SST uses an
    additional subkey Q and that new subkeys H and Q are derived for each
    nonce.  This enables short tags with forgery probability close to
    ideal.  Instead of GHASH [GCM], GCM-SST makes use of the faster
@@ -231,6 +231,10 @@ Table of Contents
    For the AEAD Algorithms in Table 1 the worst case forgery probability
    is bounded by ≈ 2^t where t is the tag length in bits.  This is true
    for all allowed plaintext and associated data lengths.
+
+   No other than 96-bit
+
+   256 combined with short tags.
 
 5.  IANA Considerations
 
