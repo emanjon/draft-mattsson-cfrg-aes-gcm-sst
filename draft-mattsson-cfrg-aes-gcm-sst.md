@@ -127,22 +127,46 @@ This document also registers several instances of Advanced Encryption Standard (
 
 {::boilerplate bcp14-tagged}
 
+Primitives:
+
+* = is the assignment operator
+* x \|\| y is concatenation of octet strings x and y
+* XOR is the bitwise exclusive OR operation
+* len(x) is the length of x in bits.
+* zeropad(x) right pads an octet string with zeroes x to a multiple of 128 bits
+* truncate(x, y): truncation operation.  The first y bits of x are kept
+* n is the number of 128-bit chunks in zeropad(P)
+* m is the number of 128-bit chunks in zeropad(A)
+* POLYVAL is defined in RFC 8452
+* LE32(x): the little-endian encoding of 32-bit integer x.
+* LE64(x): the little-endian encoding of 64-bit integer x.
+
 # Galois Counter Mode with Secure Short Tags {#GCM-SST}
 
 This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal.
 
 GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instantiated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where z[1] is the first chunk. The first three chunks z[1], z[2], and z[3] are used as the three subkeys H, Q, and M. The following keystream chunks are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of bytes.
 
-## Encryption
+## Authenticated Encryption
 
-Input:
+Encrypt(K, N, A, P)
+
+The Encrypt function encrypts a message and returns the ciphertext along with an authentication tag that verifies the authenticity of the message and associated data, if provided.
+
+Security:
+
+* For a given key, the nonce MUST NOT be reused under any circumstances.
+
+* The key MUST be randomly chosen from a uniform distribution.
+
+Inputs:
 
 * Key K (variable-length octet string)
 * Nonce N (variable-length octet string)
 * Associated data A (variable-length octet string)
 * Plaintext P (variable-length octet string)
 
-Output:
+Outputs:
 
 * Ciphertext ct (variable-length octet string)
 * Tag tag (octet string with length tag_length)
@@ -151,29 +175,26 @@ Steps:
 
 1. Initate keystream generator with K and N
 2. H = Z[1], Q = Z[2], M = Z[3]
-3. ct = P XOR trim(Z[4, n + 3], len(P))
+3. ct = P XOR truncate(Z[4, n + 3], len(P))
 4. S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
 5. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 6. full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
-7. tag = trim(full_tag, tag_length)
+7. tag = truncate(full_tag, tag_length)
 8. return (ct, tag)
 
-where
+## Authenticated Decryption
 
-* = is the assignment operator
-* trim(x, y) truncates an octet string x to y octets
-* len(x) returns the length of the octet string x
-* zeropad(x) right pads an octet string x to a multiple of 16 bytes
-* n is the number of 128-bit chunks in zeropad(P)
-* m is the number of 128-bit chunks in zeropad(A)
-* \|\| is concatenation of octet strings
-* uint64(x) encodes an integer x as a little endian uint64
-* POLYVAL is defined in RFC 8452
-* XOR is the bitwise exclusive OR operation
+Decrypt(K, N, A, ct, tag)
 
-## Decryption
+The Decrypt function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the message on success or an error if tag verification failed.
 
-Input:
+Security:
+
+* The calculation of the plaintext P (step 8) MAY be done in parallel with the tag verification (step 2-7). If tag verification fails, P and the expected_tag MUST NOT be given as output and MUST be overwritten with zeros.
+
+* The comparison of the input tag with the expected_tag MUST be done in constant time.
+
+Inputs:
 
 * Key K (variable-length octet string)
 * Nonce N (variable-length octet string)
@@ -181,9 +202,9 @@ Input:
 * Ciphertext ct (variable-length octet string)
 * Tag tag (octet string with length tag_length)
 
-Output:
+Outputs:
 
-* Plaintext P (variable-length octet string) or "verification failed" error
+* Plaintext P (variable-length octet string) or an error indicating that the authentication tag is invalid for the given inputs.
 
 Steps:
 
@@ -192,10 +213,11 @@ Steps:
 3. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
 4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
-6. expected_tag = trim(T, tag_length)
-7. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
-8. If tag == expected_tag, then return P; else return "verification failed" error.
-
+6. expected_tag = truncate(T, tag_length)
+7. If tag != expected_tag, return "verification failed" error and abort
+8. P = ct XOR truncate( Z[4, n + 3], len(ct) )
+9. return P
+ 
 ## Encoding (ct, tag) Tuples
 
 Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
@@ -214,13 +236,13 @@ where AES-ENC is the AES encrypt function {{AES}} and uint32(i) is the little en
 
 We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in the key length (K_LEN) and the and tag length.
 
-| Numeric ID | Name | K_LEN | tag_length |
-| TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 4 |
-| TBD2 | AEAD_AES_128_GCM_SST_8 | 16 | 8 |
-| TBD3 | AEAD_AES_128_GCM_SST_10 | 16 | 10 |
-| TBD4 | AEAD_AES_256_GCM_SST_4 | 32 | 4 |
-| TBD5 | AEAD_AES_256_GCM_SST_8 | 32 | 8 |
-| TBD6 | AEAD_AES_256_GCM_SST_10 | 32 | 10 |
+| Numeric ID | Name | K_LEN (bytes) | tag_length (bits) |
+| TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 32 |
+| TBD2 | AEAD_AES_128_GCM_SST_8 | 16 | 64 |
+| TBD3 | AEAD_AES_128_GCM_SST_10 | 16 | 80 |
+| TBD4 | AEAD_AES_256_GCM_SST_4 | 32 | 32 |
+| TBD5 | AEAD_AES_256_GCM_SST_8 | 32 | 64 |
+| TBD6 | AEAD_AES_256_GCM_SST_10 | 32 | 80 |
 {: #iana-algs title="AEAD Algorithms" cols="r l r r"}
 
 Common parameters for the six AEADs:
@@ -231,9 +253,15 @@ Common parameters for the six AEADs:
 
 * N_MIN and N_MAX (minimum and maximum size of the nonce) are both 12 octets
 
-* C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length where tag_length can be between 4 and 16 bytes.
+* C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
 
 # Security Considerations
+
+GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution. 
+
+With AES-GCM-SST, up to 2^32 random nonces MAY be used with the same key while still keeping the collision probability under the 2^-32 that NIST requires {{GCM}}. In general if r random nonces are used with the same key, the collision probability is r^2 / 2^97
+
+If tag verification fails, the decrypted message and expected_tag MUST NOT be given as output and MUST be overwritten with zeros.
 
 The confidentiality offered against passive attackers is equal to GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
