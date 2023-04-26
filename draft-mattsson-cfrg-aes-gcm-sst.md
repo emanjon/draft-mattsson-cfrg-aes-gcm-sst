@@ -54,6 +54,7 @@ informative:
 
   RFC3711:
   I-D.ietf-sframe-enc:
+  I-D.irtf-cfrg-aegis-aead:
 
   MoQ:
     target: https://datatracker.ietf.org/wg/moq/about/
@@ -284,4 +285,4 @@ TODO
 # Acknowledgments
 {:numbered="false"}
 
-The authors want to thank {{{Richard Barnes}}}, and {{{XXX}}} for their valuable comments and feedback.
+The authors want to thank {{{Richard Barnes}}}, and {{{XXX}}} for their valuable comments and feedback. Some of the formating and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
