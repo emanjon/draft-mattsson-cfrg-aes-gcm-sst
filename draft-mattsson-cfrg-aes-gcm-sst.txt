@@ -129,8 +129,8 @@ Table of Contents
    performance from larger than needed tags [MoQ], or decreased
    performance from using much slower constructions such as AES-CTR
    combined with HMAC [RFC3711][I-D.ietf-sframe-enc].  Short tags are
-   also be useful to protect packets transporting a signed payload such
-   as a firmware update.
+   also useful to protect packets transporting a signed payload such as
+   a firmware update.
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
