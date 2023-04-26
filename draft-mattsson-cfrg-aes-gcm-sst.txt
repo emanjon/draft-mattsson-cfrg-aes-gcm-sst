@@ -495,6 +495,11 @@ Table of Contents
               RFC 3711, DOI 10.17487/RFC3711, March 2004,
               <https://www.rfc-editor.org/rfc/rfc3711>.
 
+   [Rogaway]  Rogaway, P., "Evaluation of Some Blockcipher Modes of
+              Operation", February 2011,
+              <https://www.cryptrec.go.jp/exreport/cryptrec-ex-
+              2012-2010r1.pdf>.
+
 Appendix A.  Test Vectors
 
    TODO
