@@ -79,8 +79,7 @@ Table of Contents
    3.  Galois Counter Mode with Secure Short Tags (GCM-SST)
      3.1.  Encryption steps:
      3.2.  Decryption steps:
-   4.  AES with Galois Counter Mode with Secure Short Tags
-           (AES-GCM-SST)
+   4.  AES with GCM-SST (AES-GCM-SST)
      4.1.  AEAD Instances
    5.  Security Considerations
    6.  IANA Considerations
@@ -222,7 +221,7 @@ Table of Contents
    7.  If T' == T, then return P; else return "verification failed"
        error.
 
-4.  AES with Galois Counter Mode with Secure Short Tags (AES-GCM-SST)
+4.  AES with GCM-SST (AES-GCM-SST)
 
    When GCM-SSM is instanciated with AES [AES], then
 
