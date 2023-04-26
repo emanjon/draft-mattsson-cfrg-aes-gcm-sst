@@ -141,8 +141,8 @@ Primitives:
 * POLYVAL is defined in RFC 8452
 * LE32(x): the little-endian encoding of 32-bit integer x.
 * LE64(x): the little-endian encoding of 64-bit integer x.
-* X[y] is the 128-bit chunk number y in the array X.
-* X[y:z] are the chunks y to z in the array X.
+* A[y] is the 128-bit chunk y in the array A.
+* A[x:y] are the chunks x to y in the array A.
 
 # Galois Counter Mode with Secure Short Tags {#GCM-SST}
 
