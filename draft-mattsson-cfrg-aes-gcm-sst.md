@@ -112,15 +112,15 @@ As a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based
 
 32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is not often used with short tags. The result is decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{I-D.ietf-sframe-enc}}.
 
-This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. The specification is made generic, so that any keystream generator can be used, not just a 128-bit block cipher. This document also registers several instances of AES with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where where AES in counter mode is used as the keystream generator.
+This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. The specification is made generic, so that any keystream generator can be used, not just a 128-bit block cipher.
 
-## AES in GCM-SSM Mode (AES-GCM-SSM)
+This document also registers several instances of AES with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where where AES in counter mode is used as the keystream generator.
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
-# GCM-SST with a Keystream Interface.
+# Galois Counter Mode with Secure Short Tags {{#GCM-SST}}
 
 GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four octet string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instantiated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit chunks where z[1] is the first chunks. The first three chunks z[1], z[2], and z[3] are used as the three subkeys H, Q, and M. The following keystream chunks are used to encrypt the plaintext.
 
@@ -162,7 +162,7 @@ Output: The variable length octet string plaintext P or "verification failed" er
 6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
 7. If T' == T, then return P; else return "verification failed" error.
 
-## AES in GCM-SSM Mode (AES-GCM-SSM)
+## AES with Galois Counter Mode with Secure Short Tags {{#AES-GCM-SSM}}
 
 When GCM-SSM is instanciated with AES, then
 
