@@ -21,7 +21,7 @@ Abstract
    that GCM-SST uses an additional subkey Q and that new subkeys H and Q
    are derived for each nonce.  This enables short tags with forgery
    probabilities close to ideal.  The document registers several
-   instantiations of GCM-SST using AES in counter mode (AES-CTR) as the
+   instances of GCM-SST using AES in counter mode (AES-CTR) as the
    keystream generator.
 
    This document is the product of the Crypto Forum Research Group.
@@ -97,12 +97,12 @@ Table of Contents
    NIST standardization, Ferguson pointed out two weaknesses in the GCM
    authentication function [Ferguson].  The weaknesses are especially
    concerning when GCM is used with short tags.  The first weakness
-   significantly increases the probability of successful forgery.  The
-   second weakness reveals the subkey H if the attacker manages to
-   create successful forgeries.  With knowledge of the subkey H, the
-   attacker always succeeds with subsequent forgeries.  The probability
-   of multiple successful forgeries is therefore significantly
-   increased.
+   significantly increases the probability of successful forgery for
+   long messages.  The second weakness reveals the subkey H if the
+   attacker manages to create successful forgeries.  With knowledge of
+   the subkey H, the attacker always succeeds with subsequent forgeries.
+   The probability of multiple successful forgeries is therefore
+   significantly increased.
 
    As a comment to NIST, Nyberg et al.  [Nyberg] explained how small
    changes based on proven theoretical constructions mitigate the
