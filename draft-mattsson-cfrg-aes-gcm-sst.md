@@ -243,9 +243,6 @@ The tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 b
 
 In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero which would be so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favour of complicating the flow with additional checks and regeneration of values. For AES-GCM-SST either of the keys but not both can be zero. 
 
-
-256 combined with short tags.
-
 # IANA Considerations
 
 IANA is requested to assign the entries in the first two columns of {{iana-algs}} to the "AEAD Algorithms" registry under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading with this document as reference.
