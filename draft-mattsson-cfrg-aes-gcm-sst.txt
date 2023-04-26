@@ -181,6 +181,10 @@ Table of Contents
 
    *  LE64(x): the little-endian encoding of 64-bit integer x.
 
+   *  X[y] is the 128-bit chunk number y in the array X.
+
+   *  X[y:z] are the chunks y to z in the array X.
+
 3.  Galois Counter Mode with Secure Short Tags
 
    This section defines the Galois Counter Mode with Secure Short Tags
@@ -246,7 +250,7 @@ Table of Contents
 
    2.  H = Z[1], Q = Z[2], M = Z[3]
 
-   3.  ct = P XOR truncate(Z[4, n + 3], len(P))
+   3.  ct = P XOR truncate(Z[4:n + 3], len(P))
 
    4.  S = zeropad(A) || zeropad(ct) || LE64(len(A)) || LE64(len(ct))
 
@@ -311,7 +315,7 @@ Table of Contents
    7.  If tag != expected_tag, return "verification failed" error and
        abort
 
-   8.  P = ct XOR truncate( Z[4, n + 3], len(ct) )
+   8.  P = ct XOR truncate( Z[4:n + 3], len(ct) )
 
    9.  return P
 

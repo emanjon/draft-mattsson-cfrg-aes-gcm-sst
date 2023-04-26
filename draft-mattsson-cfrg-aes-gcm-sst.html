@@ -1255,6 +1255,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
         <li class="normal" id="section-2-3.11">LE64(x): the little-endian encoding of 64-bit integer x.<a href="#section-2-3.11" class="pilcrow">¶</a>
 </li>
+        <li class="normal" id="section-2-3.12">X[y] is the 128-bit chunk number y in the array X.<a href="#section-2-3.12" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-2-3.13">X[y:z] are the chunks y to z in the array X.<a href="#section-2-3.13" class="pilcrow">¶</a>
+</li>
       </ul>
 </section>
 </div>
@@ -1303,7 +1307,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li id="section-3.1-10.2">H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.1-10.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-10.3">ct = P XOR truncate(Z[4, n + 3], len(P))<a href="#section-3.1-10.3" class="pilcrow">¶</a>
+          <li id="section-3.1-10.3">ct = P XOR truncate(Z[4:n + 3], len(P))<a href="#section-3.1-10.3" class="pilcrow">¶</a>
 </li>
           <li id="section-3.1-10.4">S = zeropad(A) || zeropad(ct) || LE64(len(A)) || LE64(len(ct))<a href="#section-3.1-10.4" class="pilcrow">¶</a>
 </li>
@@ -1366,7 +1370,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li id="section-3.2-10.7">If tag != expected_tag, return "verification failed" error and abort<a href="#section-3.2-10.7" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-10.8">P = ct XOR truncate( Z[4, n + 3], len(ct) )<a href="#section-3.2-10.8" class="pilcrow">¶</a>
+          <li id="section-3.2-10.8">P = ct XOR truncate( Z[4:n + 3], len(ct) )<a href="#section-3.2-10.8" class="pilcrow">¶</a>
 </li>
           <li id="section-3.2-10.9">return P<a href="#section-3.2-10.9" class="pilcrow">¶</a>
 </li>
