@@ -187,9 +187,7 @@ For the AEAD Algorithms in {{iana-algs}} the worst case forgery probability is b
 
 # IANA Considerations
 
-IANA is requested to assign the entries in the first two columns of {{iana-algs}} to the "AEAD Algorithms" registry
-under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading
-with this document as reference.
+IANA is requested to assign the entries in the first two columns of {{iana-algs}} to the "AEAD Algorithms" registry under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading with this document as reference.
 
 --- back
 
