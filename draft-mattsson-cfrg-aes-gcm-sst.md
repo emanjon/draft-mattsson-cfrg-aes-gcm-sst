@@ -229,7 +229,7 @@ Write why AES with 256 blocks would be good
    masking with the secret value 𝑃.
 
    concatenation of ct and T
-   
+
    tag length 4 16
 
 # IANA Considerations
