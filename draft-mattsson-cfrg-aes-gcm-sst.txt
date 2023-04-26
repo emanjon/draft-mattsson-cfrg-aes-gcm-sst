@@ -98,11 +98,11 @@ Table of Contents
    weaknesses in the GCM authentication function [Ferguson].  The
    weaknesses are especially concerning when GCM is used with short
    tags.  The first weakness significantly increases the probability of
-   successful forgery for long messages.  The second weakness reveals
-   the subkey H if the attacker manages to create successful forgeries.
-   With knowledge of the subkey H, the attacker always succeeds with
-   subsequent forgeries.  The probability of multiple successful
-   forgeries is therefore significantly increased.
+   successful forgery.  The second weakness reveals the subkey H if the
+   attacker manages to create successful forgeries.  With knowledge of
+   the subkey H, the attacker always succeeds with subsequent forgeries.
+   The probability of multiple successful forgeries is therefore
+   significantly increased.
 
    As a comment to NIST, Nyberg et al.  [Nyberg] explained how small
    changes based on proven theoretical constructions mitigate the
