@@ -2,7 +2,8 @@
 
 This is the working area for the individual Internet-Draft, "GCM-SST: Galois Counter Mode (GCM) with Secure Short Tags".
 
-* [Editor's Copy](https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/#go.draft-mattsson-cfrg-aes-gcm-sst.html)
+* [Editor's Copy HTML](https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/#go.draft-mattsson-cfrg-aes-gcm-sst.html)
+* [Editor's Copy Text](https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/#go.draft-mattsson-cfrg-aes-gcm-sst.txt)
 * [Datatracker Page](https://datatracker.ietf.org/doc/draft-mattsson-cfrg-aes-gcm-sst)
 * [Individual Draft](https://datatracker.ietf.org/doc/html/draft-mattsson-cfrg-aes-gcm-sst)
 * [Compare Editor's Copy to Individual Draft](https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/#go.draft-mattsson-cfrg-aes-gcm-sst.diff)
