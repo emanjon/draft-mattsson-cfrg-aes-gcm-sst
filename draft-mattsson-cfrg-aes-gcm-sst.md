@@ -135,17 +135,22 @@ GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function tak
 
 ## Encryption
 
-Input: Four variable-length octet strings, key K, nonce N, plaintext P, and associated data A.
+Input:
 
-Output: One variable-length octet string the ciphertext ct, and one fixed-length octet string the tag T of length tag_length.
+* Key K (variable-length octet string)
+* Nonce N (variable-length octet string)
+* Plaintext P (variable-length octet string)
+* Associated data A (variable-length octet string)
+
+Output: One variable-length octet string the ciphertext without tag ct, and one fixed-length octet string tag of length tag_length.
 
 1. H = Z[1], Q = Z[2], M = Z[3]
 2. ct = P XOR trim(Z[4, n + 3], len(P))
 3. S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
 4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-5. Tf = POLYVAL(Q, X XOR S[m + n]) XOR M
-5. T = trim(Tf, tag_length)
-6. return ct, T
+5. full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
+5. tag = trim(full_tag, tag_length)
+6. return (ct, tag)
 
 where
 
@@ -162,7 +167,7 @@ where
 
 ## Decryption
 
-Input: Four variable-length octet strings, key K, nonce N, ciphertext ct, and associated data A, and one fixed-length octet string T.
+Input: Four variable-length octet strings, key K, nonce N, ciphertext without tag ct, and associated data A, and one fixed-length octet string tag.
 
 Output: The variable-length octet string plaintext P or "verification failed" error.
 
@@ -174,6 +179,15 @@ Output: The variable-length octet string plaintext P or "verification failed" er
 6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
 7. If T' == T, then return P; else return "verification failed" error.
 
+## Encoding (ct, tag) Tuples
+
+   Applications MAY keep the ciphertext and the authentication tag in
+   distinct structures or encode both as a single string.
+
+   In the latter case, the tag MUST immediately follow the ciphertext:
+
+   combined_ct = ct || tag
+   
 # AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
 
 When GCM-SSM is instanciated with AES {{AES}}, then
