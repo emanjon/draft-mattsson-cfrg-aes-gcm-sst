@@ -1383,9 +1383,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li class="normal" id="section-4.1-4.2">A_MAX (maximum size of the associated data) is 2^36 octets.<a href="#section-4.1-4.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-4.3">N_MIN and N_MAX are both 12 octets<a href="#section-4.1-4.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-4.3">N_MIN and N_MAX (minimum and maximum size of the nonce) are both 12 octets<a href="#section-4.1-4.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-4.1-4.4">C_MAX = P_MAX + tag_length.<a href="#section-4.1-4.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-4.1-4.4">C_MAX (maximum size of the ciphertext) is P_MAX + tag_length where tag_length can be between 4 and 16 bytes.<a href="#section-4.1-4.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1409,6 +1409,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-5-9">Security based on AES<a href="#section-5-9" class="pilcrow">¶</a></p>
 <p id="section-5-10">masking with the secret value 𝑃.<a href="#section-5-10" class="pilcrow">¶</a></p>
 <p id="section-5-11">concatenation of ct and T<a href="#section-5-11" class="pilcrow">¶</a></p>
+<p id="section-5-12">tag length 4 16<a href="#section-5-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
