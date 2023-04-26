@@ -141,6 +141,8 @@ Primitives:
 * POLYVAL is defined in RFC 8452
 * LE32(x): the little-endian encoding of 32-bit integer x.
 * LE64(x): the little-endian encoding of 64-bit integer x.
+* X[y] is the 128-bit chunk number y in the array X.
+* X[y:z] are the chunks y to z in the array X.
 
 # Galois Counter Mode with Secure Short Tags {#GCM-SST}
 
@@ -176,7 +178,7 @@ Steps:
 
 1. Initiate keystream generator with K and N
 2. H = Z[1], Q = Z[2], M = Z[3]
-3. ct = P XOR truncate(Z[4, n + 3], len(P))
+3. ct = P XOR truncate(Z[4:n + 3], len(P))
 4. S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
 5. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 6. full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
@@ -216,7 +218,7 @@ Steps:
 5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
 6. expected_tag = truncate(T, tag_length)
 7. If tag != expected_tag, return "verification failed" error and abort
-8. P = ct XOR truncate( Z[4, n + 3], len(ct) )
+8. P = ct XOR truncate( Z[4:n + 3], len(ct) )
 9. return P
 
 ## Encoding (ct, tag) Tuples
