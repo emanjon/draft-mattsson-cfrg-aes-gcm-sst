@@ -136,14 +136,14 @@ Primitives:
 * XOR is the bitwise exclusive OR operator
 * len(x) is the length of x in bits.
 * zeropad(x) right pads an octet string with zeroes x to a multiple of 128 bits
-* truncate(x, y): truncation operation.  The first y bits of x are kept
+* truncate(x, y) is the truncation operation.  The first y bits of x are kept
 * n is the number of 128-bit chunks in zeropad(P)
 * m is the number of 128-bit chunks in zeropad(A)
-* POLYVAL is defined in RFC 8452
-* LE32(x): the little-endian encoding of 32-bit integer x.
-* LE64(x): the little-endian encoding of 64-bit integer x.
-* A[y] is the 128-bit chunk y in the array A.
-* A[x:y] are the chunks x to y in the array A.
+* POLYVAL is defined in {{RFC8452}}
+* LE32(x) is the little-endian encoding of 32-bit integer x
+* LE64(x) is the little-endian encoding of 64-bit integer x
+* A[y] is the 128-bit chunk y in the array A
+* A[x:y] are the range of chunks x to y in the array A
 
 # Galois Counter Mode with Secure Short Tags {#GCM-SST}
 
