@@ -120,18 +120,33 @@ This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) A
 
 # GCM-SST with a Keystream Interface.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and takes four byte string parameters. A secret key K, A nonce N, A plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and takes four byte string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string. The three first strings z[1], z[2], and z[3] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.
 
-The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string. The three first strings z[0], z[1], and z[2] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.
+## Encryption steps:
 
-Steps:
+Input: Four variable length octet strings, key K, nonce N, plaintext P, and associated data A.
+Output: One variable length octet strings ciphertext ct and one fixed length octet string T.
 
-1. Let H = Z[0], Q = Z[1], M = Z[2]
-2. Let ct = zeropad(P) XOR Z[3, n + 3]
-3. Let S = zeropad(A) \|\| ct \|\| uint64(len(A)) \|\| uint64(len(P))
-4. X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
-5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
-6. return (trim(ct, len(P)), trim(T, tag_length))
+1. Let H = Z[1], Q = Z[2], M = Z[3]
+2. Let ct = P XOR trim( Z[4, n + 3], len(P) )
+3. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
+4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
+5. Tf = POLYVAL(Q, X XOR S[m + n]) XOR M
+5. T = trim(Tt, tag_length)
+6. return ct, T
+
+## Decryption steps:
+
+Input: Four variable length octet strings, key K, nonce N, ciphertext ct, and associated data A and one fixed length octet string T.
+Output: The variable length octet string plaintext P or FAIL
+
+1. Let H = Z[1], Q = Z[2], M = Z[3]
+2. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
+3. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
+4. Tf = POLYVAL(Q, X XOR S[m + n]) XOR M
+5. T' = trim(Tf, tag_length)
+6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
+7. If T' = T, then return P; else return FAIL.
 
 where
 zeropad(x) right pads a octet string x to a multiple of 16 bytes
