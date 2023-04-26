@@ -194,7 +194,7 @@ Table of Contents
 
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four variable-length octet string parameters.  A
-   secret key K, a nonce N, a plaintext P, and the associated data A.
+   secret key K, a nonce N, the associated data A, and a plaintext P.
    The keystream generator is instantiated with K and N.  The keystream
    MUST NOT depend on P and A.  The minimum and maximum length of all
    parameters depends on the keystream generator.  The keystream
