@@ -75,11 +75,12 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  AES in GCM-SSM Mode (AES-GCM-SSM)
    2.  Conventions and Definitions
    3.  GCM-SST with a Keystream Interface.
      3.1.  Encryption steps:
      3.2.  Decryption steps:
-     3.3.  Instansizating GCM-SSM with AES
+     3.3.  AES in GCM-SSM Mode (AES-GCM-SSM)
      3.4.  AEAD Instances
    4.  Security Considerations
    5.  IANA Considerations
@@ -140,9 +141,11 @@ Table of Contents
    function [RFC8452], which results in more efficient software
    implementations on little-endian architectures.  The specification is
    made generic, so that any keystream generator can be used, not just a
-   128-bit block cipher.  The document also registers several instances
-   of GCM-SST using AES in counter mode (AES-CTR) as the keystream
-   generator.
+   128-bit block cipher.  This document also registers several instances
+   of AES with Galois Counter Mode with Secure Short Tags (AES-GCM-SST)
+   where where AES in counter mode is used as the keystream generator.
+
+1.1.  AES in GCM-SSM Mode (AES-GCM-SSM)
 
 2.  Conventions and Definitions
 
@@ -218,7 +221,7 @@ Table of Contents
    7.  If T' == T, then return P; else return "verification failed"
        error.
 
-3.3.  Instansizating GCM-SSM with AES
+3.3.  AES in GCM-SSM Mode (AES-GCM-SSM)
 
    When GCM-SSM is instanciated with AES, then
 
