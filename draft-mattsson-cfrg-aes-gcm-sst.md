@@ -122,7 +122,7 @@ As a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based
 
 This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. See Section {{GCM-SST}}.
 
-This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where where AES {{AES}} in counter mode is used as the keystream generator. See Section {{AES-GCM-SST}}.
+This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where AES {{AES}} in counter mode is used as the keystream generator. See Section {{AES-GCM-SST}}.
 
 # Conventions and Definitions
 
@@ -174,10 +174,10 @@ Outputs:
 
 Steps:
 
-1. Initate keystream generator with K and N
+1. Initiate keystream generator with K and N
 2. H = Z[1], Q = Z[2], M = Z[3]
 3. ct = P XOR truncate(Z[4, n + 3], len(P))
-4. S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
+4. S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
 5. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 6. full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
 7. tag = truncate(full_tag, tag_length)
@@ -209,9 +209,9 @@ Outputs:
 
 Steps:
 
-1. Initate keystream generator with K and N
+1. Initiate keystream generator with K and N
 2. Let H = Z[1], Q = Z[2], M = Z[3]
-3. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
+3. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
 4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
 6. expected_tag = truncate(T, tag_length)
@@ -227,9 +227,9 @@ C = ct \|\| tag
 
 # AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
 
-When GCM-SSM is instanciated with AES, then the keystream generator is AES in counter mode
+When GCM-SSM is instantiated with AES, then the keystream generator is AES in counter mode
 
-Z[i] = AES-ENC(K, N \|\| uint32(i))
+Z[i] = AES-ENC(K, N \|\| LE32(i))
 
 where AES-ENC is the AES encrypt function {{AES}} and uint32(i) is the little endian uint32 encoding of the integer i.
 
@@ -266,11 +266,11 @@ If tag verification fails, the decrypted message and expected_tag MUST NOT be gi
 
 The confidentiality offered against passive attackers is equal to GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
-For the AEAD Algorithms in {{iana-algs}} the worst case forgery probability is bounded by ≈ 2^-t where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintextext and associated data. Just like {{RFC5116}} GCM-SST only allows 96-bit nonces.
+For the AEAD Algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2^-t where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintex and associated data. Just like {{RFC5116}} GCM-SST only allows 96-bit nonces.
 
 The tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}.
 
-In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero which would be so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favour of complicating the flow with additional checks and regeneration of values. For AES-GCM-SST either of the keys but not both can be zero.
+In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero which would be so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. For AES-GCM-SST either of the keys but not both can be zero.
 
 # IANA Considerations
 
@@ -285,4 +285,4 @@ TODO
 # Acknowledgments
 {:numbered="false"}
 
-The authors want to thank {{{Richard Barnes}}}, and {{{XXX}}} for their valuable comments and feedback. Some of the formating and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
+The authors want to thank {{{Richard Barnes}}}, and {{{XXX}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
