@@ -127,24 +127,24 @@ GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function tak
 Input: Four variable length octet strings, key K, nonce N, plaintext P, and associated data A.
 Output: One variable length octet string the ciphertext ct, and one fixed length octet string the tag T of length tag_length.
 
-1. Let H = Z[1], Q = Z[2], M = Z[3]
-2. Let ct = P XOR trim(Z[4, n + 3], len(P))
-3. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
+1. H = Z[1], Q = Z[2], M = Z[3]
+2. ct = P XOR trim(Z[4, n + 3], len(P))
+3. S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
 4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 5. Tf = POLYVAL(Q, X XOR S[m + n]) XOR M
 5. T = trim(Tf, tag_length)
 6. return ct, T
 
 where
-trim(x, y) truncates a octet string x to y octets
-len(x) returns the length of the octet string x
-zeropad(x) right pads a octet string x to a multiple of 16 bytes
-n is the number of 128-bit blocks in zeropad(P)
-m is the number of 128-bit blocks in zeropad(A)
-\|\| is concatenation
-uint64(x) encodes an integer x as a little endian uint64
-POLYVAL is defined in RFC 8452
-XOR is bitwise exclusive or
+* trim(x, y) truncates a octet string x to y octets
+* len(x) returns the length of the octet string x
+* zeropad(x) right pads a octet string x to a multiple of 16 bytes
+* n is the number of 128-bit blocks in zeropad(P)
+* m is the number of 128-bit blocks in zeropad(A)
+* \|\| is concatenation
+* uint64(x) encodes an integer x as a little endian uint64
+* POLYVAL is defined in RFC 8452
+* XOR is bitwise exclusive or
 
 ## Decryption steps:
 
