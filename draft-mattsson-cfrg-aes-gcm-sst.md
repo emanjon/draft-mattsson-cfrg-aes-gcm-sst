@@ -104,6 +104,14 @@ informative:
         ins: M. Westerlund
     date: May 2015
 
+  Rogaway:
+    target: https://www.cryptrec.go.jp/exreport/cryptrec-ex-2012-2010r1.pdf
+    title: "Evaluation of Some Blockcipher Modes of Operation"
+    author:
+      -
+        ins: P. Rogaway
+    date: February 2011
+
 --- abstract
 
 This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just a block cipher. The two main differences compared to GCM is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probabilities close to ideal. This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST).
