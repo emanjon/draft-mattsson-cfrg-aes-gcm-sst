@@ -317,7 +317,7 @@ Table of Contents
    7.  If tag != expected_tag, return "verification failed" error and
        abort
 
-   8.  P = ct XOR truncate( Z[4:n + 3], len(ct) )
+   8.  P = ct XOR truncate(Z[4:n + 3], len(ct))
 
    9.  return P
 
