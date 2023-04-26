@@ -158,7 +158,7 @@ Table of Contents
    is instanziated with K and N.  The keystream MUST NOT depend on P and
    A.  The minimum and maximum length of all parameters depends on the
    keystream generator.  The keystream generator produces a keystream Z
-   of 128-bit strings where z[1] is the first string.  The three first
+   of 128-bit strings where z[1] is the first string.  The first three
    strings z[1], z[2], and z[3] are used as the the three subkeys H, Q,
    and M.  The n next keystream string are used to encrypt the
    plaintext.
@@ -166,12 +166,13 @@ Table of Contents
 3.1.  Encryption steps:
 
    Input: Four variable length octet strings, key K, nonce N, plaintext
-   P, and associated data A.  Output: One variable length octet strings
-   ciphertext ct and one fixed length octet string T.
+   P, and associated data A.  Output: One variable length octet string
+   the ciphertext ct, and one fixed length octet string the tag T of
+   length tag_length.
 
    1.  Let H = Z[1], Q = Z[2], M = Z[3]
 
-   2.  Let ct = P XOR trim( Z[4, n + 3], len(P) )
+   2.  Let ct = P XOR trim(Z[4, n + 3], len(P))
 
    3.  Let S = zeropad(A) || zeropad(ct) || uint64(len(A)) ||
        uint64(len(ct))
@@ -180,15 +181,24 @@ Table of Contents
 
    5.  Tf = POLYVAL(Q, X XOR S[m + n]) XOR M
 
-   6.  T = trim(Tt, tag_length)
+   6.  T = trim(Tf, tag_length)
 
    7.  return ct, T
+
+   where trim(x, y) truncates a octet string x to y octets len(x)
+   returns the length of the octet string x zeropad(x) right pads a
+   octet string x to a multiple of 16 bytes n is the number of 128-bit
+   blocks in zeropad(P) m is the number of 128-bit blocks in
+   zeropad(A) || is concatenation uint64(x) encodes an integer x as a
+   little endian uint64 POLYVAL is defined in RFC 8452 XOR is bitwise
+   exclusive or
 
 3.2.  Decryption steps:
 
    Input: Four variable length octet strings, key K, nonce N, ciphertext
-   ct, and associated data A and one fixed length octet string T.
-   Output: The variable length octet string plaintext P or FAIL
+   ct, and associated data A. and one fixed length octet string T.
+   Output: The variable length octet string plaintext P or "verification
+   failed" error.
 
    1.  Let H = Z[1], Q = Z[2], M = Z[3]
 
@@ -203,13 +213,8 @@ Table of Contents
 
    6.  Let P = ct XOR trim( Z[4, n + 3], len(ct) )
 
-   7.  If T' = T, then return P; else return FAIL.
-
-   where zeropad(x) right pads a octet string x to a multiple of 16
-   bytes n is the number of 128-bit blocks in zeropad(P) m is the number
-   of 128-bit blocks in zeropad(A) || is concatenation uint64(x) encodes
-   and integer x as a little endian uint64 POLYVAL is defined in RFC
-   8452 trim(x, y) truncates a octet string x to y octets
+   7.  If T' = T, then return P; else return "verification failed"
+       error.
 
 3.3.  Instansizating GCM-SSM with AES
 
