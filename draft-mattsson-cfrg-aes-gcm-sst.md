@@ -201,8 +201,8 @@ No other than 96-bit
 
 However, the field and the multiplication operation are taken from the POLYVAL function in the
  AES-SIV construction [x]. This has the advantage that it can be faster in software implementations and at the same time it can optionally reuse existing hardware implementations of GHASH from AES- GCM [3] (with some byte reversals and a simple multiplication).
- 
- Write why AES with 256 blocks would be good
+
+Write why AES with 256 blocks would be good
 
 
 # IANA Considerations
