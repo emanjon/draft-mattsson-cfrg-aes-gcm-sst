@@ -77,8 +77,8 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Galois Counter Mode with Secure Short Tags
-     3.1.  Encryption steps:
-     3.2.  Decryption steps:
+     3.1.  Encryption
+     3.2.  Decryption
    4.  AES with Galois Counter Mode with Secure Short Tags
      4.1.  AEAD Instances
    5.  Security Considerations
@@ -136,11 +136,7 @@ Table of Contents
    two main differences compared to GCM [GCM] is that GCM-SST uses an
    additional subkey Q and that new subkeys H and Q are derived for each
    nonce.  This enables short tags with forgery probability close to
-   ideal.  Instead of GHASH [GCM], GCM-SST makes use of the POLYVAL
-   function [RFC8452], which results in more efficient software
-   implementations on little-endian architectures.  The specification is
-   made generic, so that any keystream generator can be used, not just a
-   128-bit block cipher.  See Section Section 3.
+   ideal.  See Section Section 3.
 
    This document also registers several instances of Advanced Encryption
    Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-
@@ -157,17 +153,29 @@ Table of Contents
 
 3.  Galois Counter Mode with Secure Short Tags
 
+   This section defines the Galois Counter Mode with Secure Short Tags
+   (GCM-SST) AEAD algorithm following the recommendations from Nyberg et
+   al.  [Nyberg].  GCM-SST is defined with a general interface so that
+   it can be used with any keystream generator, not just a 128-bit block
+   cipher.  The two main differences compared to GCM [GCM] is that GCM-
+   SST uses an additional subkey Q and that new subkeys H and Q are
+   derived for each nonce.  This enables short tags with forgery
+   probability close to ideal.
+
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four octet string parameters.  A secret key K, a nonce
    N, a plaintext P, and the associated data A.  The keystream generator
    is instantiated with K and N.  The keystream MUST NOT depend on P and
    A.  The minimum and maximum length of all parameters depends on the
    keystream generator.  The keystream generator produces a keystream Z
-   of 128-bit chunks where z[1] is the first chunks.  The first three
-   chunks z[1], z[2], and z[3] are used as the three subkeys H, Q, and
-   M.  The following keystream chunks are used to encrypt the plaintext.
+   consisting of 128-bit chunks where z[1] is the first chunk.  The
+   first three chunks z[1], z[2], and z[3] are used as the three subkeys
+   H, Q, and M.  The following keystream chunks are used to encrypt the
+   plaintext.  Instead of GHASH [GCM], GCM-SST makes use of the POLYVAL
+   function [RFC8452], which results in more efficient software
+   implementations on little-endian architectures.
 
-3.1.  Encryption steps:
+3.1.  Encryption
 
    Input: Four variable length octet strings, key K, nonce N, plaintext
    P, and associated data A.  Output: One variable length octet string
@@ -198,7 +206,7 @@ Table of Contents
    POLYVAL is defined in RFC 8452 * XOR is bitwise exclusive OR
    operation
 
-3.2.  Decryption steps:
+3.2.  Decryption
 
    Input: Four variable length octet strings, key K, nonce N, ciphertext
    ct, and associated data A. and one fixed length octet string T.
@@ -283,6 +291,22 @@ Table of Contents
    and a simple multiplication).
 
    Write why AES with 256 blocks would be good
+
+   NOTE: There is a very small possibility that either or both of 𝐻 and
+   𝑄 are zero, since they are produced (pseudo-)randomly from the
+   keystream generator.  In such a case, the resulting tag will not
+   depend on the message.  There are no obvious ways to detect this
+   condition for an attacker, and the specification admits this
+   possibility in favour of complicating the flow with additional checks
+   and regeneration of values.
+
+   Updated P_LEN and A_LEN
+
+   Write about 12 byte nonce only
+
+   Security based on AES
+
+   masking with the secret value 𝑃.
 
 6.  IANA Considerations
 
