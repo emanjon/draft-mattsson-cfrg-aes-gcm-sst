@@ -87,6 +87,7 @@ Table of Contents
    7.  References
      7.1.  Normative References
      7.2.  Informative References
+   Appendix A.  Test Vectors
    Acknowledgments
    Authors' Addresses
 
@@ -433,6 +434,10 @@ Table of Contents
               Norrman, "The Secure Real-time Transport Protocol (SRTP)",
               RFC 3711, DOI 10.17487/RFC3711, March 2004,
               <https://www.rfc-editor.org/rfc/rfc3711>.
+
+Appendix A.  Test Vectors
+
+   TODO
 
 Acknowledgments
 
