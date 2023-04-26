@@ -136,15 +136,16 @@ Output: One variable length octet string the ciphertext ct, and one fixed length
 6. return ct, T
 
 where
+* = is the assignment operator
 * trim(x, y) truncates a octet string x to y octets
 * len(x) returns the length of the octet string x
 * zeropad(x) right pads a octet string x to a multiple of 16 bytes
 * n is the number of 128-bit blocks in zeropad(P)
 * m is the number of 128-bit blocks in zeropad(A)
-* \|\| is concatenation
+* \|\| is concatenation of octet strings
 * uint64(x) encodes an integer x as a little endian uint64
 * POLYVAL is defined in RFC 8452
-* XOR is bitwise exclusive or
+* XOR is bitwise exclusive OR operation
 
 ## Decryption steps:
 
@@ -157,7 +158,7 @@ Output: The variable length octet string plaintext P or "verification failed" er
 4. Tf = POLYVAL(Q, X XOR S[m + n]) XOR M
 5. T' = trim(Tf, tag_length)
 6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
-7. If T' = T, then return P; else return "verification failed" error.
+7. If T' == T, then return P; else return "verification failed" error.
 
 ## Instansizating GCM-SSM with AES
 
@@ -197,6 +198,12 @@ For the AEAD Algorithms in {{iana-algs}} the worst case forgery probability is b
 No other than 96-bit
 
 256 combined with short tags.
+
+However, the field and the multiplication operation are taken from the POLYVAL function in the
+ AES-SIV construction [x]. This has the advantage that it can be faster in software implementations and at the same time it can optionally reuse existing hardware implementations of GHASH from AES- GCM [3] (with some byte reversals and a simple multiplication).
+ 
+ Write why AES with 256 blocks would be good
+
 
 # IANA Considerations
 
