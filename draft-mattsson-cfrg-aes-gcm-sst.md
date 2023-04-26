@@ -131,9 +131,9 @@ This document also registers several instances of Advanced Encryption Standard (
 Primitives:
 
 * = is the assignment operator
-* {{{≠}}} is the inequality operator
-* x {{{‖}}} \|\| y is concatenation of octet strings x and y
-* {{{⊕}}} is the bitwise exclusive OR operation
+* != is the inequality operator
+* x \|\| y is concatenation of octet strings x and y
+* XOR is the bitwise exclusive OR operator
 * len(x) is the length of x in bits.
 * zeropad(x) right pads an octet string with zeroes x to a multiple of 128 bits
 * truncate(x, y): truncation operation.  The first y bits of x are kept
