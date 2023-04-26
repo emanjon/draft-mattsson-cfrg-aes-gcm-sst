@@ -174,10 +174,10 @@ Output: The variable-length octet string plaintext P or "verification failed" er
 1. Let H = Z[1], Q = Z[2], M = Z[3]
 2. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
 3. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-4. Tf = POLYVAL(Q, X XOR S[m + n]) XOR M
-5. T' = trim(Tf, tag_length)
+4. T = POLYVAL(Q, X XOR S[m + n]) XOR M
+5. expected_tag = trim(T, tag_length)
 6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
-7. If T' == T, then return P; else return "verification failed" error.
+7. If tag == expected_tag, then return P; else return "verification failed" error.
 
 ## Encoding (ct, tag) Tuples
 
