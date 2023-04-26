@@ -1248,49 +1248,56 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li class="normal" id="section-3.1-2.2">Nonce N (variable-length octet string)<a href="#section-3.1-2.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-2.3">Plaintext P (variable-length octet string)<a href="#section-3.1-2.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-2.3">Associated data A (variable-length octet string)<a href="#section-3.1-2.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-2.4">Associated data A (variable-length octet string)<a href="#section-3.1-2.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-2.4">Plaintext P (variable-length octet string)<a href="#section-3.1-2.4" class="pilcrow">¶</a>
 </li>
         </ul>
-<p id="section-3.1-3">Output: One variable-length octet string the ciphertext ct, and one fixed-length octet string tag of length tag_length.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3.1-4">
-<li id="section-3.1-4.1">H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.1-4.1" class="pilcrow">¶</a>
+<p id="section-3.1-3">Output:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-4.1">Ciphertext ct (variable-length octet string)<a href="#section-3.1-4.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-4.2">ct = P XOR trim(Z[4, n + 3], len(P))<a href="#section-3.1-4.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-4.2">Tag tag (octet string with length tag_length)<a href="#section-3.1-4.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-4.3">S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.1-4.3" class="pilcrow">¶</a>
+        </ul>
+<p id="section-3.1-5">Steps:<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.1-6">
+<li id="section-3.1-6.1">H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.1-6.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-4.4">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.1-4.4" class="pilcrow">¶</a>
+          <li id="section-3.1-6.2">ct = P XOR trim(Z[4, n + 3], len(P))<a href="#section-3.1-6.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-4.5">full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.1-4.5" class="pilcrow">¶</a>
+          <li id="section-3.1-6.3">S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.1-6.3" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-4.6">tag = trim(full_tag, tag_length)<a href="#section-3.1-4.6" class="pilcrow">¶</a>
+          <li id="section-3.1-6.4">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.1-6.4" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-4.7">return (ct, tag)<a href="#section-3.1-4.7" class="pilcrow">¶</a>
+          <li id="section-3.1-6.5">full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.1-6.5" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.1-6.6">tag = trim(full_tag, tag_length)<a href="#section-3.1-6.6" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.1-6.7">return (ct, tag)<a href="#section-3.1-6.7" class="pilcrow">¶</a>
 </li>
         </ol>
-<p id="section-3.1-5">where<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<p id="section-3.1-7">where<a href="#section-3.1-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-6.1">= is the assignment operator<a href="#section-3.1-6.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.1-8.1">= is the assignment operator<a href="#section-3.1-8.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.2">trim(x, y) truncates an octet string x to y octets<a href="#section-3.1-6.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.2">trim(x, y) truncates an octet string x to y octets<a href="#section-3.1-8.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.3">len(x) returns the length of the octet string x<a href="#section-3.1-6.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.3">len(x) returns the length of the octet string x<a href="#section-3.1-8.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.4">zeropad(x) right pads an octet string x to a multiple of 16 bytes<a href="#section-3.1-6.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.4">zeropad(x) right pads an octet string x to a multiple of 16 bytes<a href="#section-3.1-8.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.5">n is the number of 128-bit chunks in zeropad(P)<a href="#section-3.1-6.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.5">n is the number of 128-bit chunks in zeropad(P)<a href="#section-3.1-8.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.6">m is the number of 128-bit chunks in zeropad(A)<a href="#section-3.1-6.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.6">m is the number of 128-bit chunks in zeropad(A)<a href="#section-3.1-8.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.7">|| is concatenation of octet strings<a href="#section-3.1-6.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.7">|| is concatenation of octet strings<a href="#section-3.1-8.7" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.8">uint64(x) encodes an integer x as a little endian uint64<a href="#section-3.1-6.8" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.8">uint64(x) encodes an integer x as a little endian uint64<a href="#section-3.1-8.8" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.9">POLYVAL is defined in RFC 8452<a href="#section-3.1-6.9" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.9">POLYVAL is defined in RFC 8452<a href="#section-3.1-8.9" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.1-6.10">XOR is the bitwise exclusive OR operation<a href="#section-3.1-6.10" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-8.10">XOR is the bitwise exclusive OR operation<a href="#section-3.1-8.10" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -1300,22 +1307,39 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-decryption">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-decryption" class="section-name selfRef">Decryption</a>
         </h3>
-<p id="section-3.2-1">Input: Four variable-length octet strings, key K, nonce N, ciphertext ct, and associated data A, and one fixed-length octet string tag.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">Output: The variable-length octet string plaintext P or "verification failed" error.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3.2-3">
-<li id="section-3.2-3.1">Let H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.2-3.1" class="pilcrow">¶</a>
+<p id="section-3.2-1">Input:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-2.1">Key K (variable-length octet string)<a href="#section-3.2-2.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.2">Let S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.2-3.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.2-2.2">Nonce N (variable-length octet string)<a href="#section-3.2-2.2" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.3">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.2-3.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.2-2.3">Associated data A (variable-length octet string)<a href="#section-3.2-2.3" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.4">T = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-3.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.2-2.4">Ciphertext ct (variable-length octet string)<a href="#section-3.2-2.4" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.5">expected_tag = trim(T, tag_length)<a href="#section-3.2-3.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.2-2.5">Tag tag (octet string with length tag_length)<a href="#section-3.2-2.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.6">Let P = ct XOR trim( Z[4, n + 3], len(ct) )<a href="#section-3.2-3.6" class="pilcrow">¶</a>
+        </ul>
+<p id="section-3.2-3">Output:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-4.1">Plaintext P (variable-length octet string) or "verification failed" error<a href="#section-3.2-4.1" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-3.7">If tag == expected_tag, then return P; else return "verification failed" error.<a href="#section-3.2-3.7" class="pilcrow">¶</a>
+        </ul>
+<p id="section-3.2-5">Steps:<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-6">
+<li id="section-3.2-6.1">Let H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.2-6.1" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-6.2">Let S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.2-6.2" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-6.3">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.2-6.3" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-6.4">T = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-6.4" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-6.5">expected_tag = trim(T, tag_length)<a href="#section-3.2-6.5" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-6.6">Let P = ct XOR trim( Z[4, n + 3], len(ct) )<a href="#section-3.2-6.6" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-6.7">If tag == expected_tag, then return P; else return "verification failed" error.<a href="#section-3.2-6.7" class="pilcrow">¶</a>
 </li>
         </ol>
 </section>
