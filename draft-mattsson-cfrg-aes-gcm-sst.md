@@ -238,7 +238,7 @@ where AES-ENC is the AES encrypt function {{AES}} and uint32(i) is the little en
 
 ## AEAD Instances
 
-We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in the key length (K_LEN) and the and tag length.
+We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in key length (K_LEN) and tag length.
 
 | Numeric ID | Name | K_LEN (bytes) | tag_length (bits) |
 | TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 32 |
