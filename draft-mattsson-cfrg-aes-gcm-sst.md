@@ -120,14 +120,9 @@ This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) A
 
 # GCM-SST with a Keystream Interface.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and takes four byte string parameters. A secret key K,
-A nonce N, A plaintext P, and the associated data A. The keystream generator is instanziated with K and N.
-The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the
-keystream generator.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and takes four byte string parameters. A secret key K, A nonce N, A plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator.
 
-The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string.
-The three first strings z[0], z[1], z[2] are used as the the three subkeys H, Q, and M. The n
-next keystream string are used to encrypt the plaintext.
+The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string. The three first strings z[0], z[1], and z[2] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.
 
 Steps:
 
@@ -153,13 +148,11 @@ When GCM-SSM is instanciated with AES, then
 
 Z[i] = AES-ENC(K, N \|\| uint32(i))
 
-where AES is the AES encrypt function with key K and plaintext N \|\| uint32(i) where
-uint32(i) is the little endian uint32 encoding of the integer i.
+where AES is the AES encrypt function with key K and plaintext N \|\| uint32(i) where uint32(i) is the little endian uint32 encoding of the integer i.
 
 ## AEAD Instances
 
-We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST:
-They differ only in the size of the AES key used and the tag length.
+We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in the size of the AES key used and the tag length.
 
 | Numeric ID | Name | K_LEN | tag_length |
 | TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 4 |
