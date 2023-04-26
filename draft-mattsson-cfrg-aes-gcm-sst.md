@@ -224,7 +224,7 @@ Steps:
 
 ## Encoding (ct, tag) Tuples
 
-Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
+Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
 
 C = ct \|\| tag
 
@@ -234,7 +234,7 @@ When GCM-SSM is instantiated with AES, then the keystream generator is AES in co
 
 Z[i] = AES-ENC(K, N \|\| LE32(i))
 
-where AES-ENC is the AES encrypt function {{AES}} and uint32(i) is the little endian uint32 encoding of the integer i.
+where AES-ENC is the AES encrypt function {{AES}}.
 
 ## AEAD Instances
 
@@ -263,9 +263,9 @@ Common parameters for the six AEADs:
 
 GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution.
 
-With AES-GCM-SST, up to 2<sup>32</sup> random nonces MAY be used with the same key while still keeping the collision probability under the 2<sup>-32</sup> that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is r<sup>2</sup> / 2<sup>97</sup>.
+With AES-GCM-SST, up to 2<sup>32</sup> random nonces MAY be used with the same key while still keeping the collision probability under 2<sup>-32</sup> that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>.
 
-If tag verification fails, the plaintext and expected_tag MUST NOT be given as output and MUST be overwritten with zeros.
+If tag verification fails, the plaintext and expected_tag MUST NOT be given as output.
 
 The confidentiality offered against passive attackers is equal to GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
