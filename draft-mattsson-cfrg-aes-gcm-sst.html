@@ -1162,10 +1162,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-gcm-sst-with-a-keystream-in" class="internal xref">GCM-SST with a Keystream Interface.</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-instansizating-gcm-ssm-with" class="internal xref">Instansizating GCM-SSM with AES</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-encryption-steps" class="internal xref">Encryption steps:</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-aead-instances" class="internal xref">AEAD Instances</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-decryption-steps" class="internal xref">Decryption steps:</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-instansizating-gcm-ssm-with" class="internal xref">Instansizating GCM-SSM with AES</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-aead-instances" class="internal xref">AEAD Instances</a></p>
 </li>
             </ul>
 </li>
@@ -1223,47 +1229,81 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-gcm-sst-with-a-keystream-in">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-gcm-sst-with-a-keystream-in" class="section-name selfRef">GCM-SST with a Keystream Interface.</a>
       </h2>
-<p id="section-3-1">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and takes four byte string parameters. A secret key K, A nonce N, A plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream <span class="bcp14">MUST NOT</span> depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string. The three first strings z[0], z[1], and z[2] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Steps:<a href="#section-3-3" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-3-4">
-<li id="section-3-4.1">Let H = Z[0], Q = Z[1], M = Z[2]<a href="#section-3-4.1" class="pilcrow">¶</a>
+<p id="section-3-1">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and takes four byte string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream <span class="bcp14">MUST NOT</span> depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string. The three first strings z[1], z[2], and z[3] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<div id="encryption-steps">
+<section id="section-3.1">
+        <h3 id="name-encryption-steps">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-encryption-steps" class="section-name selfRef">Encryption steps:</a>
+        </h3>
+<p id="section-3.1-1">Input: Four variable length octet strings, key K, nonce N, plaintext P, and associated data A.
+Output: One variable length octet strings ciphertext ct and one fixed length octet string T.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.1-2">
+<li id="section-3.1-2.1">Let H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.1-2.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-4.2">Let ct = zeropad(P) XOR Z[3, n + 3]<a href="#section-3-4.2" class="pilcrow">¶</a>
+          <li id="section-3.1-2.2">Let ct = P XOR trim( Z[4, n + 3], len(P) )<a href="#section-3.1-2.2" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-4.3">Let S = zeropad(A) || ct || uint64(len(A)) || uint64(len(P))<a href="#section-3-4.3" class="pilcrow">¶</a>
+          <li id="section-3.1-2.3">Let S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.1-2.3" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-4.4">X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])<a href="#section-3-4.4" class="pilcrow">¶</a>
+          <li id="section-3.1-2.4">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.1-2.4" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-4.5">T = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3-4.5" class="pilcrow">¶</a>
+          <li id="section-3.1-2.5">Tf = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.1-2.5" class="pilcrow">¶</a>
 </li>
-        <li id="section-3-4.6">return (trim(ct, len(P)), trim(T, tag_length))<a href="#section-3-4.6" class="pilcrow">¶</a>
+          <li id="section-3.1-2.6">T = trim(Tt, tag_length)<a href="#section-3.1-2.6" class="pilcrow">¶</a>
 </li>
-      </ol>
-<p id="section-3-5">where
+          <li id="section-3.1-2.7">return ct, T<a href="#section-3.1-2.7" class="pilcrow">¶</a>
+</li>
+        </ol>
+</section>
+</div>
+<div id="decryption-steps">
+<section id="section-3.2">
+        <h3 id="name-decryption-steps">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-decryption-steps" class="section-name selfRef">Decryption steps:</a>
+        </h3>
+<p id="section-3.2-1">Input: Four variable length octet strings, key K, nonce N, ciphertext ct, and associated data A and one fixed length octet string T.
+Output: The variable length octet string plaintext P or FAIL<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-2">
+<li id="section-3.2-2.1">Let H = Z[1], Q = Z[2], M = Z[3]<a href="#section-3.2-2.1" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-2.2">Let S = zeropad(A) || zeropad(ct) || uint64(len(A)) || uint64(len(ct))<a href="#section-3.2-2.2" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-2.3">X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])<a href="#section-3.2-2.3" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-2.4">Tf = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-2.4" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-2.5">T' = trim(Tf, tag_length)<a href="#section-3.2-2.5" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-2.6">Let P = ct XOR trim( Z[4, n + 3], len(ct) )<a href="#section-3.2-2.6" class="pilcrow">¶</a>
+</li>
+          <li id="section-3.2-2.7">If T' = T, then return P; else return FAIL.<a href="#section-3.2-2.7" class="pilcrow">¶</a>
+</li>
+        </ol>
+<p id="section-3.2-3">where
 zeropad(x) right pads a octet string x to a multiple of 16 bytes
 n is the number of 128-bit blocks in zeropad(P)
 m is the number of 128-bit blocks in zeropad(A)
 || is concatenation
 uint64(x) encodes and integer x as a little endian uint64
 POLYVAL is defined in RFC 8452
-trim(x, y) truncates a octet string x to y octets<a href="#section-3-5" class="pilcrow">¶</a></p>
+trim(x, y) truncates a octet string x to y octets<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 <div id="instansizating-gcm-ssm-with-aes">
-<section id="section-3.1">
+<section id="section-3.3">
         <h3 id="name-instansizating-gcm-ssm-with">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-instansizating-gcm-ssm-with" class="section-name selfRef">Instansizating GCM-SSM with AES</a>
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-instansizating-gcm-ssm-with" class="section-name selfRef">Instansizating GCM-SSM with AES</a>
         </h3>
-<p id="section-3.1-1">When GCM-SSM is instanciated with AES, then<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">Z[i] = AES-ENC(K, N || uint32(i))<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.1-3">where AES is the AES encrypt function with key K and plaintext N || uint32(i) where uint32(i) is the little endian uint32 encoding of the integer i.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-1">When GCM-SSM is instanciated with AES, then<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">Z[i] = AES-ENC(K, N || uint32(i))<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">where AES is the AES encrypt function with key K and plaintext N || uint32(i) where uint32(i) is the little endian uint32 encoding of the integer i.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="aead-instances">
-<section id="section-3.2">
+<section id="section-3.4">
         <h3 id="name-aead-instances">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-aead-instances" class="section-name selfRef">AEAD Instances</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-aead-instances" class="section-name selfRef">AEAD Instances</a>
         </h3>
-<p id="section-3.2-1">We define six AEADs, in the format of <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, that use AES-GCM-SST. They differ only in the size of the AES key used and the tag length.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">We define six AEADs, in the format of <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, that use AES-GCM-SST. They differ only in the size of the AES key used and the tag length.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
 <span id="name-aead-algorithms"></span><div id="iana-algs">
 <table class="center" id="table-1">
           <caption>
@@ -1318,15 +1358,15 @@ trim(x, y) truncates a octet string x to y octets<a href="#section-3-5" class="p
           </tbody>
         </table>
 </div>
-<p id="section-3.2-3">Common parameters for the six AEADs:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">Common parameters for the six AEADs:<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-4.1">P_MAX (maximum size of the plaintext) is 2^36 - 47 octets.<a href="#section-3.2-4.1" class="pilcrow">¶</a>
+<li class="normal" id="section-3.4-4.1">P_MAX (maximum size of the plaintext) is 2^36 - 47 octets.<a href="#section-3.4-4.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-4.2">A_MAX (maximum size of the associated data) is 2^36 octets.<a href="#section-3.2-4.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.4-4.2">A_MAX (maximum size of the associated data) is 2^36 octets.<a href="#section-3.4-4.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-4.3">N_MIN and N_MAX are both 12 octets<a href="#section-3.2-4.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.4-4.3">N_MIN and N_MAX are both 12 octets<a href="#section-3.4-4.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-3.2-4.4">C_MAX = P_MAX + tag_length.<a href="#section-3.2-4.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.4-4.4">C_MAX = P_MAX + tag_length.<a href="#section-3.4-4.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
