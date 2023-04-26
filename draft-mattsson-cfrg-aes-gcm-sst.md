@@ -149,13 +149,14 @@ Output:
 
 Steps:
 
-1. H = Z[1], Q = Z[2], M = Z[3]
-2. ct = P XOR trim(Z[4, n + 3], len(P))
-3. S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
-4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-5. full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
-5. tag = trim(full_tag, tag_length)
-6. return (ct, tag)
+1. Initate keystream generator with K and N
+2. H = Z[1], Q = Z[2], M = Z[3]
+3. ct = P XOR trim(Z[4, n + 3], len(P))
+4. S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
+5. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
+6. full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
+7. tag = trim(full_tag, tag_length)
+8. return (ct, tag)
 
 where
 
@@ -186,13 +187,14 @@ Output:
 
 Steps:
 
-1. Let H = Z[1], Q = Z[2], M = Z[3]
-2. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
-3. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-4. T = POLYVAL(Q, X XOR S[m + n]) XOR M
-5. expected_tag = trim(T, tag_length)
-6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
-7. If tag == expected_tag, then return P; else return "verification failed" error.
+1. Initate keystream generator with K and N
+2. Let H = Z[1], Q = Z[2], M = Z[3]
+3. Let S = zeropad(A) \|\| zeropad(ct) \|\| uint64(len(A)) \|\| uint64(len(ct))
+4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
+5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
+6. expected_tag = trim(T, tag_length)
+7. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
+8. If tag == expected_tag, then return P; else return "verification failed" error.
 
 ## Encoding (ct, tag) Tuples
 
