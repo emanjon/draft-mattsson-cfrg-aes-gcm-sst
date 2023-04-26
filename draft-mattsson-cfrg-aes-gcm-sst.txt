@@ -158,7 +158,7 @@ Table of Contents
 
    The keystream generator produces a keystream Z of 128-bit strings
    where z[0] is the first string.  The three first strings z[0], z[1],
-   z[2] are used as the the three subkeys H, Q, and M.  The n next
+   and z[2] are used as the the three subkeys H, Q, and M.  The n next
    keystream string are used to encrypt the plaintext.
 
    Steps:
@@ -194,7 +194,7 @@ Table of Contents
 3.2.  AEAD Instances
 
    We define six AEADs, in the format of [RFC5116], that use AES-GCM-
-   SST: They differ only in the size of the AES key used and the tag
+   SST.  They differ only in the size of the AES key used and the tag
    length.
 
        +============+=========================+=======+============+
