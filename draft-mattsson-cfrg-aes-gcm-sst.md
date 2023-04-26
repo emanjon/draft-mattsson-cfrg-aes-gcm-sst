@@ -212,7 +212,7 @@ where AES-ENC is the AES encrypt function and uint32(i) is the little endian uin
 
 ## AEAD Instances
 
-We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in the size of the AES key used and the tag length.
+We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in the key length (K_LEN) and the and tag length.
 
 | Numeric ID | Name | K_LEN | tag_length |
 | TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 4 |
@@ -231,7 +231,7 @@ Common parameters for the six AEADs:
 
 * N_MIN and N_MAX (minimum and maximum size of the nonce) are both 12 octets
 
-* C_MAX (maximum size of the ciphertext) is P_MAX + tag_length where tag_length can be between 4 and 16 bytes.
+* C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length where tag_length can be between 4 and 16 bytes.
 
 # Security Considerations
 
@@ -254,9 +254,7 @@ Write why AES with 256 blocks would be good
 
   Security based on AES
 
-   masking with the secret value 𝑃.
-
-   concatenation of ct and T
+tag_length can be between 4 and 16 bytes.
 
    tag length 4 16
 
