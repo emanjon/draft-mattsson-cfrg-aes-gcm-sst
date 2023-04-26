@@ -112,9 +112,9 @@ Table of Contents
    motivations for the specific choice of parameters, or for that matter
    the security levels they were assumed to give.  As shown by Mattsson
    et al.  [Mattsson], feedback of successful or unsuccessful forgery
-   attempts is almost always possible, contradicting the NIST
-   assumptions for short tags.  NIST also appears to have used non-
-   optimal attacks to calculate the parameters.
+   attempts is almost always possible, contradicting NIST's assumptions
+   for short tags.  NIST also appears to have used non-optimal attacks
+   to calculate the parameters.
 
    32-bit tags are standard in most radio link layers including 5G,
    64-bit tags are very common in transport and application layers of
@@ -136,11 +136,13 @@ Table of Contents
    two main differences compared to GCM [GCM] is that GCM-SST uses an
    additional subkey Q and that new subkeys H and Q are derived for each
    nonce.  This enables short tags with forgery probability close to
-   ideal.  Instead of GHASH [GCM], GCM-SST makes use of the faster
-   POLYVAL function [RFC8452].  The specification is made generic, so
-   that any keystream generator can be used, not just a 128-bit block
-   cipher.  The document also registers several instantiations of GCM-
-   SST using AES in counter mode (AES-CTR) as the keystream generator.
+   ideal.  Instead of GHASH [GCM], GCM-SST makes use of the POLYVAL
+   function [RFC8452], which results in more efficient software
+   implementations on little-endian architectures.  The specification is
+   made generic, so that any keystream generator can be used, not just a
+   128-bit block cipher.  The document also registers several instances
+   of GCM-SST using AES in counter mode (AES-CTR) as the keystream
+   generator.
 
 2.  Conventions and Definitions
 
@@ -153,15 +155,14 @@ Table of Contents
 3.  GCM-SST with a Keystream Interface.
 
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
-   function takes four byte string parameters.  A secret key K, a nonce
+   function takes four octet string parameters.  A secret key K, a nonce
    N, a plaintext P, and the associated data A.  The keystream generator
-   is instanziated with K and N.  The keystream MUST NOT depend on P and
+   is instantiated with K and N.  The keystream MUST NOT depend on P and
    A.  The minimum and maximum length of all parameters depends on the
    keystream generator.  The keystream generator produces a keystream Z
-   of 128-bit strings where z[1] is the first string.  The first three
-   strings z[1], z[2], and z[3] are used as the the three subkeys H, Q,
-   and M.  The n next keystream string are used to encrypt the
-   plaintext.
+   of 128-bit chunks where z[1] is the first chunks.  The first three
+   chunks z[1], z[2], and z[3] are used as the three subkeys H, Q, and
+   M.  The following keystream chunks are used to encrypt the plaintext.
 
 3.1.  Encryption steps:
 
@@ -185,13 +186,14 @@ Table of Contents
 
    7.  return ct, T
 
-   where * trim(x, y) truncates a octet string x to y octets * len(x)
-   returns the length of the octet string x * zeropad(x) right pads a
-   octet string x to a multiple of 16 bytes * n is the number of 128-bit
-   blocks in zeropad(P) * m is the number of 128-bit blocks in
-   zeropad(A) * || is concatenation * uint64(x) encodes an integer x as
-   a little endian uint64 * POLYVAL is defined in RFC 8452 * XOR is
-   bitwise exclusive or
+   where * = is the assignment operator * trim(x, y) truncates a octet
+   string x to y octets * len(x) returns the length of the octet string
+   x * zeropad(x) right pads a octet string x to a multiple of 16 bytes
+   * n is the number of 128-bit blocks in zeropad(P) * m is the number
+   of 128-bit blocks in zeropad(A) * || is concatenation of octet
+   strings * uint64(x) encodes an integer x as a little endian uint64 *
+   POLYVAL is defined in RFC 8452 * XOR is bitwise exclusive OR
+   operation
 
 3.2.  Decryption steps:
 
@@ -213,7 +215,7 @@ Table of Contents
 
    6.  Let P = ct XOR trim( Z[4, n + 3], len(ct) )
 
-   7.  If T' = T, then return P; else return "verification failed"
+   7.  If T' == T, then return P; else return "verification failed"
        error.
 
 3.3.  Instansizating GCM-SSM with AES
@@ -222,9 +224,9 @@ Table of Contents
 
    Z[i] = AES-ENC(K, N || uint32(i))
 
-   where AES is the AES encrypt function with key K and plaintext N ||
-   uint32(i) where uint32(i) is the little endian uint32 encoding of the
-   integer i.
+   where AES-ENC is the AES encrypt function with key K and plaintext
+   N || uint32(i) where uint32(i) is the little endian uint32 encoding
+   of the integer i.
 
 3.4.  AEAD Instances
 
@@ -269,6 +271,15 @@ Table of Contents
    No other than 96-bit
 
    256 combined with short tags.
+
+   However, the field and the multiplication operation are taken from
+   the POLYVAL function in the AES-SIV construction [x].  This has the
+   advantage that it can be faster in software implementations and at
+   the same time it can optionally reuse existing hardware
+   implementations of GHASH from AES- GCM [3] (with some byte reversals
+   and a simple multiplication).
+
+   Write why AES with 256 blocks would be good
 
 5.  IANA Considerations
 

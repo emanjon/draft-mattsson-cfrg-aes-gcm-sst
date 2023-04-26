@@ -1208,9 +1208,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">AES in Galois Counter Mode (AES-GCM) <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> is a widely used AEAD algorithm <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> due to its attractive performance in both software and hardware as well as its provable security. During the NIST standardization, Ferguson pointed out two weaknesses in the GCM authentication function <span>[<a href="#Ferguson" class="cite xref">Ferguson</a>]</span>. The weaknesses are especially concerning when GCM is used with short tags. The first weakness significantly increases the probability of successful forgery. The second weakness reveals the subkey H if the attacker manages to create successful forgeries. With knowledge of the subkey H, the attacker always succeeds with subsequent forgeries. The probability of multiple successful forgeries is therefore significantly increased.<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">As a comment to NIST, Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span> explained how small changes based on proven theoretical constructions mitigate the weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et al. and instead specified additional requirements for use with short tags in Appendix C of <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. NIST did not give any motivations for the specific choice of parameters, or for that matter the security levels they were assumed to give. As shown by Mattsson et al. <span>[<a href="#Mattsson" class="cite xref">Mattsson</a>]</span>, feedback of successful or unsuccessful forgery attempts is almost always possible, contradicting the NIST assumptions for short tags. NIST also appears to have used non-optimal attacks to calculate the parameters.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-2">As a comment to NIST, Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span> explained how small changes based on proven theoretical constructions mitigate the weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et al. and instead specified additional requirements for use with short tags in Appendix C of <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. NIST did not give any motivations for the specific choice of parameters, or for that matter the security levels they were assumed to give. As shown by Mattsson et al. <span>[<a href="#Mattsson" class="cite xref">Mattsson</a>]</span>, feedback of successful or unsuccessful forgery attempts is almost always possible, contradicting NIST's assumptions for short tags. NIST also appears to have used non-optimal attacks to calculate the parameters.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is not often used with short tags. The result is decreased performance from larger than needed tags <span>[<a href="#MoQ" class="cite xref">MoQ</a>]</span>, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC <span>[<a href="#RFC3711" class="cite xref">RFC3711</a>]</span><span>[<a href="#I-D.ietf-sframe-enc" class="cite xref">I-D.ietf-sframe-enc</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. Instead of GHASH <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, GCM-SST makes use of the faster POLYVAL function <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>. The specification is made generic, so that any keystream generator can be used, not just a 128-bit block cipher. The document also registers several instantiations of GCM-SST using AES in counter mode (AES-CTR) as the keystream generator.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-4">This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal. Instead of GHASH <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, GCM-SST makes use of the POLYVAL function <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>, which results in more efficient software implementations on little-endian architectures. The specification is made generic, so that any keystream generator can be used, not just a 128-bit block cipher. The document also registers several instances of GCM-SST using AES in counter mode (AES-CTR) as the keystream generator.<a href="#section-1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1229,7 +1229,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-gcm-sst-with-a-keystream-in">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-gcm-sst-with-a-keystream-in" class="section-name selfRef">GCM-SST with a Keystream Interface.</a>
       </h2>
-<p id="section-3-1">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and the encryption function takes four byte string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream <span class="bcp14">MUST NOT</span> depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit strings where z[1] is the first string. The first three strings z[1], z[2], and z[3] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and the encryption function takes four octet string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instantiated with K and N. The keystream <span class="bcp14">MUST NOT</span> depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit chunks where z[1] is the first chunks. The first three chunks z[1], z[2], and z[3] are used as the three subkeys H, Q, and M. The following keystream chunks are used to encrypt the plaintext.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="encryption-steps">
 <section id="section-3.1">
         <h3 id="name-encryption-steps">
@@ -1254,15 +1254,16 @@ Output: One variable length octet string the ciphertext ct, and one fixed length
 </li>
         </ol>
 <p id="section-3.1-3">where
+* = is the assignment operator
 * trim(x, y) truncates a octet string x to y octets
 * len(x) returns the length of the octet string x
 * zeropad(x) right pads a octet string x to a multiple of 16 bytes
 * n is the number of 128-bit blocks in zeropad(P)
 * m is the number of 128-bit blocks in zeropad(A)
-* || is concatenation
+* || is concatenation of octet strings
 * uint64(x) encodes an integer x as a little endian uint64
 * POLYVAL is defined in RFC 8452
-* XOR is bitwise exclusive or<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+* XOR is bitwise exclusive OR operation<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="decryption-steps">
@@ -1285,7 +1286,7 @@ Output: The variable length octet string plaintext P or "verification failed" er
 </li>
           <li id="section-3.2-2.6">Let P = ct XOR trim( Z[4, n + 3], len(ct) )<a href="#section-3.2-2.6" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-2.7">If T' = T, then return P; else return "verification failed" error.<a href="#section-3.2-2.7" class="pilcrow">¶</a>
+          <li id="section-3.2-2.7">If T' == T, then return P; else return "verification failed" error.<a href="#section-3.2-2.7" class="pilcrow">¶</a>
 </li>
         </ol>
 </section>
@@ -1297,7 +1298,7 @@ Output: The variable length octet string plaintext P or "verification failed" er
         </h3>
 <p id="section-3.3-1">When GCM-SSM is instanciated with AES, then<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.3-2">Z[i] = AES-ENC(K, N || uint32(i))<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">where AES is the AES encrypt function with key K and plaintext N || uint32(i) where uint32(i) is the little endian uint32 encoding of the integer i.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">where AES-ENC is the AES encrypt function with key K and plaintext N || uint32(i) where uint32(i) is the little endian uint32 encoding of the integer i.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="aead-instances">
@@ -1383,6 +1384,9 @@ Output: The variable length octet string plaintext P or "verification failed" er
 <p id="section-4-1">For the AEAD Algorithms in <a href="#iana-algs" class="auto internal xref">Table 1</a> the worst case forgery probability is bounded by ≈ 2^t where t is the tag length in bits. This is true for all allowed plaintext and associated data lengths.<a href="#section-4-1" class="pilcrow">¶</a></p>
 <p id="section-4-2">No other than 96-bit<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">256 combined with short tags.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">However, the field and the multiplication operation are taken from the POLYVAL function in the
+ AES-SIV construction [x]. This has the advantage that it can be faster in software implementations and at the same time it can optionally reuse existing hardware implementations of GHASH from AES- GCM [3] (with some byte reversals and a simple multiplication).<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">Write why AES with 256 blocks would be good<a href="#section-4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
