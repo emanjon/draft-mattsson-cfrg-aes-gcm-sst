@@ -142,7 +142,7 @@ Input:
 * Plaintext P (variable-length octet string)
 * Associated data A (variable-length octet string)
 
-Output: One variable-length octet string the ciphertext without tag ct, and one fixed-length octet string tag of length tag_length.
+Output: One variable-length octet string the ciphertext ct, and one fixed-length octet string tag of length tag_length.
 
 1. H = Z[1], Q = Z[2], M = Z[3]
 2. ct = P XOR trim(Z[4, n + 3], len(P))
@@ -167,7 +167,7 @@ where
 
 ## Decryption
 
-Input: Four variable-length octet strings, key K, nonce N, ciphertext without tag ct, and associated data A, and one fixed-length octet string tag.
+Input: Four variable-length octet strings, key K, nonce N, ciphertext ct, and associated data A, and one fixed-length octet string tag.
 
 Output: The variable-length octet string plaintext P or "verification failed" error.
 
@@ -181,13 +181,10 @@ Output: The variable-length octet string plaintext P or "verification failed" er
 
 ## Encoding (ct, tag) Tuples
 
-   Applications MAY keep the ciphertext and the authentication tag in
-   distinct structures or encode both as a single string.
+Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single string. In the latter case, the tag MUST immediately follow the ciphertext:
 
-   In the latter case, the tag MUST immediately follow the ciphertext:
+C = ct || tag
 
-   combined_ct = ct || tag
-   
 # AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
 
 When GCM-SSM is instanciated with AES {{AES}}, then
