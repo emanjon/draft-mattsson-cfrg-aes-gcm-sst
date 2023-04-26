@@ -169,7 +169,7 @@ Output: The variable length octet string plaintext P or "verification failed" er
 6. Let P = ct XOR trim( Z[4, n + 3], len(ct) )
 7. If T' == T, then return P; else return "verification failed" error.
 
-# AES with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) {#AES-GCM-SST}
+# AES with GCM-SST (AES-GCM-SST) {#AES-GCM-SST}
 
 When GCM-SSM is instanciated with AES {{AES}}, then
 
