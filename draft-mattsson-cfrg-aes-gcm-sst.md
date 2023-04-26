@@ -120,7 +120,7 @@ This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) A
 
 # GCM-SST with a Keystream Interface.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and takes four byte string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit strings where z[0] is the first string. The three first strings z[1], z[2], and z[3] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four byte string parameters. A secret key K, a nonce N, a plaintext P, and the associated data A. The keystream generator is instanziated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum length of all parameters depends on the keystream generator. The keystream generator produces a keystream Z of 128-bit strings where z[1] is the first string. The three first strings z[1], z[2], and z[3] are used as the the three subkeys H, Q, and M. The n next keystream string are used to encrypt the plaintext.
 
 ## Encryption steps:
 
