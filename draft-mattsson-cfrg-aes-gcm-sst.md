@@ -136,6 +136,7 @@ GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function tak
 ## Encryption
 
 Input: Four variable-length octet strings, key K, nonce N, plaintext P, and associated data A.
+
 Output: One variable-length octet string the ciphertext ct, and one fixed-length octet string the tag T of length tag_length.
 
 1. H = Z[1], Q = Z[2], M = Z[3]
@@ -161,6 +162,7 @@ where
 ## Decryption
 
 Input: Four variable-length octet strings, key K, nonce N, ciphertext ct, and associated data A, and one fixed-length octet string T.
+
 Output: The variable-length octet string plaintext P or "verification failed" error.
 
 1. Let H = Z[1], Q = Z[2], M = Z[3]
