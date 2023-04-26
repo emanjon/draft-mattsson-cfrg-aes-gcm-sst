@@ -43,6 +43,13 @@ normative:
   RFC5116:
   RFC8452:
 
+  AES:
+    target: https://nvlpubs.nist.gov/nistpubs/fips/nist.fips.197.pdf
+    title: "ADVANCED ENCRYPTION STANDARD (AES)"
+    seriesinfo:
+      "NIST": "Federal Information Processing Standards Publication 197"
+    date: November 2001
+
 informative:
 
   RFC3711:
