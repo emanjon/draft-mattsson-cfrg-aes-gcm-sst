@@ -201,9 +201,9 @@ Common parameters for the six AEADs:
 
 * A_MAX (maximum size of the associated data) is 2^36 octets.
 
-* N_MIN and N_MAX are both 12 octets
+* N_MIN and N_MAX (minimum and maximum size of the nonce) are both 12 octets
 
-* C_MAX = P_MAX + tag_length.
+* C_MAX (maximum size of the ciphertext) is P_MAX + tag_length where tag_length can be between 4 and 16 bytes.
 
 # Security Considerations
 
@@ -229,6 +229,8 @@ Write why AES with 256 blocks would be good
    masking with the secret value 𝑃.
 
    concatenation of ct and T
+   
+   tag length 4 16
 
 # IANA Considerations
 
