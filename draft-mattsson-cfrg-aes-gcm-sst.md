@@ -218,7 +218,7 @@ Steps:
 7. If tag != expected_tag, return "verification failed" error and abort
 8. P = ct XOR truncate( Z[4, n + 3], len(ct) )
 9. return P
- 
+
 ## Encoding (ct, tag) Tuples
 
 Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
@@ -258,7 +258,7 @@ Common parameters for the six AEADs:
 
 # Security Considerations
 
-GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution. 
+GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution.
 
 With AES-GCM-SST, up to 2^32 random nonces MAY be used with the same key while still keeping the collision probability under the 2^-32 that NIST requires {{GCM}}. In general if r random nonces are used with the same key, the collision probability is r^2 / 2^97
 
