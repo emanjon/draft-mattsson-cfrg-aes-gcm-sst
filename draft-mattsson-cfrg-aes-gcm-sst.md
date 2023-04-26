@@ -148,6 +148,7 @@ Output: One variable-length octet string the ciphertext ct, and one fixed-length
 6. return ct, T
 
 where
+
 * = is the assignment operator
 * trim(x, y) truncates a octet string x to y octets
 * len(x) returns the length of the octet string x
