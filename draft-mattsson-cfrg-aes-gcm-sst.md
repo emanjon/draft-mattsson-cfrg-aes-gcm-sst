@@ -286,8 +286,6 @@ The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger t
 
 If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complixity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore NOT RECOMMENDED to use AES-GCM-SST with random nonces.
 
-With AES-GCM-SST, up to 2<sup>32.5</sup> random nonces can be used with the same key while still keeping the collision probability under 2<sup>-32</sup> that NIST requires for GCM {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complixity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore NOT RECOMMENDED to use AES-GCM-SST with random nonces.
-
 The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
 For the AES-GCM-SST algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered from GCM {{RFC5116}} to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like {{RFC5116}} AES-GCM-SST only allows 96-bit nonces.
