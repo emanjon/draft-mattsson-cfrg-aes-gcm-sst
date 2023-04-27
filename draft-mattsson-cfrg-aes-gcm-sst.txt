@@ -278,7 +278,7 @@ Table of Contents
 
    8.  Let tag = truncate(full_tag, tag_length)
 
-   9.  return (ct, tag)
+   9.  Return (ct, tag)
 
 3.2.  Authenticated Decryption
 
@@ -341,7 +341,7 @@ Table of Contents
 
    9.   Let P = ct XOR truncate(Z[4:n + 3], len(ct))
 
-   10.  return P
+   10.  Return P
 
 3.3.  Encoding (ct, tag) Tuples
 
