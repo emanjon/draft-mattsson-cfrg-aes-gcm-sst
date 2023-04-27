@@ -162,14 +162,14 @@ Primitives:
 * POLYVAL is defined in {{RFC8452}}
 * LE32(x) is the little-endian encoding of 32-bit integer x
 * LE64(x) is the little-endian encoding of 64-bit integer x
-* A[y] is the 128-bit chunk number y in the array A
+* A[y] is the 128-bit chunk with index y in the array A.
 * A[x:y] are the range of chunks x to y in the array A
 
 # Galois Counter Mode with Secure Short Tags (GCM-SST) {#GCM-SST}
 
 This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks z[1], z[2], and z[3] are used as the three subkeys H, Q, and M. The following keystream chunks z[4], z[5], ..., z[n + 3] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks z[0], z[1], and z[2] are used as the three subkeys H, Q, and M. The following keystream chunks z[3], z[4], ..., z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.
 
 ## Authenticated Encryption
 
@@ -203,11 +203,11 @@ Steps:
 
 1. If the lengths of K, N, A, P are not supported return error and abort
 1. Initiate keystream generator with K and N
-2. Let H = Z[1], Q = Z[2], M = Z[3]
-3. Let ct = P XOR truncate(Z[4:n + 3], len(P))
+2. Let H = Z[0], Q = Z[1], M = Z[2]
+3. Let ct = P XOR truncate(Z[3:n + 2], len(P))
 4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
-5. Let X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-6. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
+5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])
+6. Let full_tag = POLYVAL(Q, X XOR S[m + n - 1]) XOR M
 7. Let tag = truncate(full_tag, tag_length)
 8. Return (ct, tag)
 
@@ -243,13 +243,13 @@ Steps:
 
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
 3. Initiate keystream generator with K and N
-3. Let H = Z[1], Q = Z[2], M = Z[3]
+2. Let H = Z[0], Q = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
-5. Let X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-6. Let T = POLYVAL(Q, X XOR S[m + n]) XOR M
+5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])
+6. Let T = POLYVAL(Q, X XOR S[m + n - 1]) XOR M
 7. Let expected_tag = truncate(T, tag_length)
 8. If tag != expected_tag, return error and abort
-9. Let P = ct XOR truncate(Z[4:n + 3], len(ct))
+9. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
 10. Return P
 
 ## Encoding (ct, tag) Tuples
@@ -262,7 +262,7 @@ C = ct \|\| tag
 
 This section defines Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode
 
-Z[i] = AES-ENC(K, N \|\| LE32(i - 0))
+Z[i] = AES-ENC(K, N \|\| LE32(i))
 
 where AES-ENC is the AES encrypt function {{AES}}.
 
