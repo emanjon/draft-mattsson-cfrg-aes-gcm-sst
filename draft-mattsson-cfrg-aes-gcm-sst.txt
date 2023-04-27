@@ -412,7 +412,7 @@ Table of Contents
    tag_length.  An application can make the tag dependent on tag_length
    by including tag_length in the nonces.
 
-   With AES-GCM-SST, up to 2^32 random nonces MAY be used with the same
+   With AES-GCM-SST, up to 2^32 random nonces can be used with the same
    key while still keeping the collision probability under 2^-32 that
    NIST requires [GCM].  If r random nonces are used with the same key,
    the collision probability for AES-GCM-SST is ≈ r^2 / 2^97.  As an
