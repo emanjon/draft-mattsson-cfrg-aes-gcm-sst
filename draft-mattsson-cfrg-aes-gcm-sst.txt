@@ -5,8 +5,8 @@
 Crypto Forum                                           J. Preuß Mattsson
 Internet-Draft                                                  Ericsson
 Intended status: Informational                               M. Campagna
-Expires: 28 October 2023                          University of Waterloo
-                                                           26 April 2023
+Expires: 29 October 2023                          University of Waterloo
+                                                           27 April 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 October 2023.
+   This Internet-Draft will expire on 29 October 2023.
 
 Copyright Notice
 
@@ -116,7 +116,7 @@ Table of Contents
    et al.  [Mattsson], feedback of successful or unsuccessful forgery
    attempts is almost always possible, contradicting NIST's assumptions
    for short tags.  NIST also appears to have used non-optimal attacks
-   to calculate the parameters.  An detailed evaluation of GCM is given
+   to calculate the parameters.  A detailed evaluation of GCM is given
    by [Rogaway], it is very critical of GCM with short tags and
    recommends disallowing GCM with tags shorter than 96-bits.
 
@@ -163,7 +163,7 @@ Table of Contents
 
    *  != is the inequality operator
 
-   *  x || y is concatenation of octet strings x and y
+   *  x || y is concatenation of the octet strings x and y
 
    *  XOR is the bitwise exclusive OR operator
 
@@ -204,8 +204,8 @@ Table of Contents
    function takes four variable-length octet string parameters.  A
    secret key K, a nonce N, the associated data A, and a plaintext P.
    The keystream generator is instantiated with K and N.  The keystream
-   MUST NOT depend on P and A.  The minimum and maximum length of all
-   parameters depends on the keystream generator.  The keystream
+   MUST NOT depend on P and A.  The minimum and maximum lengths of all
+   parameters depend on the keystream generator.  The keystream
    generator produces a keystream Z consisting of 128-bit chunks where
    z[1] is the first chunk.  The first three chunks z[1], z[2], and z[3]
    are used as the three subkeys H, Q, and M.  The following keystream
@@ -401,10 +401,10 @@ Table of Contents
    is bounded by ≈ 2^-t where t is the tag length in bits [Nyberg].
    This is significantly higher than GCM and true for all allowed
    plaintext and associated data lengths.  The maximum size of the
-   associated data (A_MAX) has been lowered to enable forgery
-   probability close to ideal for 80-bit tags even with maximum size
-   plaintexts and associated data.  Just like [RFC5116] AES-GCM-SST only
-   allows 96-bit nonces.
+   associated data (A_MAX) has been lowered from GCM [RFC5116] to enable
+   forgery probability close to ideal for 80-bit tags even with maximum
+   size plaintexts and associated data.  Just like [RFC5116] AES-GCM-SST
+   only allows 96-bit nonces.
 
    The tag_length SHOULD NOT be smaller than 4 bytes and cannot be
    larger than 16 bytes.  For 128-bit tags and long messages, the
