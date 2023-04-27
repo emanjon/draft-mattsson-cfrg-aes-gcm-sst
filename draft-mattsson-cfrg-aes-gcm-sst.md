@@ -166,11 +166,15 @@ Encrypt(K, N, A, P)
 
 The Encrypt function encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.
 
-Security:
+Prerequisites and security:
+
+* The key MUST be randomly chosen from a uniform distribution.
 
 * For a given key, the nonce MUST NOT be reused under any circumstances.
 
-* The key MUST be randomly chosen from a uniform distribution.
+* Supported tag_length associated with the key.
+
+* Definitions of supported input-output lengths.
 
 Inputs:
 
@@ -187,12 +191,12 @@ Outputs:
 Steps:
 
 1. Initiate keystream generator with K and N
-2. H = Z[1], Q = Z[2], M = Z[3]
-3. ct = P XOR truncate(Z[4:n + 3], len(P))
-4. S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
-5. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-6. full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
-7. tag = truncate(full_tag, tag_length)
+2. Let H = Z[1], Q = Z[2], M = Z[3]
+3. Let ct = P XOR truncate(Z[4:n + 3], len(P))
+4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
+5. Let X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
+6. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
+7. Let tag = truncate(full_tag, tag_length)
 8. return (ct, tag)
 
 ## Authenticated Decryption
@@ -201,11 +205,15 @@ Decrypt(K, N, A, ct, tag)
 
 The Decrypt function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if tag verification failed.
 
-Security:
+Prerequisites and security:
 
 * The calculation of the plaintext P (step 8) MAY be done in parallel with the tag verification (step 2-7). If tag verification fails, P and the expected_tag MUST NOT be given as output.
 
 * The comparison of the input tag with the expected_tag MUST be done in constant time.
+
+* Supported tag_length associated with the key.
+
+* Definitions of supported input-output lengths.
 
 Inputs:
 
@@ -221,27 +229,28 @@ Outputs:
 
 Steps:
 
-1. Initiate keystream generator with K and N
-2. Let H = Z[1], Q = Z[2], M = Z[3]
-3. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
-4. X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
-5. T = POLYVAL(Q, X XOR S[m + n]) XOR M
-6. expected_tag = truncate(T, tag_length)
-7. If tag != expected_tag, return "verification failed" error and abort
-8. P = ct XOR truncate(Z[4:n + 3], len(ct))
-9. return P
+1. If the lengths of N, A, or ct are not supported, or if len(tag) != tag_length return error and abort.
+3. Initiate keystream generator with K and N
+4. Let H = Z[1], Q = Z[2], M = Z[3]
+5. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
+6. Let X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
+7. Let T = POLYVAL(Q, X XOR S[m + n]) XOR M
+8. Let expected_tag = truncate(T, tag_length)
+9. If tag != expected_tag, return error and abort
+10. Let P = ct XOR truncate(Z[4:n + 3], len(ct))
+11. return P
 
 ## Encoding (ct, tag) Tuples
 
 Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
 
-C = ct \|\| tag
+   C = ct \|\| tag
 
 # AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
 
 When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode
 
-Z[i] = AES-ENC(K, N \|\| LE32(i))
+   Z[i] = AES-ENC(K, N \|\| LE32(i))
 
 where AES-ENC is the AES encrypt function {{AES}}.
 
