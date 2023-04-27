@@ -145,7 +145,8 @@ Table of Contents
    two main differences compared to GCM [GCM] is that GCM-SST uses an
    additional subkey Q and that new subkeys H and Q are derived for each
    nonce.  This enables short tags with forgery probability close to
-   ideal.  See Section Section 3.
+   ideal and significantly decreases the probability of multiple
+   successful forgeries.  See Section Section 3.
 
    This document also registers several instances of Advanced Encryption
    Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-
@@ -201,7 +202,8 @@ Table of Contents
    cipher.  The two main differences compared to GCM [GCM] is that GCM-
    SST uses an additional subkey Q and that new subkeys H and Q are
    derived for each nonce.  This enables short tags with forgery
-   probability close to ideal.
+   probability close to ideal and significantly decreases the
+   probability of multiple successful forgeries.
 
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four variable-length octet string parameters.  A
@@ -401,6 +403,14 @@ Table of Contents
       tag_length (in bytes)
 
 5.  Security Considerations
+
+   The two main differences compared to GCM [GCM] is that GCM-SST uses
+   an additional subkey Q and that new subkeys H, Q are derived for each
+   nonce.  The use of an additional subkey Q enables short tags with
+   forgery probability close to ideal.  Deriving new subkeys H, Q afor
+   each nonce significantly decreases the probability of multiple
+   successful forgeries.  These changes are based on proven theoretical
+   constructions and follows the recommendations in [Nyberg].
 
    GCM-SST MUST be used in a nonce-respecting setting: for a given key,
    a nonce MUST only be used once.  The nonce MAY be public or
