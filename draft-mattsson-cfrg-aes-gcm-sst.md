@@ -53,6 +53,7 @@ normative:
 informative:
 
   RFC3711:
+  RFC8446:
   I-D.ietf-sframe-enc:
   I-D.irtf-cfrg-aegis-aead:
 
@@ -104,13 +105,15 @@ informative:
         ins: M. Westerlund
     date: May 2015
 
-  Rogaway:
-    target: https://www.cryptrec.go.jp/exreport/cryptrec-ex-2012-2010r1.pdf
-    title: "Evaluation of Some Blockcipher Modes of Operation"
+  Bellare:
+    target: https://eprint.iacr.org/2016/564.pdf
+    title: "The Multi-User Security of Authenticated Encryption: AES-GCM in TLS 1.3"
     author:
       -
-        ins: P. Rogaway
-    date: February 2011
+        ins: M. Bellare
+      -
+        ins: B. Tackmann
+    date: November 2017
 
 --- abstract
 
