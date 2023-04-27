@@ -412,8 +412,8 @@ Table of Contents
    be larger than 16 bytes.  For 128-bit tags and long messages, the
    forgery probability is not close to ideal and similar to GCM [GCM].
    If tag verification fails, the plaintext and expected_tag MUST NOT be
-   given as output.  The full_tag in GCM-SST does not depend on the tag_
-   ength.  An application can make the tag dependent on the tag length
+   given as output.  The full_tag in GCM-SST does not depend on the tag
+   length.  An application can make the tag dependent on the tag length
    by including tag_length in the nonces.
 
    If r random nonces are used with the same key, the collision
