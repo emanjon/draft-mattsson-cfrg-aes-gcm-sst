@@ -219,7 +219,7 @@ Table of Contents
    another [RFC8452].  The subkeys H and Q are field elements used in
    POLYVAL while the subkey M is used for the final masking of the tag.
    Both encryption and decryption are only defined on inputs that are a
-   whole number of bytes.
+   whole number of octets.
 
 3.1.  Authenticated Encryption
 
