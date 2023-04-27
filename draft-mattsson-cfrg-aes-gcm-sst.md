@@ -53,7 +53,6 @@ normative:
 informative:
 
   RFC3711:
-  RFC8446:
   I-D.ietf-sframe-enc:
   I-D.irtf-cfrg-aegis-aead:
 
