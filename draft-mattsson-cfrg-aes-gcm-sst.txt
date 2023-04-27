@@ -416,7 +416,7 @@ Table of Contents
    key while still keeping the collision probability under 2^-32 that
    NIST requires [GCM].  If r random nonces are used with the same key,
    the collision probability for AES-GCM-SST is ≈ r^2 / 2^97.  As the
-   security of AES-GCM-SST with random nonces is only 2^97 / r, it is
+   security of AES-GCM-SST with random nonces is only ≈ 2^97 / r, it is
    NOT RECOMMENDED to use AES-GCM-SST with random nonces.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
