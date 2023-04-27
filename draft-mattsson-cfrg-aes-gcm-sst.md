@@ -281,15 +281,13 @@ Common parameters for the six AEADs:
 
 GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution.
 
-With AES-GCM-SST, up to 2<sup>32</sup> random nonces MAY be used with the same key while still keeping the collision probability under 2<sup>-32</sup> that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>.
+The GCM-SST tag_length iSHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output.
 
-If tag verification fails, the plaintext and expected_tag MUST NOT be given as output.
+With AES-GCM-SST, up to 2<sup>32</sup> random nonces MAY be used with the same key while still keeping the collision probability under 2<sup>-32</sup> that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>.
 
 The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
-For the AEAD Algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered from GCM {{RFC5116}} to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like {{RFC5116}} AES-GCM-SST only allows 96-bit nonces.
-
-The tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}.
+For the AES-GCM-SST algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits {{Nyberg}}. This is significantly higher than GCM and true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered from GCM {{RFC5116}} to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like {{RFC5116}} AES-GCM-SST only allows 96-bit nonces.
 
 In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. For AES-GCM-SST, at most one of H, Q, and M can be zero.
 
