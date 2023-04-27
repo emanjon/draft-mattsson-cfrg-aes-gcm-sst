@@ -198,7 +198,7 @@ Steps:
 5. Let X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 6. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
 7. Let tag = truncate(full_tag, tag_length)
-8. return (ct, tag)
+8. Return (ct, tag)
 
 ## Authenticated Decryption
 
@@ -239,7 +239,7 @@ Steps:
 7. Let expected_tag = truncate(T, tag_length)
 8. If tag != expected_tag, return error and abort
 9. Let P = ct XOR truncate(Z[4:n + 3], len(ct))
-10. return P
+10. Return P
 
 ## Encoding (ct, tag) Tuples
 
