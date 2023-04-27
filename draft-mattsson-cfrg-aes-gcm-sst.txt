@@ -119,7 +119,7 @@ Table of Contents
    to calculate the parameters.  A detailed evaluation of GCM and other
    blockcipher modes of operation is given by [Rogaway].  Rogaway is
    very critical of GCM with short tags and recommends disallowing GCM
-   with tags shorter than 96-bits.  While CCM (counter with CBC-MAC)
+   with tags shorter than 96-bits.  While Counter with CBC-MAC (CCM)
    [RFC5116] with short tags has forgery probabilities close to ideal,
    CCM has lower performance than GCM.
 
