@@ -154,7 +154,7 @@ Primitives:
 * A[y] is the 128-bit chunk number y in the array A
 * A[x:y] are the range of chunks x to y in the array A
 
-# Galois Counter Mode with Secure Short Tags {#GCM-SST}
+# Galois Counter Mode with Secure Short Tags (GCM-SST) {#GCM-SST}
 
 This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal.
 
@@ -255,7 +255,7 @@ Z[i] = AES-ENC(K, N \|\| LE32(i))
 
 where AES-ENC is the AES encrypt function {{AES}}.
 
-## AEAD Instances
+## AES-GCM-SST AEAD Instances
 
 We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in key length (K_LEN) and tag length. The tag lengths 32, 64, and 80 have been chosen to align with secure media frames {{I-D.ietf-sframe-enc}}. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
 
