@@ -262,7 +262,7 @@ C = ct \|\| tag
 
 This section defines Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode
 
-Z[i] = AES-ENC(K, N \|\| LE32(i))
+Z[i] = AES-ENC(K, N \|\| LE32(i - 0))
 
 where AES-ENC is the AES encrypt function {{AES}}.
 
