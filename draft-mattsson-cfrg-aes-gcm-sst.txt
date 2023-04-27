@@ -118,8 +118,8 @@ Table of Contents
    for short tags.  NIST also appears to have used non-optimal attacks
    to calculate the parameters.  A detailed evaluation of GCM and other
    blockcipher modes of operation is given by [Rogaway].  Rogaway is
-   very critical of GCM with short tags and recommends disallowing GCM
-   with tags shorter than 96-bits.  While Counter with CBC-MAC (CCM)
+   critical of GCM with short tags and recommends disallowing GCM with
+   tags shorter than 96-bits.  While Counter with CBC-MAC (CCM)
    [RFC5116] with short tags has forgery probabilities close to ideal,
    CCM has lower performance than GCM.
 
@@ -210,16 +210,16 @@ Table of Contents
    MUST NOT depend on P and A.  The minimum and maximum lengths of all
    parameters depend on the keystream generator.  The keystream
    generator produces a keystream Z consisting of 128-bit chunks where
-   z[1] is the first chunk.  The first three chunks z[1], z[2], and z[3]
-   are used as the three subkeys H, Q, and M.  The following keystream
-   chunks z[4], z[5], ..., z[n + 3] are used to encrypt the plaintext.
-   Instead of GHASH [GCM], GCM-SST makes use of the POLYVAL function
-   [RFC8452], which results in more efficient software implementations
-   on little-endian architectures.  GHASH and POLYVAL can be defined in
-   terms of one another [RFC8452].  The subkeys H and Q are field
-   elements used in POLYVAL while the subkey M is used for the final
-   masking of the tag.  Both encryption and decryption are only defined
-   on inputs that are a whole number of octets.
+   the first three chunks z[1], z[2], and z[3] are used as the three
+   subkeys H, Q, and M.  The following keystream chunks z[4], z[5], ...,
+   z[n + 3] are used to encrypt the plaintext.  Instead of GHASH [GCM],
+   GCM-SST makes use of the POLYVAL function [RFC8452], which results in
+   more efficient software implementations on little-endian
+   architectures.  GHASH and POLYVAL can be defined in terms of one
+   another [RFC8452].  The subkeys H and Q are field elements used in
+   POLYVAL while the subkey M is used for the final masking of the tag.
+   Both encryption and decryption are only defined on inputs that are a
+   whole number of octets.
 
 3.1.  Authenticated Encryption
 
@@ -258,22 +258,25 @@ Table of Contents
 
    Steps:
 
-   1.  Initiate keystream generator with K and N
+   1.  If the lengths of K, N, A, P are not supported return error and
+       abort
 
-   2.  Let H = Z[1], Q = Z[2], M = Z[3]
+   2.  Initiate keystream generator with K and N
 
-   3.  Let ct = P XOR truncate(Z[4:n + 3], len(P))
+   3.  Let H = Z[1], Q = Z[2], M = Z[3]
 
-   4.  Let S = zeropad(A) || zeropad(ct) || LE64(len(A)) ||
+   4.  Let ct = P XOR truncate(Z[4:n + 3], len(P))
+
+   5.  Let S = zeropad(A) || zeropad(ct) || LE64(len(A)) ||
        LE64(len(ct))
 
-   5.  Let X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
+   6.  Let X = POLYVAL(H, S[1], S[2], ..., S[m + n - 1])
 
-   6.  Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
+   7.  Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
 
-   7.  Let tag = truncate(full_tag, tag_length)
+   8.  Let tag = truncate(full_tag, tag_length)
 
-   8.  return (ct, tag)
+   9.  return (ct, tag)
 
 3.2.  Authenticated Decryption
 
@@ -316,8 +319,8 @@ Table of Contents
 
    Steps:
 
-   1.   If the lengths of N, A, or ct are not supported, or if len(tag)
-        != tag_length return error and abort.
+   1.   If the lengths of K, N, A, or ct are not supported, or if
+        len(tag) != tag_length return error and abort
 
    2.   Initiate keystream generator with K and N
 
@@ -357,13 +360,15 @@ Table of Contents
 
 4.1.  AEAD Instances
 
-   We define six AEADs, in the format of [RFC5116], that use AES-GCM-
-   SST.  They differ only in key length (K_LEN) and tag length.  The tag
-   lengths 32, 64, and 80 have been chosen to align with secure media
-   frames [I-D.ietf-sframe-enc].  The key length and tag length are
-   related to different security properties, and an application
-   encrypting audio packets with small tags might require 256-bit
-   confidentiality.
+   This section defines Advanced Encryption Standard (AES) with Galois
+   Counter Mode with Secure Short Tags (AES-GCM-SST) where AES [AES] in
+   counter mode is used as the keystream generator.  We define six
+   AEADs, in the format of [RFC5116], that use AES-GCM-SST.  They differ
+   only in key length (K_LEN) and tag length.  The tag lengths 32, 64,
+   and 80 have been chosen to align with secure media frames
+   [I-D.ietf-sframe-enc].  The key length and tag length are related to
+   different security properties, and an application encrypting audio
+   packets with small tags might require 256-bit confidentiality.
 
    +============+=========================+===============+============+
    | Numeric ID | Name                    |         K_LEN | tag_length |
@@ -408,9 +413,15 @@ Table of Contents
    be larger than 16 bytes.  For 128-bit tags and long messages, the
    forgery probability is not close to ideal and similar to GCM [GCM].
    If tag verification fails, the plaintext and expected_tag MUST NOT be
-   given as output.  The full_tag in GCM-SST does not depend on the
-   tag_length.  An application can make the tag dependent on tag_length
+   given as output.  The full_tag in GCM-SST does not depend on the tag_
+   ength.  An application can make the tag dependent on the tag length
    by including tag_length in the nonces.
+
+   If r random nonces are used with the same key, the collision
+   probability for AES-GCM-SST is ≈ r^2 / 2^97.  As an attacker can test
+   r nonces for collisions with complixity r, the security of AES-GCM-
+   SST with random nonces is only ≈ 2^97 / r.  It is therefore NOT
+   RECOMMENDED to use AES-GCM-SST with random nonces.
 
    With AES-GCM-SST, up to 2^32.5 random nonces can be used with the
    same key while still keeping the collision probability under 2^-32
