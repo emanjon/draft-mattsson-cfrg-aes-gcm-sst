@@ -407,7 +407,7 @@ Table of Contents
    The two main differences compared to GCM [GCM] is that GCM-SST uses
    an additional subkey Q and that new subkeys H, Q are derived for each
    nonce.  The use of an additional subkey Q enables short tags with
-   forgery probabilities close to ideal.  Deriving new subkeys H, Q afor
+   forgery probabilities close to ideal.  Deriving new subkeys H, Q for
    each nonce significantly decreases the probability of multiple
    successful forgeries.  These changes are based on proven theoretical
    constructions and follows the recommendations in [Nyberg].  See
