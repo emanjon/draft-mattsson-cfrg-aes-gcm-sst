@@ -283,7 +283,7 @@ GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUS
 
 The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output. The full_tag in GCM-SST does not depend on the tag_length. An application can make the tag dependent on tag_length by including tag_length in the nonces.
 
-With AES-GCM-SST, up to 2<sup>32</sup> random nonces MAY be used with the same key while still keeping the collision probability under 2<sup>-32</sup> that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As the security of AES-GCM-SST with random nonces is only 2<sup>97</sup> / r, it is NOT RECOMMENDED to use AES-GCM-SST with random nonces.
+With AES-GCM-SST, up to 2<sup>32</sup> random nonces MAY be used with the same key while still keeping the collision probability under 2<sup>-32</sup> that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r, it is NOT RECOMMENDED to use AES-GCM-SST with random nonces.
 
 The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM {{RFC5116}} as there is now three subkeys instead of two.
 
