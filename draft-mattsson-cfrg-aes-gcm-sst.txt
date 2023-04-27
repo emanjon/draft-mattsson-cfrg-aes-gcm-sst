@@ -212,14 +212,14 @@ Table of Contents
    generator produces a keystream Z consisting of 128-bit chunks where
    z[1] is the first chunk.  The first three chunks z[1], z[2], and z[3]
    are used as the three subkeys H, Q, and M.  The following keystream
-   chunks are used to encrypt the plaintext.  Instead of GHASH [GCM],
-   GCM-SST makes use of the POLYVAL function [RFC8452], which results in
-   more efficient software implementations on little-endian
-   architectures.  GHASH and POLYVAL can be defined in terms of one
-   another [RFC8452].  The subkeys H and Q are field elements used in
-   POLYVAL while the subkey M is used for the final masking of the tag.
-   Both encryption and decryption are only defined on inputs that are a
-   whole number of octets.
+   chunks z[4], z[5], ..., z[n + 3] are used to encrypt the plaintext.
+   Instead of GHASH [GCM], GCM-SST makes use of the POLYVAL function
+   [RFC8452], which results in more efficient software implementations
+   on little-endian architectures.  GHASH and POLYVAL can be defined in
+   terms of one another [RFC8452].  The subkeys H and Q are field
+   elements used in POLYVAL while the subkey M is used for the final
+   masking of the tag.  Both encryption and decryption are only defined
+   on inputs that are a whole number of octets.
 
 3.1.  Authenticated Encryption
 
