@@ -244,13 +244,13 @@ Steps:
 
 Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
 
-   C = ct \|\| tag
+C = ct \|\| tag
 
 # AES with Galois Counter Mode with Secure Short Tags {#AES-GCM-SST}
 
 When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode
 
-   Z[i] = AES-ENC(K, N \|\| LE32(i))
+Z[i] = AES-ENC(K, N \|\| LE32(i))
 
 where AES-ENC is the AES encrypt function {{AES}}.
 
