@@ -256,7 +256,7 @@ where AES-ENC is the AES encrypt function {{AES}}.
 
 ## AEAD Instances
 
-We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in key length (K_LEN) and tag length. The tag lengths 32, 64, and 80 have been chosen to align with {{I-D.ietf-sframe-enc}}. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
+We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in key length (K_LEN) and tag length. The tag lengths 32, 64, and 80 have been chosen to align with secure media frames {{I-D.ietf-sframe-enc}}. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
 
 | Numeric ID | Name | K_LEN (bytes) | tag_length (bits) |
 | TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 32 |
