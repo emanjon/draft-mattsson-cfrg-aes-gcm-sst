@@ -117,11 +117,11 @@ Table of Contents
    attempts is almost always possible, contradicting NIST's assumptions
    for short tags.  NIST also appears to have used non-optimal attacks
    to calculate the parameters.  A detailed evaluation of GCM and other
-   Blockcipher Modes of Operation is given by [Rogaway], it is very
-   critical of GCM with short tags and recommends disallowing GCM with
-   tags shorter than 96-bits.  While CCM [RFC5116] with short tags has
-   forgery probabilities close to ideal, CCM has lower performance than
-   GCM.
+   blockcipher modes of operation is given by [Rogaway].  Rogaway is
+   very critical of GCM with short tags and recommends disallowing GCM
+   with tags shorter than 96-bits.  While CCM [RFC5116] with short tags
+   has forgery probabilities close to ideal, CCM has lower performance
+   than GCM.
 
    32-bit tags are standard in most radio link layers including 5G,
    64-bit tags are very common in transport and application layers of
