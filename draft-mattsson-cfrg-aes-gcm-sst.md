@@ -207,7 +207,7 @@ The Decrypt function decrypts a ciphertext, verifies that the authentication tag
 
 Prerequisites and security:
 
-* The calculation of the plaintext P (step 8) MAY be done in parallel with the tag verification (step 2-7). If tag verification fails, P and the expected_tag MUST NOT be given as output.
+* The calculation of the plaintext P (step 8) MAY be done in parallel with the tag verification (step 2-7). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
 
 * The comparison of the input tag with the expected_tag MUST be done in constant time.
 
@@ -281,7 +281,7 @@ Common parameters for the six AEADs:
 
 GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution.
 
-The GCM-SST tag_length iSHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output.
+The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output.
 
 With AES-GCM-SST, up to 2<sup>32</sup> random nonces MAY be used with the same key while still keeping the collision probability under 2<sup>-32</sup> that NIST requires {{GCM}}. If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>.
 
