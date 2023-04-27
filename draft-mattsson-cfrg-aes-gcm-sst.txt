@@ -119,9 +119,9 @@ Table of Contents
    to calculate the parameters.  A detailed evaluation of GCM and other
    blockcipher modes of operation is given by [Rogaway].  Rogaway is
    very critical of GCM with short tags and recommends disallowing GCM
-   with tags shorter than 96-bits.  While CCM [RFC5116] with short tags
-   has forgery probabilities close to ideal, CCM has lower performance
-   than GCM.
+   with tags shorter than 96-bits.  While CCM (counter with CBC-MAC)
+   [RFC5116] with short tags has forgery probabilities close to ideal,
+   CCM has lower performance than GCM.
 
    32-bit tags are standard in most radio link layers including 5G,
    64-bit tags are very common in transport and application layers of
