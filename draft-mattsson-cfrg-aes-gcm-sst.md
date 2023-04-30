@@ -310,10 +310,6 @@ IANA is requested to assign the entries in the first two columns of {{iana-algs}
 
 --- back
 
-# AES-GCM-SST Reference Implementation
-
-TODO
-
 # AES-GCM-SST Test Vectors
 
 TODO
