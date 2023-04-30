@@ -34,9 +34,9 @@ author:
 - initials: M.
   surname: Campagna
   name: Matthew Campagna
-  org: University of Waterloo
+  org: Amazon Web Services
   country: Canada
-  email: mcampagna@gmail.com
+  email: campagna@amazon.com
 
 normative:
 
