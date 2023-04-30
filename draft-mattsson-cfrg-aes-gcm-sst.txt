@@ -5,8 +5,8 @@
 Crypto Forum                                           J. Preuß Mattsson
 Internet-Draft                                                  Ericsson
 Intended status: Informational                               M. Campagna
-Expires: 29 October 2023                          University of Waterloo
-                                                           27 April 2023
+Expires: 1 November 2023                             Amazon Web Services
+                                                           30 April 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 October 2023.
+   This Internet-Draft will expire on 1 November 2023.
 
 Copyright Notice
 
@@ -524,10 +524,10 @@ Table of Contents
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F., Scotoni, F. E. R., and S. Lucas, "The AEGIS
-              family of authenticated encryption algorithms", Work in
-              Progress, Internet-Draft, draft-irtf-cfrg-aegis-aead-02, 8
-              April 2023, <https://datatracker.ietf.org/doc/html/draft-
-              irtf-cfrg-aegis-aead-02>.
+              Family of Authenticated Encryption Algorithms", Work in
+              Progress, Internet-Draft, draft-irtf-cfrg-aegis-aead-03,
+              28 April 2023, <https://datatracker.ietf.org/doc/html/
+              draft-irtf-cfrg-aegis-aead-03>.
 
    [Mattsson] Mattsson, J. and M. Westerlund, "Authentication Key
               Recovery on Galois/Counter Mode (GCM)", May 2015,
@@ -575,6 +575,6 @@ Authors' Addresses
 
 
    Matthew Campagna
-   University of Waterloo
+   Amazon Web Services
    Canada
-   Email: mcampagna@gmail.com
+   Email: campagna@amazon.com
