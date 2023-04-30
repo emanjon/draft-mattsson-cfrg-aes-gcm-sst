@@ -87,8 +87,7 @@ Table of Contents
    7.  References
      7.1.  Normative References
      7.2.  Informative References
-   Appendix A.  AES-GCM-SST Reference Implementation
-   Appendix B.  AES-GCM-SST Test Vectors
+   Appendix A.  AES-GCM-SST Test Vectors
    Acknowledgments
    Authors' Addresses
 
@@ -552,11 +551,7 @@ Table of Contents
               <https://www.cryptrec.go.jp/exreport/cryptrec-ex-
               2012-2010r1.pdf>.
 
-Appendix A.  AES-GCM-SST Reference Implementation
-
-   TODO
-
-Appendix B.  AES-GCM-SST Test Vectors
+Appendix A.  AES-GCM-SST Test Vectors
 
    TODO
 
