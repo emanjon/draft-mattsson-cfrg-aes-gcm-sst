@@ -187,7 +187,7 @@ Table of Contents
 
    *  POLYVAL is defined in [RFC8452]
 
-   *  LE32(x) is the little-endian encoding of 32-bit integer x
+   *  BE32(x) is the big-endian encoding of 32-bit integer x
 
    *  LE64(x) is the little-endian encoding of 64-bit integer x
 
@@ -359,7 +359,7 @@ Table of Contents
    Counter Mode with Secure Short Tags (AES-GCM-SST).  When GCM-SSM is
    instantiated with AES, the keystream generator is AES in counter mode
 
-   Z[i] = AES-ENC(K, N || LE32(i))
+   Z[i] = AES-ENC(K, N || BE32(i))
 
    where AES-ENC is the AES encrypt function [AES].
 
