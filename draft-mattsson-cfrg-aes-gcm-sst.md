@@ -165,7 +165,7 @@ Primitives:
 * n is the number of 128-bit chunks in zeropad(P)
 * m is the number of 128-bit chunks in zeropad(A)
 * POLYVAL is defined in {{RFC8452}}
-* LE32(x) is the little-endian encoding of 32-bit integer x
+* BE32(x) is the big-endian encoding of 32-bit integer x
 * LE64(x) is the little-endian encoding of 64-bit integer x
 * A[y] is the 128-bit chunk with index y in the array A.
 * A[x:y] are the range of chunks x to y in the array A
@@ -267,7 +267,7 @@ C = ct \|\| tag
 
 This section defines Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode
 
-Z[i] = AES-ENC(K, N \|\| LE32(i))
+Z[i] = AES-ENC(K, N \|\| BE32(i))
 
 where AES-ENC is the AES encrypt function {{AES}}.
 
