@@ -210,7 +210,7 @@ Steps:
 1. Initiate keystream generator with K and N
 2. Let H = Z[0], Q = Z[1], M = Z[2]
 3. Let ct = P XOR truncate(Z[3:n + 2], len(P))
-4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
+4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
 5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])
 6. Let full_tag = POLYVAL(Q, X XOR S[m + n - 1]) XOR M
 7. Let tag = truncate(full_tag, tag_length)
@@ -249,7 +249,7 @@ Steps:
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
 3. Initiate keystream generator with K and N
 2. Let H = Z[0], Q = Z[1], M = Z[2]
-4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(A)) \|\| LE64(len(ct))
+4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
 5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])
 6. Let T = POLYVAL(Q, X XOR S[m + n - 1]) XOR M
 7. Let expected_tag = truncate(T, tag_length)
