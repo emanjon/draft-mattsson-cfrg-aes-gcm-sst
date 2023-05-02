@@ -271,8 +271,8 @@ Table of Contents
 
    4.  Let ct = P XOR truncate(Z[3:n + 2], len(P))
 
-   5.  Let S = zeropad(A) || zeropad(ct) || LE64(len(A)) ||
-       LE64(len(ct))
+   5.  Let S = zeropad(A) || zeropad(ct) || LE64(len(ct)) ||
+       LE64(len(A))
 
    6.  Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])
 
@@ -330,8 +330,8 @@ Table of Contents
 
    3.   Let H = Z[0], Q = Z[1], M = Z[2]
 
-   4.   Let S = zeropad(A) || zeropad(ct) || LE64(len(A)) ||
-        LE64(len(ct))
+   4.   Let S = zeropad(A) || zeropad(ct) || LE64(len(ct)) ||
+        LE64(len(A))
 
    5.   Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])
 
