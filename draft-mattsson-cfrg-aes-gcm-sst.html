@@ -1325,9 +1325,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li id="section-3.1-10.5">Let S = zeropad(A) || zeropad(ct) || LE64(len(ct)) || LE64(len(A))<a href="#section-3.1-10.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-10.6">Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])<a href="#section-3.1-10.6" class="pilcrow">¶</a>
+          <li id="section-3.1-10.6">Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])<a href="#section-3.1-10.6" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.1-10.7">Let full_tag = POLYVAL(Q, X XOR S[m + n - 1]) XOR M<a href="#section-3.1-10.7" class="pilcrow">¶</a>
+          <li id="section-3.1-10.7">Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.1-10.7" class="pilcrow">¶</a>
 </li>
           <li id="section-3.1-10.8">Let tag = truncate(full_tag, tag_length)<a href="#section-3.1-10.8" class="pilcrow">¶</a>
 </li>
@@ -1382,9 +1382,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 </li>
           <li id="section-3.2-10.4">Let S = zeropad(A) || zeropad(ct) || LE64(len(ct)) || LE64(len(A))<a href="#section-3.2-10.4" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-10.5">Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 2])<a href="#section-3.2-10.5" class="pilcrow">¶</a>
+          <li id="section-3.2-10.5">Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])<a href="#section-3.2-10.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-3.2-10.6">Let T = POLYVAL(Q, X XOR S[m + n - 1]) XOR M<a href="#section-3.2-10.6" class="pilcrow">¶</a>
+          <li id="section-3.2-10.6">Let T = POLYVAL(Q, X XOR S[m + n]) XOR M<a href="#section-3.2-10.6" class="pilcrow">¶</a>
 </li>
           <li id="section-3.2-10.7">Let expected_tag = truncate(T, tag_length)<a href="#section-3.2-10.7" class="pilcrow">¶</a>
 </li>
