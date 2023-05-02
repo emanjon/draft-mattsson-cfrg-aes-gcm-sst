@@ -5,8 +5,10 @@
 Crypto Forum                                           J. Preuß Mattsson
 Internet-Draft                                                  Ericsson
 Intended status: Informational                               M. Campagna
-Expires: 1 November 2023                             Amazon Web Services
-                                                           30 April 2023
+Expires: 3 November 2023                             Amazon Web Services
+                                                              A. Maximov
+                                                                Ericsson
+                                                              2 May 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -59,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 November 2023.
+   This Internet-Draft will expire on 3 November 2023.
 
 Copyright Notice
 
@@ -572,4 +574,9 @@ Authors' Addresses
    Matthew Campagna
    Amazon Web Services
    Canada
-   Email: campagna@amazon.com
+
+
+   Alexander Maximov
+   Ericsson AB
+   Sweden
+   Email: alexander.maximov@ericsson.com
