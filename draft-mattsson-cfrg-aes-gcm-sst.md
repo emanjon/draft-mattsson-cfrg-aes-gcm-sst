@@ -31,11 +31,6 @@ author:
   abbrev: Ericsson
   country: Sweden
   email: john.mattsson@ericsson.com
-- initials: M.
-  surname: Campagna
-  name: Matthew Campagna
-  org: Amazon Web Services
-  country: Canada
 - initials: A.
   surname: Maximov
   name: Alexander Maximov
@@ -43,6 +38,11 @@ author:
   abbrev: Ericsson
   country: Sweden
   email: alexander.maximov@ericsson.com
+- initials: M.
+  surname: Campagna
+  name: Matthew Campagna
+  org: Amazon Web Services
+  country: Canada
 
 normative:
 
