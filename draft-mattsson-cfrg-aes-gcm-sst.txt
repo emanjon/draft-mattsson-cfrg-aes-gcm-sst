@@ -3,11 +3,10 @@
 
 
 Crypto Forum                                           J. Preuß Mattsson
-Internet-Draft                                                  Ericsson
-Intended status: Informational                               M. Campagna
-Expires: 4 November 2023                             Amazon Web Services
-                                                              A. Maximov
-                                                                Ericsson
+Internet-Draft                                                A. Maximov
+Intended status: Informational                                  Ericsson
+Expires: 4 November 2023                                     M. Campagna
+                                                     Amazon Web Services
                                                               3 May 2023
 
 
@@ -572,12 +571,12 @@ Authors' Addresses
    Email: john.mattsson@ericsson.com
 
 
-   Matthew Campagna
-   Amazon Web Services
-   Canada
-
-
    Alexander Maximov
    Ericsson AB
    Sweden
    Email: alexander.maximov@ericsson.com
+
+
+   Matthew Campagna
+   Amazon Web Services
+   Canada
