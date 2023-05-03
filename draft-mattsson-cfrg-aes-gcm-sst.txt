@@ -143,13 +143,13 @@ Table of Contents
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
    algorithm following the recommendations from Nyberg et al.  [Nyberg].
    GCM-SST is defined with a general interface so that it can be used
-   with any keystream generator, not just a 128-bit block cipher.
-   Threedifferences compared to GCM [GCM] is that GCM-SST uses an
-   additional subkey Q, that new subkeys H and Q are derived for each
-   nonce, and that the POLYVAL function [RFC8452] is used instead of
-   GHASH.  This enables short tags with forgery probability close to
-   ideal and significantly decreases the probability of multiple
-   successful forgeries.  See Section Section 3.
+   with any keystream generator, not just a 128-bit block cipher.  Three
+   differences compared to GCM [GCM] is that GCM-SST uses an additional
+   subkey Q, that new subkeys H and Q are derived for each nonce, and
+   that the POLYVAL function [RFC8452] is used instead of GHASH.  This
+   enables short tags with forgery probability close to ideal and
+   significantly decreases the probability of multiple successful
+   forgeries.  See Section Section 3.
 
    This document also registers several instances of Advanced Encryption
    Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-
