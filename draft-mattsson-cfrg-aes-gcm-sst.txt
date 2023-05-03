@@ -5,10 +5,10 @@
 Crypto Forum                                           J. Preuß Mattsson
 Internet-Draft                                                  Ericsson
 Intended status: Informational                               M. Campagna
-Expires: 3 November 2023                             Amazon Web Services
+Expires: 4 November 2023                             Amazon Web Services
                                                               A. Maximov
                                                                 Ericsson
-                                                              2 May 2023
+                                                              3 May 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 November 2023.
+   This Internet-Draft will expire on 4 November 2023.
 
 Copyright Notice
 
@@ -143,10 +143,11 @@ Table of Contents
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
    algorithm following the recommendations from Nyberg et al.  [Nyberg].
    GCM-SST is defined with a general interface so that it can be used
-   with any keystream generator, not just a 128-bit block cipher.  The
-   two main differences compared to GCM [GCM] is that GCM-SST uses an
-   additional subkey Q and that new subkeys H and Q are derived for each
-   nonce.  This enables short tags with forgery probability close to
+   with any keystream generator, not just a 128-bit block cipher.
+   Threedifferences compared to GCM [GCM] is that GCM-SST uses an
+   additional subkey Q, that new subkeys H and Q are derived for each
+   nonce, and that the POLYVAL function [RFC8452] is used instead of
+   GHASH.  This enables short tags with forgery probability close to
    ideal and significantly decreases the probability of multiple
    successful forgeries.  See Section Section 3.
 
