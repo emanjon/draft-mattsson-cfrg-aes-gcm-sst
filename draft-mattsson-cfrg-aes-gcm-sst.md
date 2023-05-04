@@ -482,6 +482,7 @@ encode-LEN = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
     CIPHER = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f 
                eb 8f f7 cc }
 ~~~~~~~~~~~~~~~~~~~~~~~
+
 # Acknowledgments
 {:numbered="false"}
 
