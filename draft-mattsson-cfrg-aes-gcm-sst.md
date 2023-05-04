@@ -333,7 +333,7 @@ IANA is requested to assign the entries in the first two columns of {{iana-algs}
        AAD = { }
  PLAINTEXT = { }
 encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-MAC = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
+  full-TAG = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
     CIPHER = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -343,7 +343,7 @@ encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
        AAD = { 40 41 42 43 44 }
  PLAINTEXT = { }
 encode-LEN = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
-  full-MAC = { 7f f3 cb a4 d5 f3 08 a5 70 4e 2f d5 f2 3a e8 f9 }
+  full-TAG = { 7f f3 cb a4 d5 f3 08 a5 70 4e 2f d5 f2 3a e8 f9 }
 CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -353,7 +353,7 @@ CIPHERTEXT = { }
        AAD = { }
  PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
 encode-LEN = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-MAC = { f8 de 17 85 fd 1a 90 d9 81 8f cb 7b 44 69 8a 8b }
+  full-TAG = { f8 de 17 85 fd 1a 90 d9 81 8f cb 7b 44 69 8a 8b }
 CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -364,7 +364,7 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
  PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 71 72 73 74 75 76 77 78 79 7a 7b 7c 7d 7e }
 encode-LEN = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
-  full-MAC = { 93 43 56 14 0b 84 48 2c d0 14 c7 40 7e e9 cc b6 }
+  full-TAG = { 93 43 56 14 0b 84 48 2c d0 14 c7 40 7e e9 cc b6 }
 CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
                7d c0 cb c7 85 a7 a9 20 db 42 28 ff 63 32 10 }
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -376,7 +376,7 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
  PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 }
 encode-LEN = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
-  full-MAC = { f8 50 b7 97 11 43 ab e9 31 5a d7 eb 3b 0a 16 81 }
+  full-TAG = { f8 50 b7 97 11 43 ab e9 31 5a d7 eb 3b 0a 16 81 }
 CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
                7d }
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -394,7 +394,7 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
          Q = { 3b fd 00 96 25 84 2a 86 65 71 a4 66 e5 62 05 92 }
          M = { 9e 6c 98 3e e0 6c 1a ab c8 99 b7 8d 57 32 0a f5 }
 encode-LEN = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
-  full-MAC = { 45 03 bf b0 96 82 39 b3 67 e9 70 c3 83 c5 10 6f }
+  full-TAG = { 45 03 bf b0 96 82 39 b3 67 e9 70 c3 83 c5 10 6f }
 CIPHERTEXT = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
                da 9d b8 09 }
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -416,7 +416,7 @@ CIPHERTEXT = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
        AAD = { }
  PLAINTEXT = { }
 encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-MAC = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
+  full-TAG = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
 CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -426,7 +426,7 @@ CIPHERTEXT = { }
        AAD = { 40 41 42 43 44 }
  PLAINTEXT = { }
 encode-LEN = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
-  full-MAC = { 63 ac ca 4d 20 9f b3 90 28 ff c3 17 04 01 67 61 }
+  full-TAG = { 63 ac ca 4d 20 9f b3 90 28 ff c3 17 04 01 67 61 }
 CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -436,7 +436,7 @@ CIPHERTEXT = { }
        AAD = { }
  PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
 encode-LEN = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-MAC = { e1 de bf fd 5f 3a 85 e3 48 bd 6f cc 6e 62 10 90 }
+  full-TAG = { e1 de bf fd 5f 3a 85 e3 48 bd 6f cc 6e 62 10 90 }
 CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -447,7 +447,7 @@ CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
  PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 71 72 73 74 75 76 77 78 79 7a 7b 7c 7d 7e }
 encode-LEN = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
-  full-MAC = { c3 5e d7 83 9f 21 f7 bb a5 a8 a2 8e 1f 49 ed 04 }
+  full-TAG = { c3 5e d7 83 9f 21 f7 bb a5 a8 a2 8e 1f 49 ed 04 }
 CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
                33 11 7e 17 58 b5 ed d0 d6 5d 68 32 06 bb ad }
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -459,7 +459,7 @@ CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
  PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 }
 encode-LEN = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
-  full-MAC = { 49 7c 14 77 67 a5 3d 57 64 ce fd 03 26 fe e7 b5 }
+  full-TAG = { 49 7c 14 77 67 a5 3d 57 64 ce fd 03 26 fe e7 b5 }
 CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
                33 }
 ~~~~~~~~~~~~~~~~~~~~~~~
