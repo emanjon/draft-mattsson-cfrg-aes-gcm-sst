@@ -285,7 +285,7 @@ We define six AEADs, in the format of {{RFC5116}}, that use AES-GCM-SST. They di
 
 Common parameters for the six AEADs:
 
-* P_MAX (maximum size of the plaintext) is 2<sup>36</sup> - 47 octets.
+* P_MAX (maximum size of the plaintext) is 2<sup>36</sup> - 48 octets.
 
 * A_MAX (maximum size of the associated data) is 2<sup>36</sup> octets.
 
@@ -307,7 +307,7 @@ For the AES-GCM-SST algorithms in {{iana-algs}} the worst-case forgery probabili
 
 If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complexity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore NOT RECOMMENDED to use AES-GCM-SST with random nonces.
 
-In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. For AES-GCM-SST, at most one of H, Q, and M can be zero.
+In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and Q are generated with the AES-ENC permutation on different input, so H and Q cannot both be zero.
 
 # IANA Considerations
 
