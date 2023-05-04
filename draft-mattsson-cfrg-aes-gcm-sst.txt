@@ -394,7 +394,7 @@ Table of Contents
 
    Common parameters for the six AEADs:
 
-   *  P_MAX (maximum size of the plaintext) is 2^36 - 47 octets.
+   *  P_MAX (maximum size of the plaintext) is 2^36 - 48 octets.
 
    *  A_MAX (maximum size of the associated data) is 2^36 octets.
 
@@ -463,7 +463,8 @@ Table of Contents
    There are no obvious ways to detect this condition for an attacker,
    and the specification admits this possibility in favor of
    complicating the flow with additional checks and regeneration of
-   values.  For AES-GCM-SST, at most one of H, Q, and M can be zero.
+   values.  In AES-GCM-SST, H and Q are generated with the AES-ENC
+   permutation on different input, so H and Q cannot both be zero.
 
 6.  IANA Considerations
 
