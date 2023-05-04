@@ -145,9 +145,9 @@ modes of operation is given by {{Rogaway}}. Rogaway is critical of GCM with shor
 
 32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is typically not used with short tags. The result is decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{I-D.ietf-sframe-enc}}. Short tags are also useful to protect packets transporting a signed payload such as a firmware update.
 
-This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. Three differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q, that new subkeys H and Q are derived for each nonce, and that the POLYVAL function {{RFC8452}} is used instead of GHASH. This enables short tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries. See Section {{GCM-SST}}.
+This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. Three differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q, that new subkeys H and Q are derived for each nonce, and that the POLYVAL function {{RFC8452}} is used instead of GHASH. This enables short tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries. See {{GCM-SST}}.
 
-This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where AES {{AES}} in counter mode is used as the keystream generator. See Section {{AES-GCM-SST}}.
+This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where AES {{AES}} in counter mode is used as the keystream generator. See {{AES-GCM-SST}}.
 
 # Conventions and Definitions
 
@@ -161,20 +161,20 @@ Primitives:
 * XOR is the bitwise exclusive OR operator
 * len(x) is the length of x in bits.
 * zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits
-* truncate(x, y) is the truncation operation.  The first y bits of x are kept
+* truncate(x, t) is the truncation operation.  The first t bits of x are kept
 * n is the number of 128-bit chunks in zeropad(P)
 * m is the number of 128-bit chunks in zeropad(A)
 * POLYVAL is defined in {{RFC8452}}
 * BE32(x) is the big-endian encoding of 32-bit integer x
 * LE64(x) is the little-endian encoding of 64-bit integer x
-* A[y] is the 128-bit chunk with index y in the array A.
+* A[y] is the 128-bit chunk with index y in the array A; the first chunk has index 0.
 * A[x:y] are the range of chunks x to y in the array A
 
 # Galois Counter Mode with Secure Short Tags (GCM-SST) {#GCM-SST}
 
 This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The two main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q and that new subkeys H and Q are derived for each nonce. This enables short tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks z[0], z[1], and z[2] are used as the three subkeys H, Q, and M. The following keystream chunks z[3], z[4], ..., z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MUST NOT depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.
 
 ## Authenticated Encryption
 
@@ -306,7 +306,7 @@ The confidentiality offered by AES-GCM-SST against passive attackers is equal to
 
 For the AES-GCM-SST algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits {{Nyberg}}. This is true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered from GCM {{RFC5116}} to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like {{RFC5116}} AES-GCM-SST only allows 96-bit nonces.
 
-If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complixity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore NOT RECOMMENDED to use AES-GCM-SST with random nonces.
+If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complexity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore NOT RECOMMENDED to use AES-GCM-SST with random nonces.
 
 In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. For AES-GCM-SST, at most one of H, Q, and M can be zero.
 
