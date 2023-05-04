@@ -335,7 +335,7 @@ IANA is requested to assign the entries in the first two columns of {{iana-algs}
 encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
   full-TAG = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
        TAG = { 9b 1d 49 ea }
-    CIPHER = { }
+CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #1b
