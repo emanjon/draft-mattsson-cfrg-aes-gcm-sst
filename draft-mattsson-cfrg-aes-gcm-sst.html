@@ -5,9 +5,9 @@
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
 <title>Galois Counter Mode with Secure Short Tags (GCM-SST)</title>
-<meta content="John Preuß Mattsson" name="author">
-<meta content="Alexander Maximov" name="author">
 <meta content="Matthew Campagna" name="author">
+<meta content="Alexander Maximov" name="author">
+<meta content="John Preuß Mattsson" name="author">
 <meta content="
        This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just a block cipher. The main differences compared to GCM   is that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are derived for each nonce, and that the POLYVAL function from AES-GCM-SIV is used instead of GHASH. This enables short tags with forgery probabilities close to ideal. This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). 
        This document is the product of the Crypto Forum Research Group. 
@@ -1053,7 +1053,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <td class="right">May 2023</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">Preuß Mattsson, et al.</td>
+<td class="left">Campagna, et al.</td>
 <td class="center">Expires 6 November 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
@@ -1076,16 +1076,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
-      <div class="author-name">J. Preuß Mattsson</div>
-<div class="org">Ericsson</div>
+      <div class="author-name">M. Campagna</div>
+<div class="org">Amazon Web Services</div>
 </div>
 <div class="author">
       <div class="author-name">A. Maximov</div>
 <div class="org">Ericsson</div>
 </div>
 <div class="author">
-      <div class="author-name">M. Campagna</div>
-<div class="org">Amazon Web Services</div>
+      <div class="author-name">J. Preuß Mattsson</div>
+<div class="org">Ericsson</div>
 </div>
 </dd>
 </dl>
@@ -1923,13 +1923,9 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">John Preuß Mattsson</span></div>
-<div dir="auto" class="left"><span class="org">Ericsson AB</span></div>
-<div dir="auto" class="left"><span class="country-name">Sweden</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:john.mattsson@ericsson.com" class="email">john.mattsson@ericsson.com</a>
-</div>
+        <div dir="auto" class="left"><span class="fn nameRole">Matthew Campagna</span></div>
+<div dir="auto" class="left"><span class="org">Amazon Web Services</span></div>
+<div dir="auto" class="left"><span class="country-name">Canada</span></div>
 </address>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Alexander Maximov</span></div>
@@ -1941,9 +1937,13 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Matthew Campagna</span></div>
-<div dir="auto" class="left"><span class="org">Amazon Web Services</span></div>
-<div dir="auto" class="left"><span class="country-name">Canada</span></div>
+        <div dir="auto" class="left"><span class="fn nameRole">John Preuß Mattsson</span></div>
+<div dir="auto" class="left"><span class="org">Ericsson AB</span></div>
+<div dir="auto" class="left"><span class="country-name">Sweden</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:john.mattsson@ericsson.com" class="email">john.mattsson@ericsson.com</a>
+</div>
 </address>
 </section>
 </div>

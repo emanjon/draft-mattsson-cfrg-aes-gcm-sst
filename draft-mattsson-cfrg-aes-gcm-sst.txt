@@ -2,11 +2,11 @@
 
 
 
-Crypto Forum                                           J. Preuß Mattsson
-Internet-Draft                                                A. Maximov
-Intended status: Informational                                  Ericsson
-Expires: 6 November 2023                                     M. Campagna
-                                                     Amazon Web Services
+Crypto Forum                                                 M. Campagna
+Internet-Draft                                       Amazon Web Services
+Intended status: Informational                                A. Maximov
+Expires: 6 November 2023                               J. Preuß Mattsson
+                                                                Ericsson
                                                               5 May 2023
 
 
@@ -739,10 +739,9 @@ Acknowledgments
 
 Authors' Addresses
 
-   John Preuß Mattsson
-   Ericsson AB
-   Sweden
-   Email: john.mattsson@ericsson.com
+   Matthew Campagna
+   Amazon Web Services
+   Canada
 
 
    Alexander Maximov
@@ -751,6 +750,7 @@ Authors' Addresses
    Email: alexander.maximov@ericsson.com
 
 
-   Matthew Campagna
-   Amazon Web Services
-   Canada
+   John Preuß Mattsson
+   Ericsson AB
+   Sweden
+   Email: john.mattsson@ericsson.com
