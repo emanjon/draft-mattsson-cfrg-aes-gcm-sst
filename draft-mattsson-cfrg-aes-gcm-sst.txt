@@ -216,11 +216,7 @@ Table of Contents
    (GCM-SST) AEAD algorithm following the recommendations from Nyberg et
    al.  [Nyberg].  GCM-SST is defined with a general interface so that
    it can be used with any keystream generator, not just a 128-bit block
-   cipher.  The two main differences compared to GCM [GCM] is that GCM-
-   SST uses an additional subkey Q and that new subkeys H and Q are
-   derived for each nonce.  This enables short tags with forgery
-   probability close to ideal and significantly decreases the
-   probability of multiple successful forgeries.
+   cipher.
 
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four variable-length octet string parameters.  A
