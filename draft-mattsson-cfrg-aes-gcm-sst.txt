@@ -132,7 +132,7 @@ Table of Contents
    attempts is almost always possible, contradicting NIST's assumptions
    for short tags.  NIST also appears to have used non-optimal attacks
    to calculate the parameters.  A detailed evaluation of GCM and other
-   blockcipher modes of operation is given by [Rogaway].  Rogaway is
+   block cipher modes of operation is given by [Rogaway].  Rogaway is
    critical of GCM with short tags and recommends disallowing GCM with
    tags shorter than 96-bits.  While Counter with CBC-MAC (CCM)
    [RFC5116] with short tags has forgery probabilities close to ideal,
