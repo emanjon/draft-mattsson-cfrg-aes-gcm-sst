@@ -122,7 +122,7 @@ Table of Contents
    significantly increased.
 
    As a comment to NIST, Nyberg et al.  [Nyberg] explained how small
-   changes based on proven theoretical constructions mitigate the
+   changes based on proven theoretical constructions mitigate these
    weaknesses.  Unfortunately, NIST did not follow the advice from
    Nyberg et al. and instead specified additional requirements for use
    with short tags in Appendix C of [GCM].  NIST did not give any
