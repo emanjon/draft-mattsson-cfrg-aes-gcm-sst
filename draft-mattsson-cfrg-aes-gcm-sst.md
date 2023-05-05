@@ -29,6 +29,7 @@ author:
   name: Matthew Campagna
   org: Amazon Web Services
   country: Canada
+  email: campagna@amazon.com
 - initials: A.
   surname: Maximov
   name: Alexander Maximov
@@ -43,7 +44,6 @@ author:
   abbrev: Ericsson
   country: Sweden
   email: john.mattsson@ericsson.com
-
 normative:
 
   RFC5116:
