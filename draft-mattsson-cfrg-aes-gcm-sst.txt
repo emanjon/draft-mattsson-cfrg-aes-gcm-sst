@@ -5,9 +5,9 @@
 Crypto Forum                                           J. Preuß Mattsson
 Internet-Draft                                                A. Maximov
 Intended status: Informational                                  Ericsson
-Expires: 5 November 2023                                     M. Campagna
+Expires: 6 November 2023                                     M. Campagna
                                                      Amazon Web Services
-                                                              4 May 2023
+                                                              5 May 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -60,7 +60,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 5 November 2023.
+   This Internet-Draft will expire on 6 November 2023.
 
 Copyright Notice
 
@@ -225,19 +225,20 @@ Table of Contents
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four variable-length octet string parameters.  A
    secret key K, a nonce N, the associated data A, and a plaintext P.
-   The keystream generator is instantiated with K and N.  The minimum
-   and maximum lengths of all parameters depend on the keystream
-   generator.  The keystream generator produces a keystream Z consisting
-   of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2]
-   are used as the three subkeys H, Q, and M.  The following keystream
-   chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
-   Instead of GHASH [GCM], GCM-SST makes use of the POLYVAL function
-   [RFC8452], which results in more efficient software implementations
-   on little-endian architectures.  GHASH and POLYVAL can be defined in
-   terms of one another [RFC8452].  The subkeys H and Q are field
-   elements used in POLYVAL while the subkey M is used for the final
-   masking of the tag.  Both encryption and decryption are only defined
-   on inputs that are a whole number of octets.
+   The keystream generator is instantiated with K and N.  The keystream
+   MAY depend on P and A.  The minimum and maximum lengths of all
+   parameters depend on the keystream generator.  The keystream
+   generator produces a keystream Z consisting of 128-bit chunks where
+   the first three chunks Z[0], Z[1], and Z[2] are used as the three
+   subkeys H, Q, and M.  The following keystream chunks Z[3], Z[4], ...,
+   Z[n + 2] are used to encrypt the plaintext.  Instead of GHASH [GCM],
+   GCM-SST makes use of the POLYVAL function [RFC8452], which results in
+   more efficient software implementations on little-endian
+   architectures.  GHASH and POLYVAL can be defined in terms of one
+   another [RFC8452].  The subkeys H and Q are field elements used in
+   POLYVAL while the subkey M is used for the final masking of the tag.
+   Both encryption and decryption are only defined on inputs that are a
+   whole number of octets.
 
 3.1.  Authenticated Encryption
 
