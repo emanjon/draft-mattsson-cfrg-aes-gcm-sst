@@ -500,4 +500,4 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 # Acknowledgments
 {:numbered="false"}
 
-The authors want to thank {{{Richard Barnes}}}, and {{{XXX}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
+The authors want to thank {{{Richard Barnes}}} for his valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
