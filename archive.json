@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-05-04T01:23:26.870638+00:00",
+  "timestamp": "2023-05-07T01:36:41.626451+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -79,16 +79,24 @@
       "id": "I_kwDOJat8lM5kuWou",
       "title": "Generate AES-GCM-SST Test Vectors",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/2",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-04-30T11:01:14Z",
-      "updatedAt": "2023-04-30T11:01:14Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2023-05-04T14:51:25Z",
+      "closedAt": "2023-05-04T14:51:25Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in recent commits to main",
+          "createdAt": "2023-05-04T14:51:25Z",
+          "updatedAt": "2023-05-04T14:51:25Z"
+        }
+      ]
     },
     {
       "number": 3,
