@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 6 November 2023                               J. Preuß Mattsson
+Expires: 11 November 2023                              J. Preuß Mattsson
                                                                 Ericsson
-                                                              5 May 2023
+                                                             10 May 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 November 2023.
+   This Internet-Draft will expire on 11 November 2023.
 
 Copyright Notice
 
@@ -305,7 +305,7 @@ Table of Contents
    Prerequisites and security:
 
    *  The calculation of the plaintext P (step 8) MAY be done in
-      parallel with the tag verification (step 2-7).  If tag
+      parallel with the tag verification (step 3-8).  If tag
       verification fails, the plaintext P and the expected_tag MUST NOT
       be given as output.
 
