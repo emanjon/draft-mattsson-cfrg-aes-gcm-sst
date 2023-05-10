@@ -223,7 +223,7 @@ The Decrypt function decrypts a ciphertext, verifies that the authentication tag
 
 Prerequisites and security:
 
-* The calculation of the plaintext P (step 8) MAY be done in parallel with the tag verification (step 2-7). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
+* The calculation of the plaintext P (step 8) MAY be done in parallel with the tag verification (step 3-8). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
 
 * The comparison of the input tag with the expected_tag MUST be done in constant time.
 
