@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 11 November 2023                              J. Preuß Mattsson
+Expires: 16 November 2023                              J. Preuß Mattsson
                                                                 Ericsson
-                                                             10 May 2023
+                                                             15 May 2023
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 November 2023.
+   This Internet-Draft will expire on 16 November 2023.
 
 Copyright Notice
 
@@ -555,6 +555,12 @@ Table of Contents
               Progress, Internet-Draft, draft-irtf-cfrg-aegis-aead-03,
               28 April 2023, <https://datatracker.ietf.org/doc/html/
               draft-irtf-cfrg-aegis-aead-03>.
+
+   [Joux]     Joux, A., "Authentication Failures in NIST version of
+              GCM", February 2006,
+              <https://csrc.nist.gov/csrc/media/projects/block-cipher-
+              techniques/documents/bcm/comments/800-38-series-
+              drafts/gcm/joux_comments.pdf>.
 
    [Mattsson] Mattsson, J. and M. Westerlund, "Authentication Key
               Recovery on Galois/Counter Mode (GCM)", May 2015,
