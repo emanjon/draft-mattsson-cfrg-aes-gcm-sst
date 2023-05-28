@@ -128,14 +128,6 @@ informative:
         ins: B. Tackmann
     date: November 2017
 
-  Joux:
-    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf
-    title: "Authentication Failures in NIST version of GCM"
-    author:
-      -
-        ins: A. Joux
-    date: February 2006
-
 --- abstract
 
 This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just a block cipher. The main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are derived for each nonce, and that the POLYVAL function from AES-GCM-SIV is used instead of GHASH. This enables short tags with forgery probabilities close to ideal. This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST).
@@ -174,8 +166,8 @@ Primitives:
 * POLYVAL is defined in {{RFC8452}}
 * BE32(x) is the big-endian encoding of 32-bit integer x
 * LE64(x) is the little-endian encoding of 64-bit integer x
-* A[y] is the 128-bit chunk with index y in the array A; the first chunk has index 0.
-* A[x:y] are the range of chunks x to y in the array A
+* V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0.
+* V[x:y] are the range of chunks x to y in the array V
 
 # Galois Counter Mode with Secure Short Tags (GCM-SST) {#GCM-SST}
 
@@ -258,8 +250,8 @@ Steps:
 2. Let H = Z[0], Q = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
 5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
-6. Let T = POLYVAL(Q, X XOR S[m + n]) XOR M
-7. Let expected_tag = truncate(T, tag_length)
+6. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
+7. Let expected_tag = truncate(full_tag, tag_length)
 8. If tag != expected_tag, return error and abort
 9. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
 10. Return P
