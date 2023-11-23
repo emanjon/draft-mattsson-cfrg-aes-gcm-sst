@@ -1,0 +1,207 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-11-23T01:17:15.158204+00:00",
+  "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOJat8lM5khQ2m",
+      "title": "change to zero indexing ",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/1",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-04-27T09:07:11Z",
+      "updatedAt": "2023-04-27T09:11:30Z",
+      "closedAt": "2023-04-27T09:11:30Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in main",
+          "createdAt": "2023-04-27T09:11:30Z",
+          "updatedAt": "2023-04-27T09:11:30Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOJat8lM5kuWou",
+      "title": "Generate AES-GCM-SST Test Vectors",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/2",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-04-30T11:01:14Z",
+      "updatedAt": "2023-05-04T14:51:25Z",
+      "closedAt": "2023-05-04T14:51:25Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in recent commits to main",
+          "createdAt": "2023-05-04T14:51:25Z",
+          "updatedAt": "2023-05-04T14:51:25Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOJat8lM5k76qf",
+      "title": "Make tag dependent on tag length",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/3",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Current suggestion is\r\n\r\n\"An application can make the tag dependent on the tag length by including tag_length in the nonces.\"\r\n\r\nShould consider to make the tag always dependent on the tag length without the user having to include it in the nonce. As this will have some cons it should be evaluated that the pros > cons.\r\n\r\nAES-CCM has tags dependent on the tag length, AES-GCM does not.",
+      "createdAt": "2023-05-03T05:18:34Z",
+      "updatedAt": "2023-05-03T05:18:34Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOJat8lM5l4jl7",
+      "title": "Add reference to Joux",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/4",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-15T05:08:09Z",
+      "updatedAt": "2023-05-28T15:07:03Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "```\r\n  Joux:\r\n    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf\r\n    title: \"Authentication Failures in NIST version of GCM\"\r\n    author:\r\n      -\r\n        ins: A. Joux\r\n    date: February 2006\r\n```",
+          "createdAt": "2023-05-28T15:07:02Z",
+          "updatedAt": "2023-05-28T15:07:02Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOJat8lM5nAEt4",
+      "title": "Change name of A[] example array",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/5",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "A is AAD in RFc5116",
+      "createdAt": "2023-05-26T18:35:41Z",
+      "updatedAt": "2023-05-28T15:09:11Z",
+      "closedAt": "2023-05-28T15:09:11Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "changed to V",
+          "createdAt": "2023-05-28T15:09:08Z",
+          "updatedAt": "2023-05-28T15:09:08Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOJat8lM5nA0y8",
+      "title": "full tag or T",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/6",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-26T21:35:06Z",
+      "updatedAt": "2023-05-28T15:08:53Z",
+      "closedAt": "2023-05-28T15:08:53Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "fixed in main\r\n\r\nuse full_tag to be able to easily talk about it in the security consider`tion",
+          "createdAt": "2023-05-28T15:08:53Z",
+          "updatedAt": "2023-05-28T15:08:53Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOJat8lM5nBtih",
+      "title": "Ref to 5G",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/7",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-27T07:00:42Z",
+      "updatedAt": "2023-05-27T07:00:42Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": []
+}
