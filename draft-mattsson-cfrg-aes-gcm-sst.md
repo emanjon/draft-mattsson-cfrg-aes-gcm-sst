@@ -50,7 +50,7 @@ normative:
   RFC8452:
 
   AES:
-    target: https://nvlpubs.nist.gov/nistpubs/fips/nist.fips.197.pdf
+    target: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf
     title: "ADVANCED ENCRYPTION STANDARD (AES)"
     seriesinfo:
       "NIST": "Federal Information Processing Standards Publication 197"
@@ -330,6 +330,7 @@ IANA is requested to assign the entries in the first two columns of {{iana-algs}
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #1a
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { }
@@ -341,6 +342,7 @@ CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #1b
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { 40 41 42 43 44 }
@@ -352,6 +354,7 @@ CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #1c
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { }
@@ -363,6 +366,7 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #1d
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
@@ -376,6 +380,7 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #1e
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
@@ -419,6 +424,7 @@ CIPHERTEXT = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #3a
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { }
@@ -430,6 +436,7 @@ CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #3b
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { 40 41 42 43 44 }
@@ -441,6 +448,7 @@ CIPHERTEXT = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #3c
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { }
@@ -452,6 +460,7 @@ CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #3d
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
@@ -465,6 +474,7 @@ CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Case #3e
+{:numbered="false"}
 
 ~~~~~~~~~~~~~~~~~~~~~~~
        AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
