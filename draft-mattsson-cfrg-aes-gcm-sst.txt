@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 29 November 2023                              J. Preuß Mattsson
+Expires: 26 August 2024                                J. Preuß Mattsson
                                                                 Ericsson
-                                                             28 May 2023
+                                                        23 February 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,11 +61,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 November 2023.
+   This Internet-Draft will expire on 26 August 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -91,18 +91,18 @@ Table of Contents
      7.2.  Informative References
    Appendix A.  AES-GCM-SST Test Vectors
      A.1.  AES-GCM-SST Test #1 (128-bit key)
-       A.1.1.  Case #1a
-       A.1.2.  Case #1b
-       A.1.3.  Case #1c
-       A.1.4.  Case #1d
-       A.1.5.  Case #1e
+       Case #1a
+       Case #1b
+       Case #1c
+       Case #1d
+       Case #1e
      A.2.  AES-GCM-SST Test #2 (128-bit key)
      A.3.  AES-GCM-SST Test #3 (256-bit key)
-       A.3.1.  Case #3a
-       A.3.2.  Case #3b
-       A.3.3.  Case #3c
-       A.3.4.  Case #3d
-       A.3.5.  Case #3e
+       Case #3a
+       Case #3b
+       Case #3c
+       Case #3d
+       Case #3e
      A.4.  AES-GCM-SST Test #4 (256-bit key)
    Acknowledgments
    Authors' Addresses
@@ -504,8 +504,8 @@ Table of Contents
 
    [AES]      "ADVANCED ENCRYPTION STANDARD (AES)", NIST Federal
               Information Processing Standards Publication 197, November
-              2001, <https://nvlpubs.nist.gov/nistpubs/fips/
-              nist.fips.197.pdf>.
+              2001, <https://nvlpubs.nist.gov/nistpubs/FIPS/
+              NIST.FIPS.197-upd1.pdf>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -545,16 +545,16 @@ Table of Contents
    [I-D.ietf-sframe-enc]
               Omara, E., Uberti, J., Murillo, S. G., Barnes, R., and Y.
               Fablet, "Secure Frame (SFrame)", Work in Progress,
-              Internet-Draft, draft-ietf-sframe-enc-01, 13 March 2023,
+              Internet-Draft, draft-ietf-sframe-enc-06, 5 December 2023,
               <https://datatracker.ietf.org/doc/html/draft-ietf-sframe-
-              enc-01>.
+              enc-06>.
 
    [I-D.irtf-cfrg-aegis-aead]
-              Denis, F., Scotoni, F. E. R., and S. Lucas, "The AEGIS
-              Family of Authenticated Encryption Algorithms", Work in
-              Progress, Internet-Draft, draft-irtf-cfrg-aegis-aead-03,
-              28 April 2023, <https://datatracker.ietf.org/doc/html/
-              draft-irtf-cfrg-aegis-aead-03>.
+              Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
+              Encryption Algorithms", Work in Progress, Internet-Draft,
+              draft-irtf-cfrg-aegis-aead-10, 20 January 2024,
+              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
+              aegis-aead-10>.
 
    [Mattsson] Mattsson, J. and M. Westerlund, "Authentication Key
               Recovery on Galois/Counter Mode (GCM)", May 2015,
@@ -589,7 +589,7 @@ A.1.  AES-GCM-SST Test #1 (128-bit key)
             Q = { 03 13 63 96 74 be fa 86 4d fa fb 80 36 b7 a0 3c }
             M = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
 
-A.1.1.  Case #1a
+Case #1a
 
           AAD = { }
     PLAINTEXT = { }
@@ -598,7 +598,7 @@ A.1.1.  Case #1a
           TAG = { 9b 1d 49 ea }
    CIPHERTEXT = { }
 
-A.1.2.  Case #1b
+Case #1b
 
           AAD = { 40 41 42 43 44 }
     PLAINTEXT = { }
@@ -607,7 +607,7 @@ A.1.2.  Case #1b
           TAG = { 7f f3 cb a4 }
    CIPHERTEXT = { }
 
-A.1.3.  Case #1c
+Case #1c
 
           AAD = { }
     PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
@@ -616,7 +616,7 @@ A.1.3.  Case #1c
           TAG = { f8 de 17 85 }
    CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
 
-A.1.4.  Case #1d
+Case #1d
 
           AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
     PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
@@ -627,7 +627,7 @@ A.1.4.  Case #1d
    CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
                   7d c0 cb c7 85 a7 a9 20 db 42 28 ff 63 32 10 }
 
-A.1.5.  Case #1e
+Case #1e
 
           AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
     PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
@@ -664,7 +664,7 @@ A.3.  AES-GCM-SST Test #3 (256-bit key)
             Q = { af 7f 54 00 16 aa b8 bc 91 56 d9 d1 83 59 cc e5 }
             M = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
 
-A.3.1.  Case #3a
+Case #3a
 
           AAD = { }
     PLAINTEXT = { }
@@ -673,7 +673,7 @@ A.3.1.  Case #3a
           TAG = { b3 35 31 c0 e9 6f 4a 03 }
    CIPHERTEXT = { }
 
-A.3.2.  Case #3b
+Case #3b
 
           AAD = { 40 41 42 43 44 }
     PLAINTEXT = { }
@@ -682,7 +682,7 @@ A.3.2.  Case #3b
           TAG = { 63 ac ca 4d 20 9f b3 90 }
    CIPHERTEXT = { }
 
-A.3.3.  Case #3c
+Case #3c
 
           AAD = { }
     PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
@@ -691,7 +691,7 @@ A.3.3.  Case #3c
           TAG = { e1 de bf fd 5f 3a 85 e3 }
    CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
 
-A.3.4.  Case #3d
+Case #3d
 
           AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
     PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
@@ -702,7 +702,7 @@ A.3.4.  Case #3d
    CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
                   33 11 7e 17 58 b5 ed d0 d6 5d 68 32 06 bb ad }
 
-A.3.5.  Case #3e
+Case #3e
 
           AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
     PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
