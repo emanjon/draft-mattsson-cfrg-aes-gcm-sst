@@ -190,8 +190,8 @@ Primitives:
 * POLYVAL is defined in {{RFC8452}}
 * BE32(x) is the big-endian encoding of 32-bit integer x
 * LE64(x) is the little-endian encoding of 64-bit integer x
-* V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0.
-* V[x:y] are the range of chunks x to y in the array V
+* V\[y\] is the 128-bit chunk with index y in the array V; the first chunk has index 0.
+* V\[x:y\] are the range of chunks x to y in the array V
 
 # Galois Counter Mode with Secure Short Tags (GCM-SST) {#GCM-SST}
 
