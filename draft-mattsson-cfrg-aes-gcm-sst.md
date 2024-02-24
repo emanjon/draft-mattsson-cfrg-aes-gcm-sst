@@ -550,7 +550,7 @@ Changes from -00 to -01:
 
 * Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.
 * Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.
-* Corrected reference to steps numbers during decryption
+* Corrected reference to step numbers during decryption
 * Changed T to full_tag to align with tag and expected_tag
 * Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.
 * Updated definitions
