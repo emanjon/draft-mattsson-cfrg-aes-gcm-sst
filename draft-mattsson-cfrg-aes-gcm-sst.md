@@ -78,6 +78,20 @@ informative:
         ins: NIST
     date: August 2023
 
+  SNOW:
+    target: https://eprint.iacr.org/2021/236
+    title: "SNOW-Vi: an extreme performance variant of SNOW-V for lower grade CPUs"
+    author:
+      -
+        ins: P. Ekdahl
+      -
+        ins: T. Johansson
+      -
+        ins: A. Maximov
+      -
+        ins: J. Yang
+    date: March 2021
+
   GCM:
     target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
     title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
