@@ -92,7 +92,7 @@ informative:
         ins: J. Yang
     date: March 2021
 
-  GCM-SST:
+  SST:
     target: https://csrc.nist.gov/csrc/media/Presentations/2023/galois-counter-mode-with-secure-short-tags/images-media/sess-5-mattsson-bcm-workshop-2023.pdf
     title: "Galois Counter Mode with Secure Short Tags (GCM-SST)"
     author:
