@@ -545,6 +545,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 # Change log
 {: removeInRFC="true"}
+{:numbered="false"}
 
 Changes from -00 to -01:
 
