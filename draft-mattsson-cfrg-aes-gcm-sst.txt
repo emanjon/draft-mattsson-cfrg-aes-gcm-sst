@@ -591,6 +591,11 @@ Table of Contents
               <https://www.cryptrec.go.jp/exreport/cryptrec-ex-
               2012-2010r1.pdf>.
 
+   [SNOW]     Ekdahl, P., Johansson, T., Maximov, A., and J. Yang,
+              "SNOW-Vi: an extreme performance variant of SNOW-V for
+              lower grade CPUs", March 2021,
+              <https://eprint.iacr.org/2021/236>.
+
 Appendix A.  AES-GCM-SST Test Vectors
 
 A.1.  AES-GCM-SST Test #1 (128-bit key)
