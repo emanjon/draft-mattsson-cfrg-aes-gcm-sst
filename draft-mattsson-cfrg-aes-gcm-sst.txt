@@ -248,6 +248,9 @@ Table of Contents
    tag.  Both encryption and decryption are only defined on inputs that
    are a whole number of octets.
 
+   Figures illustrating the GCM-SST encryption and decryption functions
+   are shown in [SST].
+
 3.1.  Authenticated Encryption Function
 
    Encrypt(K, N, A, P)
