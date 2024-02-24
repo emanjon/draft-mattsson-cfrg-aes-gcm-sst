@@ -242,14 +242,14 @@ Outputs:
 Steps:
 
 1. If the lengths of K, N, A, P are not supported return error and abort
-1. Initiate keystream generator with K and N
-2. Let H = Z[0], Q = Z[1], M = Z[2]
-3. Let ct = P XOR truncate(Z[3:n + 2], len(P))
-4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
-5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
-6. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
-7. Let tag = truncate(full_tag, tag_length)
-8. Return (ct, tag)
+2. Initiate keystream generator with K and N
+3. Let H = Z[0], Q = Z[1], M = Z[2]
+4. Let ct = P XOR truncate(Z[3:n + 2], len(P))
+5. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
+6. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
+7. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
+8. Let tag = truncate(full_tag, tag_length)
+9. Return (ct, tag)
 
 ## Authenticated Decryption Function
 
@@ -259,7 +259,7 @@ The decryption function decrypts a ciphertext, verifies that the authentication 
 
 Prerequisites and security:
 
-* The calculation of the plaintext P (step 8) MAY be done in parallel with the tag verification (step 3-8). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
+* The calculation of the plaintext P (step 9) MAY be done in parallel with the tag verification (step 3-8). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
 
 * The comparison of the input tag with the expected_tag MUST be done in constant time.
 
@@ -282,8 +282,8 @@ Outputs:
 Steps:
 
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
-3. Initiate keystream generator with K and N
-2. Let H = Z[0], Q = Z[1], M = Z[2]
+2. Initiate keystream generator with K and N
+3. Let H = Z[0], Q = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
 5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
 6. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
