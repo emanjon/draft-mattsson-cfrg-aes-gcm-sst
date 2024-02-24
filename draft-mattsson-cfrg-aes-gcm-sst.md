@@ -78,6 +78,20 @@ informative:
         ins: NIST
     date: August 2023
 
+  SNOW:
+    target: https://eprint.iacr.org/2021/236
+    title: "SNOW-Vi: an extreme performance variant of SNOW-V for lower grade CPUs"
+    author:
+      -
+        ins: P. Ekdahl
+      -
+        ins: T. Johansson
+      -
+        ins: A. Maximov
+      -
+        ins: J. Yang
+    date: March 2021
+
   GCM:
     target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
     title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
@@ -148,13 +162,11 @@ This document is the product of the Crypto Forum Research Group.
 
 Advanced Encryption Standard (AES) in Galois Counter Mode (AES-GCM) {{GCM}} is a widely used AEAD algorithm {{RFC5116}} due to its attractive performance in both software and hardware as well as its provable security. During the NIST standardization, Ferguson pointed out two weaknesses in the GCM authentication function {{Ferguson}}. The weaknesses are especially concerning when GCM is used with short tags. The first weakness significantly increases the probability of successful forgery. The second weakness reveals the subkey H if the attacker manages to create successful forgeries. With knowledge of the subkey H, the attacker always succeeds with subsequent forgeries. The probability of multiple successful forgeries is therefore significantly increased.
 
-As a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based on proven theoretical constructions mitigate these weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et al. and instead specified additional requirements for use with short tags in Appendix C of {{GCM}}. NIST did not give any motivations for the specific choice of parameters, or for that matter the security levels they were assumed to give. As shown by Mattsson et al. {{Mattsson}}, an attacker can almost always gain feedback on success or failure of forgery attempts, contradicting NIST's assumptions for short tags. NIST also appears to have used non-optimal attacks to calculate the parameters. A detailed evaluation of GCM and other block cipher modes of operation is given by {{Rogaway}}. Rogaway is critical of GCM with short tags and recommends disallowing GCM with tags shorter than 96-bits. While Counter with CBC-MAC (CCM) {{RFC5116}} with short tags has forgery probabilities close to ideal, CCM has lower performance than GCM.
+As a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based on proven theoretical constructions mitigate these weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et al. and instead specified additional requirements for use with short tags in Appendix C of {{GCM}}. NIST did not give any motivations for the specific choice of parameters, or for that matter the security levels they were assumed to give. As shown by Mattsson et al. {{Mattsson}}, an attacker can almost always gain feedback on success or failure of forgery attempts, contradicting NIST's assumptions for short tags. NIST also appears to have used non-optimal attacks to calculate the parameters. A detailed evaluation of GCM and other block cipher modes of operation is given by {{Rogaway}}. Rogaway is critical of GCM with short tags and recommends disallowing GCM with tags shorter than 96-bits. NIST is now planning to remove support for tags shorter than 96-bits {{Revise}}. While Counter with CBC-MAC (CCM) {{RFC5116}} with short tags has forgery probabilities close to ideal, CCM has lower performance than GCM.
 
 32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is typically not used with short tags. The result is either decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{I-D.ietf-sframe-enc}}. Short tags are also useful to protect packets transporting a signed payload such as a firmware update.
 
-This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are derived for each nonce, and that the POLYVAL function from AES-GCM-SIV {{RFC8452}} is used instead of GHASH. This enables short tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries. See {{GCM-SST}}.
-
-This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where AES {{AES}} in counter mode is used as the keystream generator. See {{AES-GCM-SST}}.
+This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The main differences compared to GCM {{GCM}} is that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are derived for each nonce, and that the POLYVAL function from AES-GCM-SIV {{RFC8452}} is used instead of GHASH. This enables short tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries. See {{GCM-SST}}. This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where AES {{AES}} in counter mode is used as the keystream generator. See {{AES-GCM-SST}}. GCM-SST has been standardized for use with AES-256 and SNOW 5G {{SNOW}} in 3GPP 5G Advance. 
 
 # Conventions and Definitions
 
