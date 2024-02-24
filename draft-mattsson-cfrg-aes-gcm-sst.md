@@ -154,6 +154,10 @@ This document also registers several instances of Advanced Encryption Standard (
 
 Primitives:
 
+* K is the key as defined in {{RFC5116}}
+* N is the nonce as defined in {{RFC5116}}
+* P is the plaintext as defined in {{RFC5116}}
+* A is the associated data as defined in {{RFC5116}}
 * = is the assignment operator
 * != is the inequality operator
 * x \|\| y is concatenation of the octet strings x and y
