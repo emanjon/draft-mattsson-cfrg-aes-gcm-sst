@@ -770,7 +770,7 @@ Change log
    *  Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and
       SNOW 5G.
 
-   *  Corrected reference to steps numbers during decryption
+   *  Corrected reference to step numbers during decryption
 
    *  Changed T to full_tag to align with tag and expected_tag
 
