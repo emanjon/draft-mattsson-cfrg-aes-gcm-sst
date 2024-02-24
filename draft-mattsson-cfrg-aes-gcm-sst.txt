@@ -136,8 +136,8 @@ Table of Contents
    optimal attacks to calculate the parameters.  A detailed evaluation
    of GCM and other block cipher modes of operation is given by
    [Rogaway].  Rogaway is critical of GCM with short tags and recommends
-   disallowing GCM with tags shorter than 96-bits.  NIST is now planning
-   to remove support for GCM with tags shorter than 96-bits [Revise].
+   disallowing GCM with tags shorter than 96-bits.  NIST is planning to
+   remove support for GCM with tags shorter than 96-bits [Revise].
    While Counter with CBC-MAC (CCM) [RFC5116] with short tags has
    forgery probabilities close to ideal, CCM has lower performance than
    GCM.
