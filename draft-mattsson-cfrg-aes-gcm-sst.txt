@@ -79,8 +79,8 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Galois Counter Mode with Secure Short Tags (GCM-SST)
-     3.1.  Authenticated Encryption
-     3.2.  Authenticated Decryption
+     3.1.  Authenticated Encryption Function
+     3.2.  Authenticated Decryption Function
      3.3.  Encoding (ct, tag) Tuples
    4.  AES with Galois Counter Mode with Secure Short Tags
      4.1.  AES-GCM-SST AEAD Instances
@@ -245,13 +245,13 @@ Table of Contents
    tag.  Both encryption and decryption are only defined on inputs that
    are a whole number of octets.
 
-3.1.  Authenticated Encryption
+3.1.  Authenticated Encryption Function
 
    Encrypt(K, N, A, P)
 
-   The Encrypt function encrypts a plaintext and returns the ciphertext
-   along with an authentication tag that verifies the authenticity of
-   the plaintext and associated data, if provided.
+   The encryption function encrypts a plaintext and returns the
+   ciphertext along with an authentication tag that verifies the
+   authenticity of the plaintext and associated data, if provided.
 
    Prerequisites and security:
 
@@ -302,11 +302,11 @@ Table of Contents
 
    9.  Return (ct, tag)
 
-3.2.  Authenticated Decryption
+3.2.  Authenticated Decryption Function
 
    Decrypt(K, N, A, ct, tag)
 
-   The Decrypt function decrypts a ciphertext, verifies that the
+   The decryption function decrypts a ciphertext, verifies that the
    authentication tag is correct, and returns the plaintext on success
    or an error if tag verification failed.
 

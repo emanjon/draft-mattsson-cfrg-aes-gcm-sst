@@ -1147,10 +1147,10 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-galois-counter-mode-with-se" class="internal xref">Galois Counter Mode with Secure Short Tags (GCM-SST)</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-authenticated-encryption" class="internal xref">Authenticated Encryption</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-authenticated-encryption-fu" class="internal xref">Authenticated Encryption Function</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-authenticated-decryption" class="internal xref">Authenticated Decryption</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-authenticated-decryption-fu" class="internal xref">Authenticated Decryption Function</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
                 <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-encoding-ct-tag-tuples" class="internal xref">Encoding (ct, tag) Tuples</a></p>
@@ -1330,13 +1330,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       </h2>
 <p id="section-3-1">This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream <span class="bcp14">MAY</span> depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<div id="authenticated-encryption">
+<div id="authenticated-encryption-function">
 <section id="section-3.1">
-        <h3 id="name-authenticated-encryption">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-authenticated-encryption" class="section-name selfRef">Authenticated Encryption</a>
+        <h3 id="name-authenticated-encryption-fu">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-authenticated-encryption-fu" class="section-name selfRef">Authenticated Encryption Function</a>
         </h3>
 <p id="section-3.1-1">Encrypt(K, N, A, P)<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">The Encrypt function encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">The encryption function encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
 <p id="section-3.1-3">Prerequisites and security:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.1-4.1">
@@ -1408,13 +1408,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         </ol>
 </section>
 </div>
-<div id="authenticated-decryption">
+<div id="authenticated-decryption-function">
 <section id="section-3.2">
-        <h3 id="name-authenticated-decryption">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-authenticated-decryption" class="section-name selfRef">Authenticated Decryption</a>
+        <h3 id="name-authenticated-decryption-fu">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-authenticated-decryption-fu" class="section-name selfRef">Authenticated Decryption Function</a>
         </h3>
 <p id="section-3.2-1">Decrypt(K, N, A, ct, tag)<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">The Decrypt function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if tag verification failed.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">The decryption function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if tag verification failed.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.2-3">Prerequisites and security:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2-4.1">
