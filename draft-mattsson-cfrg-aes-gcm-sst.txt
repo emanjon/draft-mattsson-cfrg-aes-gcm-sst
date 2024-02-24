@@ -163,12 +163,12 @@ Table of Contents
    nonce, and that the POLYVAL function from AES-GCM-SIV [RFC8452] is
    used instead of GHASH.  This enables short tags with forgery
    probability close to ideal and significantly decreases the
-   probability of multiple successful forgeries.  See Section 3.
-
-   This document also registers several instances of Advanced Encryption
+   probability of multiple successful forgeries.  See Section 3.  This
+   document also registers several instances of Advanced Encryption
    Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-
    GCM-SST) where AES [AES] in counter mode is used as the keystream
-   generator.  See Section 4.
+   generator.  See Section 4.  GCM-SST has been standardized for use
+   with AES-256 and SNOW 5G [SNOW] in 3GPP 5G Advance.
 
 2.  Conventions and Definitions
 
