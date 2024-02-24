@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 26 August 2024                                J. Preuß Mattsson
+Expires: 27 August 2024                                J. Preuß Mattsson
                                                                 Ericsson
-                                                        23 February 2024
+                                                        24 February 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 August 2024.
+   This Internet-Draft will expire on 27 August 2024.
 
 Copyright Notice
 
@@ -179,6 +179,14 @@ Table of Contents
    capitals, as shown here.
 
    Primitives:
+
+   *  K is the key as defined in [RFC5116]
+
+   *  N is the nonce as defined in [RFC5116]
+
+   *  P is the plaintext as defined in [RFC5116]
+
+   *  A is the associated data as defined in [RFC5116]
 
    *  = is the assignment operator
 

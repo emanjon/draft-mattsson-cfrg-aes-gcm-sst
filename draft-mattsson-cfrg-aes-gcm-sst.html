@@ -1034,7 +1034,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 26 August 2024</td>
+<td class="center">Expires 27 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-23" class="published">23 February 2024</time>
+<time datetime="2024-02-24" class="published">24 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-26">26 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-27">27 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1111,7 +1111,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1267,46 +1267,58 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-2-2">Primitives:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-3.1">
-          <p id="section-2-3.1.1">= is the assignment operator<a href="#section-2-3.1.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.1.1">K is the key as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.2">
-          <p id="section-2-3.2.1">!= is the inequality operator<a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.2.1">N is the nonce as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.3">
-          <p id="section-2-3.3.1">x || y is concatenation of the octet strings x and y<a href="#section-2-3.3.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.3.1">P is the plaintext as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.4">
-          <p id="section-2-3.4.1">XOR is the bitwise exclusive OR operator<a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.4.1">A is the associated data as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.5">
-          <p id="section-2-3.5.1">len(x) is the length of x in bits.<a href="#section-2-3.5.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.5.1">= is the assignment operator<a href="#section-2-3.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.6">
-          <p id="section-2-3.6.1">zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.6.1">!= is the inequality operator<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.7">
-          <p id="section-2-3.7.1">truncate(x, t) is the truncation operation.  The first t bits of x are kept<a href="#section-2-3.7.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.7.1">x || y is concatenation of the octet strings x and y<a href="#section-2-3.7.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.8">
-          <p id="section-2-3.8.1">n is the number of 128-bit chunks in zeropad(P)<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.8.1">XOR is the bitwise exclusive OR operator<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.9">
-          <p id="section-2-3.9.1">m is the number of 128-bit chunks in zeropad(A)<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.9.1">len(x) is the length of x in bits.<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.10">
-          <p id="section-2-3.10.1">POLYVAL is defined in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span><a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.10.1">zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.11">
-          <p id="section-2-3.11.1">BE32(x) is the big-endian encoding of 32-bit integer x<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.11.1">truncate(x, t) is the truncation operation.  The first t bits of x are kept<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.12">
-          <p id="section-2-3.12.1">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.12.1">n is the number of 128-bit chunks in zeropad(P)<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.13">
-          <p id="section-2-3.13.1">V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0.<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.13.1">m is the number of 128-bit chunks in zeropad(A)<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.14">
-          <p id="section-2-3.14.1">V[x:y] are the range of chunks x to y in the array V<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.14.1">POLYVAL is defined in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span><a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.15">
+          <p id="section-2-3.15.1">BE32(x) is the big-endian encoding of 32-bit integer x<a href="#section-2-3.15.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.16">
+          <p id="section-2-3.16.1">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.17">
+          <p id="section-2-3.17.1">V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0.<a href="#section-2-3.17.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.18">
+          <p id="section-2-3.18.1">V[x:y] are the range of chunks x to y in the array V<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
