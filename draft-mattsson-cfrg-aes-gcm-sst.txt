@@ -577,6 +577,10 @@ Table of Contents
               Techniques/documents/BCM/Comments/general-comments/papers/
               Nyberg_Gilbert_and_Robshaw.pdf>.
 
+   [Revise]   NIST, "Announcement of Proposal to Revise SP 800-38D",
+              August 2023, <https://csrc.nist.gov/news/2023/proposal-to-
+              revise-sp-800-38d>.
+
    [RFC3711]  Baugher, M., McGrew, D., Naslund, M., Carrara, E., and K.
               Norrman, "The Secure Real-time Transport Protocol (SRTP)",
               RFC 3711, DOI 10.17487/RFC3711, March 2004,
