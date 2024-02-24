@@ -92,7 +92,19 @@ informative:
         ins: J. Yang
     date: March 2021
 
-  SST:
+  SST1:
+    target: https://csrc.nist.gov/csrc/media/Events/2023/third-workshop-on-block-cipher-modes-of-operation/documents/accepted-papers/Galois%20Counter%20Mode%20with%20Secure%20Short%20Tags.pdf
+    title: "Galois Counter Mode with Secure Short Tags (GCM-SST)"
+    author:
+      -
+        ins: M. Campagna
+      -
+        ins: A. Maximov
+      -
+        ins: J. Preuß Mattsson
+    date: October 2023
+
+  SST2:
     target: https://csrc.nist.gov/csrc/media/Presentations/2023/galois-counter-mode-with-secure-short-tags/images-media/sess-5-mattsson-bcm-workshop-2023.pdf
     title: "Galois Counter Mode with Secure Short Tags (GCM-SST)"
     author:
@@ -211,7 +223,7 @@ This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AE
 
 GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.
 
-Figures illustrating the GCM-SST encryption and decryption functions are shown in {{SST}}.
+Figures illustrating the GCM-SST encryption and decryption functions are shown in {{SST1}}{{SST2}}.
 
 ## Authenticated Encryption Function
 
