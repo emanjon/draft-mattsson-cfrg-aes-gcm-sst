@@ -543,6 +543,13 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
                eb 8f f7 cc }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+# Change log
+{: removeInRFC="true"}
+
+Changes from -00 to -01:
+
+* Editorial changes.
+
 # Acknowledgments
 {:numbered="false"}
 
