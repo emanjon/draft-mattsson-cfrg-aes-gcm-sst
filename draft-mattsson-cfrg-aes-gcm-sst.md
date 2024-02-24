@@ -548,6 +548,11 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -00 to -01:
 
+* Link to NIST decision to remove support for tags shorter than 96-bits based on Mattsson et al.
+* Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.
+* Changed T to full_tag to align with tag and expected_tag
+* Link to images illustrating the GCM-SST encryption and decryption functions.
+* Updated definitions
 * Editorial changes.
 
 # Acknowledgments
