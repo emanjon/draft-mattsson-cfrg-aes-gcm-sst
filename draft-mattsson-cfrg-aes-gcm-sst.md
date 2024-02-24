@@ -70,6 +70,14 @@ informative:
         ins: IETF
     date: September 2022
 
+  Revise:
+    target: https://csrc.nist.gov/news/2023/proposal-to-revise-sp-800-38d
+    title: "Announcement of Proposal to Revise SP 800-38D"
+    author:
+      -
+        ins: NIST
+    date: August 2023
+
   GCM:
     target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
     title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
