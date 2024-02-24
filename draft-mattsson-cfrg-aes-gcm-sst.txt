@@ -184,9 +184,9 @@ Table of Contents
 
    *  N is the nonce as defined in [RFC5116]
 
-   *  P is the plaintext as defined in [RFC5116]
-
    *  A is the associated data as defined in [RFC5116]
+
+   *  P is the plaintext as defined in [RFC5116]
 
    *  = is the assignment operator
 
