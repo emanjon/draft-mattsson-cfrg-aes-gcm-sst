@@ -104,6 +104,7 @@ Table of Contents
        Case #3d
        Case #3e
      A.4.  AES-GCM-SST Test #4 (256-bit key)
+   Appendix B.  Change log
    Acknowledgments
    Authors' Addresses
 
@@ -755,6 +756,14 @@ A.4.  AES-GCM-SST Test #4 (256-bit key)
           TAG = { c4 a1 ca 9a 38 c6 73 af bf 9c }
    CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
                   eb 8f f7 cc }
+
+Appendix B.  Change log
+
+   This section is to be removed before publishing as an RFC.
+
+   Changes from -00 to -01:
+
+   *  Editorial changes.
 
 Acknowledgments
 
