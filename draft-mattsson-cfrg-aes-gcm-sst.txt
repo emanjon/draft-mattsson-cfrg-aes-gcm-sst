@@ -597,6 +597,13 @@ Table of Contents
               lower grade CPUs", March 2021,
               <https://eprint.iacr.org/2021/236>.
 
+   [SST]      Campagna, M., Maximov, A., and J. Preuß Mattsson, "Galois
+              Counter Mode with Secure Short Tags (GCM-SST)", October
+              2023,
+              <https://csrc.nist.gov/csrc/media/Presentations/2023/
+              galois-counter-mode-with-secure-short-tags/images-media/
+              sess-5-mattsson-bcm-workshop-2023.pdf>.
+
 Appendix A.  AES-GCM-SST Test Vectors
 
 A.1.  AES-GCM-SST Test #1 (128-bit key)
