@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-22T01:12:06.409334+00:00",
+  "timestamp": "2024-02-25T01:16:42.771577+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -103,15 +103,15 @@
       "id": "I_kwDOJat8lM5k76qf",
       "title": "Make tag dependent on tag length",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Current suggestion is\r\n\r\n\"An application can make the tag dependent on the tag length by including tag_length in the nonces.\"\r\n\r\nShould consider to make the tag always dependent on the tag length without the user having to include it in the nonce. As this will have some cons it should be evaluated that the pros > cons.\r\n\r\nAES-CCM has tags dependent on the tag length, AES-GCM does not.",
       "createdAt": "2023-05-03T05:18:34Z",
-      "updatedAt": "2023-05-03T05:18:34Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-24T07:37:59Z",
+      "closedAt": "2024-02-24T07:37:59Z",
       "comments": []
     },
     {
@@ -119,15 +119,15 @@
       "id": "I_kwDOJat8lM5l4jl7",
       "title": "Add reference to Joux",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/4",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-05-15T05:08:09Z",
-      "updatedAt": "2023-05-28T15:07:03Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-24T08:24:05Z",
+      "closedAt": "2024-02-24T08:24:05Z",
       "comments": [
         {
           "author": "emanjon",
@@ -191,15 +191,15 @@
       "id": "I_kwDOJat8lM5nBtih",
       "title": "Ref to 5G",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2023-05-27T07:00:42Z",
-      "updatedAt": "2023-05-27T07:00:42Z",
-      "closedAt": null,
+      "updatedAt": "2024-02-24T07:37:16Z",
+      "closedAt": "2024-02-24T07:37:16Z",
       "comments": []
     }
   ],
