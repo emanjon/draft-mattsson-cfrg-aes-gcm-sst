@@ -766,6 +766,8 @@ Change log
 
    *  The length encoding chunk is now called L
 
+   *  Use of the notation POLYVAL(H, X_1, X_2, ...) from RFC 8452
+
    *  Removed duplicated text in security considerations.
 
    Changes from -00 to -01:
