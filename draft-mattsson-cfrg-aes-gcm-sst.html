@@ -1034,7 +1034,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 27 August 2024</td>
+<td class="center">Expires 28 August 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1047,12 +1047,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-02-24" class="published">24 February 2024</time>
+<time datetime="2024-02-25" class="published">25 February 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-08-27">27 August 2024</time></dd>
+<dd class="expires"><time datetime="2024-08-28">28 August 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1111,7 +1111,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 27 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 August 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1598,11 +1598,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-5-1">GCM-SST uses an additional subkey Q and that new subkeys H, Q are derived for each nonce. The use of an additional subkey Q enables short tags with forgery probabilities close to ideal. Deriving new subkeys H, Q for each nonce significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. See <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span> for details and references to security proofs for the construction.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">GCM-SST <span class="bcp14">MUST</span> be used in a nonce-respecting setting: for a given key, a nonce <span class="bcp14">MUST</span> only be used once. The nonce <span class="bcp14">MAY</span> be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key <span class="bcp14">MUST</span> be randomly chosen from a uniform distribution. Implementations <span class="bcp14">SHOULD</span> randomize the nonce by mixing a unique number like a sequence number with a per-key random salt. This improves security against pre-computation attacks and multi-key attacks <span>[<a href="#Bellare" class="cite xref">Bellare</a>]</span>.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">The GCM-SST tag_length <span class="bcp14">SHOULD NOT</span> be smaller than 4 bytes and cannot be larger than 16 bytes. For short tags of length t &lt; 128 - log2(n + m + 1) bits, the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. With the constraints listed in <a href="#instances" class="auto internal xref">Section 4.1</a>, n + m + 1 &lt; 2<sup>33</sup> 128-bit blocks, and tags of length up to 95 bits therefore have an almost perfect security level. This is significantly better than GCM where the security level is only t – log2(n + m + 1) bits <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. As one can note, for 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. If tag verification fails, the plaintext and expected_tag <span class="bcp14">MUST NOT</span> be given as output. The full_tag in GCM-SST does not depend on the tag length. An application can make the tag dependent on the tag length by including tag_length in the nonces.<a href="#section-5-3" class="pilcrow">¶</a></p>
-<p id="section-5-4">The GCM-SST tag_length <span class="bcp14">SHOULD NOT</span> be smaller than 4 bytes and cannot be larger than 16 bytes. For short tags, the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span> as long as the lengths of the plaintext P and the associated data A are bounded. This is significantly better than GCM. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. If tag verification fails, the plaintext and expected_tag <span class="bcp14">MUST NOT</span> be given as output. The full_tag in GCM-SST does not depend on the tag length. An application can make the tag dependent on the tag length by including tag_length in the nonces.<a href="#section-5-4" class="pilcrow">¶</a></p>
-<p id="section-5-5">The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> as there is now three subkeys instead of two.<a href="#section-5-5" class="pilcrow">¶</a></p>
-<p id="section-5-6">For the AES-GCM-SST algorithms in <a href="#iana-algs" class="auto internal xref">Table 1</a> the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. This is true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> AES-GCM-SST only allows 96-bit nonces.<a href="#section-5-6" class="pilcrow">¶</a></p>
-<p id="section-5-7">If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complexity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore <span class="bcp14">NOT RECOMMENDED</span> to use AES-GCM-SST with random nonces.<a href="#section-5-7" class="pilcrow">¶</a></p>
-<p id="section-5-8">In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and Q are generated with the AES-ENC permutation on different input, so H and Q cannot both be zero.<a href="#section-5-8" class="pilcrow">¶</a></p>
+<p id="section-5-4">The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> as there is now three subkeys instead of two.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">For the AES-GCM-SST algorithms in <a href="#iana-algs" class="auto internal xref">Table 1</a> the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. This is true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> AES-GCM-SST only allows 96-bit nonces.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complexity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore <span class="bcp14">NOT RECOMMENDED</span> to use AES-GCM-SST with random nonces.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and Q are generated with the AES-ENC permutation on different input, so H and Q cannot both be zero.<a href="#section-5-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-considerations">
@@ -1987,28 +1986,34 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 <a href="#name-change-log" class="section-name selfRef">Change log</a>
       </h2>
 <p id="appendix-B-1">This section is to be removed before publishing as an RFC.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">Changes from -00 to -01:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Changes from -01 to -02:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-3.1">
-          <p id="appendix-B-3.1.1">Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.1.1">Removed duplicated text in security considerations.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-3.2">
-          <p id="appendix-B-3.2.1">Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
+      </ul>
+<p id="appendix-B-4">Changes from -00 to -01:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-5.1">
+          <p id="appendix-B-5.1.1">Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.<a href="#appendix-B-5.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-3.3">
-          <p id="appendix-B-3.3.1">Corrected reference to step numbers during decryption<a href="#appendix-B-3.3.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-5.2">
+          <p id="appendix-B-5.2.1">Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.<a href="#appendix-B-5.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-3.4">
-          <p id="appendix-B-3.4.1">Changed T to full_tag to align with tag and expected_tag<a href="#appendix-B-3.4.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-5.3">
+          <p id="appendix-B-5.3.1">Corrected reference to step numbers during decryption<a href="#appendix-B-5.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-3.5">
-          <p id="appendix-B-3.5.1">Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.<a href="#appendix-B-3.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-5.4">
+          <p id="appendix-B-5.4.1">Changed T to full_tag to align with tag and expected_tag<a href="#appendix-B-5.4.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-3.6">
-          <p id="appendix-B-3.6.1">Updated definitions<a href="#appendix-B-3.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-5.5">
+          <p id="appendix-B-5.5.1">Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.<a href="#appendix-B-5.5.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-3.7">
-          <p id="appendix-B-3.7.1">Editorial changes.<a href="#appendix-B-3.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-5.6">
+          <p id="appendix-B-5.6.1">Updated definitions<a href="#appendix-B-5.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-5.7">
+          <p id="appendix-B-5.7.1">Editorial changes.<a href="#appendix-B-5.7.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -2018,7 +2023,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-C-1">The authors want to thank <span class="contact-name">Richard Barnes</span> for his valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from <span>[<a href="#I-D.irtf-cfrg-aegis-aead" class="cite xref">I-D.irtf-cfrg-aegis-aead</a>]</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">The authors want to thank <span class="contact-name">Richard Barnes</span> and <span class="contact-name">Eric Lagergren</span> for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from <span>[<a href="#I-D.irtf-cfrg-aegis-aead" class="cite xref">I-D.irtf-cfrg-aegis-aead</a>]</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">

@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 27 August 2024                                J. Preuß Mattsson
+Expires: 28 August 2024                                J. Preuß Mattsson
                                                                 Ericsson
-                                                        24 February 2024
+                                                        25 February 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 August 2024.
+   This Internet-Draft will expire on 28 August 2024.
 
 Copyright Notice
 
@@ -464,18 +464,6 @@ Table of Contents
    length.  An application can make the tag dependent on the tag length
    by including tag_length in the nonces.
 
-   The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
-   be larger than 16 bytes.  For short tags, the worst-case forgery
-   probability is bounded by ≈ 2^-t where t is the tag length in bits
-   [Nyberg] as long as the lengths of the plaintext P and the associated
-   data A are bounded.  This is significantly better than GCM.  For
-   128-bit tags and long messages, the forgery probability is not close
-   to ideal and similar to GCM [GCM].  If tag verification fails, the
-   plaintext and expected_tag MUST NOT be given as output.  The full_tag
-   in GCM-SST does not depend on the tag length.  An application can
-   make the tag dependent on the tag length by including tag_length in
-   the nonces.
-
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.  The
    maximum size of the plaintext (P_MAX) has been adjusted from GCM
@@ -772,6 +760,10 @@ Change log
 
    This section is to be removed before publishing as an RFC.
 
+   Changes from -01 to -02:
+
+   *  Removed duplicated text in security considerations.
+
    Changes from -00 to -01:
 
    *  Link to NIST decision to remove support for GCM with tags shorter
@@ -793,9 +785,9 @@ Change log
 
 Acknowledgments
 
-   The authors want to thank Richard Barnes for his valuable comments
-   and feedback.  Some of the formatting and text were inspired by and
-   borrowed from [I-D.irtf-cfrg-aegis-aead].
+   The authors want to thank Richard Barnes and Eric Lagergren for their
+   valuable comments and feedback.  Some of the formatting and text were
+   inspired by and borrowed from [I-D.irtf-cfrg-aegis-aead].
 
 Authors' Addresses
 
