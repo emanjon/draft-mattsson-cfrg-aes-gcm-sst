@@ -563,6 +563,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -01 to -02:
 
 * The length encoding chunk is now called L
+* Use of the notation POLYVAL(H, X_1, X_2, ...) from RFC 8452
 * Removed duplicated text in security considerations.
 
 Changes from -00 to -01:
