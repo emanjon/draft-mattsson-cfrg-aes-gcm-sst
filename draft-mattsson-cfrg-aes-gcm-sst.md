@@ -261,7 +261,7 @@ Steps:
 4. Let ct = P XOR truncate(Z[3:n + 2], len(P))
 5. Let S = zeropad(A) \|\| zeropad(ct)
 6. Let L = LE64(len(ct)) \|\| LE64(len(A))
-7. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
+7. Let X = POLYVAL(H, S[0], S[1], ...)
 8. Let full_tag = POLYVAL(Q, X XOR L) XOR M
 9. Let tag = truncate(full_tag, tag_length)
 10. Return (ct, tag)
@@ -301,7 +301,7 @@ Steps:
 3. Let H = Z[0], Q = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct)
 5. Let L = LE64(len(ct)) \|\| LE64(len(A))
-6. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
+6. Let X = POLYVAL(H, S[0], S[1], ...)
 7. Let full_tag = POLYVAL(Q, X XOR L) XOR M
 8. Let expected_tag = truncate(full_tag, tag_length)
 9. If tag != expected_tag, return error and abort
