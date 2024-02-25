@@ -259,11 +259,12 @@ Steps:
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], Q = Z[1], M = Z[2]
 4. Let ct = P XOR truncate(Z[3:n + 2], len(P))
-5. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
-6. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
-7. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
-8. Let tag = truncate(full_tag, tag_length)
-9. Return (ct, tag)
+5. Let S = zeropad(A) \|\| zeropad(ct)
+6. Let L = LE64(len(ct)) \|\| LE64(len(A))
+7. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
+8. Let full_tag = POLYVAL(Q, X XOR L) XOR M
+9. Let tag = truncate(full_tag, tag_length)
+10. Return (ct, tag)
 
 ## Authenticated Decryption Function
 
@@ -273,7 +274,7 @@ The decryption function decrypts a ciphertext, verifies that the authentication 
 
 Prerequisites and security:
 
-* The calculation of the plaintext P (step 9) MAY be done in parallel with the tag verification (step 3-8). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
+* The calculation of the plaintext P (step 10) MAY be done in parallel with the tag verification (step 3-9). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
 
 * The comparison of the input tag with the expected_tag MUST be done in constant time.
 
@@ -298,13 +299,14 @@ Steps:
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], Q = Z[1], M = Z[2]
-4. Let S = zeropad(A) \|\| zeropad(ct) \|\| LE64(len(ct)) \|\| LE64(len(A))
-5. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
-6. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M
-7. Let expected_tag = truncate(full_tag, tag_length)
-8. If tag != expected_tag, return error and abort
-9. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
-10. Return P
+4. Let S = zeropad(A) \|\| zeropad(ct)
+5. Let L = LE64(len(ct)) \|\| LE64(len(A))
+6. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])
+7. Let full_tag = POLYVAL(Q, X XOR L) XOR M
+8. Let expected_tag = truncate(full_tag, tag_length)
+9. If tag != expected_tag, return error and abort
+10. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
+11. Return P
 
 ## Encoding (ct, tag) Tuples
 
@@ -560,6 +562,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -01 to -02:
 
+* The length encoding chunk is now called L
 * Removed duplicated text in security considerations.
 
 Changes from -00 to -01:
