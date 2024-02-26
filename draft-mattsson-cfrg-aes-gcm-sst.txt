@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 28 August 2024                                J. Preuß Mattsson
+Expires: 29 August 2024                                J. Preuß Mattsson
                                                                 Ericsson
-                                                        25 February 2024
+                                                        26 February 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 August 2024.
+   This Internet-Draft will expire on 29 August 2024.
 
 Copyright Notice
 
@@ -391,11 +391,11 @@ Table of Contents
 
 4.1.  AES-GCM-SST AEAD Instances
 
-   We define six AEADs, in the format of [RFC5116], that use AES-GCM-
-   SST.  They differ only in key length (K_LEN) and tag length.  The tag
-   lengths 32, 64, and 80 have been chosen to align with secure media
-   frames [I-D.ietf-sframe-enc].  The key length and tag length are
-   related to different security properties, and an application
+   We define six AEAD instances, in the format of [RFC5116], that use
+   AES-GCM-SST.  They differ only in key length (K_LEN) and tag length.
+   The tag lengths 32, 64, and 80 have been chosen to align with secure
+   media frames [I-D.ietf-sframe-enc].  The key length and tag length
+   are related to different security properties, and an application
    encrypting audio packets with small tags might require 256-bit
    confidentiality.
 
@@ -418,7 +418,7 @@ Table of Contents
 
                           Table 1: AEAD Algorithms
 
-   Common parameters for the six AEADs:
+   Common parameters for the six AEAD instances:
 
    *  P_MAX (maximum size of the plaintext) is 2^36 - 48 octets.
 
