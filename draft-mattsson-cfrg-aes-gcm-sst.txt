@@ -166,9 +166,8 @@ Table of Contents
    nonce, and that the POLYVAL function from AES-GCM-SIV [RFC8452] is
    used instead of GHASH, see Section 3.  This enables short tags with
    forgery probability close to ideal and significantly decreases the
-   probability of multiple successful forgeries, see Section 5.
-
-   The performance of GCM-SST is very similar to GCM [GCM].  The two
+   probability of multiple successful forgeries, see Section 5.  The
+   performance of GCM-SST is very similar to GCM [GCM].  The two
    additional AES invocations are compensated by the use of POLYVAL, the
    ”little-endian version” of GHASH, which is faster on little-endian
    architectures.  GCM-SST maintains the additive encryption
