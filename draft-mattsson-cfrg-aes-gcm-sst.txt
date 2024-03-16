@@ -171,14 +171,13 @@ Table of Contents
    AES invocations are compensated by the use of POLYVAL, the ”little-
    endian version” of GHASH, which is faster on little-endian
    architectures.  GCM-SST retains the additive encryption in GCM, which
-   enables efficient implementations on modern processor architectures
-   such as x86, ARM, and RISC-V, see [Gueron] and Section 2.4 of
-   [GCM-Update].  This document also registers several instances of
-   Advanced Encryption Standard (AES) with Galois Counter Mode with
-   Secure Short Tags (AES-GCM-SST) where AES [AES] in counter mode is
-   used as the keystream generator.  See Section 4.  GCM-SST has been
-   standardized for use with AES-256 and SNOW 5G [SNOW] in 3GPP 5G
-   Advance.
+   enables efficient implementations on modern processor architectures,
+   see [Gueron] and Section 2.4 of [GCM-Update].  This document also
+   registers several instances of Advanced Encryption Standard (AES)
+   with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where
+   AES [AES] in counter mode is used as the keystream generator.  See
+   Section 4.  GCM-SST has been standardized for use with AES-256 and
+   SNOW 5G [SNOW] in 3GPP 5G Advance.
 
 2.  Conventions and Definitions
 
