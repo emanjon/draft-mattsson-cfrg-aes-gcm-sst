@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 29 August 2024                                J. Preuß Mattsson
+Expires: 17 September 2024                             J. Preuß Mattsson
                                                                 Ericsson
-                                                        26 February 2024
+                                                           16 March 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 August 2024.
+   This Internet-Draft will expire on 17 September 2024.
 
 Copyright Notice
 
@@ -164,14 +164,21 @@ Table of Contents
    main differences compared to GCM [GCM] is that GCM-SST uses an
    additional subkey Q, that fresh subkeys H and Q are derived for each
    nonce, and that the POLYVAL function from AES-GCM-SIV [RFC8452] is
-   used instead of GHASH.  This enables short tags with forgery
-   probability close to ideal and significantly decreases the
-   probability of multiple successful forgeries.  See Section 3.  This
-   document also registers several instances of Advanced Encryption
-   Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-
-   GCM-SST) where AES [AES] in counter mode is used as the keystream
-   generator.  See Section 4.  GCM-SST has been standardized for use
-   with AES-256 and SNOW 5G [SNOW] in 3GPP 5G Advance.
+   used instead of GHASH, see Section 3.  This enables short tags with
+   forgery probability close to ideal and significantly decreases the
+   probability of multiple successful forgeries, See Section 5.  The
+   performance of GCM-SST is very similar to GCM [GCM], the two extra
+   AES invocations are compensated by the use of POLYVAL, the ”little-
+   endian version” of GHASH, which is faster on little-endian
+   architectures.  GCM-SST retains the additive encryption in GCM, which
+   enables efficient implementations on modern processor architectures
+   such as x86, ARM, and RISC-V, see [Gueron] and Section 2.4 of
+   [GCM-Update].  This document also registers several instances of
+   Advanced Encryption Standard (AES) with Galois Counter Mode with
+   Secure Short Tags (AES-GCM-SST) where AES [AES] in counter mode is
+   used as the keystream generator.  See Section 4.  GCM-SST has been
+   standardized for use with AES-256 and SNOW 5G [SNOW] in 3GPP 5G
+   Advance and is very likely to be used in 6G.
 
 2.  Conventions and Definitions
 
@@ -546,12 +553,24 @@ Table of Contents
               <https://nvlpubs.nist.gov/nistpubs/Legacy/SP/
               nistspecialpublication800-38d.pdf>.
 
+   [GCM-Update]
+              McGrew, D. and J. Viega, "GCM Update", May 2005,
+              <https://csrc.nist.gov/csrc/media/projects/block-cipher-
+              techniques/documents/bcm/comments/cwc-gcm/gcm-update.pdf>.
+
+   [Gueron]   Gueron, S., "Constructions based on the AES Round and
+              Polynomial Multiplication that are Efficient on Modern
+              Processor Architectures", October 2023,
+              <https://csrc.nist.gov/csrc/media/Presentations/2023/
+              constructions-based-on-the-aes-round/images-media/sess-5-
+              gueron-bcm-workshop-2023.pdf>.
+
    [I-D.ietf-sframe-enc]
               Omara, E., Uberti, J., Murillo, S. G., Barnes, R., and Y.
               Fablet, "Secure Frame (SFrame)", Work in Progress,
-              Internet-Draft, draft-ietf-sframe-enc-06, 5 December 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-sframe-
-              enc-06>.
+              Internet-Draft, draft-ietf-sframe-enc-07, 29 February
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              sframe-enc-07>.
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
