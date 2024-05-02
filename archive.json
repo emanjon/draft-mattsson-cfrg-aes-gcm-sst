@@ -1,0 +1,326 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2024-05-02T01:15:43.425745+00:00",
+  "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOJat8lM5khQ2m",
+      "title": "change to zero indexing ",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/1",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-04-27T09:07:11Z",
+      "updatedAt": "2023-04-27T09:11:30Z",
+      "closedAt": "2023-04-27T09:11:30Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in main",
+          "createdAt": "2023-04-27T09:11:30Z",
+          "updatedAt": "2023-04-27T09:11:30Z"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "id": "I_kwDOJat8lM5kuWou",
+      "title": "Generate AES-GCM-SST Test Vectors",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/2",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-04-30T11:01:14Z",
+      "updatedAt": "2023-05-04T14:51:25Z",
+      "closedAt": "2023-05-04T14:51:25Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in recent commits to main",
+          "createdAt": "2023-05-04T14:51:25Z",
+          "updatedAt": "2023-05-04T14:51:25Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOJat8lM5k76qf",
+      "title": "Make tag dependent on tag length",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/3",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Current suggestion is\r\n\r\n\"An application can make the tag dependent on the tag length by including tag_length in the nonces.\"\r\n\r\nShould consider to make the tag always dependent on the tag length without the user having to include it in the nonce. As this will have some cons it should be evaluated that the pros > cons.\r\n\r\nAES-CCM has tags dependent on the tag length, AES-GCM does not.",
+      "createdAt": "2023-05-03T05:18:34Z",
+      "updatedAt": "2024-02-24T07:37:59Z",
+      "closedAt": "2024-02-24T07:37:59Z",
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOJat8lM5l4jl7",
+      "title": "Add reference to Joux",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/4",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-15T05:08:09Z",
+      "updatedAt": "2024-02-24T08:24:05Z",
+      "closedAt": "2024-02-24T08:24:05Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "```\r\n  Joux:\r\n    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf\r\n    title: \"Authentication Failures in NIST version of GCM\"\r\n    author:\r\n      -\r\n        ins: A. Joux\r\n    date: February 2006\r\n```",
+          "createdAt": "2023-05-28T15:07:02Z",
+          "updatedAt": "2023-05-28T15:07:02Z"
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "id": "I_kwDOJat8lM5nAEt4",
+      "title": "Change name of A[] example array",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/5",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "A is AAD in RFc5116",
+      "createdAt": "2023-05-26T18:35:41Z",
+      "updatedAt": "2023-05-28T15:09:11Z",
+      "closedAt": "2023-05-28T15:09:11Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "changed to V",
+          "createdAt": "2023-05-28T15:09:08Z",
+          "updatedAt": "2023-05-28T15:09:08Z"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "I_kwDOJat8lM5nA0y8",
+      "title": "full tag or T",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/6",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-26T21:35:06Z",
+      "updatedAt": "2023-05-28T15:08:53Z",
+      "closedAt": "2023-05-28T15:08:53Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "fixed in main\r\n\r\nuse full_tag to be able to easily talk about it in the security consider`tion",
+          "createdAt": "2023-05-28T15:08:53Z",
+          "updatedAt": "2023-05-28T15:08:53Z"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "I_kwDOJat8lM5nBtih",
+      "title": "Ref to 5G",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/7",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-05-27T07:00:42Z",
+      "updatedAt": "2024-02-24T07:37:16Z",
+      "closedAt": "2024-02-24T07:37:16Z",
+      "comments": []
+    },
+    {
+      "number": 8,
+      "id": "I_kwDOJat8lM6AT0os",
+      "title": "duplicate paragraph in \"Security Considerations\"",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/8",
+      "state": "CLOSED",
+      "author": "ericlagergren",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "The paragraph that starts with \"The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes.\" exists twice, but with slightly different wording.",
+      "createdAt": "2024-02-25T09:38:36Z",
+      "updatedAt": "2024-02-25T20:44:23Z",
+      "closedAt": "2024-02-25T20:44:23Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Thanks, that should obviously be fixed. \r\n\r\nI will merge the two paragraphs in -02",
+          "createdAt": "2024-02-25T12:17:06Z",
+          "updatedAt": "2024-02-25T12:17:06Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in main",
+          "createdAt": "2024-02-25T20:44:23Z",
+          "updatedAt": "2024-02-25T20:44:23Z"
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "I_kwDOJat8lM6AT1fd",
+      "title": "Usage of `S` could be more clear",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/9",
+      "state": "CLOSED",
+      "author": "ericlagergren",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "It's not bad, but I had to double check that I was reading it right.\n\nAn example of what might be more clear:\n\n```\n5. Let S = zeropad(A) || zeropad(ct)\n6. Let L = LE64(len(ct)) || LE64(len(A))\n7. Let X = POLYVAL(H, S[0], S[1], ..., S[num_chunks(S)-1])\n8. Let full_tag = POLYVAL(Q, X XOR L) XOR M\n```",
+      "createdAt": "2024-02-25T09:48:23Z",
+      "updatedAt": "2024-02-26T14:28:00Z",
+      "closedAt": "2024-02-26T14:28:00Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Thanks. So basically this is two suggestions:\r\n- Separate S and L\r\n- Use num_chunks() instead of m+n\r\n\r\nThe changes would apply to both encryption and decryption\r\n\r\nCurrent specification is\r\n\r\n```\r\n5. Let S = zeropad(A) \\|\\| zeropad(ct) \\|\\| LE64(len(ct)) \\|\\| LE64(len(A))\r\n6. Let X = POLYVAL(H, S[0], S[1], ..., S[m + n - 1])\r\n7. Let full_tag = POLYVAL(Q, X XOR S[m + n]) XOR M\r\n```",
+          "createdAt": "2024-02-25T12:14:04Z",
+          "updatedAt": "2024-02-25T12:14:04Z"
+        },
+        {
+          "author": "ericlagergren",
+          "authorAssociation": "NONE",
+          "body": "Yeah. Splitting up S into S and L more clearly describes your intent (two different POLYVAL inputs).\n\nI think `num_chunks` is a more explicit way of saying \"use every chunk in S,\" but there might be a better way of expressing that. Maybe `POLYVAL(H, S...)`? Not sure.",
+          "createdAt": "2024-02-25T14:37:16Z",
+          "updatedAt": "2024-02-25T18:34:18Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "In RFC 8452 they use\r\n`We note that POLYVAL(H, X_1, X_2, ...) is equal to`\r\nThat would be \r\n`Let X = POLYVAL(H, S[0], S[1], ...)`",
+          "createdAt": "2024-02-25T20:46:35Z",
+          "updatedAt": "2024-02-25T20:46:35Z"
+        },
+        {
+          "author": "ericlagergren",
+          "authorAssociation": "NONE",
+          "body": "> That would be\n> Let X = POLYVAL(H, S[0], S[1], ...)\n\nI like that notation. It's pretty obvious what it means (in my opinion, anyway). And then you don't need to worry about `n` and `m`.",
+          "createdAt": "2024-02-25T22:50:35Z",
+          "updatedAt": "2024-02-25T22:50:35Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "I changed to \"Let X = POLYVAL(H, S[0], S[1], ...)\" in the PR #10 \r\nWill wait for review from co-authors before merging.",
+          "createdAt": "2024-02-25T22:59:48Z",
+          "updatedAt": "2024-02-25T22:59:48Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Merged #10 which closes this issue",
+          "createdAt": "2024-02-26T14:28:00Z",
+          "updatedAt": "2024-02-26T14:28:00Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 10,
+      "id": "PR_kwDOJat8lM5n2XjJ",
+      "title": "Use new variable L for length. New POLYVAL notation for whole S",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/pull/10",
+      "state": "MERGED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "#9",
+      "createdAt": "2024-02-25T20:47:14Z",
+      "updatedAt": "2024-02-26T14:27:22Z",
+      "baseRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "baseRefName": "main",
+      "baseRefOid": "860f77a7c4fcd8ec18f200d72f916c1605d25076",
+      "headRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "headRefName": "emanjon-patch-1",
+      "headRefOid": "73e3b20207616cab254d3bf1e59ecff2d33cd233",
+      "closedAt": "2024-02-26T14:27:22Z",
+      "mergedAt": "2024-02-26T14:27:22Z",
+      "mergedBy": "emanjon",
+      "mergeCommit": {
+        "oid": "0e3128cb4eb9258fea0a15c19990a92499dd2ce9"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}

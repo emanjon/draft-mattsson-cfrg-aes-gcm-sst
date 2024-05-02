@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>Galois Counter Mode with Secure Short Tags (GCM-SST)</title>
+<meta content="Matthew Campagna" name="author">
+<meta content="Alexander Maximov" name="author">
+<meta content="John Preuß Mattsson" name="author">
+<meta content="
+       This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just a block cipher. The main differences compared to GCM   is that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are derived for each nonce, and that the POLYVAL function from AES-GCM-SIV is used instead of GHASH. This enables short tags with forgery probabilities close to ideal. This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). 
+       This document is the product of the Crypto Forum Research Group. 
+    " name="description">
+<meta content="xml2rfc 3.20.0" name="generator">
+<meta content="next generation" name="keyword">
+<meta content="unicorn" name="keyword">
+<meta content="sparkling distributed ledger" name="keyword">
+<meta content="draft-mattsson-cfrg-aes-gcm-sst-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.20.0
+    Python 3.11.8
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.0
+    intervaltree 3.1.0
+    Jinja2 3.1.2
+    lxml 4.9.3
+    platformdirs 4.2.0
+    pycountry 22.3.5
+    PyYAML 6.0.1
+    requests 2.31.0
+    setuptools 68.2.2
+    six 1.16.0
+    wcwidth 0.2.13
+-->
+<link href="draft-mattsson-cfrg-aes-gcm-sst.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Cabin Condensed", sans-serif;
+  font-weight: 600;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+}
+:is(ol, ul) :is(ol, ul) {
+  margin-left: 1em;
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+.ulCompact li {
+  margin: 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+}
+ul.empty li, .ulEmpty li {
+  margin-top: 0.5em;
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 1;
+  margin: 0 0 0 2em;
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl.olPercent {
+  --indent: 5ch;
+}
+dl > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl.dlNewline > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    overflow-x: auto;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+}
+a.pilcrow[href] { color: var(--pilcrow-weak); }
+a.pilcrow[href]:hover { text-decoration: none; }
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+}
+#identifiers dt {
+  width: var(--identifier-width);
+  min-width: var(--identifier-width);
+  clear: left;
+  float: left;
+  text-align: right;
+  margin-right: 1ch;
+}
+#identifiers dd {
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
+  min-width: 5em;
+}
+#identifiers .authors .author {
+  display: inline-block;
+  margin-right: 1.5em;
+}
+#identifiers .authors .org {
+  font-style: italic;
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: left;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+}
+#toc nav ul {
+  margin: 0 0.5em 0 0;
+  padding: 0;
+  list-style: none;
+}
+#toc nav li {
+  line-height: 1.3em;
+  margin: 2px 0;
+  padding-left: 1.2em;
+  text-indent: -1.2em;
+}
+#toc a.xref {
+  white-space: normal;
+}
+/* references */
+.references dt {
+  text-align: right;
+  font-weight: bold;
+  min-width: 10ch;
+  margin-right: 1.5ch;
+}
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
+.references dd {
+  margin-left: 12ch !important;
+  overflow: auto;
+}
+
+.refInstance {
+  margin-bottom: 1.25em;
+}
+
+.references .ascii {
+  margin-bottom: 0.25em;
+}
+
+/* index */
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  margin: 1em 0;
+}
+address.vcard .nameRole {
+  font-weight: 700;
+  margin-left: 0;
+}
+address.vcard .label {
+  margin: 0.5em 0;
+}
+address.vcard .type {
+  display: none;
+}
+.alternative-contact {
+  margin: 1.5em 0 1em;
+}
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+/* alternative layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc.active {
+      opacity: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+  }
+  #toc h2::before { /* css hamburger */
+    float: right;
+    position: relative;
+    width: 1em;
+    height: 1px;
+    left: -164px;
+    margin: 8px 0 0 0;
+    background: white none repeat scroll 0 0;
+    box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+    content: "";
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active nav {
+    display: block;
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:link,
+  #toc h2 a:focus,
+  #toc h2 a:hover,
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin-top: 2px;
+  }
+}
+
+/* alternative layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  #toc nav > ul  {
+    margin-bottom: 2em;
+  }
+  #toc ul {
+    margin: 0 0 0 4px;
+    font-size: var(--small-font-size);
+  }
+  #toc ul :is(p, li) {
+    margin: 2px 0;
+    line-height: 22px;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+  .toplink {
+    display: none;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Changes introduced to fix issues found during implementation */
+
+/* Separate body from document info even without intervening H1 */
+section {
+  clear: both;
+}
+
+/* Top align author divs, to avoid names without organization dropping level with org names */
+.author {
+  vertical-align: top;
+}
+
+/* Style section numbers with more space between number and title */
+.section-number {
+  padding-right: 0.5em;
+}
+
+/* Add styling for a link in the ToC that points to the top of the document */
+a.toplink {
+  float: right;
+  margin: 8px 0.5em 0;
+}
+
+/* Provide styling for table cell text alignment */
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+/* Make the alternative author contact information look less like just another
+   author, and group it closer with the primary author contact information */
+.alternative-contact {
+  margin: 0.5em 0 0.25em 0;
+}
+address .non-ascii {
+  margin: 0 0 0 2em;
+}
+
+/* With it being possible to set tables with alignment
+  left, center, and right, { width: 100%; } does not make sense */
+table {
+  width: auto;
+}
+
+/* Avoid reference text that sits in a block with very wide left margin,
+   because of a long floating dt label.*/
+.references dd {
+  overflow: visible;
+}
+
+/* Control caption placement */
+caption {
+  caption-side: bottom;
+}
+
+/* Limit the width of the author address vcard, so names in right-to-left
+   script don't end up on the other side of the page. */
+
+address.vcard {
+  max-width: 20em;
+  margin-right: auto;
+}
+
+/* For address alignment dependent on LTR or RTL scripts */
+address div.left {
+  text-align: left;
+}
+address div.right {
+  text-align: right;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">GCM-SST</td>
+<td class="right">March 2024</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Campagna, et al.</td>
+<td class="center">Expires 17 September 2024</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Crypto Forum</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2024-03-16" class="published">16 March 2024</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2024-09-17">17 September 2024</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">M. Campagna</div>
+<div class="org">Amazon Web Services</div>
+</div>
+<div class="author">
+      <div class="author-name">A. Maximov</div>
+<div class="org">Ericsson</div>
+</div>
+<div class="author">
+      <div class="author-name">J. Preuß Mattsson</div>
+<div class="org">Ericsson</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">Galois Counter Mode with Secure Short Tags (GCM-SST)</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just a block cipher. The main differences compared to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> is that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are derived for each nonce, and that the POLYVAL function from AES-GCM-SIV is used instead of GHASH. This enables short tags with forgery probabilities close to ideal. This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST).<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This document is the product of the Crypto Forum Research Group.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-about-this-document">
+<a href="#name-about-this-document" class="section-name selfRef">About This Document</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">
+        The latest revision of this draft can be found at <span><a href="https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/draft-mattsson-cfrg-aes-gcm-sst.html">https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/draft-mattsson-cfrg-aes-gcm-sst.html</a></span>.
+        Status information for this document may be found at <span><a href="https://datatracker.ietf.org/doc/draft-mattsson-cfrg-aes-gcm-sst/">https://datatracker.ietf.org/doc/draft-mattsson-cfrg-aes-gcm-sst/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">
+        Discussion of this document takes place on the
+        Crypto Forum Research Group mailing list (<span><a href="mailto:cfrg@ietf.org">mailto:cfrg@ietf.org</a></span>),
+        which is archived at <span><a href="https://mailarchive.ietf.org/arch/search/?email_list=cfrg">https://mailarchive.ietf.org/arch/search/?email_list=cfrg</a></span>.
+        Subscribe at <span><a href="https://www.ietf.org/mailman/listinfo/cfrg/">https://www.ietf.org/mailman/listinfo/cfrg/</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+<p id="section-note.1-4">Source for this draft and an issue tracker can be found at
+        <span><a href="https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst">https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst</a></span>.<a href="#section-note.1-4" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 17 September 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2024 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-galois-counter-mode-with-se" class="internal xref">Galois Counter Mode with Secure Short Tags (GCM-SST)</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-authenticated-encryption-fu" class="internal xref">Authenticated Encryption Function</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-authenticated-decryption-fu" class="internal xref">Authenticated Decryption Function</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-encoding-ct-tag-tuples" class="internal xref">Encoding (ct, tag) Tuples</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-aes-with-galois-counter-mod" class="internal xref">AES with Galois Counter Mode with Secure Short Tags</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-aes-gcm-sst-aead-instances" class="internal xref">AES-GCM-SST AEAD Instances</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-aes-gcm-sst-test-vectors" class="internal xref">AES-GCM-SST Test Vectors</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-aes-gcm-sst-test-1-128-bit-" class="internal xref">AES-GCM-SST Test #1 (128-bit key)</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.1">
+                    <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#appendix-A.1.1" class="auto internal xref"></a><a href="#name-case-1a" class="internal xref">Case #1a</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.2">
+                    <p id="section-toc.1-1.8.2.1.2.2.1"><a href="#appendix-A.1.2" class="auto internal xref"></a><a href="#name-case-1b" class="internal xref">Case #1b</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.3">
+                    <p id="section-toc.1-1.8.2.1.2.3.1"><a href="#appendix-A.1.3" class="auto internal xref"></a><a href="#name-case-1c" class="internal xref">Case #1c</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.4">
+                    <p id="section-toc.1-1.8.2.1.2.4.1"><a href="#appendix-A.1.4" class="auto internal xref"></a><a href="#name-case-1d" class="internal xref">Case #1d</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.5">
+                    <p id="section-toc.1-1.8.2.1.2.5.1"><a href="#appendix-A.1.5" class="auto internal xref"></a><a href="#name-case-1e" class="internal xref">Case #1e</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-aes-gcm-sst-test-2-128-bit-" class="internal xref">AES-GCM-SST Test #2 (128-bit key)</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-aes-gcm-sst-test-3-256-bit-" class="internal xref">AES-GCM-SST Test #3 (256-bit key)</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.1">
+                    <p id="section-toc.1-1.8.2.3.2.1.1"><a href="#appendix-A.3.1" class="auto internal xref"></a><a href="#name-case-3a" class="internal xref">Case #3a</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.2">
+                    <p id="section-toc.1-1.8.2.3.2.2.1"><a href="#appendix-A.3.2" class="auto internal xref"></a><a href="#name-case-3b" class="internal xref">Case #3b</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.3">
+                    <p id="section-toc.1-1.8.2.3.2.3.1"><a href="#appendix-A.3.3" class="auto internal xref"></a><a href="#name-case-3c" class="internal xref">Case #3c</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.4">
+                    <p id="section-toc.1-1.8.2.3.2.4.1"><a href="#appendix-A.3.4" class="auto internal xref"></a><a href="#name-case-3d" class="internal xref">Case #3d</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.5">
+                    <p id="section-toc.1-1.8.2.3.2.5.1"><a href="#appendix-A.3.5" class="auto internal xref"></a><a href="#name-case-3e" class="internal xref">Case #3e</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
+                <p id="section-toc.1-1.8.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-aes-gcm-sst-test-4-256-bit-" class="internal xref">AES-GCM-SST Test #4 (256-bit key)</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-change-log" class="internal xref">Change Log</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">Advanced Encryption Standard (AES) in Galois Counter Mode (AES-GCM) <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> is a widely used AEAD algorithm <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> due to its attractive performance in both software and hardware as well as its provable security. During the NIST standardization, Ferguson pointed out two weaknesses in the GCM authentication function <span>[<a href="#Ferguson" class="cite xref">Ferguson</a>]</span>. The weaknesses are especially concerning when GCM is used with short tags. The first weakness significantly increases the probability of successful forgery. The second weakness reveals the subkey H if the attacker manages to create successful forgeries. With knowledge of the subkey H, the attacker always succeeds with subsequent forgeries. The probability of multiple successful forgeries is therefore significantly increased.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">As a comment to NIST, Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span> explained how small changes based on proven theoretical constructions mitigate these weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et al. and instead specified additional requirements for use with short tags in Appendix C of <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. NIST did not give any motivations for the specific choice of parameters, or for that matter the security levels they were assumed to give. As shown by Mattsson et al. <span>[<a href="#Mattsson" class="cite xref">Mattsson</a>]</span>, an attacker can almost always gain feedback on success or failure of forgery attempts, contradicting NIST's assumptions for short tags. NIST also appears to have used non-optimal attacks to calculate the parameters. A detailed evaluation of GCM and other block cipher modes of operation is given by <span>[<a href="#Rogaway" class="cite xref">Rogaway</a>]</span>. Rogaway is critical of GCM with short tags and recommends disallowing GCM with tags shorter than 96-bits. NIST is planning to remove support for GCM with tags shorter than 96-bits <span>[<a href="#Revise" class="cite xref">Revise</a>]</span>. While Counter with CBC-MAC (CCM) <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> with short tags has forgery probabilities close to ideal, CCM has lower performance than GCM.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">32-bit tags are standard in most radio link layers including 5G, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is typically not used with short tags. The result is either decreased performance from larger than needed tags <span>[<a href="#MoQ" class="cite xref">MoQ</a>]</span>, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC <span>[<a href="#RFC3711" class="cite xref">RFC3711</a>]</span><span>[<a href="#I-D.ietf-sframe-enc" class="cite xref">I-D.ietf-sframe-enc</a>]</span>. Short tags are also useful to protect packets transporting a signed payload such as a firmware update.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher. The main differences compared to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> is that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are derived for each nonce, and that the POLYVAL function from AES-GCM-SIV <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span> is used instead of GHASH, see <a href="#GCM-SST" class="auto internal xref">Section 3</a>. This enables short tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries, see <a href="#Security" class="auto internal xref">Section 5</a>. The performance of GCM-SST is very similar to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. The two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST maintains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see <span>[<a href="#Gueron" class="cite xref">Gueron</a>]</span> and Section 2.4 of <span>[<a href="#GCM-Update" class="cite xref">GCM-Update</a>]</span>. This document also registers several instances of Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST) where AES <span>[<a href="#AES" class="cite xref">AES</a>]</span> in counter mode is used as the keystream generator. See <a href="#AES-GCM-SST" class="auto internal xref">Section 4</a>. GCM-SST has been standardized for use with AES-256 and SNOW 5G <span>[<a href="#SNOW" class="cite xref">SNOW</a>]</span> in 3GPP 5G Advance.<a href="#section-1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="conventions-and-definitions">
+<section id="section-2">
+      <h2 id="name-conventions-and-definitions">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
+      </h2>
+<p id="section-2-1">The key words "<span class="bcp14">MUST</span>", "<span class="bcp14">MUST NOT</span>", "<span class="bcp14">REQUIRED</span>", "<span class="bcp14">SHALL</span>", "<span class="bcp14">SHALL NOT</span>", "<span class="bcp14">SHOULD</span>", "<span class="bcp14">SHOULD NOT</span>", "<span class="bcp14">RECOMMENDED</span>", "<span class="bcp14">NOT RECOMMENDED</span>",
+"<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
+described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
+appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">Primitives:<a href="#section-2-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2-3.1">
+          <p id="section-2-3.1.1">K is the key as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.2">
+          <p id="section-2-3.2.1">N is the nonce as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.3">
+          <p id="section-2-3.3.1">A is the associated data as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.4">
+          <p id="section-2-3.4.1">P is the plaintext as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.5">
+          <p id="section-2-3.5.1">= is the assignment operator<a href="#section-2-3.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.6">
+          <p id="section-2-3.6.1">!= is the inequality operator<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.7">
+          <p id="section-2-3.7.1">x || y is concatenation of the octet strings x and y<a href="#section-2-3.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.8">
+          <p id="section-2-3.8.1">XOR is the bitwise exclusive OR operator<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.9">
+          <p id="section-2-3.9.1">len(x) is the length of x in bits.<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.10">
+          <p id="section-2-3.10.1">zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.11">
+          <p id="section-2-3.11.1">truncate(x, t) is the truncation operation.  The first t bits of x are kept<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.12">
+          <p id="section-2-3.12.1">n is the number of 128-bit chunks in zeropad(P)<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.13">
+          <p id="section-2-3.13.1">m is the number of 128-bit chunks in zeropad(A)<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.14">
+          <p id="section-2-3.14.1">POLYVAL is defined in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span><a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.15">
+          <p id="section-2-3.15.1">BE32(x) is the big-endian encoding of 32-bit integer x<a href="#section-2-3.15.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.16">
+          <p id="section-2-3.16.1">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.17">
+          <p id="section-2-3.17.1">V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0.<a href="#section-2-3.17.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.18">
+          <p id="section-2-3.18.1">V[x:y] are the range of chunks x to y in the array V<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="GCM-SST">
+<section id="section-3">
+      <h2 id="name-galois-counter-mode-with-se">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-galois-counter-mode-with-se" class="section-name selfRef">Galois Counter Mode with Secure Short Tags (GCM-SST)</a>
+      </h2>
+<p id="section-3-1">This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream <span class="bcp14">MAY</span> depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">Figures illustrating the GCM-SST encryption and decryption functions are shown in <span>[<a href="#SST1" class="cite xref">SST1</a>]</span><span>[<a href="#SST2" class="cite xref">SST2</a>]</span>.<a href="#section-3-3" class="pilcrow">¶</a></p>
+<div id="authenticated-encryption-function">
+<section id="section-3.1">
+        <h3 id="name-authenticated-encryption-fu">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-authenticated-encryption-fu" class="section-name selfRef">Authenticated Encryption Function</a>
+        </h3>
+<p id="section-3.1-1">Encrypt(K, N, A, P)<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">The encryption function encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Prerequisites and security:<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-4.1">
+            <p id="section-3.1-4.1.1">The key <span class="bcp14">MUST</span> be randomly chosen from a uniform distribution.<a href="#section-3.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-4.2">
+            <p id="section-3.1-4.2.1">For a given key, the nonce <span class="bcp14">MUST NOT</span> be reused under any circumstances.<a href="#section-3.1-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-4.3">
+            <p id="section-3.1-4.3.1">Supported tag_length associated with the key.<a href="#section-3.1-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-4.4">
+            <p id="section-3.1-4.4.1">Definitions of supported input-output lengths.<a href="#section-3.1-4.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.1-5">Inputs:<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-6.1">
+            <p id="section-3.1-6.1.1">Key K (variable-length octet string)<a href="#section-3.1-6.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-6.2">
+            <p id="section-3.1-6.2.1">Nonce N (variable-length octet string)<a href="#section-3.1-6.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-6.3">
+            <p id="section-3.1-6.3.1">Associated data A (variable-length octet string)<a href="#section-3.1-6.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-6.4">
+            <p id="section-3.1-6.4.1">Plaintext P (variable-length octet string)<a href="#section-3.1-6.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.1-7">Outputs:<a href="#section-3.1-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-8.1">
+            <p id="section-3.1-8.1.1">Ciphertext ct (variable-length octet string)<a href="#section-3.1-8.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-8.2">
+            <p id="section-3.1-8.2.1">Tag tag (octet string with length tag_length)<a href="#section-3.1-8.2.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.1-9">Steps:<a href="#section-3.1-9" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.1-10">
+<li id="section-3.1-10.1">
+            <p id="section-3.1-10.1.1">If the lengths of K, N, A, P are not supported return error and abort<a href="#section-3.1-10.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.2">
+            <p id="section-3.1-10.2.1">Initiate keystream generator with K and N<a href="#section-3.1-10.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.3">
+            <p id="section-3.1-10.3.1">Let H = Z[0], Q = Z[1], M = Z[2]<a href="#section-3.1-10.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.4">
+            <p id="section-3.1-10.4.1">Let ct = P XOR truncate(Z[3:n + 2], len(P))<a href="#section-3.1-10.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.5">
+            <p id="section-3.1-10.5.1">Let S = zeropad(A) || zeropad(ct)<a href="#section-3.1-10.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.6">
+            <p id="section-3.1-10.6.1">Let L = LE64(len(ct)) || LE64(len(A))<a href="#section-3.1-10.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.7">
+            <p id="section-3.1-10.7.1">Let X = POLYVAL(H, S[0], S[1], ...)<a href="#section-3.1-10.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.8">
+            <p id="section-3.1-10.8.1">Let full_tag = POLYVAL(Q, X XOR L) XOR M<a href="#section-3.1-10.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.9">
+            <p id="section-3.1-10.9.1">Let tag = truncate(full_tag, tag_length)<a href="#section-3.1-10.9.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.1-10.10">
+            <p id="section-3.1-10.10.1">Return (ct, tag)<a href="#section-3.1-10.10.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+</section>
+</div>
+<div id="authenticated-decryption-function">
+<section id="section-3.2">
+        <h3 id="name-authenticated-decryption-fu">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-authenticated-decryption-fu" class="section-name selfRef">Authenticated Decryption Function</a>
+        </h3>
+<p id="section-3.2-1">Decrypt(K, N, A, ct, tag)<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">The decryption function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if tag verification failed.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Prerequisites and security:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-4.1">
+            <p id="section-3.2-4.1.1">The calculation of the plaintext P (step 10) <span class="bcp14">MAY</span> be done in parallel with the tag verification (step 3-9). If tag verification fails, the plaintext P and the expected_tag <span class="bcp14">MUST NOT</span> be given as output.<a href="#section-3.2-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-4.2">
+            <p id="section-3.2-4.2.1">The comparison of the input tag with the expected_tag <span class="bcp14">MUST</span> be done in constant time.<a href="#section-3.2-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-4.3">
+            <p id="section-3.2-4.3.1">Supported tag_length associated with the key.<a href="#section-3.2-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-4.4">
+            <p id="section-3.2-4.4.1">Definitions of supported input-output lengths.<a href="#section-3.2-4.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-5">Inputs:<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-6.1">
+            <p id="section-3.2-6.1.1">Key K (variable-length octet string)<a href="#section-3.2-6.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-6.2">
+            <p id="section-3.2-6.2.1">Nonce N (variable-length octet string)<a href="#section-3.2-6.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-6.3">
+            <p id="section-3.2-6.3.1">Associated data A (variable-length octet string)<a href="#section-3.2-6.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-6.4">
+            <p id="section-3.2-6.4.1">Ciphertext ct (variable-length octet string)<a href="#section-3.2-6.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-6.5">
+            <p id="section-3.2-6.5.1">Tag tag (octet string with length tag_length)<a href="#section-3.2-6.5.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-7">Outputs:<a href="#section-3.2-7" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-8.1">
+            <p id="section-3.2-8.1.1">Plaintext P (variable-length octet string) or an error indicating that the authentication tag is invalid for the given inputs.<a href="#section-3.2-8.1.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-9">Steps:<a href="#section-3.2-9" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="section-3.2-10">
+<li id="section-3.2-10.1">
+            <p id="section-3.2-10.1.1">If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort<a href="#section-3.2-10.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.2">
+            <p id="section-3.2-10.2.1">Initiate keystream generator with K and N<a href="#section-3.2-10.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.3">
+            <p id="section-3.2-10.3.1">Let H = Z[0], Q = Z[1], M = Z[2]<a href="#section-3.2-10.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.4">
+            <p id="section-3.2-10.4.1">Let S = zeropad(A) || zeropad(ct)<a href="#section-3.2-10.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.5">
+            <p id="section-3.2-10.5.1">Let L = LE64(len(ct)) || LE64(len(A))<a href="#section-3.2-10.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.6">
+            <p id="section-3.2-10.6.1">Let X = POLYVAL(H, S[0], S[1], ...)<a href="#section-3.2-10.6.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.7">
+            <p id="section-3.2-10.7.1">Let full_tag = POLYVAL(Q, X XOR L) XOR M<a href="#section-3.2-10.7.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.8">
+            <p id="section-3.2-10.8.1">Let expected_tag = truncate(full_tag, tag_length)<a href="#section-3.2-10.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.9">
+            <p id="section-3.2-10.9.1">If tag != expected_tag, return error and abort<a href="#section-3.2-10.9.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.10">
+            <p id="section-3.2-10.10.1">Let P = ct XOR truncate(Z[3:n + 2], len(ct))<a href="#section-3.2-10.10.1" class="pilcrow">¶</a></p>
+</li>
+          <li id="section-3.2-10.11">
+            <p id="section-3.2-10.11.1">Return P<a href="#section-3.2-10.11.1" class="pilcrow">¶</a></p>
+</li>
+        </ol>
+</section>
+</div>
+<div id="encoding-ct-tag-tuples">
+<section id="section-3.3">
+        <h3 id="name-encoding-ct-tag-tuples">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-encoding-ct-tag-tuples" class="section-name selfRef">Encoding (ct, tag) Tuples</a>
+        </h3>
+<p id="section-3.3-1">Applications <span class="bcp14">MAY</span> keep the ciphertext and the authentication tag in distinct structures or encode both as a single octet string C. In the latter case, the tag <span class="bcp14">MUST</span> immediately follow the ciphertext ct:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">C = ct || tag<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="AES-GCM-SST">
+<section id="section-4">
+      <h2 id="name-aes-with-galois-counter-mod">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-aes-with-galois-counter-mod" class="section-name selfRef">AES with Galois Counter Mode with Secure Short Tags</a>
+      </h2>
+<p id="section-4-1">This section defines Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">Z[i] = AES-ENC(K, N || BE32(i))<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">where AES-ENC is the AES encrypt function <span>[<a href="#AES" class="cite xref">AES</a>]</span>.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<div id="instances">
+<section id="section-4.1">
+        <h3 id="name-aes-gcm-sst-aead-instances">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-aes-gcm-sst-aead-instances" class="section-name selfRef">AES-GCM-SST AEAD Instances</a>
+        </h3>
+<p id="section-4.1-1">We define six AEAD instances, in the format of <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, that use AES-GCM-SST. They differ only in key length (K_LEN) and tag length. The tag lengths 32, 64, and 80 have been chosen to align with secure media frames <span>[<a href="#I-D.ietf-sframe-enc" class="cite xref">I-D.ietf-sframe-enc</a>]</span>. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span id="name-aead-algorithms"></span><div id="iana-algs">
+<table class="center" id="table-1">
+          <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-aead-algorithms" class="selfRef">AEAD Algorithms</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-right" rowspan="1" colspan="1">Numeric ID</th>
+              <th class="text-left" rowspan="1" colspan="1">Name</th>
+              <th class="text-right" rowspan="1" colspan="1">K_LEN (bytes)</th>
+              <th class="text-right" rowspan="1" colspan="1">tag_length (bits)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-right" rowspan="1" colspan="1">TBD1</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_4</td>
+              <td class="text-right" rowspan="1" colspan="1">16</td>
+              <td class="text-right" rowspan="1" colspan="1">32</td>
+            </tr>
+            <tr>
+              <td class="text-right" rowspan="1" colspan="1">TBD2</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_8</td>
+              <td class="text-right" rowspan="1" colspan="1">16</td>
+              <td class="text-right" rowspan="1" colspan="1">64</td>
+            </tr>
+            <tr>
+              <td class="text-right" rowspan="1" colspan="1">TBD3</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_10</td>
+              <td class="text-right" rowspan="1" colspan="1">16</td>
+              <td class="text-right" rowspan="1" colspan="1">80</td>
+            </tr>
+            <tr>
+              <td class="text-right" rowspan="1" colspan="1">TBD4</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_256_GCM_SST_4</td>
+              <td class="text-right" rowspan="1" colspan="1">32</td>
+              <td class="text-right" rowspan="1" colspan="1">32</td>
+            </tr>
+            <tr>
+              <td class="text-right" rowspan="1" colspan="1">TBD5</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_256_GCM_SST_8</td>
+              <td class="text-right" rowspan="1" colspan="1">32</td>
+              <td class="text-right" rowspan="1" colspan="1">64</td>
+            </tr>
+            <tr>
+              <td class="text-right" rowspan="1" colspan="1">TBD6</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_256_GCM_SST_10</td>
+              <td class="text-right" rowspan="1" colspan="1">32</td>
+              <td class="text-right" rowspan="1" colspan="1">80</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
+<p id="section-4.1-3">Common parameters for the six AEAD instances:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-4.1">
+            <p id="section-4.1-4.1.1">P_MAX (maximum size of the plaintext) is 2<sup>36</sup> - 48 octets.<a href="#section-4.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.2">
+            <p id="section-4.1-4.2.1">A_MAX (maximum size of the associated data) is 2<sup>36</sup> octets.<a href="#section-4.1-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.3">
+            <p id="section-4.1-4.3.1">N_MIN and N_MAX (minimum and maximum size of the nonce) are both 12 octets<a href="#section-4.1-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.4">
+            <p id="section-4.1-4.4.1">C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)<a href="#section-4.1-4.4.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="Security">
+<section id="section-5">
+      <h2 id="name-security-considerations">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-5-1">GCM-SST uses an additional subkey Q and that new subkeys H, Q are derived for each nonce. The use of an additional subkey Q enables short tags with forgery probabilities close to ideal. Deriving new subkeys H, Q for each nonce significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. See <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span> for details and references to security proofs for the construction.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">GCM-SST <span class="bcp14">MUST</span> be used in a nonce-respecting setting: for a given key, a nonce <span class="bcp14">MUST</span> only be used once. The nonce <span class="bcp14">MAY</span> be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key <span class="bcp14">MUST</span> be randomly chosen from a uniform distribution. Implementations <span class="bcp14">SHOULD</span> randomize the nonce by mixing a unique number like a sequence number with a per-key random salt. This improves security against pre-computation attacks and multi-key attacks <span>[<a href="#Bellare" class="cite xref">Bellare</a>]</span>.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">The GCM-SST tag_length <span class="bcp14">SHOULD NOT</span> be smaller than 4 bytes and cannot be larger than 16 bytes. For short tags of length t &lt; 128 - log2(n + m + 1) bits, the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. With the constraints listed in <a href="#instances" class="auto internal xref">Section 4.1</a>, n + m + 1 &lt; 2<sup>33</sup> 128-bit blocks, and tags of length up to 95 bits therefore have an almost perfect security level. This is significantly better than GCM where the security level is only t – log2(n + m + 1) bits <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. As one can note, for 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. If tag verification fails, the plaintext and expected_tag <span class="bcp14">MUST NOT</span> be given as output. The full_tag in GCM-SST does not depend on the tag length. An application can make the tag dependent on the tag length by including tag_length in the nonces.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> and given by the birthday bound. The maximum size of the plaintext (P_MAX) has been adjusted from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> as there is now three subkeys instead of two.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">For the AES-GCM-SST algorithms in <a href="#iana-algs" class="auto internal xref">Table 1</a> the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> where t is the tag length in bits <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. This is true for all allowed plaintext and associated data lengths. The maximum size of the associated data (A_MAX) has been lowered from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> to enable forgery probability close to ideal for 80-bit tags even with maximum size plaintexts and associated data. Just like <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> AES-GCM-SST only allows 96-bit nonces.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">If r random nonces are used with the same key, the collision probability for AES-GCM-SST is ≈ r<sup>2</sup> / 2<sup>97</sup>. As an attacker can test r nonces for collisions with complexity r, the security of AES-GCM-SST with random nonces is only ≈ 2<sup>97</sup> / r. It is therefore <span class="bcp14">NOT RECOMMENDED</span> to use AES-GCM-SST with random nonces.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If both keys are zero, the resulting tag will not depend on the message. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and Q are generated with the AES-ENC permutation on different input, so H and Q cannot both be zero.<a href="#section-5-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-6">
+      <h2 id="name-iana-considerations">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-6-1">IANA is requested to assign the entries in the first two columns of <a href="#iana-algs" class="auto internal xref">Table 1</a> to the "AEAD Algorithms" registry under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading with this document as reference.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<section id="section-7">
+      <h2 id="name-references">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-7.1">
+        <h3 id="name-normative-references">
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="AES">[AES]</dt>
+        <dd>
+<span class="refTitle">"ADVANCED ENCRYPTION STANDARD (AES)"</span>, <span class="seriesInfo">NIST Federal Information Processing Standards Publication 197</span>, <time datetime="2001-11" class="refDate">November 2001</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf">https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC2119">[RFC2119]</dt>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC5116">[RFC5116]</dt>
+        <dd>
+<span class="refAuthor">McGrew, D.</span>, <span class="refTitle">"An Interface and Algorithms for Authenticated Encryption"</span>, <span class="seriesInfo">RFC 5116</span>, <span class="seriesInfo">DOI 10.17487/RFC5116</span>, <time datetime="2008-01" class="refDate">January 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5116">https://www.rfc-editor.org/rfc/rfc5116</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8452">[RFC8452]</dt>
+      <dd>
+<span class="refAuthor">Gueron, S.</span>, <span class="refAuthor">Langley, A.</span>, and <span class="refAuthor">Y. Lindell</span>, <span class="refTitle">"AES-GCM-SIV: Nonce Misuse-Resistant Authenticated Encryption"</span>, <span class="seriesInfo">RFC 8452</span>, <span class="seriesInfo">DOI 10.17487/RFC8452</span>, <time datetime="2019-04" class="refDate">April 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8452">https://www.rfc-editor.org/rfc/rfc8452</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-7.2">
+        <h3 id="name-informative-references">
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="Bellare">[Bellare]</dt>
+        <dd>
+<span class="refAuthor">Bellare, M.</span> and <span class="refAuthor">B. Tackmann</span>, <span class="refTitle">"The Multi-User Security of Authenticated Encryption: AES-GCM in TLS 1.3"</span>, <time datetime="2017-11" class="refDate">November 2017</time>, <span>&lt;<a href="https://eprint.iacr.org/2016/564.pdf">https://eprint.iacr.org/2016/564.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Ferguson">[Ferguson]</dt>
+        <dd>
+<span class="refAuthor">Ferguson, N.</span>, <span class="refTitle">"Authentication weaknesses in GCM"</span>, <time datetime="2005-05" class="refDate">May 2005</time>, <span>&lt;<a href="https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/CWC-GCM/Ferguson2.pdf">https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/CWC-GCM/Ferguson2.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="GCM">[GCM]</dt>
+        <dd>
+<span class="refAuthor">Dworkin, M.</span>, <span class="refTitle">"Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"</span>, <span class="seriesInfo">NIST Special Publication 800-38D</span>, <time datetime="2007-11" class="refDate">November 2007</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf">https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="GCM-Update">[GCM-Update]</dt>
+        <dd>
+<span class="refAuthor">McGrew, D.</span> and <span class="refAuthor">J. Viega</span>, <span class="refTitle">"GCM Update"</span>, <time datetime="2005-05" class="refDate">May 2005</time>, <span>&lt;<a href="https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/gcm-update.pdf">https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/gcm-update.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Gueron">[Gueron]</dt>
+        <dd>
+<span class="refAuthor">Gueron, S.</span>, <span class="refTitle">"Constructions based on the AES Round and Polynomial Multiplication that are Efficient on Modern Processor Architectures"</span>, <time datetime="2023-10" class="refDate">October 2023</time>, <span>&lt;<a href="https://csrc.nist.gov/csrc/media/Presentations/2023/constructions-based-on-the-aes-round/images-media/sess-5-gueron-bcm-workshop-2023.pdf">https://csrc.nist.gov/csrc/media/Presentations/2023/constructions-based-on-the-aes-round/images-media/sess-5-gueron-bcm-workshop-2023.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.ietf-sframe-enc">[I-D.ietf-sframe-enc]</dt>
+        <dd>
+<span class="refAuthor">Omara, E.</span>, <span class="refAuthor">Uberti, J.</span>, <span class="refAuthor">Murillo, S. G.</span>, <span class="refAuthor">Barnes, R.</span>, and <span class="refAuthor">Y. Fablet</span>, <span class="refTitle">"Secure Frame (SFrame)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sframe-enc-07</span>, <time datetime="2024-02-29" class="refDate">29 February 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sframe-enc-07">https://datatracker.ietf.org/doc/html/draft-ietf-sframe-enc-07</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.irtf-cfrg-aegis-aead">[I-D.irtf-cfrg-aegis-aead]</dt>
+        <dd>
+<span class="refAuthor">Denis, F.</span> and <span class="refAuthor">S. Lucas</span>, <span class="refTitle">"The AEGIS Family of Authenticated Encryption Algorithms"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-irtf-cfrg-aegis-aead-10</span>, <time datetime="2024-01-20" class="refDate">20 January 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-aegis-aead-10">https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-aegis-aead-10</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Mattsson">[Mattsson]</dt>
+        <dd>
+<span class="refAuthor">Mattsson, J.</span> and <span class="refAuthor">M. Westerlund</span>, <span class="refTitle">"Authentication Key Recovery on Galois/Counter Mode (GCM)"</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://eprint.iacr.org/2015/477.pdf">https://eprint.iacr.org/2015/477.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="MoQ">[MoQ]</dt>
+        <dd>
+<span class="refAuthor">IETF</span>, <span class="refTitle">"Media Over QUIC"</span>, <time datetime="2022-09" class="refDate">September 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/wg/moq/about/">https://datatracker.ietf.org/wg/moq/about/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Nyberg">[Nyberg]</dt>
+        <dd>
+<span class="refAuthor">Nyberg, K.</span>, <span class="refAuthor">Gilbert, H.</span>, and <span class="refAuthor">M. Robshaw</span>, <span class="refTitle">"Galois MAC with forgery probability close to ideal"</span>, <time datetime="2005-06" class="refDate">June 2005</time>, <span>&lt;<a href="https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf">https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Revise">[Revise]</dt>
+        <dd>
+<span class="refAuthor">NIST</span>, <span class="refTitle">"Announcement of Proposal to Revise SP 800-38D"</span>, <time datetime="2023-08" class="refDate">August 2023</time>, <span>&lt;<a href="https://csrc.nist.gov/news/2023/proposal-to-revise-sp-800-38d">https://csrc.nist.gov/news/2023/proposal-to-revise-sp-800-38d</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC3711">[RFC3711]</dt>
+        <dd>
+<span class="refAuthor">Baugher, M.</span>, <span class="refAuthor">McGrew, D.</span>, <span class="refAuthor">Naslund, M.</span>, <span class="refAuthor">Carrara, E.</span>, and <span class="refAuthor">K. Norrman</span>, <span class="refTitle">"The Secure Real-time Transport Protocol (SRTP)"</span>, <span class="seriesInfo">RFC 3711</span>, <span class="seriesInfo">DOI 10.17487/RFC3711</span>, <time datetime="2004-03" class="refDate">March 2004</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc3711">https://www.rfc-editor.org/rfc/rfc3711</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Rogaway">[Rogaway]</dt>
+        <dd>
+<span class="refAuthor">Rogaway, P.</span>, <span class="refTitle">"Evaluation of Some Blockcipher Modes of Operation"</span>, <time datetime="2011-02" class="refDate">February 2011</time>, <span>&lt;<a href="https://www.cryptrec.go.jp/exreport/cryptrec-ex-2012-2010r1.pdf">https://www.cryptrec.go.jp/exreport/cryptrec-ex-2012-2010r1.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SNOW">[SNOW]</dt>
+        <dd>
+<span class="refAuthor">Ekdahl, P.</span>, <span class="refAuthor">Johansson, T.</span>, <span class="refAuthor">Maximov, A.</span>, and <span class="refAuthor">J. Yang</span>, <span class="refTitle">"SNOW-Vi: an extreme performance variant of SNOW-V for lower grade CPUs"</span>, <time datetime="2021-03" class="refDate">March 2021</time>, <span>&lt;<a href="https://eprint.iacr.org/2021/236">https://eprint.iacr.org/2021/236</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SST1">[SST1]</dt>
+        <dd>
+<span class="refAuthor">Campagna, M.</span>, <span class="refAuthor">Maximov, A.</span>, and <span class="refAuthor">J. Preuß Mattsson</span>, <span class="refTitle">"Galois Counter Mode with Secure Short Tags (GCM-SST)"</span>, <time datetime="2023-10" class="refDate">October 2023</time>, <span>&lt;<a href="https://csrc.nist.gov/csrc/media/Events/2023/third-workshop-on-block-cipher-modes-of-operation/documents/accepted-papers/Galois%20Counter%20Mode%20with%20Secure%20Short%20Tags.pdf">https://csrc.nist.gov/csrc/media/Events/2023/third-workshop-on-block-cipher-modes-of-operation/documents/accepted-papers/Galois%20Counter%20Mode%20with%20Secure%20Short%20Tags.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="SST2">[SST2]</dt>
+      <dd>
+<span class="refAuthor">Campagna, M.</span>, <span class="refAuthor">Maximov, A.</span>, and <span class="refAuthor">J. Preuß Mattsson</span>, <span class="refTitle">"Galois Counter Mode with Secure Short Tags (GCM-SST)"</span>, <time datetime="2023-10" class="refDate">October 2023</time>, <span>&lt;<a href="https://csrc.nist.gov/csrc/media/Presentations/2023/galois-counter-mode-with-secure-short-tags/images-media/sess-5-mattsson-bcm-workshop-2023.pdf">https://csrc.nist.gov/csrc/media/Presentations/2023/galois-counter-mode-with-secure-short-tags/images-media/sess-5-mattsson-bcm-workshop-2023.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+<div id="aes-gcm-sst-test-vectors">
+<section id="appendix-A">
+      <h2 id="name-aes-gcm-sst-test-vectors">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-aes-gcm-sst-test-vectors" class="section-name selfRef">AES-GCM-SST Test Vectors</a>
+      </h2>
+<div id="aes-gcm-sst-test-1-128-bit-key">
+<section id="appendix-A.1">
+        <h3 id="name-aes-gcm-sst-test-1-128-bit-">
+<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-aes-gcm-sst-test-1-128-bit-" class="section-name selfRef">AES-GCM-SST Test #1 (128-bit key)</a>
+        </h3>
+<div class="alignLeft art-text artwork" id="appendix-A.1-1">
+<pre>
+       KEY = { 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f }
+     NONCE = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
+         H = { 22 ce 92 da cb 50 77 4b ab 0d 18 29 3d 6e ae 7f }
+         Q = { 03 13 63 96 74 be fa 86 4d fa fb 80 36 b7 a0 3c }
+         M = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
+</pre><a href="#appendix-A.1-1" class="pilcrow">¶</a>
+</div>
+<div id="case-1a">
+<section id="appendix-A.1.1">
+          <h4 id="name-case-1a">
+<a href="#name-case-1a" class="section-name selfRef">Case #1a</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.1.1-1">
+<pre>
+       AAD = { }
+ PLAINTEXT = { }
+encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full-TAG = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
+       TAG = { 9b 1d 49 ea }
+CIPHERTEXT = { }
+</pre><a href="#appendix-A.1.1-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-1b">
+<section id="appendix-A.1.2">
+          <h4 id="name-case-1b">
+<a href="#name-case-1b" class="section-name selfRef">Case #1b</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.1.2-1">
+<pre>
+       AAD = { 40 41 42 43 44 }
+ PLAINTEXT = { }
+encode-LEN = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
+  full-TAG = { 7f f3 cb a4 d5 f3 08 a5 70 4e 2f d5 f2 3a e8 f9 }
+       TAG = { 7f f3 cb a4 }
+CIPHERTEXT = { }
+</pre><a href="#appendix-A.1.2-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-1c">
+<section id="appendix-A.1.3">
+          <h4 id="name-case-1c">
+<a href="#name-case-1c" class="section-name selfRef">Case #1c</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.1.3-1">
+<pre>
+       AAD = { }
+ PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
+encode-LEN = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full-TAG = { f8 de 17 85 fd 1a 90 d9 81 8f cb 7b 44 69 8a 8b }
+       TAG = { f8 de 17 85 }
+CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
+</pre><a href="#appendix-A.1.3-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-1d">
+<section id="appendix-A.1.4">
+          <h4 id="name-case-1d">
+<a href="#name-case-1d" class="section-name selfRef">Case #1d</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.1.4-1">
+<pre>
+       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
+ PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+               70 71 72 73 74 75 76 77 78 79 7a 7b 7c 7d 7e }
+encode-LEN = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
+  full-TAG = { 93 43 56 14 0b 84 48 2c d0 14 c7 40 7e e9 cc b6 }
+       TAG = { 93 43 56 14 }
+CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
+               7d c0 cb c7 85 a7 a9 20 db 42 28 ff 63 32 10 }
+</pre><a href="#appendix-A.1.4-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-1e">
+<section id="appendix-A.1.5">
+          <h4 id="name-case-1e">
+<a href="#name-case-1e" class="section-name selfRef">Case #1e</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.1.5-1">
+<pre>
+       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
+ PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+               70 }
+encode-LEN = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
+  full-TAG = { f8 50 b7 97 11 43 ab e9 31 5a d7 eb 3b 0a 16 81 }
+       TAG = { f8 50 b7 97 }
+CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
+               7d }
+</pre><a href="#appendix-A.1.5-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="aes-gcm-sst-test-2-128-bit-key">
+<section id="appendix-A.2">
+        <h3 id="name-aes-gcm-sst-test-2-128-bit-">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-aes-gcm-sst-test-2-128-bit-" class="section-name selfRef">AES-GCM-SST Test #2 (128-bit key)</a>
+        </h3>
+<div class="alignLeft art-text artwork" id="appendix-A.2-1">
+<pre>
+       KEY = { 29 23 be 84 e1 6c d6 ae 52 90 49 f1 f1 bb e9 eb }
+     NONCE = { 9a 50 ee 40 78 36 fd 12 49 32 f6 9e }
+       AAD = { 1f 03 5a 7d 09 38 25 1f 5d d4 cb fc 96 f5 45 3b
+               13 0d }
+ PLAINTEXT = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
+               f6 22 91 9d }
+         H = { 2d 6d 7f 1c 52 a7 a0 6b f2 bc bd 23 75 47 03 88 }
+         Q = { 3b fd 00 96 25 84 2a 86 65 71 a4 66 e5 62 05 92 }
+         M = { 9e 6c 98 3e e0 6c 1a ab c8 99 b7 8d 57 32 0a f5 }
+encode-LEN = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
+  full-TAG = { 45 03 bf b0 96 82 39 b3 67 e9 70 c3 83 c5 10 6f }
+       TAG = { 45 03 bf b0 96 82 39 b3 }
+CIPHERTEXT = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
+               da 9d b8 09 }
+</pre><a href="#appendix-A.2-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="aes-gcm-sst-test-3-256-bit-key">
+<section id="appendix-A.3">
+        <h3 id="name-aes-gcm-sst-test-3-256-bit-">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-aes-gcm-sst-test-3-256-bit-" class="section-name selfRef">AES-GCM-SST Test #3 (256-bit key)</a>
+        </h3>
+<div class="alignLeft art-text artwork" id="appendix-A.3-1">
+<pre>
+       KEY = { 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
+               10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f }
+     NONCE = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
+         H = { 3b d9 9f 8d 38 f0 2e a1 80 96 a4 b0 b1 d9 3b 1b }
+         Q = { af 7f 54 00 16 aa b8 bc 91 56 d9 d1 83 59 cc e5 }
+         M = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
+</pre><a href="#appendix-A.3-1" class="pilcrow">¶</a>
+</div>
+<div id="case-3a">
+<section id="appendix-A.3.1">
+          <h4 id="name-case-3a">
+<a href="#name-case-3a" class="section-name selfRef">Case #3a</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.3.1-1">
+<pre>
+       AAD = { }
+ PLAINTEXT = { }
+encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full-TAG = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
+       TAG = { b3 35 31 c0 e9 6f 4a 03 }
+CIPHERTEXT = { }
+</pre><a href="#appendix-A.3.1-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-3b">
+<section id="appendix-A.3.2">
+          <h4 id="name-case-3b">
+<a href="#name-case-3b" class="section-name selfRef">Case #3b</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.3.2-1">
+<pre>
+       AAD = { 40 41 42 43 44 }
+ PLAINTEXT = { }
+encode-LEN = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
+  full-TAG = { 63 ac ca 4d 20 9f b3 90 28 ff c3 17 04 01 67 61 }
+       TAG = { 63 ac ca 4d 20 9f b3 90 }
+CIPHERTEXT = { }
+</pre><a href="#appendix-A.3.2-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-3c">
+<section id="appendix-A.3.3">
+          <h4 id="name-case-3c">
+<a href="#name-case-3c" class="section-name selfRef">Case #3c</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.3.3-1">
+<pre>
+       AAD = { }
+ PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
+encode-LEN = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full-TAG = { e1 de bf fd 5f 3a 85 e3 48 bd 6f cc 6e 62 10 90 }
+       TAG = { e1 de bf fd 5f 3a 85 e3 }
+CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
+</pre><a href="#appendix-A.3.3-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-3d">
+<section id="appendix-A.3.4">
+          <h4 id="name-case-3d">
+<a href="#name-case-3d" class="section-name selfRef">Case #3d</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.3.4-1">
+<pre>
+       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
+ PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+               70 71 72 73 74 75 76 77 78 79 7a 7b 7c 7d 7e }
+encode-LEN = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
+  full-TAG = { c3 5e d7 83 9f 21 f7 bb a5 a8 a2 8e 1f 49 ed 04 }
+       TAG = { c3 5e d7 83 9f 21 f7 bb }
+CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
+               33 11 7e 17 58 b5 ed d0 d6 5d 68 32 06 bb ad }
+</pre><a href="#appendix-A.3.4-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="case-3e">
+<section id="appendix-A.3.5">
+          <h4 id="name-case-3e">
+<a href="#name-case-3e" class="section-name selfRef">Case #3e</a>
+          </h4>
+<div class="alignLeft art-text artwork" id="appendix-A.3.5-1">
+<pre>
+       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
+ PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+               70 }
+encode-LEN = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
+  full-TAG = { 49 7c 14 77 67 a5 3d 57 64 ce fd 03 26 fe e7 b5 }
+       TAG = { 49 7c 14 77 67 a5 3d 57 }
+CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
+               33 }
+</pre><a href="#appendix-A.3.5-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="aes-gcm-sst-test-4-256-bit-key">
+<section id="appendix-A.4">
+        <h3 id="name-aes-gcm-sst-test-4-256-bit-">
+<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-aes-gcm-sst-test-4-256-bit-" class="section-name selfRef">AES-GCM-SST Test #4 (256-bit key)</a>
+        </h3>
+<div class="alignLeft art-text artwork" id="appendix-A.4-1">
+<pre>
+       KEY = { 29 23 be 84 e1 6c d6 ae 52 90 49 f1 f1 bb e9 eb
+               b3 a6 db 3c 87 0c 3e 99 24 5e 0d 1c 06 b7 b3 12 }
+     NONCE = { 9a 50 ee 40 78 36 fd 12 49 32 f6 9e }
+       AAD = { 1f 03 5a 7d 09 38 25 1f 5d d4 cb fc 96 f5 45 3b
+               13 0d }
+ PLAINTEXT = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
+               f6 22 91 9d }
+         H = { 13 53 4b f7 8a 91 38 fd f5 41 65 7f c2 39 55 23 }
+         Q = { 32 69 75 a3 3a ff ae ac af a8 fb d1 bd 62 66 95 }
+         M = { 59 48 44 80 b6 cd 59 06 69 27 5e 7d 81 4a d1 74 }
+encode-LEN = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
+  full-TAG = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c d5 4d }
+       TAG = { c4 a1 ca 9a 38 c6 73 af bf 9c }
+CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
+               eb 8f f7 cc }
+</pre><a href="#appendix-A.4-1" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="change-log">
+<section id="appendix-B">
+      <h2 id="name-change-log">
+<a href="#name-change-log" class="section-name selfRef">Change Log</a>
+      </h2>
+<p id="appendix-B-1">This section is to be removed before publishing as an RFC.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Changes from -02 to -03:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-3.1">
+          <p id="appendix-B-3.1.1">Added performance information and considerations.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-3.2">
+          <p id="appendix-B-3.2.1">Editorial changes.<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-B-4">Changes from -01 to -02:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-5.1">
+          <p id="appendix-B-5.1.1">The length encoding chunk is now called L<a href="#appendix-B-5.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-5.2">
+          <p id="appendix-B-5.2.1">Use of the notation POLYVAL(H, X_1, X_2, ...) from RFC 8452<a href="#appendix-B-5.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-5.3">
+          <p id="appendix-B-5.3.1">Removed duplicated text in security considerations.<a href="#appendix-B-5.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<p id="appendix-B-6">Changes from -00 to -01:<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-7.1">
+          <p id="appendix-B-7.1.1">Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.<a href="#appendix-B-7.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-7.2">
+          <p id="appendix-B-7.2.1">Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.<a href="#appendix-B-7.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-7.3">
+          <p id="appendix-B-7.3.1">Corrected reference to step numbers during decryption<a href="#appendix-B-7.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-7.4">
+          <p id="appendix-B-7.4.1">Changed T to full_tag to align with tag and expected_tag<a href="#appendix-B-7.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-7.5">
+          <p id="appendix-B-7.5.1">Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.<a href="#appendix-B-7.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-7.6">
+          <p id="appendix-B-7.6.1">Updated definitions<a href="#appendix-B-7.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-7.7">
+          <p id="appendix-B-7.7.1">Editorial changes.<a href="#appendix-B-7.7.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="acknowledgments">
+<section id="appendix-C">
+      <h2 id="name-acknowledgments">
+<a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
+      </h2>
+<p id="appendix-C-1">The authors thank <span class="contact-name">Richard Barnes</span>, <span class="contact-name">Scott Fluhrer</span>, and <span class="contact-name">Eric Lagergren</span> for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from <span>[<a href="#I-D.irtf-cfrg-aegis-aead" class="cite xref">I-D.irtf-cfrg-aegis-aead</a>]</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-D">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Matthew Campagna</span></div>
+<div dir="auto" class="left"><span class="org">Amazon Web Services</span></div>
+<div dir="auto" class="left"><span class="country-name">Canada</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:campagna@amazon.com" class="email">campagna@amazon.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Alexander Maximov</span></div>
+<div dir="auto" class="left"><span class="org">Ericsson AB</span></div>
+<div dir="auto" class="left"><span class="country-name">Sweden</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:alexander.maximov@ericsson.com" class="email">alexander.maximov@ericsson.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">John Preuß Mattsson</span></div>
+<div dir="auto" class="left"><span class="org">Ericsson AB</span></div>
+<div dir="auto" class="left"><span class="country-name">Sweden</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:john.mattsson@ericsson.com" class="email">john.mattsson@ericsson.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
