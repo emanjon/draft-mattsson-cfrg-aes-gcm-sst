@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 17 September 2024                             J. Preuß Mattsson
+Expires: 3 February 2025                               J. Preuß Mattsson
                                                                 Ericsson
-                                                           16 March 2024
+                                                           2 August 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -18,13 +18,13 @@ Abstract
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
    algorithm.  GCM-SST can be used with any keystream generator, not
-   just a block cipher.  The main differences compared to GCM [GCM] is
-   that GCM-SST uses an additional subkey Q, that fresh subkeys H and Q
-   are derived for each nonce, and that the POLYVAL function from AES-
-   GCM-SIV is used instead of GHASH.  This enables short tags with
-   forgery probabilities close to ideal.  This document also registers
-   several instances of Advanced Encryption Standard (AES) with Galois
-   Counter Mode with Secure Short Tags (AES-GCM-SST).
+   just a block cipher.  The main differences compared to GCM is that
+   GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are
+   derived for each nonce, and that the POLYVAL function from AES-GCM-
+   SIV is used instead of GHASH.  This enables short tags with forgery
+   probabilities close to ideal.  This document also registers several
+   instances of Advanced Encryption Standard (AES) with Galois Counter
+   Mode with Secure Short Tags (AES-GCM-SST).
 
    This document is the product of the Crypto Forum Research Group.
 
@@ -61,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 September 2024.
+   This Internet-Draft will expire on 3 February 2025.
 
 Copyright Notice
 
@@ -568,16 +568,16 @@ Table of Contents
    [I-D.ietf-sframe-enc]
               Omara, E., Uberti, J., Murillo, S. G., Barnes, R., and Y.
               Fablet, "Secure Frame (SFrame)", Work in Progress,
-              Internet-Draft, draft-ietf-sframe-enc-07, 29 February
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              sframe-enc-07>.
+              Internet-Draft, draft-ietf-sframe-enc-09, 4 April 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-sframe-
+              enc-09>.
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
               Encryption Algorithms", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-aegis-aead-10, 20 January 2024,
+              draft-irtf-cfrg-aegis-aead-11, 21 July 2024,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              aegis-aead-10>.
+              aegis-aead-11>.
 
    [Mattsson] Mattsson, J. and M. Westerlund, "Authentication Key
               Recovery on Galois/Counter Mode (GCM)", May 2015,
