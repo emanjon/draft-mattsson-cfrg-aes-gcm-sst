@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 3 February 2025                               J. Preuß Mattsson
+Expires: 24 May 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                           2 August 2024
+                                                        20 November 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -18,15 +18,14 @@ Abstract
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
    algorithm.  GCM-SST can be used with any keystream generator, not
-   just a block cipher.  The main differences compared to GCM is that
-   GCM-SST uses an additional subkey Q, that fresh subkeys H and Q are
-   derived for each nonce, and that the POLYVAL function from AES-GCM-
-   SIV is used instead of GHASH.  This enables short tags with forgery
-   probabilities close to ideal.  This document also registers several
-   instances of Advanced Encryption Standard (AES) with Galois Counter
-   Mode with Secure Short Tags (AES-GCM-SST).
-
-   This document is the product of the Crypto Forum Research Group.
+   just 128-bit block ciphers.  The main differences from GCM are the
+   use of an additional subkey Q, the derivation of fresh subkeys H and
+   Q for each nonce, and the replacement of the GHASH function with the
+   POLYVAL function from AES-GCM-SIV.  This enables short tags with
+   forgery probabilities close to ideal.  There is strong industry
+   interest in fast encryption with secure short tags.  This document
+   also registers several instances of Advanced Encryption Standard
+   (AES) and Rijndael in GCM-SST mode.
 
 About This Document
 
@@ -61,7 +60,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 February 2025.
+   This Internet-Draft will expire on 24 May 2025.
 
 Copyright Notice
 
@@ -82,13 +81,14 @@ Table of Contents
      3.1.  Authenticated Encryption Function
      3.2.  Authenticated Decryption Function
      3.3.  Encoding (ct, tag) Tuples
-   4.  AES with Galois Counter Mode with Secure Short Tags
+   4.  AES in GCM-SST Mode
      4.1.  AES-GCM-SST AEAD Instances
-   5.  Security Considerations
-   6.  IANA Considerations
-   7.  References
-     7.1.  Normative References
-     7.2.  Informative References
+   5.  Rijndael-256-256 in GCM-SST Mode
+   6.  Security Considerations
+   7.  IANA Considerations
+   8.  References
+     8.1.  Normative References
+     8.2.  Informative References
    Appendix A.  AES-GCM-SST Test Vectors
      A.1.  AES-GCM-SST Test #1 (128-bit key)
        Case #1a
@@ -142,43 +142,49 @@ Table of Contents
    forgery probabilities close to ideal, CCM has lower performance than
    GCM.
 
-   32-bit tags are standard in most radio link layers including 5G,
-   64-bit tags are very common in transport and application layers of
-   the Internet of Things, and 32-, 64-, and 80-bit tags are common in
-   media-encryption applications.  Audio packets are small, numerous,
-   and ephemeral, so on the one hand, they are very sensitive in
-   percentage terms to crypto overhead, and on the other hand, forgery
-   of individual packets is not a big concern.  Due to its weaknesses,
-   GCM is typically not used with short tags.  The result is either
-   decreased performance from larger than needed tags [MoQ], or
+   32-bit tags are standard in most radio link layers including 5G
+   [Sec5G], 64-bit tags are very common in transport and application
+   layers of the Internet of Things, and 32-, 64-, and 80-bit tags are
+   common in media-encryption applications.  Audio packets are small,
+   numerous, and ephemeral, so on the one hand, they are very sensitive
+   in percentage terms to crypto overhead, and on the other hand,
+   forgery of individual packets is not a big concern.  Due to its
+   weaknesses, GCM is typically not used with short tags.  The result is
+   either decreased performance from larger than needed tags [MoQ], or
    decreased performance from using much slower constructions such as
-   AES-CTR combined with HMAC [RFC3711][I-D.ietf-sframe-enc].  Short
-   tags are also useful to protect packets transporting a signed payload
-   such as a firmware update.
+   AES-CTR combined with HMAC [RFC3711][RFC9605].  Short tags are also
+   useful to protect packets transporting a signed payload such as a
+   firmware update.  For a comprehensive discussion on the use cases of
+   short tags, see [Comments80038B].
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
    algorithm following the recommendations from Nyberg et al.  [Nyberg].
    GCM-SST is defined with a general interface so that it can be used
-   with any keystream generator, not just a 128-bit block cipher.  The
-   main differences compared to GCM [GCM] is that GCM-SST uses an
-   additional subkey Q, that fresh subkeys H and Q are derived for each
-   nonce, and that the POLYVAL function from AES-GCM-SIV [RFC8452] is
-   used instead of GHASH, see Section 3.  This enables short tags with
+   with any keystream generator, not just 128-bit block ciphers.  The
+   main differences from GCM [GCM] are the use of an additional subkey
+   Q, the derivation of fresh subkeys H and Q for each nonce, and the
+   replacement of the GHASH function with the POLYVAL function from AES-
+   GCM-SIV [RFC8452], see Section 3.  This enables short tags with
    forgery probability close to ideal and significantly decreases the
-   probability of multiple successful forgeries, see Section 5.  The
-   performance of GCM-SST is very similar to GCM [GCM].  The two
-   additional AES invocations are compensated by the use of POLYVAL, the
-   ”little-endian version” of GHASH, which is faster on little-endian
+   probability of multiple successful forgeries, see Section 6.  The
+   performance of GCM-SST is similar to GCM [GCM].  The two additional
+   AES invocations are compensated by the use of POLYVAL, the ”little-
+   endian version” of GHASH, which is faster on little-endian
    architectures.  GCM-SST maintains the additive encryption
    characteristic of GCM, which enables efficient implementations on
    modern processor architectures, see [Gueron] and Section 2.4 of
-   [GCM-Update].  This document also registers several instances of
-   Advanced Encryption Standard (AES) with Galois Counter Mode with
-   Secure Short Tags (AES-GCM-SST) where AES [AES] in counter mode is
-   used as the keystream generator.  See Section 4.  GCM-SST has been
-   standardized for use with AES-256 and SNOW 5G [SNOW] in 3GPP 5G
-   Advance.
+   [GCM-Update].  This document registers several instances of Advanced
+   Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
+   blocks (Rijndael-256-256) [Rijndael].  See Section 4 and Section 5.
+   NIST is anticipated to standardize Rijndael-256-256 [15], although
+   there may be revisions to the key schedule.
+
+   GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
+   following a request from 3GPP, with several years of discussion
+   contributing to its design [SAGE23][SAGE24]. 3GPP has decided to
+   standardize GCM-SST for use with AES-256 [AES], SNOW 5G [SNOW], and
+   ZUC-256 [ZUC] in 3GPP TS 35.240–25.248 [WID256].
 
 2.  Conventions and Definitions
 
@@ -388,7 +394,7 @@ Table of Contents
 
    C = ct || tag
 
-4.  AES with Galois Counter Mode with Secure Short Tags
+4.  AES in GCM-SST Mode
 
    This section defines Advanced Encryption Standard (AES) with Galois
    Counter Mode with Secure Short Tags (AES-GCM-SST).  When GCM-SSM is
@@ -403,10 +409,9 @@ Table of Contents
    We define six AEAD instances, in the format of [RFC5116], that use
    AES-GCM-SST.  They differ only in key length (K_LEN) and tag length.
    The tag lengths 32, 64, and 80 have been chosen to align with secure
-   media frames [I-D.ietf-sframe-enc].  The key length and tag length
-   are related to different security properties, and an application
-   encrypting audio packets with small tags might require 256-bit
-   confidentiality.
+   media frames [RFC9605].  The key length and tag length are related to
+   different security properties, and an application encrypting audio
+   packets with small tags might require 256-bit confidentiality.
 
    +============+=========================+===============+============+
    | Numeric ID | Name                    |         K_LEN | tag_length |
@@ -439,7 +444,9 @@ Table of Contents
    *  C_MAX (maximum size of the ciphertext and tag) is P_MAX +
       tag_length (in bytes)
 
-5.  Security Considerations
+5.  Rijndael-256-256 in GCM-SST Mode
+
+6.  Security Considerations
 
    GCM-SST uses an additional subkey Q and that new subkeys H, Q are
    derived for each nonce.  The use of an additional subkey Q enables
@@ -502,20 +509,20 @@ Table of Contents
    values.  In AES-GCM-SST, H and Q are generated with the AES-ENC
    permutation on different input, so H and Q cannot both be zero.
 
-6.  IANA Considerations
+7.  IANA Considerations
 
    IANA is requested to assign the entries in the first two columns of
    Table 1 to the "AEAD Algorithms" registry under the "Authenticated
    Encryption with Associated Data (AEAD) Parameters" heading with this
    document as reference.
 
-7.  References
+8.  References
 
-7.1.  Normative References
+8.1.  Normative References
 
-   [AES]      "ADVANCED ENCRYPTION STANDARD (AES)", NIST Federal
-              Information Processing Standards Publication 197, November
-              2001, <https://nvlpubs.nist.gov/nistpubs/FIPS/
+   [AES]      "Advanced Encryption Standard (AES)", NIST Federal
+              Information Processing Standards Publication 197, May
+              2023, <https://nvlpubs.nist.gov/nistpubs/FIPS/
               NIST.FIPS.197-upd1.pdf>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -536,11 +543,23 @@ Table of Contents
               RFC 8452, DOI 10.17487/RFC8452, April 2019,
               <https://www.rfc-editor.org/rfc/rfc8452>.
 
-7.2.  Informative References
+   [Rijndael] Joan Daemen and Vincent Rijmen, "AES Proposal: Rijndael",
+              September 2003,
+              <https://csrc.nist.gov/csrc/media/projects/cryptographic-
+              standards-and-guidelines/documents/aes-development/
+              rijndael-ammended.pdf>.
+
+8.2.  Informative References
 
    [Bellare]  Bellare, M. and B. Tackmann, "The Multi-User Security of
               Authenticated Encryption: AES-GCM in TLS 1.3", November
               2017, <https://eprint.iacr.org/2016/564.pdf>.
+
+   [Comments80038B]
+              NIST, "Public Comments on SP 800-38B", September 2024,
+              <https://csrc.nist.gov/csrc/media/Projects/crypto-
+              publication-review-project/documents/initial-comments/
+              sp800-38b-initial-public-comments-2024.pdf>.
 
    [Ferguson] Ferguson, N., "Authentication weaknesses in GCM", May
               2005, <https://csrc.nist.gov/CSRC/media/Projects/Block-
@@ -565,19 +584,12 @@ Table of Contents
               constructions-based-on-the-aes-round/images-media/sess-5-
               gueron-bcm-workshop-2023.pdf>.
 
-   [I-D.ietf-sframe-enc]
-              Omara, E., Uberti, J., Murillo, S. G., Barnes, R., and Y.
-              Fablet, "Secure Frame (SFrame)", Work in Progress,
-              Internet-Draft, draft-ietf-sframe-enc-09, 4 April 2024,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-sframe-
-              enc-09>.
-
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
               Encryption Algorithms", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-aegis-aead-11, 21 July 2024,
+              draft-irtf-cfrg-aegis-aead-13, 14 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              aegis-aead-11>.
+              aegis-aead-13>.
 
    [Mattsson] Mattsson, J. and M. Westerlund, "Authentication Key
               Recovery on Galois/Counter Mode (GCM)", May 2015,
@@ -601,10 +613,31 @@ Table of Contents
               RFC 3711, DOI 10.17487/RFC3711, March 2004,
               <https://www.rfc-editor.org/rfc/rfc3711>.
 
+   [RFC9605]  Omara, E., Uberti, J., Murillo, S. G., Barnes, R., Ed.,
+              and Y. Fablet, "Secure Frame (SFrame): Lightweight
+              Authenticated Encryption for Real-Time Media", RFC 9605,
+              DOI 10.17487/RFC9605, August 2024,
+              <https://www.rfc-editor.org/rfc/rfc9605>.
+
    [Rogaway]  Rogaway, P., "Evaluation of Some Blockcipher Modes of
               Operation", February 2011,
               <https://www.cryptrec.go.jp/exreport/cryptrec-ex-
               2012-2010r1.pdf>.
+
+   [SAGE23]   ETSI SAGE, "Specification of the 256-bit air interface
+              algorithms", February 2023,
+              <https://www.3gpp.org/ftp/TSG_SA/WG3_Security/
+              TSGS3_110_Athens/docs/S3-230642.zip>.
+
+   [SAGE24]   ETSI SAGE, "Version 2.0 of 256-bit Confidentiality and
+              Integrity Algorithms for the Air Interface", August 2024,
+              <https://www.3gpp.org/ftp/tsg_sa/WG3_Security/
+              TSGS3_117_Maastricht/docs/S3-243394.zip>.
+
+   [Sec5G]    3GPP TS 33 501, "Security architecture and procedures for
+              5G System", September 2024,
+              <https://portal.3gpp.org/desktopmodules/Specifications/
+              SpecificationDetails.aspx?specificationId=3169>.
 
    [SNOW]     Ekdahl, P., Johansson, T., Maximov, A., and J. Yang,
               "SNOW-Vi: an extreme performance variant of SNOW-V for
@@ -624,6 +657,15 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/Presentations/2023/
               galois-counter-mode-with-secure-short-tags/images-media/
               sess-5-mattsson-bcm-workshop-2023.pdf>.
+
+   [WID256]   3GPP, "New WID on Addition of 256-bit security
+              Algorithms", March 2024,
+              <https://www.3gpp.org/ftp/tsg_sa/TSG_SA/
+              TSGS_103_Maastricht_2024-03/Docs/SP-240476.zip>.
+
+   [ZUC]      ZUC Design Team, "An Addendum to the ZUC-256 Stream
+              Cipher", September 2024,
+              <https://eprint.iacr.org/2021/1439>.
 
 Appendix A.  AES-GCM-SST Test Vectors
 
