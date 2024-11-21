@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 24 May 2025                                   J. Preuß Mattsson
+Expires: 25 May 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                        20 November 2024
+                                                        21 November 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -60,7 +60,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 May 2025.
+   This Internet-Draft will expire on 25 May 2025.
 
 Copyright Notice
 
@@ -279,7 +279,7 @@ Table of Contents
    *  For a given key, the nonce MUST NOT be reused under any
       circumstances.
 
-   *  Supported tag_length associated with the key.
+   *  Each key must only be used with a single tag_length.
 
    *  Definitions of supported input-output lengths.
 
@@ -340,7 +340,7 @@ Table of Contents
    *  The comparison of the input tag with the expected_tag MUST be done
       in constant time.
 
-   *  Supported tag_length associated with the key.
+   *  Each key must only be used with a single tag_length.
 
    *  Definitions of supported input-output lengths.
 
@@ -823,6 +823,10 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
+   Changes from -03 to -04:
+
+   *  Editorial changes.
+
    Changes from -02 to -03:
 
    *  Added performance information and considerations.
@@ -858,9 +862,10 @@ Change Log
 
 Acknowledgments
 
-   The authors thank Richard Barnes, Scott Fluhrer, and Eric Lagergren
-   for their valuable comments and feedback.  Some of the formatting and
-   text were inspired by and borrowed from [I-D.irtf-cfrg-aegis-aead].
+   The authors thank Richard Barnes, Thomas Bellebaum, Scott Fluhrer,
+   Eric Lagergren, Yehuda Lindell, and Eric Thormarker for their
+   valuable comments and feedback.  Some of the formatting and text were
+   inspired by and borrowed from [I-D.irtf-cfrg-aegis-aead].
 
 Authors' Addresses
 
@@ -871,12 +876,12 @@ Authors' Addresses
 
 
    Alexander Maximov
-   Ericsson AB
+   Ericsson
    Sweden
    Email: alexander.maximov@ericsson.com
 
 
    John Preuß Mattsson
-   Ericsson AB
+   Ericsson
    Sweden
    Email: john.mattsson@ericsson.com

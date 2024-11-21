@@ -1048,7 +1048,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 24 May 2025</td>
+<td class="center">Expires 25 May 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1061,12 +1061,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-11-20" class="published">20 November 2024</time>
+<time datetime="2024-11-21" class="published">21 November 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-05-24">24 May 2025</time></dd>
+<dd class="expires"><time datetime="2025-05-25">25 May 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1124,7 +1124,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 May 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1366,7 +1366,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.1-4.2.1">For a given key, the nonce <span class="bcp14">MUST NOT</span> be reused under any circumstances.<a href="#section-3.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.1-4.3">
-            <p id="section-3.1-4.3.1">Supported tag_length associated with the key.<a href="#section-3.1-4.3.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-4.3.1">Each key must only be used with a single tag_length.<a href="#section-3.1-4.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.1-4.4">
             <p id="section-3.1-4.4.1">Definitions of supported input-output lengths.<a href="#section-3.1-4.4.1" class="pilcrow">¶</a></p>
@@ -1447,7 +1447,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-4.2.1">The comparison of the input tag with the expected_tag <span class="bcp14">MUST</span> be done in constant time.<a href="#section-3.2-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-4.3">
-            <p id="section-3.2-4.3.1">Supported tag_length associated with the key.<a href="#section-3.2-4.3.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-4.3.1">Each key must only be used with a single tag_length.<a href="#section-3.2-4.3.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-4.4">
             <p id="section-3.2-4.4.1">Definitions of supported input-output lengths.<a href="#section-3.2-4.4.1" class="pilcrow">¶</a></p>
@@ -2054,49 +2054,55 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 <a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
 <p id="appendix-B-1">This section is to be removed before publishing as an RFC.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">Changes from -02 to -03:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Changes from -03 to -04:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-3.1">
-          <p id="appendix-B-3.1.1">Added performance information and considerations.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-3.2">
-          <p id="appendix-B-3.2.1">Editorial changes.<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.1.1">Editorial changes.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-4">Changes from -01 to -02:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">Changes from -02 to -03:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-5.1">
-          <p id="appendix-B-5.1.1">The length encoding chunk is now called L<a href="#appendix-B-5.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-5.1.1">Added performance information and considerations.<a href="#appendix-B-5.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-5.2">
-          <p id="appendix-B-5.2.1">Use of the notation POLYVAL(H, X_1, X_2, ...) from RFC 8452<a href="#appendix-B-5.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-5.3">
-          <p id="appendix-B-5.3.1">Removed duplicated text in security considerations.<a href="#appendix-B-5.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-5.2.1">Editorial changes.<a href="#appendix-B-5.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-6">Changes from -00 to -01:<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+<p id="appendix-B-6">Changes from -01 to -02:<a href="#appendix-B-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-7.1">
-          <p id="appendix-B-7.1.1">Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.<a href="#appendix-B-7.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-7.1.1">The length encoding chunk is now called L<a href="#appendix-B-7.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-7.2">
-          <p id="appendix-B-7.2.1">Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.<a href="#appendix-B-7.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-7.2.1">Use of the notation POLYVAL(H, X_1, X_2, ...) from RFC 8452<a href="#appendix-B-7.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-7.3">
-          <p id="appendix-B-7.3.1">Corrected reference to step numbers during decryption<a href="#appendix-B-7.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-7.3.1">Removed duplicated text in security considerations.<a href="#appendix-B-7.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-7.4">
-          <p id="appendix-B-7.4.1">Changed T to full_tag to align with tag and expected_tag<a href="#appendix-B-7.4.1" class="pilcrow">¶</a></p>
+      </ul>
+<p id="appendix-B-8">Changes from -00 to -01:<a href="#appendix-B-8" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-9.1">
+          <p id="appendix-B-9.1.1">Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.<a href="#appendix-B-9.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-7.5">
-          <p id="appendix-B-7.5.1">Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.<a href="#appendix-B-7.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-9.2">
+          <p id="appendix-B-9.2.1">Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.<a href="#appendix-B-9.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-7.6">
-          <p id="appendix-B-7.6.1">Updated definitions<a href="#appendix-B-7.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-9.3">
+          <p id="appendix-B-9.3.1">Corrected reference to step numbers during decryption<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-7.7">
-          <p id="appendix-B-7.7.1">Editorial changes.<a href="#appendix-B-7.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-9.4">
+          <p id="appendix-B-9.4.1">Changed T to full_tag to align with tag and expected_tag<a href="#appendix-B-9.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.5">
+          <p id="appendix-B-9.5.1">Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.<a href="#appendix-B-9.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.6">
+          <p id="appendix-B-9.6.1">Updated definitions<a href="#appendix-B-9.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.7">
+          <p id="appendix-B-9.7.1">Editorial changes.<a href="#appendix-B-9.7.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -2106,7 +2112,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-C-1">The authors thank <span class="contact-name">Richard Barnes</span>, <span class="contact-name">Scott Fluhrer</span>, and <span class="contact-name">Eric Lagergren</span> for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from <span>[<a href="#I-D.irtf-cfrg-aegis-aead" class="cite xref">I-D.irtf-cfrg-aegis-aead</a>]</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">The authors thank <span class="contact-name">Richard Barnes</span>, <span class="contact-name">Thomas Bellebaum</span>, <span class="contact-name">Scott Fluhrer</span>, <span class="contact-name">Eric Lagergren</span>, <span class="contact-name">Yehuda Lindell</span>, and <span class="contact-name">Eric Thormarker</span> for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from <span>[<a href="#I-D.irtf-cfrg-aegis-aead" class="cite xref">I-D.irtf-cfrg-aegis-aead</a>]</span>.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
@@ -2125,7 +2131,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 </address>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Alexander Maximov</span></div>
-<div dir="auto" class="left"><span class="org">Ericsson AB</span></div>
+<div dir="auto" class="left"><span class="org">Ericsson</span></div>
 <div dir="auto" class="left"><span class="country-name">Sweden</span></div>
 <div class="email">
 <span>Email:</span>
@@ -2134,7 +2140,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 </address>
 <address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">John Preuß Mattsson</span></div>
-<div dir="auto" class="left"><span class="org">Ericsson AB</span></div>
+<div dir="auto" class="left"><span class="org">Ericsson</span></div>
 <div dir="auto" class="left"><span class="country-name">Sweden</span></div>
 <div class="email">
 <span>Email:</span>
