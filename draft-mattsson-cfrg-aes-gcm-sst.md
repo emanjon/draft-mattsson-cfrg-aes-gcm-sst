@@ -33,14 +33,14 @@ author:
 - initials: A.
   surname: Maximov
   name: Alexander Maximov
-  org: Ericsson AB
+  org: Ericsson
   abbrev: Ericsson
   country: Sweden
   email: alexander.maximov@ericsson.com
 - initials: J.
   surname: Preuß Mattsson
   name: John Preuß Mattsson
-  org: Ericsson AB
+  org: Ericsson
   abbrev: Ericsson
   country: Sweden
   email: john.mattsson@ericsson.com
