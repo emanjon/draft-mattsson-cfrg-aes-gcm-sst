@@ -314,7 +314,7 @@ Prerequisites and security:
 
 * For a given key, the nonce MUST NOT be reused under any circumstances.
 
-* Supported tag_length associated with the key.
+* Each key must only be used with a single tag_length.
 
 * Definitions of supported input-output lengths.
 
@@ -355,7 +355,7 @@ Prerequisites and security:
 
 * The comparison of the input tag with the expected_tag MUST be done in constant time.
 
-* Supported tag_length associated with the key.
+* Each key must only be used with a single tag_length.
 
 * Definitions of supported input-output lengths.
 
