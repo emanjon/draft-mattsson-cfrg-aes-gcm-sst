@@ -395,9 +395,9 @@ C = ct \|\| tag
 
 This section defines Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode
 
-Z[i] = AES-ENC(K, N \|\| BE32(i))
+Z[i] = ENC(K, N \|\| BE32(i))
 
-where AES-ENC is the AES encrypt function {{AES}}.
+where ENC is the AES Cipher function {{AES}}.
 
 ## AES-GCM-SST AEAD Instances {#instances}
 
@@ -423,6 +423,13 @@ Common parameters for the six AEAD instances:
 * C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
 
 # Rijndael-256-256 in GCM-SST Mode {#Rijndael-GCM-SST}
+
+This section defines Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in Galois Counter Mode with Se-cure Short Tags (Rijndael-256-256-GCM-SST). When GCM-SST is instantiated with Rijndael-256-256, the keystream generator is Rijndael-256-256 in counter mode
+
+Z[2i]   = ENC(K, N \|\| BE32(i))[0]
+Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
+
+where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
 
 # Security Considerations {#Security}
 
