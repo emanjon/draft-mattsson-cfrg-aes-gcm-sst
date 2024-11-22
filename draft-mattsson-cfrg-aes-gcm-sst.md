@@ -677,6 +677,9 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -03 to -04:
 
+* Updated info on ETSI and 3GPP standardization of GCM-SST
+* Update info on use cases for short tags
+* Added Rijndael-256-256
 * Editorial changes.
 
 Changes from -02 to -03:
