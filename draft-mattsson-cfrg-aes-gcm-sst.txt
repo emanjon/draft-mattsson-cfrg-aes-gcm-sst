@@ -173,7 +173,7 @@ Table of Contents
    main differences from GCM [GCM] are the use of an additional subkey
    Q, the derivation of fresh subkeys H and Q for each nonce, and the
    replacement of the GHASH function with the POLYVAL function from AES-
-   GCM-SIV [RFC8452], see Section 3.  This enables short tags with
+   GCM-SIV [RFC8452], see Section 3.  This enables truncated tags with
    forgery probability close to ideal and significantly decreases the
    probability of multiple successful forgeries, see Section 6.  The
    performance of GCM-SST is similar to GCM [GCM].  The two additional
@@ -182,17 +182,20 @@ Table of Contents
    architectures.  GCM-SST maintains the additive encryption
    characteristic of GCM, which enables efficient implementations on
    modern processor architectures, see [Gueron] and Section 2.4 of
-   [GCM-Update].  This document registers several instances of Advanced
-   Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
-   blocks (Rijndael-256-256) [Rijndael].  See Section 4 and Section 5.
-   NIST is anticipated to standardize Rijndael-256-256 [15], although
-   there may be revisions to the key schedule.
+   [GCM-Update].  This document registers several instances of GCM-SST
+   using Advanced Encryption Standard (AES) [AES] and Rijndael with
+   256-bit keys and blocks (Rijndael-256-256) [Rijndael] in counter mode
+   as keystream generators, see Section 4 and Section 5. 3GPP has
+   standardized the use of Rijndael-256-256 for authentication and key
+   generation in 3GPP TS 35.234–35.237 [WID23].  NIST is anticipated to
+   standardize Rijndael-256-256 [15], although there may be revisions to
+   the key schedule.
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion
    contributing to its design [SAGE23][SAGE24]. 3GPP has decided to
    standardize GCM-SST for use with AES-256 [AES], SNOW 5G [SNOW], and
-   ZUC-256 [ZUC] in 3GPP TS 35.240–25.248 [WID256].
+   ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].
 
 2.  Conventions and Definitions
 
@@ -676,7 +679,11 @@ Table of Contents
               galois-counter-mode-with-secure-short-tags/images-media/
               sess-5-mattsson-bcm-workshop-2023.pdf>.
 
-   [WID256]   3GPP, "New WID on Addition of 256-bit security
+   [WID23]    3GPP, "New WID on Milenage-256 algorithm", November 2023,
+              <https://www.3gpp.org/ftp/tsg_sa/WG3_Security/
+              TSGS3_113_Chicago/Docs/S3-235072.zip>.
+
+   [WID24]    3GPP, "New WID on Addition of 256-bit security
               Algorithms", March 2024,
               <https://www.3gpp.org/ftp/tsg_sa/TSG_SA/
               TSGS_103_Maastricht_2024-03/Docs/SP-240476.zip>.
