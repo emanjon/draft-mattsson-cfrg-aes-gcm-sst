@@ -419,15 +419,17 @@ Table of Contents
 
    This section defines Advanced Encryption Standard (AES) and Rijndael
    with 256-bit keys and blocks (Rijndael-256-256) [Rijndael] with
-   Galois Counter Mode with Secure Short Tags.  When GCM-SSM is
-   instantiated with AES (AES-GCM-SST), the keystream generator is AES
-   in counter mode
+   Galois Counter Mode with Secure Short Tags.
+
+   When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream
+   generator is AES in counter mode
 
    Z[i] = ENC(K, N || BE32(i))
 
-   where ENC is the AES Cipher function [AES].  When GCM-SST is
-   instantiated with Rijndael-256-256 (Rijndael-GCM-SST), the keystream
-   generator is Rijndael-256-256 in counter mode
+   where ENC is the AES Cipher function [AES].
+
+   When GCM-SST is instantiated with Rijndael-256-256 (Rijndael-GCM-
+   SST), the keystream generator is Rijndael-256-256 in counter mode
 
    Z[2i] = ENC(K, N || BE32(i))[0]
 

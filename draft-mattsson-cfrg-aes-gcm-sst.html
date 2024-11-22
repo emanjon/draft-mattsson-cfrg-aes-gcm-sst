@@ -1538,12 +1538,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-aes-and-rijndael-gcm-sst-in">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-aes-and-rijndael-gcm-sst-in" class="section-name selfRef">AES and Rijndael-GCM-SST in GCM-SST Mode</a>
       </h2>
-<p id="section-4-1">This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256-256) <span>[<a href="#Rijndael" class="cite xref">Rijndael</a>]</span> with Galois Counter Mode with Secure Short Tags. When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Z[i] = ENC(K, N || BE32(i))<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">where ENC is the AES Cipher function <span>[<a href="#AES" class="cite xref">AES</a>]</span>. When GCM-SST is instantiated with Rijndael-256-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256-256 in counter mode<a href="#section-4-3" class="pilcrow">¶</a></p>
-<p id="section-4-4">Z[2i]   = ENC(K, N || BE32(i))[0]<a href="#section-4-4" class="pilcrow">¶</a></p>
-<p id="section-4-5">Z[2i+1] = ENC(K, N || BE32(i))[1]<a href="#section-4-5" class="pilcrow">¶</a></p>
-<p id="section-4-6">where ENC is the Rijndael-256-256 Cipher function <span>[<a href="#Rijndael" class="cite xref">Rijndael</a>]</span>.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-1">This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256-256) <span>[<a href="#Rijndael" class="cite xref">Rijndael</a>]</span> with Galois Counter Mode with Secure Short Tags.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">Z[i] = ENC(K, N || BE32(i))<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">where ENC is the AES Cipher function <span>[<a href="#AES" class="cite xref">AES</a>]</span>.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">When GCM-SST is instantiated with Rijndael-256-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256-256 in counter mode<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Z[2i]   = ENC(K, N || BE32(i))[0]<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-7">Z[2i+1] = ENC(K, N || BE32(i))[1]<a href="#section-4-7" class="pilcrow">¶</a></p>
+<p id="section-4-8">where ENC is the Rijndael-256-256 Cipher function <span>[<a href="#Rijndael" class="cite xref">Rijndael</a>]</span>.<a href="#section-4-8" class="pilcrow">¶</a></p>
 <div id="instances">
 <section id="section-4.1">
         <h3 id="name-aes-gcm-sst-and-rijndael-gc">
