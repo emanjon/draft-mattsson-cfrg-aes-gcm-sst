@@ -86,7 +86,7 @@ Table of Contents
    4.  AES and Rijndael-256-256 in GCM-SST Mode
      4.1.  AES-GCM-SST
      4.2.  Rijndael-GCM-SST
-     4.3.  AES-GCM-SST and Rijndael-GCM-SST AEAD Instances
+     4.3.  AEAD Instances
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -443,7 +443,7 @@ Table of Contents
 
    where ENC is the Rijndael-256-256 Cipher function [Rijndael].
 
-4.3.  AES-GCM-SST and Rijndael-GCM-SST AEAD Instances
+4.3.  AEAD Instances
 
    We define nine AEAD instances, in the format of [RFC5116], that use
    AES-GCM-SST and Rijndael-GCM-SST.  The tag lengths 32, 64, and 80
