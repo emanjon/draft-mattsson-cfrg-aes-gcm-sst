@@ -142,26 +142,53 @@ Table of Contents
    CBC-MAC (CCM) [RFC5116] with short tags has forgery probabilities
    close to ideal, its performance is lower than that of GCM.
 
-   32-bit tags are standard in most radio link layers including 5G
-   [Sec5G], 64-bit tags are very common in transport and application
-   layers of the Internet of Things, and 32-, 64-, and 80-bit tags are
-   common in media-encryption applications.  Audio packets are small,
-   numerous, and ephemeral, so on the one hand, they are very sensitive
-   in percentage terms to crypto overhead, and on the other hand,
-   forgery of individual packets is not a big concern.  Due to its
-   weaknesses, GCM is typically not used with short tags.  The result is
-   either decreased performance from larger than needed tags [MoQ], or
-   decreased performance from using much slower constructions such as
-   AES-CTR combined with HMAC [RFC3711][RFC9605].  Short tags are also
-   useful to protect packets transporting payloads protected on higher
-   layers, protocols where the security is given by the sum of the tag
-   lengths, and in constrained radio networks, where the low bandwidth
-   preclude many repeated trial.  For all applications of short tags it
-   is essential that the MAC behaves like an ideal MAC, i.e., the
-   forgery probability is ≈ 2^(-tag_length) even after many generated
-   MACs, many forgery attempts, and after a successful forgery.  For a
-   comprehensive discussion on the use cases of short tags, see
-   [Comments38B].
+   Short tags are widely used, 32-bit tags are standard in most radio
+   link layers including 5G [Sec5G], 64-bit tags are very common in
+   transport and application layers of the Internet of Things, and 32-,
+   64-, and 80-bit tags are common in media-encryption applications.
+   Audio packets are small, numerous, and ephemeral.  As such, they are
+   highly sensitive to cryptographic overhead, but forgery of individual
+   packets is not a big concern as it typically is barely noticeable as
+   each packet often only encodea 20 ms of audio.
+
+   Due to its weaknesses, GCM is typically not used with short tags.
+   The result is either decreased performance from larger than needed
+   tags [MoQ], or decreased performance from using much slower
+   constructions such as AES-CTR combined with HMAC [RFC3711][RFC9605].
+   Short tags are also useful to protect packets transporting payloads
+   protected on higher layers, protocols where the security is given by
+   the sum of the tag lengths, and in constrained radio networks, where
+   the low bandwidth preclude many repeated trial.  For all applications
+   of short tags it is essential that the MAC behaves like an ideal MAC,
+   i.e., the forgery probability is ≈ 2^(-tag_length) even after many
+   generated MACs, many forgery attempts, and after a successful
+   forgery.  For a comprehensive discussion on the use cases of short
+   tags, see [Comments38B].
+
+   For example, audio packets are small, numerous, and ephemeral.  As
+   such, they are highly sensitive to cryptographic overhead in
+   percentage terms, but forgery of individual packets is often not a
+   significant concern.
+
+   Due to its vulnerabilities, GCM is generally avoided with short tags.
+   This leads to trade-offs: either decreased performance from using
+   unnecessarily large tags [MoQ], or the use of slower constructions,
+   such as AES-CTR combined with HMAC [RFC3711][RFC9605], which also
+   impacts performance.
+
+   Short tags, however, remain valuable for several use cases:
+
+Protecting packets whose payloads are secured at higher layers.
+Protocols where overall security is derived from the cumulative strength of multiple tags.
+Constrained radio networks, where low bandwidth minimizes the feasibility of repeated trials.
+
+   For these applications, it is critical that the MAC behaves like an
+   ideal MAC, maintaining a forgery probability of approximately
+   2−tag_length2−tag_length even after numerous MACs are generated, many
+   forgery attempts are made, or a successful forgery occurs.
+
+   For a detailed discussion on the use cases and requirements of short
+   tags, see [Comments38B].
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
