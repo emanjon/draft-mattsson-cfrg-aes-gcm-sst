@@ -434,7 +434,7 @@ Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
 
 where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
 
-## AES-GCM-SST and Rijndael-GCM-SST AEAD Instances {#instances}
+## AEAD Instances {#instances}
 
 We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST and Rijndael-GCM-SST. The tag lengths 32, 64, and 80 have been chosen to align with secure media frames {{RFC9605}}. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
 
