@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 25 May 2025                                   J. Preuß Mattsson
+Expires: 26 May 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                        21 November 2024
+                                                        22 November 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -24,8 +24,9 @@ Abstract
    POLYVAL function from AES-GCM-SIV.  This enables short tags with
    forgery probabilities close to ideal.  There is strong industry
    interest in fast encryption with secure short tags.  This document
-   also registers several instances of Advanced Encryption Standard
-   (AES) and Rijndael in GCM-SST mode.
+   also registers several instances of GCM-SST using Advanced Encryption
+   Standard (AES) and Rijndael-256-256 in counter mode as keystream
+   generators.
 
 About This Document
 
@@ -60,7 +61,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 May 2025.
+   This Internet-Draft will expire on 26 May 2025.
 
 Copyright Notice
 
