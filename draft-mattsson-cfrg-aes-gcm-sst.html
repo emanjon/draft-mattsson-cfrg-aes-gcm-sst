@@ -1446,14 +1446,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-authenticated-decryption-fu" class="section-name selfRef">Authenticated Decryption Function</a>
         </h3>
 <p id="section-3.2-1">Decrypt(K, N, A, ct, tag)<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">The decryption function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if tag verification failed.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">The decryption function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if the tag verification failed.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <p id="section-3.2-3">Prerequisites and security:<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2-4.1">
-            <p id="section-3.2-4.1.1">The calculation of the plaintext P (step 10) <span class="bcp14">MAY</span> be done in parallel with the tag verification (step 3-9). If tag verification fails, the plaintext P and the expected_tag <span class="bcp14">MUST NOT</span> be given as output.<a href="#section-3.2-4.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-4.1.1">The calculation of the plaintext P (step 10) <span class="bcp14">MAY</span> be done in parallel with the tag verification (step 3-9). If the tag verification fails, the plaintext P and the expected_tag <span class="bcp14">MUST NOT</span> be given as output.<a href="#section-3.2-4.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-4.2">
-            <p id="section-3.2-4.2.1">For a given key, the nonce <span class="bcp14">MUST NOT</span> be reused under any circumstances.<a href="#section-3.2-4.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-4.2.1">For a given key, a nonce for which a plaintext has been returned <span class="bcp14">MUST NOT</span> be reused under any circumstances.<a href="#section-3.2-4.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-4.3">
             <p id="section-3.2-4.3.1">Each key <span class="bcp14">MUST</span> only be used with a single tag_length.<a href="#section-3.2-4.3.1" class="pilcrow">¶</a></p>
@@ -1522,6 +1522,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-10.11.1">Return P<a href="#section-3.2-10.11.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
+<p id="section-3.2-11">The comparison of tag and expected_tag in step 9 <span class="bcp14">MUST</span> be performed in constant time to prevent any leaks regarding the position of the first incorrect byte in the tag.<a href="#section-3.2-11" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="encoding-ct-tag-tuples">
