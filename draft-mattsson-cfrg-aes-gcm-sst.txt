@@ -160,7 +160,7 @@ Table of Contents
    lengths, and in constrained radio networks, where the low bandwidth
    preclude many repeated trial.  For all applications of short tags it
    is essential that the MAC behaves like an ideal MAC, i.e., the
-   forgery probability is ≈ 2^-tag_length even after many generated
+   forgery probability is ≈ 2^(-tag_length) even after many generated
    MACs, many forgery attempts, and after a successful forgery.  For a
    comprehensive discussion on the use cases of short tags, see
    [Comments80038B].
