@@ -83,8 +83,10 @@ Table of Contents
      3.1.  Authenticated Encryption Function
      3.2.  Authenticated Decryption Function
      3.3.  Encoding (ct, tag) Tuples
-   4.  AES and Rijndael-GCM-SST in GCM-SST Mode
-     4.1.  AES-GCM-SST and Rijndael-GCM-SST AEAD Instances
+   4.  AES and Rijndael-256-256 in GCM-SST Mode
+     4.1.  AES-GCM-SST
+     4.2.  Rijndael-GCM-SST
+     4.3.  AES-GCM-SST and Rijndael-GCM-SST AEAD Instances
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -415,11 +417,13 @@ Table of Contents
 
    C = ct || tag
 
-4.  AES and Rijndael-GCM-SST in GCM-SST Mode
+4.  AES and Rijndael-256-256 in GCM-SST Mode
 
    This section defines Advanced Encryption Standard (AES) and Rijndael
    with 256-bit keys and blocks (Rijndael-256-256) [Rijndael] with
    Galois Counter Mode with Secure Short Tags.
+
+4.1.  AES-GCM-SST
 
    When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream
    generator is AES in counter mode
@@ -427,6 +431,8 @@ Table of Contents
    Z[i] = ENC(K, N || BE32(i))
 
    where ENC is the AES Cipher function [AES].
+
+4.2.  Rijndael-GCM-SST
 
    When GCM-SST is instantiated with Rijndael-256-256 (Rijndael-GCM-
    SST), the keystream generator is Rijndael-256-256 in counter mode
@@ -437,7 +443,7 @@ Table of Contents
 
    where ENC is the Rijndael-256-256 Cipher function [Rijndael].
 
-4.1.  AES-GCM-SST and Rijndael-GCM-SST AEAD Instances
+4.3.  AES-GCM-SST and Rijndael-GCM-SST AEAD Instances
 
    We define nine AEAD instances, in the format of [RFC5116], that use
    AES-GCM-SST and Rijndael-GCM-SST.  The tag lengths 32, 64, and 80
@@ -506,7 +512,7 @@ Table of Contents
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
    be larger than 16 bytes.  For short tags of length t < 128 - log2(n +
    m + 1) bits, the worst-case forgery probability is bounded by ≈ 2^-t
-   [Nyberg].  With the constraints listed in Section 4.1, n + m + 1 <
+   [Nyberg].  With the constraints listed in Section 4.3, n + m + 1 <
    2^33 128-bit blocks, and tags of length up to 95 bits therefore have
    an almost perfect security level.  This is significantly better than
    GCM where the security level is only t – log2(n + m + 1) bits [GCM].
