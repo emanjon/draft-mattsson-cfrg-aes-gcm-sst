@@ -412,15 +412,19 @@ Applications MAY keep the ciphertext and the authentication tag in distinct stru
 
 C = ct \|\| tag
 
-# AES and Rijndael-GCM-SST in GCM-SST Mode {#AES-GCM-SST}
+# AES and Rijndael-256-256 in GCM-SST Mode {#AES-GCM-SST}
 
 This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} with Galois Counter Mode with Secure Short Tags.
+
+## AES-GCM-SST
 
 When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode
 
 Z[i] = ENC(K, N \|\| BE32(i))
 
 where ENC is the AES Cipher function {{AES}}.
+
+## Rijndael-GCM-SST
 
 When GCM-SST is instantiated with Rijndael-256-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256-256 in counter mode
 
