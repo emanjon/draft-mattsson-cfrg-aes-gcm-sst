@@ -188,8 +188,8 @@ Table of Contents
    as keystream generators, see Section 4 and Section 5. 3GPP has
    standardized the use of Rijndael-256-256 for authentication and key
    generation in 3GPP TS 35.234–35.237 [WID23].  NIST is anticipated to
-   standardize Rijndael-256-256 [15], although there may be revisions to
-   the key schedule.
+   standardize Rijndael-256-256 [NISTOptions], although there may be
+   revisions to the key schedule.
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion
@@ -618,6 +618,13 @@ Table of Contents
 
    [MoQ]      IETF, "Media Over QUIC", September 2022,
               <https://datatracker.ietf.org/wg/moq/about/>.
+
+   [NISTOptions]
+              NIST, "NIST Options in for Encryption Algorithms and Modes
+              of Operation", June 2024,
+              <https://csrc.nist.gov/csrc/media/Presentations/2024/
+              options-for-encryption-algorithms-and-modes/images-media/
+              sess-3-regenscheid-acm-workshop-2024.pdf>.
 
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
