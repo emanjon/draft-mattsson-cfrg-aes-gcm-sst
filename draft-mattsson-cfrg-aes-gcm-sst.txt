@@ -21,12 +21,13 @@ Abstract
    just 128-bit block ciphers.  The main differences from GCM are the
    use of an additional subkey Q, the derivation of fresh subkeys H and
    Q for each nonce, and the replacement of the GHASH function with the
-   POLYVAL function from AES-GCM-SIV.  This enables short tags with
-   forgery probabilities close to ideal.  There is strong industry
-   interest in fast encryption with secure short tags.  This document
-   also registers several instances of GCM-SST using Advanced Encryption
-   Standard (AES) and Rijndael-256-256 in counter mode as keystream
-   generators.
+   POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
+   forgery probabilities close to ideal and significantly decreases the
+   probability of multiple successful forgeries.  There is strong
+   industry interest in fast encryption with secure short tags.  This
+   document also registers several instances of GCM-SST using Advanced
+   Encryption Standard (AES) and Rijndael-256-256 in counter mode as
+   keystream generators.
 
 About This Document
 
