@@ -448,6 +448,7 @@ Common parameters for the six AEAD instances:
 This section defines Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in Galois Counter Mode with Se-cure Short Tags (Rijndael-256-256-GCM-SST). When GCM-SST is instantiated with Rijndael-256-256, the keystream generator is Rijndael-256-256 in counter mode
 
 Z[2i]   = ENC(K, N \|\| BE32(i))[0]
+
 Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
 
 where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
