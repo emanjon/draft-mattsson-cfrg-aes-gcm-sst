@@ -163,7 +163,7 @@ Table of Contents
    forgery probability is ≈ 2^(-tag_length) even after many generated
    MACs, many forgery attempts, and after a successful forgery.  For a
    comprehensive discussion on the use cases of short tags, see
-   [Comments80038B].
+   [Comments38B].
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
@@ -188,7 +188,7 @@ Table of Contents
    as keystream generators, see Section 4 and Section 5. 3GPP has
    standardized the use of Rijndael-256-256 for authentication and key
    generation in 3GPP TS 35.234–35.237 [WID23].  NIST is anticipated to
-   standardize Rijndael-256-256 [NISTOptions], although there may be
+   standardize Rijndael-256-256 [Options], although there may be
    revisions to the key schedule.
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
@@ -576,7 +576,7 @@ Table of Contents
               Authenticated Encryption: AES-GCM in TLS 1.3", November
               2017, <https://eprint.iacr.org/2016/564.pdf>.
 
-   [Comments80038B]
+   [Comments38B]
               NIST, "Public Comments on SP 800-38B", September 2024,
               <https://csrc.nist.gov/csrc/media/Projects/crypto-
               publication-review-project/documents/initial-comments/
@@ -619,18 +619,17 @@ Table of Contents
    [MoQ]      IETF, "Media Over QUIC", September 2022,
               <https://datatracker.ietf.org/wg/moq/about/>.
 
-   [NISTOptions]
-              NIST, "NIST Options in for Encryption Algorithms and Modes
-              of Operation", June 2024,
-              <https://csrc.nist.gov/csrc/media/Presentations/2024/
-              options-for-encryption-algorithms-and-modes/images-media/
-              sess-3-regenscheid-acm-workshop-2024.pdf>.
-
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
               <https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-
               Techniques/documents/BCM/Comments/general-comments/papers/
               Nyberg_Gilbert_and_Robshaw.pdf>.
+
+   [Options]  NIST, "NIST Options in for Encryption Algorithms and Modes
+              of Operation", June 2024,
+              <https://csrc.nist.gov/csrc/media/Presentations/2024/
+              options-for-encryption-algorithms-and-modes/images-media/
+              sess-3-regenscheid-acm-workshop-2024.pdf>.
 
    [Revise]   NIST, "Announcement of Proposal to Revise SP 800-38D",
               August 2023, <https://csrc.nist.gov/news/2023/proposal-to-
