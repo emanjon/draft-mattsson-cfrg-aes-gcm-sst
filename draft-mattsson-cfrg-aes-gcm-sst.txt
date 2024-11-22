@@ -476,7 +476,7 @@ Table of Contents
    *  A_MAX (maximum size of the associated data) is 2^36 octets.
 
    *  N_MIN and N_MAX (minimum and maximum size of the nonce) are both
-      12 octets
+      12 octets for AES and both 28 bytes for Rijndael-256-256.
 
    *  C_MAX (maximum size of the ciphertext and tag) is P_MAX +
       tag_length (in bytes)
