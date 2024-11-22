@@ -333,7 +333,7 @@ Prerequisites and security:
 
 * For a given key, the nonce MUST NOT be reused under any circumstances.
 
-* Each key must only be used with a single tag_length.
+* Each key MUST only be used with a single tag_length.
 
 * Definitions of supported input-output lengths.
 
@@ -372,9 +372,9 @@ Prerequisites and security:
 
 * The calculation of the plaintext P (step 10) MAY be done in parallel with the tag verification (step 3-9). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
 
-* The comparison of the input tag with the expected_tag MUST be done in constant time.
+* For a given key, the nonce MUST NOT be reused under any circumstances.
 
-* Each key must only be used with a single tag_length.
+* Each key MUST only be used with a single tag_length.
 
 * Definitions of supported input-output lengths.
 
