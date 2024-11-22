@@ -26,8 +26,7 @@ Abstract
    probability of multiple successful forgeries.  There is strong
    industry interest in fast encryption with secure short tags.  This
    document also registers several instances of GCM-SST using Advanced
-   Encryption Standard (AES) and Rijndael-256-256 in counter mode as
-   keystream generators.
+   Encryption Standard (AES) and Rijndael-256-256.
 
 About This Document
 
