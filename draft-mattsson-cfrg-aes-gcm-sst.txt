@@ -878,6 +878,12 @@ Change Log
 
    Changes from -03 to -04:
 
+   *  Updated info on ETSI and 3GPP standardization of GCM-SST
+
+   *  Update info on use cases for short tags
+
+   *  Added Rijndael-256-256
+
    *  Editorial changes.
 
    Changes from -02 to -03:
