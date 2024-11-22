@@ -405,7 +405,7 @@ Steps:
 11. Return P
 
 The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any leaks regarding the position of the first incorrect byte in the tag.
- 
+
 ## Encoding (ct, tag) Tuples
 
 Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
