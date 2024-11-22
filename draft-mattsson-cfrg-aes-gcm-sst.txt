@@ -206,7 +206,7 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
-   Primitives:
+   The following notation is used in the document:
 
    *  K is the key as defined in [RFC5116]
 
@@ -215,6 +215,12 @@ Table of Contents
    *  A is the associated data as defined in [RFC5116]
 
    *  P is the plaintext as defined in [RFC5116]
+
+   *  Z is the keystream
+
+   *  ct is the ciphertext
+
+   *  tag is the authentication tag
 
    *  = is the assignment operator
 

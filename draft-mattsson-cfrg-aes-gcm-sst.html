@@ -1283,7 +1283,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<p id="section-2-2">Primitives:<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-2">The following notation is used in the document:<a href="#section-2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-2-3.1">
           <p id="section-2-3.1.1">K is the key as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.1.1" class="pilcrow">¶</a></p>
@@ -1298,46 +1298,55 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-2-3.4.1">P is the plaintext as defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span><a href="#section-2-3.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.5">
-          <p id="section-2-3.5.1">= is the assignment operator<a href="#section-2-3.5.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.5.1">Z is the keystream<a href="#section-2-3.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.6">
-          <p id="section-2-3.6.1">!= is the inequality operator<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.6.1">ct is the ciphertext<a href="#section-2-3.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.7">
-          <p id="section-2-3.7.1">x || y is concatenation of the octet strings x and y<a href="#section-2-3.7.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.7.1">tag is the authentication tag<a href="#section-2-3.7.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.8">
-          <p id="section-2-3.8.1">XOR is the bitwise exclusive OR operator<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.8.1">= is the assignment operator<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.9">
-          <p id="section-2-3.9.1">len(x) is the length of x in bits.<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.9.1">!= is the inequality operator<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.10">
-          <p id="section-2-3.10.1">zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.10.1">x || y is concatenation of the octet strings x and y<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.11">
-          <p id="section-2-3.11.1">truncate(x, t) is the truncation operation.  The first t bits of x are kept<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.11.1">XOR is the bitwise exclusive OR operator<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.12">
-          <p id="section-2-3.12.1">n is the number of 128-bit chunks in zeropad(P)<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.12.1">len(x) is the length of x in bits.<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.13">
-          <p id="section-2-3.13.1">m is the number of 128-bit chunks in zeropad(A)<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.13.1">zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.14">
-          <p id="section-2-3.14.1">POLYVAL is defined in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span><a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.14.1">truncate(x, t) is the truncation operation.  The first t bits of x are kept<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.15">
-          <p id="section-2-3.15.1">BE32(x) is the big-endian encoding of 32-bit integer x<a href="#section-2-3.15.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.15.1">n is the number of 128-bit chunks in zeropad(P)<a href="#section-2-3.15.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.16">
-          <p id="section-2-3.16.1">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.16.1">m is the number of 128-bit chunks in zeropad(A)<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.17">
-          <p id="section-2-3.17.1">V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0.<a href="#section-2-3.17.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.17.1">POLYVAL is defined in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span><a href="#section-2-3.17.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.18">
-          <p id="section-2-3.18.1">V[x:y] are the range of chunks x to y in the array V<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.18.1">BE32(x) is the big-endian encoding of 32-bit integer x<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.19">
+          <p id="section-2-3.19.1">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.19.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.20">
+          <p id="section-2-3.20.1">V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0.<a href="#section-2-3.20.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.21">
+          <p id="section-2-3.21.1">V[x:y] are the range of chunks x to y in the array V<a href="#section-2-3.21.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
