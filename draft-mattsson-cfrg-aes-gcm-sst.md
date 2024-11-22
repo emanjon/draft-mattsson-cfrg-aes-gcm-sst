@@ -366,13 +366,13 @@ Steps:
 
 Decrypt(K, N, A, ct, tag)
 
-The decryption function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if tag verification failed.
+The decryption function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if the tag verification failed.
 
 Prerequisites and security:
 
-* The calculation of the plaintext P (step 10) MAY be done in parallel with the tag verification (step 3-9). If tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
+* The calculation of the plaintext P (step 10) MAY be done in parallel with the tag verification (step 3-9). If the tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
 
-* For a given key, the nonce MUST NOT be reused under any circumstances.
+* For a given key, a nonce for which a plaintext has been returned MUST NOT be reused under any circumstances.
 
 * Each key MUST only be used with a single tag_length.
 
@@ -404,6 +404,8 @@ Steps:
 10. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
 11. Return P
 
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any leaks regarding the position of the first incorrect byte in the tag.
+ 
 ## Encoding (ct, tag) Tuples
 
 Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
