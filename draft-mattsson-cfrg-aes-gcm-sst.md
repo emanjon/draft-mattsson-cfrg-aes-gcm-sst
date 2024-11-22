@@ -73,14 +73,6 @@ informative:
   RFC9605:
   I-D.irtf-cfrg-aegis-aead:
 
-  SAGE24:
-    target: https://www.3gpp.org/ftp/tsg_sa/WG3_Security/TSGS3_117_Maastricht/docs/S3-243394.zip
-    title: "Version 2.0 of 256-bit Confidentiality and Integrity Algorithms for the Air Interface"
-    author:
-      -
-        ins: ETSI SAGE
-    date: August 2024
-
   SAGE23:
     target: https://www.3gpp.org/ftp/TSG_SA/WG3_Security/TSGS3_110_Athens/docs/S3-230642.zip
     title: "Specification of the 256-bit air interface algorithms"
@@ -89,13 +81,13 @@ informative:
         ins: ETSI SAGE
     date: February 2023
 
-  WID24:
-    target: https://www.3gpp.org/ftp/tsg_sa/TSG_SA/TSGS_103_Maastricht_2024-03/Docs/SP-240476.zip
-    title: "New WID on Addition of 256-bit security Algorithms"
+  SAGE24:
+    target: https://www.3gpp.org/ftp/tsg_sa/WG3_Security/TSGS3_117_Maastricht/docs/S3-243394.zip
+    title: "Version 2.0 of 256-bit Confidentiality and Integrity Algorithms for the Air Interface"
     author:
       -
-        ins: 3GPP
-    date: March 2024
+        ins: ETSI SAGE
+    date: August 2024
 
   WID23:
     target: https://www.3gpp.org/ftp/tsg_sa/WG3_Security/TSGS3_113_Chicago/Docs/S3-235072.zip
@@ -105,6 +97,14 @@ informative:
         ins: 3GPP
     date: November 2023
 
+  WID24:
+    target: https://www.3gpp.org/ftp/tsg_sa/TSG_SA/TSGS_103_Maastricht_2024-03/Docs/SP-240476.zip
+    title: "New WID on Addition of 256-bit security Algorithms"
+    author:
+      -
+        ins: 3GPP
+    date: March 2024
+
   ZUC:
     target: https://eprint.iacr.org/2021/1439
     title: "An Addendum to the ZUC-256 Stream Cipher"
@@ -112,6 +112,14 @@ informative:
       -
         ins: ZUC Design Team
     date: September 2024
+
+  NISTOptions:
+    target: https://csrc.nist.gov/csrc/media/Presentations/2024/options-for-encryption-algorithms-and-modes/images-media/sess-3-regenscheid-acm-workshop-2024.pdf
+    title: "NIST Options in for Encryption Algorithms and Modes of Operation"
+    author:
+      -
+        ins: NIST
+    date: June 2024
 
   Comments80038B:
     target: https://csrc.nist.gov/csrc/media/Projects/crypto-publication-review-project/documents/initial-comments/sp800-38b-initial-public-comments-2024.pdf
@@ -273,7 +281,7 @@ As a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based
 
 32-bit tags are standard in most radio link layers including 5G {{Sec5G}}, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is typically not used with short tags. The result is either decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{RFC9605}}. Short tags are also useful to protect packets transporting payloads protected on higher layers, protocols where the security is given by the sum of the tag lengths, and in constrained radio networks, where the low bandwidth preclude many repeated trial. For all applications of short tags it is essential that the MAC behaves like an ideal MAC, i.e., the forgery probability is ≈ 2<sup>-tag_length</sup> even after many generated MACs, many forgery attempts, and after a successful forgery. For a comprehensive discussion on the use cases of short tags, see {{Comments80038B}}.
 
-This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. This enables  truncated tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries, see {{Security}}. The performance of GCM-SST is similar to GCM {{GCM}}. The two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST maintains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}. This document registers several instances of GCM-SST using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in counter mode as keystream generators, see {{AES-GCM-SST}} and {{Rijndael-GCM-SST}}. 3GPP has standardized the use of Rijndael-256-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST is anticipated to standardize Rijndael-256-256 [15], although there may be revisions to the key schedule.
+This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. This enables  truncated tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries, see {{Security}}. The performance of GCM-SST is similar to GCM {{GCM}}. The two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST maintains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}. This document registers several instances of GCM-SST using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in counter mode as keystream generators, see {{AES-GCM-SST}} and {{Rijndael-GCM-SST}}. 3GPP has standardized the use of Rijndael-256-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST is anticipated to standardize Rijndael-256-256 {{NISTOptions}}, although there may be revisions to the key schedule.
 
 GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP, with several years of discussion contributing to its design {{SAGE23}}{{SAGE24}}. 3GPP has decided to standardize GCM-SST for use with AES-256 {{AES}}, SNOW 5G {{SNOW}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}.
 
