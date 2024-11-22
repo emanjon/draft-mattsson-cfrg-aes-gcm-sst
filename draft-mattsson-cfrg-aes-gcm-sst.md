@@ -281,7 +281,7 @@ As a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based
 
 32-bit tags are standard in most radio link layers including 5G {{Sec5G}}, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral, so on the one hand, they are very sensitive in percentage terms to crypto overhead, and on the other hand, forgery of individual packets is not a big concern. Due to its weaknesses, GCM is typically not used with short tags. The result is either decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{RFC9605}}. Short tags are also useful to protect packets transporting payloads protected on higher layers, protocols where the security is given by the sum of the tag lengths, and in constrained radio networks, where the low bandwidth preclude many repeated trial. For all applications of short tags it is essential that the MAC behaves like an ideal MAC, i.e., the forgery probability is ≈ 2<sup>-tag_length</sup> even after many generated MACs, many forgery attempts, and after a successful forgery. For a comprehensive discussion on the use cases of short tags, see {{Comments38B}}.
 
-This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. This enables  truncated tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries, see {{Security}}. GCM-SST is designed for use in unicast security protocols with replay protection. The performance of GCM-SST is similar to GCM {{GCM}}. The two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST maintains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}. This document registers several instances of GCM-SST using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in counter mode as keystream generators, see {{AES-GCM-SST}} and {{Rijndael-GCM-SST}}. 3GPP has standardized the use of Rijndael-256-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST is anticipated to standardize Rijndael-256-256 {{Options}}, although there may be revisions to the key schedule.
+This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. This enables  truncated tags with forgery probability close to ideal and significantly decreases the probability of multiple successful forgeries, see {{Security}}. GCM-SST is designed for use in unicast security protocols with replay protection. The performance of GCM-SST is similar to GCM {{GCM}}. The two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST maintains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}. This document registers several instances of GCM-SST using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in counter mode as keystream generators, see {{AES-GCM-SST}}. 3GPP has standardized the use of Rijndael-256-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST is anticipated to standardize Rijndael-256-256 {{Options}}, although there may be revisions to the key schedule.
 
 GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP, with several years of discussion contributing to its design {{SAGE23}}{{SAGE24}}. 3GPP has decided to standardize GCM-SST for use with AES-256 {{AES}}, SNOW 5G {{SNOW}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}.
 
@@ -412,17 +412,23 @@ Applications MAY keep the ciphertext and the authentication tag in distinct stru
 
 C = ct \|\| tag
 
-# AES in GCM-SST Mode {#AES-GCM-SST}
+# AES and Rijndael-GCM-SST in GCM-SST Mode {#AES-GCM-SST}
 
-This section defines Advanced Encryption Standard (AES) with Galois Counter Mode with Secure Short Tags (AES-GCM-SST). When GCM-SSM is instantiated with AES, the keystream generator is AES in counter mode
+This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} with Galois Counter Mode with Secure Short Tags. When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode
 
 Z[i] = ENC(K, N \|\| BE32(i))
 
-where ENC is the AES Cipher function {{AES}}.
+where ENC is the AES Cipher function {{AES}}. When GCM-SST is instantiated with Rijndael-256-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256-256 in counter mode
 
-## AES-GCM-SST AEAD Instances {#instances}
+Z[2i]   = ENC(K, N \|\| BE32(i))[0]
 
-We define six AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST. They differ only in key length (K_LEN) and tag length. The tag lengths 32, 64, and 80 have been chosen to align with secure media frames {{RFC9605}}. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
+Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
+
+where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
+
+## AES-GCM-SST and Rijndael-GCM-SST AEAD Instances {#instances}
+
+We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST and Rijndael-GCM-SST. The tag lengths 32, 64, and 80 have been chosen to align with secure media frames {{RFC9605}}. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
 
 | Numeric ID | Name | K_LEN (bytes) | tag_length (bits) |
 | TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 32 |
@@ -431,6 +437,9 @@ We define six AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST
 | TBD4 | AEAD_AES_256_GCM_SST_4 | 32 | 32 |
 | TBD5 | AEAD_AES_256_GCM_SST_8 | 32 | 64 |
 | TBD6 | AEAD_AES_256_GCM_SST_10 | 32 | 80 |
+| TBD7 | AEAD_RIJNDAEL_GCM_SST_4 | 32 | 32 |
+| TBD8 | AEAD_RIJNDAEL_GCM_SST_8 | 32 | 64 |
+| TBD9 | AEAD_RIJNDAEL_GCM_SST_10 | 32 | 80 |
 {: #iana-algs title="AEAD Algorithms" cols="r l r r"}
 
 Common parameters for the six AEAD instances:
@@ -442,16 +451,6 @@ Common parameters for the six AEAD instances:
 * N_MIN and N_MAX (minimum and maximum size of the nonce) are both 12 octets
 
 * C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
-
-# Rijndael-256-256 in GCM-SST Mode {#Rijndael-GCM-SST}
-
-This section defines Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in Galois Counter Mode with Se-cure Short Tags (Rijndael-256-256-GCM-SST). When GCM-SST is instantiated with Rijndael-256-256, the keystream generator is Rijndael-256-256 in counter mode
-
-Z[2i]   = ENC(K, N \|\| BE32(i))[0]
-
-Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
-
-where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
 
 # Security Considerations {#Security}
 
