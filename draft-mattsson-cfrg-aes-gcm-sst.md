@@ -289,12 +289,15 @@ GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a
 
 {::boilerplate bcp14-tagged}
 
-Primitives:
+The following notation is used in the document:
 
 * K is the key as defined in {{RFC5116}}
 * N is the nonce as defined in {{RFC5116}}
 * A is the associated data as defined in {{RFC5116}}
 * P is the plaintext as defined in {{RFC5116}}
+* Z is the keystream
+* ct is the ciphertext
+* tag is the authentication tag
 * = is the assignment operator
 * != is the inequality operator
 * x \|\| y is concatenation of the octet strings x and y
