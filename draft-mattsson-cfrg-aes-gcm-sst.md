@@ -459,7 +459,7 @@ Common parameters for the six AEAD instances:
 
 * A_MAX (maximum size of the associated data) is 2<sup>36</sup> octets.
 
-* N_MIN = N_MAX (minimum and maximum size of the nonce) are 12 octets for AES and 28 bytes for Rijndael-256-256.
+* N_MIN = N_MAX (minimum and maximum size of the nonce) is 12 octets for AES, while for Rijndael-256-256, it is 28 bytes.
 
 * C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
 
