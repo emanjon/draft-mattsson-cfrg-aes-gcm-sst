@@ -519,6 +519,8 @@ The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger t
 
 The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / k, where k is the number of invocations of the AES encryption function. In contrast, the confidentiality offered by Rijndael-256-256-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-256-256-GCM-SST is approximately 2<sup>257</sup> / k, where k is the number of invocations of the Rijndael-256-256 encryption function. While Rijndael-256-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
 
+The confidentiality offered by AES-GCM-SST against active attackers is equal to the forgery probability. TODO
+
 In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If H is zero, the resulting authentication tag will depend only on the length of the message, not on the message content. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values.
 
 # IANA Considerations
