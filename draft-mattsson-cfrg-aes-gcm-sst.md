@@ -153,6 +153,34 @@ informative:
         ins: Y. Lindell
     date: May 2024
 
+  Degabriele:
+    target: https://csrc.nist.gov/csrc/media/Presentations/2024/universal-hash-designs-for-an-accordion-mode/images-media/sess-7-degabriele-acm-workshop-2024.pdf
+    title: "Universal Hash Designs for an Accordion Mode"
+    author:
+      -
+        ins: J. Degabriele
+      -
+        ins: J. Gilcher
+      -
+        ins: J. Govinden
+      -
+        ins: K. Paterson
+    date: June 2024
+
+  SMAC:
+    target: https://eprint.iacr.org/2024/819
+    title: "A new stand-alone MAC construct called SMAC"
+    author:
+      -
+        ins: D. Wang
+      -
+        ins: A. Maximov
+      -
+        ins: P. Ekdahl
+      -
+        ins: T. Johansson
+    date: June 2024
+
   MoQ:
     target: https://datatracker.ietf.org/wg/moq/about/
     title: "Media Over QUIC"
