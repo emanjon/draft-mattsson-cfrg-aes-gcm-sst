@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 26 May 2025                                   J. Preuß Mattsson
+Expires: 27 May 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                        22 November 2024
+                                                        23 November 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 May 2025.
+   This Internet-Draft will expire on 27 May 2025.
 
 Copyright Notice
 
@@ -149,79 +149,54 @@ Table of Contents
    Audio packets are small, numerous, and ephemeral.  As such, they are
    highly sensitive to cryptographic overhead, but forgery of individual
    packets is not a big concern as it typically is barely noticeable as
-   each packet often only encodea 20 ms of audio.
-
-   Due to its weaknesses, GCM is typically not used with short tags.
-   The result is either decreased performance from larger than needed
-   tags [MoQ], or decreased performance from using much slower
-   constructions such as AES-CTR combined with HMAC [RFC3711][RFC9605].
-   Short tags are also useful to protect packets transporting payloads
-   protected on higher layers, protocols where the security is given by
-   the sum of the tag lengths, and in constrained radio networks, where
-   the low bandwidth preclude many repeated trial.  For all applications
-   of short tags it is essential that the MAC behaves like an ideal MAC,
-   i.e., the forgery probability is ≈ 2^(-tag_length) even after many
-   generated MACs, many forgery attempts, and after a successful
-   forgery.  For a comprehensive discussion on the use cases of short
-   tags, see [Comments38B].
-
-   For example, audio packets are small, numerous, and ephemeral.  As
-   such, they are highly sensitive to cryptographic overhead in
-   percentage terms, but forgery of individual packets is often not a
-   significant concern.
-
-   Due to its vulnerabilities, GCM is generally avoided with short tags.
-   This leads to trade-offs: either decreased performance from using
-   unnecessarily large tags [MoQ], or the use of slower constructions,
-   such as AES-CTR combined with HMAC [RFC3711][RFC9605], which also
-   impacts performance.
-
-   Short tags, however, remain valuable for several use cases:
-
-Protecting packets whose payloads are secured at higher layers.
-Protocols where overall security is derived from the cumulative strength of multiple tags.
-Constrained radio networks, where low bandwidth minimizes the feasibility of repeated trials.
-
-   For these applications, it is critical that the MAC behaves like an
-   ideal MAC, maintaining a forgery probability of approximately
-   2−tag_length2−tag_length even after numerous MACs are generated, many
-   forgery attempts are made, or a successful forgery occurs.
-
-   For a detailed discussion on the use cases and requirements of short
+   each packet often only encodea 20 ms of audio.  Due to its
+   weaknesses, GCM is typically not used with short tags.  The result is
+   either decreased performance from larger than needed tags [MoQ], or
+   decreased performance from using much slower constructions such as
+   AES-CTR combined with HMAC [RFC3711][RFC9605].  Short tags are also
+   useful to protect packets whose payloads are secured at higher
+   layers, protocols where the security is given by the sum of the tag
+   lengths, and in constrained radio networks, where the low bandwidth
+   preclude many repeated trial.  For all applications of short tags it
+   is essential that the MAC behaves like an ideal MAC, i.e., the
+   forgery probability is ≈ 2^(-tag_length) even after many generated
+   MACs, many forgery attempts, and after a successful forgery.  For a
+   comprehensive discussion on the use cases and requirements of short
    tags, see [Comments38B].
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
    algorithm following the recommendations from Nyberg et al.  [Nyberg].
-   GCM-SST is defined with a general interface so that it can be used
-   with any keystream generator, not just 128-bit block ciphers.  The
-   main differences from GCM [GCM] are the use of an additional subkey
-   Q, the derivation of fresh subkeys H and Q for each nonce, and the
-   replacement of the GHASH function with the POLYVAL function from AES-
-   GCM-SIV [RFC8452], see Section 3.  This enables truncated tags with
-   forgery probability close to ideal and significantly decreases the
-   probability of multiple successful forgeries, see Section 5.  GCM-SST
-   is designed for use in unicast security protocols with replay
-   protection.  The performance of GCM-SST is similar to GCM [GCM].  The
-   two additional AES invocations are compensated by the use of POLYVAL,
-   the ”little-endian version” of GHASH, which is faster on little-
-   endian architectures.  GCM-SST maintains the additive encryption
-   characteristic of GCM, which enables efficient implementations on
-   modern processor architectures, see [Gueron] and Section 2.4 of
-   [GCM-Update].  This document registers several instances of GCM-SST
-   using Advanced Encryption Standard (AES) [AES] and Rijndael with
-   256-bit keys and blocks (Rijndael-256-256) [Rijndael] in counter mode
-   as keystream generators, see Section 4. 3GPP has standardized the use
-   of Rijndael-256-256 for authentication and key generation in 3GPP TS
-   35.234–35.237 [WID23].  NIST is anticipated to standardize Rijndael-
-   256-256 [Options], although there may be revisions to the key
-   schedule.
+   GCM-SST is defined with a general interface, allowing it to be used
+   with any keystream generator, not just 128-bit block ciphers.
+
+   The main differences from GCM [GCM] are the introduction of an
+   additional subkey Q, the derivation of fresh subkeys H and Q for each
+   nonce, and the replacement of the GHASH function with the POLYVAL
+   function from AES-GCM-SIV [RFC8452], see Section 3.  These changes
+   enables truncated tags with forgery probability close to ideal and
+   significantly decreases the probability of multiple successful
+   forgeries, see Section 5.  GCM-SST is designed for use in unicast
+   security protocols with replay protection.  Its performance is
+   similar to GCM [GCM], with the two additional AES invocations
+   compensated by the use of POLYVAL, the ”little-endian version” of
+   GHASH, which is faster on little-endian architectures.  GCM-SST
+   retains the additive encryption characteristic of GCM, which enables
+   efficient implementations on modern processor architectures, see
+   [Gueron] and Section 2.4 of [GCM-Update].  This document registers
+   several GCM-SST instances using Advanced Encryption Standard (AES)
+   [AES] and Rijndael with 256-bit keys and blocks (Rijndael-256-256)
+   [Rijndael] in counter mode as keystream generators, see Section 4.
+   3GPP has standardized the use of Rijndael-256-256 for authentication
+   and key generation in 3GPP TS 35.234–35.237 [WID23].  NIST is
+   anticipated to standardize Rijndael-256-256 [Options], although there
+   may be revisions to the key schedule.
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
-   following a request from 3GPP, with several years of discussion
-   contributing to its design [SAGE23][SAGE24]. 3GPP has decided to
-   standardize GCM-SST for use with AES-256 [AES], SNOW 5G [SNOW], and
-   ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].
+   following a request from 3GPP, with several years of discussion and
+   refinement contributing to its design [SAGE23][SAGE24]. 3GPP has
+   decided to standardize GCM-SST for use with AES-256 [AES], SNOW 5G
+   [SNOW], and ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].
 
 2.  Conventions and Definitions
 
