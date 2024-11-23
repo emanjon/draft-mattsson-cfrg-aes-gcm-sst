@@ -174,7 +174,7 @@ Table of Contents
    additional subkey Q, the derivation of fresh subkeys H and Q for each
    nonce, and the replacement of the GHASH function with the POLYVAL
    function from AES-GCM-SIV [RFC8452], see Section 3.  These changes
-   enables truncated tags with forgery probability close to ideal and
+   enable truncated tags with forgery probability close to ideal and
    significantly decreases the probability of multiple successful
    forgeries, see Section 5.  GCM-SST is designed for use in unicast
    security protocols with replay protection.  Its performance is
@@ -518,7 +518,7 @@ Table of Contents
    distribution.  GCM-SST MUST NOT be used with random nonces
    [Collision] and MUST be used with replay protection.  GCM-SST MUST
    NOT be used in multicast or broadcast.  Reuse of nonces in the
-   encryption function and the decryption function enables universal
+   encryption function and the decryption function enable universal
    forgery [Lindell].  GCM-SST is designed for use in unicast security
    protocols with replay protection.  Implementations MAY add randomness
    to the nonce by XORing a unique number like a sequence number with a
