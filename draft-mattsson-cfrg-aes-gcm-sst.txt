@@ -86,7 +86,7 @@ Table of Contents
    4.  AES and Rijndael-256-256 in GCM-SST Mode
      4.1.  AES-GCM-SST
      4.2.  Rijndael-GCM-SST
-     4.3.  AEAD Instances
+     4.3.  AEAD Instances and Constraints
    5.  Security Considerations
    6.  IANA Considerations
    7.  References
@@ -442,7 +442,7 @@ Table of Contents
 
    where ENC is the Rijndael-256-256 Cipher function [Rijndael].
 
-4.3.  AEAD Instances
+4.3.  AEAD Instances and Constraints
 
    We define nine AEAD instances, in the format of [RFC5116], that use
    AES-GCM-SST and Rijndael-GCM-SST.  The tag lengths 32, 64, and 80
@@ -490,23 +490,32 @@ Table of Contents
 
 5.  Security Considerations
 
-   GCM-SST uses an additional subkey Q and that new subkeys H, Q are
-   derived for each nonce.  The use of an additional subkey Q enables
-   short tags with forgery probabilities close to ideal.  Deriving new
-   subkeys H, Q for each nonce significantly decreases the probability
-   of multiple successful forgeries.  These changes are based on proven
-   theoretical constructions and follows the recommendations in
-   [Nyberg].  See [Nyberg] for details and references to security proofs
-   for the construction.
+   GCM-SST introduces an additional subkey Q, alongside the subkey H.
+   The inclusion of Q enables shorter tags with forgery probabilities
+   close to ideal.  Both Q and H are derived for each nonce, which
+   significantly decreases the probability of multiple successful
+   forgeries.  These changes are based on proven theoretical
+   constructions and follows the recommendations in [Nyberg].  See
+   [Nyberg] for details and references to security proofs for the
+   construction.
 
    GCM-SST MUST be used in a nonce-respecting setting: for a given key,
-   a nonce MUST only be used once.  The nonce MAY be public or
-   predictable.  It can be a counter, the output of a permutation, or a
-   generator with a long period.  Every key MUST be randomly chosen from
-   a uniform distribution.  Implementations SHOULD randomize the nonce
-   by mixing a unique number like a sequence number with a per-key
-   random salt.  This improves security against pre-computation attacks
-   and multi-key attacks [Bellare].
+   a nonce MUST only be used once in the encryption function and the
+   decryption function.  The nonce MAY be public or predictable.  It can
+   be a counter, the output of a permutation, or a generator with a long
+   period.  Every key MUST be randomly chosen from a uniform
+   distribution.  GCM-SST MUST NOT be used with random nonces
+   [Collision] and MUST be used with replay protection.  GCM-SST MUST
+   NOT be used in multicast or broadcast.  Reuse of nonces in the
+   encryption function and the decryption function enables universal
+   forgery [Lindell].  GCM-SST is designed for use in unicast security
+   protocols with replay protection.  Implementations MAY add randomness
+   to the nonce by XORing a unique number like a sequence number with a
+   per-key random secret salt.  This improves security against pre-
+   computation attacks and multi-key attacks [Bellare].  By increasing
+   the nonce length from 96 bits to 224 bits, Rijndael-256-256-GCM-SST
+   can offer significantly greater security against pre-computation and
+   multi-key attacks compared to AES-256-GCM-SST.
 
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
    be larger than 16 bytes.  For short tags of length t < 128 - log2(n +
@@ -597,6 +606,11 @@ Table of Contents
               Authenticated Encryption: AES-GCM in TLS 1.3", November
               2017, <https://eprint.iacr.org/2016/564.pdf>.
 
+   [Collision]
+              Preuß Mattsson, J., "Collision Attacks on Galois/Counter
+              Mode (GCM)", September 2024,
+              <https://eprint.iacr.org/2021/236>.
+
    [Comments38B]
               NIST, "Public Comments on SP 800-38B", September 2024,
               <https://csrc.nist.gov/csrc/media/Projects/crypto-
@@ -632,6 +646,10 @@ Table of Contents
               draft-irtf-cfrg-aegis-aead-13, 14 October 2024,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
               aegis-aead-13>.
+
+   [Lindell]  Lindell, Y., "Comment on AES-GCM-SST", May 2024,
+              <https://mailarchive.ietf.org/arch/browse/
+              cfrg/?gbt=1&index=cWpv0QgX2ltkWhtd3R9pEW7E1CA>.
 
    [Mattsson] Mattsson, J. and M. Westerlund, "Authentication Key
               Recovery on Galois/Counter Mode (GCM)", May 2015,
