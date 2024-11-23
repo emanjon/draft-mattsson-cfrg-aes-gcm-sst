@@ -83,7 +83,7 @@ Table of Contents
      3.1.  Authenticated Encryption Function
      3.2.  Authenticated Decryption Function
      3.3.  Encoding (ct, tag) Tuples
-   4.  AES and Rijndael-256-256 in GCM-SST Mode
+   4.  AES and Rijndael-256-256 in GCM-SST
      4.1.  AES-GCM-SST
      4.2.  Rijndael-GCM-SST
      4.3.  AEAD Instances and Constraints
@@ -416,11 +416,11 @@ Table of Contents
 
    C = ct || tag
 
-4.  AES and Rijndael-256-256 in GCM-SST Mode
+4.  AES and Rijndael-256-256 in GCM-SST
 
    This section defines Advanced Encryption Standard (AES) and Rijndael
-   with 256-bit keys and blocks (Rijndael-256-256) [Rijndael] with
-   Galois Counter Mode with Secure Short Tags.
+   with 256-bit keys and blocks (Rijndael-256-256) [Rijndael] in Galois
+   Counter Mode with Secure Short Tags.
 
 4.1.  AES-GCM-SST
 
