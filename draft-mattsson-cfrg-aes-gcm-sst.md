@@ -755,4 +755,4 @@ Changes from -00 to -01:
 # Acknowledgments
 {:numbered="false"}
 
-The authors thank {{{Richard Barnes}}}, {{{Thomas Bellebaum}}}, {{{Scott Fluhrer}}}, {{{Eric Lagergren}}}, {{{Yehuda Lindell}}}, and {{{Eric Thormarker}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
+The authors thank {{{Richard Barnes}}}, {{{Thomas Bellebaum}}}, {{{Scott Fluhrer}}}, {{{Eric Lagergren}}}, {{{Yehuda Lindell}}}, and {{{Erik Thormarker}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
