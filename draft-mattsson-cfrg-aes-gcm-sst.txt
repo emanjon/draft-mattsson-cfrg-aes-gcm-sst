@@ -557,7 +557,7 @@ Table of Contents
    long plaintexts.  To ensure robust integrity for long plaintexts, an
    AEAD mode would need to replace POLYVAL with a MAC that has better
    security properties, such as a Carter-Wegman MAC in a larger field
-   [30] or other alternatives such as SMAC [31].
+   [Degabriele] or other alternatives such as [SMAC].
 
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
