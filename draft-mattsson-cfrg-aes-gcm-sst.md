@@ -137,6 +137,22 @@ informative:
         ins: 3GPP TS 33.501
     date: September 2024
 
+  Collision:
+    target: https://eprint.iacr.org/2021/236
+    title: "Collision Attacks on Galois/Counter Mode (GCM)"
+    author:
+      -
+        ins: J. Preuß Mattsson
+    date: September 2024
+
+  Lindell:
+    target: https://mailarchive.ietf.org/arch/browse/cfrg/?gbt=1&index=cWpv0QgX2ltkWhtd3R9pEW7E1CA
+    title: "Comment on AES-GCM-SST"
+    author:
+      -
+        ins: Y. Lindell
+    date: May 2024
+
   MoQ:
     target: https://datatracker.ietf.org/wg/moq/about/
     title: "Media Over QUIC"
@@ -437,7 +453,7 @@ Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
 
 where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
 
-## AEAD Instances {#instances}
+## AEAD Instances and Constraints {#instances}
 
 We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST and Rijndael-GCM-SST. The tag lengths 32, 64, and 80 have been chosen to align with secure media frames {{RFC9605}}. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
 
@@ -465,9 +481,9 @@ Common parameters for the six AEAD instances:
 
 # Security Considerations {#Security}
 
-GCM-SST uses an additional subkey Q and that new subkeys H, Q are derived for each nonce. The use of an additional subkey Q enables short tags with forgery probabilities close to ideal. Deriving new subkeys H, Q for each nonce significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in {{Nyberg}}. See {{Nyberg}} for details and references to security proofs for the construction.
+GCM-SST introduces an additional subkey Q, alongside the subkey H. The inclusion of Q enables shorter tags with forgery probabilities close to ideal. Both Q and H are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in {{Nyberg}}. See {{Nyberg}} for details and references to security proofs for the construction.
 
-GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution. Implementations SHOULD randomize the nonce by mixing a unique number like a sequence number with a per-key random salt. This improves security against pre-computation attacks and multi-key attacks {{Bellare}}.
+GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and the decryption function. The nonce MAY be public or predictable.  It can be a counter, the output of a permutation, or a generator with a long period. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST NOT be used with random nonces {{Collision}} and MUST be used with replay protection. GCM-SST MUST NOT be used in multicast or broadcast. Reuse of nonces in the encryption function and the decryption function enables universal forgery {{Lindell}}. GCM-SST is designed for use in unicast security protocols with replay protection. Implementations MAY add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt. This improves security against pre-computation attacks and multi-key attacks {{Bellare}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-256-256-GCM-SST can offer significantly greater security against pre-computation and multi-key attacks compared to AES-256-GCM-SST.
 
 The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. For short tags of length t < 128 - log2(n + m + 1) bits, the worst-case forgery probability is bounded by ≈ 2<sup>-t</sup> {{Nyberg}}. With the constraints listed in {{instances}}, n + m + 1 < 2<sup>33</sup> 128-bit blocks, and tags of length up to 95 bits therefore have an almost perfect security level. This is significantly better than GCM where the security level is only t – log2(n + m + 1) bits {{GCM}}. As one can note, for 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output. The full_tag in GCM-SST does not depend on the tag length. An application can make the tag dependent on the tag length by including tag_length in the nonces.
 
