@@ -334,9 +334,9 @@ Prerequisites and security:
 
 * The key MUST be randomly chosen from a uniform distribution.
 
-* For a given key, the nonce MUST NOT be reused under any circumstances.
+* For a given key, a nonce MUST NOT be reused under any circumstances.
 
-* Each key MUST only be used with a single tag_length.
+* Each key MUST be restricted to a single tag_length.
 
 * Definitions of supported input-output lengths.
 
@@ -377,7 +377,7 @@ Prerequisites and security:
 
 * For a given key, a nonce for which a plaintext has been returned MUST NOT be reused under any circumstances.
 
-* Each key MUST only be used with a single tag_length.
+* Each key MUST be restricted to a single tag_length.
 
 * Definitions of supported input-output lengths.
 
@@ -407,7 +407,7 @@ Steps:
 10. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
 11. Return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any leaks regarding the position of the first incorrect byte in the tag.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte.
 
 ## Encoding (ct, tag) Tuples
 
