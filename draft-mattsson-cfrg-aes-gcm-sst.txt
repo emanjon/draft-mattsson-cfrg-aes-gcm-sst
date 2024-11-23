@@ -23,11 +23,11 @@ Abstract
    Q for each nonce, and the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
    near-ideal forgery probabilities and significantly decreases the
-   probability of multiple successful forgeries.  GCM-SST is designed
-   for unicast security protocols with replay protection and addresses
-   the strong industry demand for fast encryption with secure short
-   tags.  This document registers several instances of GCM-SST using
-   Advanced Encryption Standard (AES) and Rijndael-256-256.
+   probability of multiple forgeries.  GCM-SST is designed for unicast
+   security protocols with replay protection and addresses the strong
+   industry demand for fast encryption with secure short tags.  This
+   document registers several instances of GCM-SST using Advanced
+   Encryption Standard (AES) and Rijndael-256-256.
 
 About This Document
 
