@@ -488,6 +488,17 @@ Table of Contents
    *  C_MAX (maximum size of the ciphertext and tag) is P_MAX +
       tag_length (in bytes)
 
+   The maximum size of the plaintext (P_MAX) has been adjusted from GCM
+   [RFC5116] as there is now three subkeys instead of two.  The maximum
+   size of the associated data (A_MAX) has been lowered from GCM
+   [RFC5116] to enable forgery probability close to ideal for larger
+   tags even with maximum size plaintexts and associated data.  Just
+   like [RFC5116], AES-GCM-SST and Rijndael-GCM-SST only allow a fixed
+   nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively.
+   For the AEAD algorithms in Table 1 the worst-case forgery probability
+   is bounded by ≈ 2^-t where t is the tag length in bits [Nyberg].
+   This is true for all allowed plaintext and associated data lengths.
+
 5.  Security Considerations
 
    GCM-SST introduces an additional subkey Q, alongside the subkey H.
@@ -532,18 +543,21 @@ Table of Contents
    into the keystream or the nonce.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
-   is equal to AES-GCM [GCM] and given by the birthday bound.  The
-   maximum size of the plaintext (P_MAX) has been adjusted from GCM
-   [RFC5116] as there is now three subkeys instead of two.
-
-   For the AES-GCM-SST algorithms in Table 1 the worst-case forgery
-   probability is bounded by ≈ 2^-t where t is the tag length in bits
-   [Nyberg].  This is true for all allowed plaintext and associated data
-   lengths.  The maximum size of the associated data (A_MAX) has been
-   lowered from GCM [RFC5116] to enable forgery probability close to
-   ideal for 80-bit tags even with maximum size plaintexts and
-   associated data.  Just like [RFC5116] AES-GCM-SST only allows 96-bit
-   nonces.
+   is equal to AES-GCM [GCM] and given by the birthday bound.
+   Regardless of key length, an attacker can mount a distinguishing
+   attack with a complexity of approximately 2^129 / k, where k is the
+   number of invocations of the AES encryption function.  In contrast,
+   the confidentiality offered by Rijndael-256-256-GCM-SST against
+   passive attackers is significantly higher.  The complexity of
+   distinguishing attacks for Rijndael-256-256-GCM-SST is approximately
+   2^257 / k, where k is the number of invocations of the Rijndael-
+   256-256 encryption function.  While Rijndael-256-256 in counter mode
+   can provide strong confidentiality for plaintexts much larger than
+   2^36 octets, GHASH and POLYVAL do not offer adequate integrity for
+   long plaintexts.  To ensure robust integrity for long plaintexts, an
+   AEAD mode would need to replace POLYVAL with a MAC that has better
+   security properties, such as a Carter-Wegman MAC in a larger field
+   [30] or other alternatives such as SMAC [31].
 
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
