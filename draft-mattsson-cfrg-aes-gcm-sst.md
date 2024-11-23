@@ -680,9 +680,13 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -03 to -04:
 
-* Updated info on ETSI and 3GPP standardization of GCM-SST
+* Added that GCM-SST is designed for unicast protocol with replay protection
 * Update info on use cases for short tags
+* Updated info on ETSI and 3GPP standardization of GCM-SST
 * Added Rijndael-256-256
+* Security considerations for active attacks on privacy as suggested by Thomas Bellebaum
+* Added that replay is required and that random nonces, multicast, and broadcast are forbidden based on attack from Yehuda Lindell
+* Corrected text on H and Q being zero.
 * Editorial changes.
 
 Changes from -02 to -03:
