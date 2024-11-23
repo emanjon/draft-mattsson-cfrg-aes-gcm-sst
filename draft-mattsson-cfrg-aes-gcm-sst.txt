@@ -624,6 +624,14 @@ Table of Contents
               publication-review-project/documents/initial-comments/
               sp800-38b-initial-public-comments-2024.pdf>.
 
+   [Degabriele]
+              Degabriele, J., Gilcher, J., Govinden, J., and K.
+              Paterson, "Universal Hash Designs for an Accordion Mode",
+              June 2024,
+              <https://csrc.nist.gov/csrc/media/Presentations/2024/
+              universal-hash-designs-for-an-accordion-mode/images-media/
+              sess-7-degabriele-acm-workshop-2024.pdf>.
+
    [Ferguson] Ferguson, N., "Authentication weaknesses in GCM", May
               2005, <https://csrc.nist.gov/CSRC/media/Projects/Block-
               Cipher-Techniques/documents/BCM/Comments/CWC-GCM/
@@ -711,6 +719,10 @@ Table of Contents
               5G System", September 2024,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3169>.
+
+   [SMAC]     Wang, D., Maximov, A., Ekdahl, P., and T. Johansson, "A
+              new stand-alone MAC construct called SMAC", June 2024,
+              <https://eprint.iacr.org/2024/819>.
 
    [SNOW]     Ekdahl, P., Johansson, T., Maximov, A., and J. Yang,
               "SNOW-Vi: an extreme performance variant of SNOW-V for
