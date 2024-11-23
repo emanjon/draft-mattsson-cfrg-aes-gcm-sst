@@ -459,9 +459,9 @@ Applications MAY keep the ciphertext and the authentication tag in distinct stru
 
 C = ct \|\| tag
 
-# AES and Rijndael-256-256 in GCM-SST Mode {#AES-GCM-SST}
+# AES and Rijndael-256-256 in GCM-SST {#AES-GCM-SST}
 
-This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} with Galois Counter Mode with Secure Short Tags.
+This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in Galois Counter Mode with Secure Short Tags.
 
 ## AES-GCM-SST
 
