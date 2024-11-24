@@ -561,7 +561,13 @@ Table of Contents
    [Degabriele] or other alternatives such as [SMAC].
 
    The confidentiality offered by AES-GCM-SST against active attackers
-   is equal to the forgery probability.  TODO
+   is irectly linked to the forgery probability.  Depending on the
+   protocol and application, forgeries MAY significantly compromise
+   privacy, in addition to affecting integrity and authenticity.  It
+   MUST be assumed that attackers always receive feedback on the success
+   or failure of their forgery attempts.  Therefore, attacks on
+   integrity, authenticity, and confidentiality MUST all be carefully
+   evaluated when selecting an appropriate tag length.
 
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
