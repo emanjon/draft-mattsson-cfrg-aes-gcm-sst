@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-24T01:54:49.512621+00:00",
+  "timestamp": "2024-11-26T01:49:14.275939+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -304,7 +304,7 @@
       "labels": [],
       "body": "The draft mentions passive attacks on confidentiality, as well as an adversary's ability to generate forgeries.\r\nThe assumption seems to be that \"a forgery now and then\" is harmless. This however depends very much on the protocol and I believe should be addressed. In particular, it should be mentioned in the security considerations that tag forgeries may have an impact on confidentiality, rather than just integrity and authenticity.\r\n\r\nFor example, consider a protocol which takes noticeably longer to process inputs with a particular bit pattern, say starting with 32 ones (but imagine any form of structured header here). Finding out whether a given ciphertext `c` corresponds to a plaintext starting with the arbitrary 32-bit sequence `B` could involve calculating `c' := c xor ((B xor 111...111)||0000)`, forging a tag for this and measuring the time it takes the recipient to process `c'`.\r\n\r\nThis attack vector is very different from the occasional forged packet problem and may, depending on the context, have severe implications for privacy. In general, this is a special case of a so-called Chosen Ciphertext Attack, and there are many more forms varying e.g. in the number of forged messages that need to be sent. Yehuda Lindell mentioned on the mailing list the possibility of a statement like \"Any attack taking `Q` queries without tags would take `2^t * Q` queries with length-t tags\", but this has not been proven yet. Even if it eventually is proven, the outlined attack above has `Q=1`, so in general, if `2^t` is online bruteforceable, then there is a potential threat to privacy which protocol designers need to be aware of when choosing `t`.",
       "createdAt": "2024-05-28T09:17:17Z",
-      "updatedAt": "2024-05-28T11:51:24Z",
+      "updatedAt": "2024-11-24T09:01:27Z",
       "closedAt": null,
       "comments": [
         {
@@ -313,6 +313,13 @@
           "body": "To add some numbers:\r\n\r\n[This site by Cisco](https://sec.cloudapps.cisco.com/security/center/resources/network_performance_metrics.html) claims that you can get about 14,880,960 packets per second on a 10Gb/s interface. It might be slightly below that, but let's be conservative and assume `2^24` packets per second. At this rate, a chosen ciphertext attack on the 4-byte variant might take you `2^8` seconds, which is about 5 minutes, thus doable given the lifetime of protocols.\r\n\r\nSo mitigations might include choosing a longer tag and changing keys very frequently, say every minute, or after every message using some kind of ratchet. Ideally, you would choose all three as mitigations.\r\n\r\nE.g. with 64 bit tags, a single forgery takes about `2^40` seconds, which is already about 35k years given no technological improvements, so there is room for future improvements to this attack. Changing a key after every minute would translate to a roughly `2^-34` chance of pulling the attack off within any given minute, which still might not be good enough (it definitely is not for multi-target attacks or longterm attacks), but is at least reasonable.",
           "createdAt": "2024-05-28T09:36:16Z",
           "updatedAt": "2024-05-28T11:51:24Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Good point. That should definitely be described. We will do so in the next update\r\n\r\nI don't think changing keys helps at all for this attack. Using 32-bit tags, the attacker will have a forgery probability of 2^-32 for each packet independently of rekeying. Rekeying only lowers forgery probability if the integrity algorithm is not behaving like an ideal MAC. It also helps to minimize damage in case of key compromise.\r\n\r\n",
+          "createdAt": "2024-11-24T09:01:26Z",
+          "updatedAt": "2024-11-24T09:01:26Z"
         }
       ]
     }
