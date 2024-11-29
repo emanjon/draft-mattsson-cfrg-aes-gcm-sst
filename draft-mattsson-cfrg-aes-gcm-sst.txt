@@ -506,9 +506,11 @@ Table of Contents
    close to ideal.  Both Q and H are derived for each nonce, which
    significantly decreases the probability of multiple successful
    forgeries.  These changes are based on proven theoretical
-   constructions and follows the recommendations in [Nyberg].  See
-   [Nyberg] for details and references to security proofs for the
-   construction.
+   constructions and follows the recommendations in [Nyberg].  Inoue et
+   al.  [Inoue] demonstrates that GCM-SST is a provably secure
+   authenticated encryption mode, with security guaranteed for
+   evaluations under fresh nonces, even if some earlier nonces have been
+   reused.
 
    GCM-SST MUST be used in a nonce-respecting setting: for a given key,
    a nonce MUST only be used once in the encryption function and the
@@ -519,14 +521,14 @@ Table of Contents
    [Collision] and MUST be used with replay protection.  GCM-SST MUST
    NOT be used in multicast or broadcast.  Reuse of nonces in the
    encryption function and the decryption function enable universal
-   forgery [Lindell].  GCM-SST is designed for use in unicast security
-   protocols with replay protection.  Implementations MAY add randomness
-   to the nonce by XORing a unique number like a sequence number with a
-   per-key random secret salt.  This improves security against pre-
-   computation attacks and multi-key attacks [Bellare].  By increasing
-   the nonce length from 96 bits to 224 bits, Rijndael-256-256-GCM-SST
-   can offer significantly greater security against pre-computation and
-   multi-key attacks compared to AES-256-GCM-SST.
+   forgery [Lindell][Inoue].  GCM-SST is designed for use in unicast
+   security protocols with replay protection.  Implementations MAY add
+   randomness to the nonce by XORing a unique number like a sequence
+   number with a per-key random secret salt.  This improves security
+   against pre-computation attacks and multi-key attacks [Bellare].  By
+   increasing the nonce length from 96 bits to 224 bits, Rijndael-
+   256-256-GCM-SST can offer significantly greater security against pre-
+   computation and multi-key attacks compared to AES-256-GCM-SST.
 
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
    be larger than 16 bytes.  For short tags with tag_length < 128 -
@@ -535,7 +537,8 @@ Table of Contents
    Section 4.3, n + m + 1 < 2^33 128-bit blocks, and tags of length up
    to 95 bits therefore have an almost perfect security level.  This is
    significantly better than GCM where the security level is only
-   tag_length - log2(n + m + 1) bits [GCM].  As one can note, for
+   tag_length - log2(n + m + 1) bits [GCM].  For a graph of the forgery
+   probability, refer to Fig. 3 in [Inoue].  As one can note, for
    128-bit tags and long messages, the forgery probability is not close
    to ideal and similar to GCM [GCM].  If tag verification fails, the
    plaintext and expected_tag MUST NOT be given as output.  In GCM-SST,
