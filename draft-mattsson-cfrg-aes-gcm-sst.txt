@@ -499,15 +499,14 @@ Table of Contents
 5.  Security Considerations
 
    GCM-SST introduces an additional subkey Q, alongside the subkey H.
-   The inclusion of Q enables shorter tags with forgery probabilities
+   The inclusion of Q enables truncated tags with forgery probabilities
    close to ideal.  Both Q and H are derived for each nonce, which
    significantly decreases the probability of multiple successful
    forgeries.  These changes are based on proven theoretical
    constructions and follows the recommendations in [Nyberg].  Inoue et
-   al.  [Inoue] demonstrates that GCM-SST is a provably secure
-   authenticated encryption mode, with security guaranteed for
-   evaluations under fresh nonces, even if some earlier nonces have been
-   reused.
+   al.  [Inoue] prove that eGCM-SST is a provably secure authenticated
+   encryption mode, with security guaranteed for evaluations under fresh
+   nonces, even if some earlier nonces have been reused.
 
    GCM-SST MUST be used in a nonce-respecting setting: for a given key,
    a nonce MUST only be used once in the encryption function and the
