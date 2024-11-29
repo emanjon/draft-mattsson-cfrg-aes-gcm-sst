@@ -535,7 +535,7 @@ Table of Contents
    Section 4.3, n + m + 1 < 2^33 128-bit blocks, and tags of length up
    to 95 bits therefore have an almost perfect security level.  This is
    significantly better than GCM where the security level is only
-   tag_length – log2(n + m + 1) bits [GCM].  As one can note, for
+   tag_length - log2(n + m + 1) bits [GCM].  As one can note, for
    128-bit tags and long messages, the forgery probability is not close
    to ideal and similar to GCM [GCM].  If tag verification fails, the
    plaintext and expected_tag MUST NOT be given as output.  In GCM-SST,
