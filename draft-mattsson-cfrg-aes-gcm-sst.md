@@ -383,9 +383,7 @@ Figures illustrating the GCM-SST encryption and decryption functions are shown i
 
 ## Authenticated Encryption Function
 
-Encrypt(K, N, A, P)
-
-The encryption function encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.
+The encryption function Encrypt(K, N, A, P) encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.
 
 Prerequisites and security:
 
@@ -424,9 +422,7 @@ Steps:
 
 ## Authenticated Decryption Function
 
-Decrypt(K, N, A, ct, tag)
-
-The decryption function decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if the tag verification failed.
+The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if the tag verification failed.
 
 Prerequisites and security:
 
