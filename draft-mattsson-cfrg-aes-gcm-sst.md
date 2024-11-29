@@ -73,6 +73,20 @@ informative:
   RFC9605:
   I-D.irtf-cfrg-aegis-aead:
 
+  Inoue:
+    target: https://eprint.iacr.org/2024/1928.pdf
+    title: "Generic Security of GCM-SST"
+    author:
+      -
+        ins: Akiko Inoue
+      -
+        ins: Ashwin Jha
+      -
+        ins: Bart Mennink
+      -
+        ins: Kazuhiko Minematsu
+    date: November 2024
+
   SAGE23:
     target: https://www.3gpp.org/ftp/TSG_SA/WG3_Security/TSGS3_110_Athens/docs/S3-230642.zip
     title: "Specification of the 256-bit air interface algorithms"
