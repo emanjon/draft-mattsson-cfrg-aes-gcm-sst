@@ -934,6 +934,12 @@ Change Log
 
    Changes from -03 to -04:
 
+   *  Reference to Inoue et al. for security proof, forgery probability
+      graph, and improved attack when GCM-SST is used without replay
+      protection.
+
+   Changes from -03 to -04:
+
    *  Added that GCM-SST is designed for unicast protocol with replay
       protection
 
