@@ -734,6 +734,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -03 to -04:
 
 * Reference to Inoue et al. for security proof, forgery probability graph, and improved attack when GCM-SST is used without replay protection.
+* Editorial changes.
 
 Changes from -03 to -04:
 
