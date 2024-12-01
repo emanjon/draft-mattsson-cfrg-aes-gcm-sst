@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-28T01:50:33.641880+00:00",
+  "timestamp": "2024-12-01T02:06:20.879136+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -322,6 +322,22 @@
           "updatedAt": "2024-11-24T09:01:26Z"
         }
       ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOJat8lM6hPxsn",
+      "title": "New paper - Generic Security of GCM-SST",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/12",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "https://eprint.iacr.org/2024/1928\r\n\r\n_\"In this work, we fill this gap and perform a detailed security analysis of GCM-SST. In particular, we prove that GCM-SST achieves security in the nonce-misuse resilience model of Ashur et al.~(CRYPTO 2017), roughly guaranteeing that even if nonces are reused, evaluations of GCM-SST for new nonces are secure. Our security bound also verified the designers' (informal) claim on tag truncation. Additionally, we investigate and describe possibilities to optimize the hashing in GCM-SST further, and we describe a universal forgery attack in a complexity of around , improving over an earlier attack of  complexity of Lindell, when the tag is 32 bits.\"_\r\n\r\nThe draft should refer to this work, in particular to the security proof in the nonce-misuse resilience model, and the improvements of Lindell's attack, which applies if GCM-SST is used without replay protection.\r\n",
+      "createdAt": "2024-11-29T14:28:09Z",
+      "updatedAt": "2024-11-29T14:28:09Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
