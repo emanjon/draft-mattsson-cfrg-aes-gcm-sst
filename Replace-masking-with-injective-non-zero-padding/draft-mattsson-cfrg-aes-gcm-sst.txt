@@ -480,7 +480,7 @@ Table of Contents
 
    Common parameters for the six AEAD instances:
 
-   *  P_MAX (maximum size of the plaintext) is 2^36 - 48 octets.
+   *  P_MAX (maximum size of the plaintext) is 2^36 - 33 octets.
 
    *  A_MAX (maximum size of the associated data) is 2^36 octets.
 
