@@ -507,7 +507,7 @@ We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SS
 
 Common parameters for the six AEAD instances:
 
-* P_MAX (maximum size of the plaintext) is 2<sup>36</sup> - 48 octets.
+* P_MAX (maximum size of the plaintext) is 2<sup>36</sup> - 33 octets.
 
 * A_MAX (maximum size of the associated data) is 2<sup>36</sup> octets.
 
