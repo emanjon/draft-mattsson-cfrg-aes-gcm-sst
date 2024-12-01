@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 2 June 2025                                   J. Preuß Mattsson
+Expires: 4 June 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                        29 November 2024
+                                                         1 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 June 2025.
+   This Internet-Draft will expire on 4 June 2025.
 
 Copyright Notice
 
@@ -504,7 +504,7 @@ Table of Contents
    significantly decreases the probability of multiple successful
    forgeries.  These changes are based on proven theoretical
    constructions and follows the recommendations in [Nyberg].  Inoue et
-   al.  [Inoue] prove that eGCM-SST is a provably secure authenticated
+   al.  [Inoue] prove that GCM-SST is a provably secure authenticated
    encryption mode, with security guaranteed for evaluations under fresh
    nonces, even if some earlier nonces have been reused.
 
