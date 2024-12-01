@@ -364,7 +364,7 @@ The following notation is used in the document:
 * len(x) is the length of x in bits.
 * zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits
 * truncate(x, t) is the truncation operation.  The first t bits of x are kept
-* n is the number of 128-bit chunks in zeropad(ct || 0x80)
+* n is the number of 128-bit chunks in zeropad(ct \|\| 0x80)
 * m is the number of 128-bit chunks in zeropad(A)
 * POLYVAL is defined in {{RFC8452}}
 * BE32(x) is the big-endian encoding of 32-bit integer x
