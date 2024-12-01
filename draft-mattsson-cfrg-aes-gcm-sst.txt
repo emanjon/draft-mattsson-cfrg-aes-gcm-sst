@@ -928,7 +928,7 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
-   Changes from -03 to -04:
+   Changes from -04 to -06:
 
    *  Reference to Inoue et al. for security proof, forgery probability
       graph, and improved attack when GCM-SST is used without replay
