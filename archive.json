@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-01T02:06:20.879136+00:00",
+  "timestamp": "2024-12-03T01:52:36.887146+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -335,7 +335,31 @@
       "labels": [],
       "body": "https://eprint.iacr.org/2024/1928\r\n\r\n_\"In this work, we fill this gap and perform a detailed security analysis of GCM-SST. In particular, we prove that GCM-SST achieves security in the nonce-misuse resilience model of Ashur et al.~(CRYPTO 2017), roughly guaranteeing that even if nonces are reused, evaluations of GCM-SST for new nonces are secure. Our security bound also verified the designers' (informal) claim on tag truncation. Additionally, we investigate and describe possibilities to optimize the hashing in GCM-SST further, and we describe a universal forgery attack in a complexity of around , improving over an earlier attack of  complexity of Lindell, when the tag is 32 bits.\"_\r\n\r\nThe draft should refer to this work, in particular to the security proof in the nonce-misuse resilience model, and the improvements of Lindell's attack, which applies if GCM-SST is used without replay protection.\r\n",
       "createdAt": "2024-11-29T14:28:09Z",
-      "updatedAt": "2024-11-29T14:28:09Z",
+      "updatedAt": "2024-12-01T12:18:35Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Several references to the paper was added in -06.",
+          "createdAt": "2024-12-01T12:18:34Z",
+          "updatedAt": "2024-12-01T12:18:34Z"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOJat8lM6hfKW3",
+      "title": "Ideal security for 96-bit tags?",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/15",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The current of P_MAX and A_MAX was based on the P_MAX value of around 2^36 bytes in RFC 5116. This leads to ideal forgery probability for up to 95-bit tags.\r\n\r\nShould we change P_MAX and A_MAX to <= 2^35 bytes to get ideal forgery probability for 96-bit tags?\r\n",
+      "createdAt": "2024-12-01T14:45:19Z",
+      "updatedAt": "2024-12-01T14:45:19Z",
       "closedAt": null,
       "comments": []
     }
@@ -353,7 +377,7 @@
       "labels": [],
       "body": "#9",
       "createdAt": "2024-02-25T20:47:14Z",
-      "updatedAt": "2024-02-26T14:27:22Z",
+      "updatedAt": "2024-12-01T14:34:57Z",
       "baseRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
       "baseRefName": "main",
       "baseRefOid": "860f77a7c4fcd8ec18f200d72f916c1605d25076",
@@ -367,6 +391,66 @@
         "oid": "0e3128cb4eb9258fea0a15c19990a92499dd2ce9"
       },
       "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOJat8lM6DqSkx",
+      "title": "Replace masking with injective non-zero padding.",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/pull/13",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-01T12:28:54Z",
+      "updatedAt": "2024-12-01T14:34:55Z",
+      "baseRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "baseRefName": "main",
+      "baseRefOid": "f235ae181fb4185016ffdba25a6a1c10e687a3ca",
+      "headRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "headRefName": "Replace-masking-with-injective-non-zero-padding",
+      "headRefOid": "6142992c17cd586db489951ea80fd520119f2d13",
+      "closedAt": "2024-12-01T14:25:23Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOJat8lM6DqfLi",
+      "title": "Replace masking with injective non-zero padding",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/pull/14",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-01T14:26:54Z",
+      "updatedAt": "2024-12-01T14:45:37Z",
+      "baseRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "baseRefName": "main",
+      "baseRefOid": "adb4b56320a05ed53f37bcaad79815eb16b4bb08",
+      "headRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "headRefName": "Replace-masking-with-injective-non-zero-padding-1",
+      "headRefOid": "169d8f0ec3cca2d6c3973a256b0263f83ecee9c3",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "#12 ",
+          "createdAt": "2024-12-01T14:45:36Z",
+          "updatedAt": "2024-12-01T14:45:36Z"
+        }
+      ],
       "reviews": []
     }
   ]
