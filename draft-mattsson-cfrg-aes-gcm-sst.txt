@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 4 June 2025                                   J. Preuß Mattsson
+Expires: 7 June 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                         1 December 2024
+                                                         4 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -22,12 +22,12 @@ Abstract
    use of an additional subkey Q, the derivation of fresh subkeys H and
    Q for each nonce, and the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
-   near-ideal forgery probabilities and significantly decreases the
-   probability of multiple forgeries.  GCM-SST is designed for unicast
-   security protocols with replay protection and addresses the strong
-   industry demand for fast encryption with secure short tags.  This
-   document registers several instances of GCM-SST using Advanced
-   Encryption Standard (AES) and Rijndael-256-256.
+   near-ideal forgery probabilities, even for multiple forgery attacks.
+   GCM-SST is designed for unicast security protocols with replay
+   protection and addresses the strong industry demand for fast
+   encryption with secure short tags.  This document registers several
+   instances of GCM-SST using Advanced Encryption Standard (AES) and
+   Rijndael-256-256.
 
 About This Document
 
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 June 2025.
+   This Internet-Draft will expire on 7 June 2025.
 
 Copyright Notice
 
@@ -168,15 +168,13 @@ Table of Contents
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
    algorithm following the recommendations from Nyberg et al.  [Nyberg].
    GCM-SST is defined with a general interface, allowing it to be used
-   with any keystream generator, not just 128-bit block ciphers.
-
-   The main differences from GCM [GCM] are the introduction of an
-   additional subkey Q, the derivation of fresh subkeys H and Q for each
-   nonce, and the replacement of the GHASH function with the POLYVAL
-   function from AES-GCM-SIV [RFC8452], see Section 3.  These changes
-   enable truncated tags with forgery probability close to ideal and
-   significantly decreases the probability of multiple successful
-   forgeries, see Section 5.  GCM-SST is designed for use in unicast
+   with any keystream generator, not just 128-bit block ciphers.  The
+   main differences from GCM [GCM] are the introduction of an additional
+   subkey Q, the derivation of fresh subkeys H and Q for each nonce, and
+   the replacement of the GHASH function with the POLYVAL function from
+   AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
+   tags with near-ideal forgery probabilities, even for multiple forgery
+   attacks, see Section 5.  GCM-SST is designed for use in unicast
    security protocols with replay protection.  Its performance is
    similar to GCM [GCM], with the two additional AES invocations
    compensated by the use of POLYVAL, the ”little-endian version” of
@@ -442,11 +440,10 @@ Table of Contents
 4.3.  AEAD Instances and Constraints
 
    We define nine AEAD instances, in the format of [RFC5116], that use
-   AES-GCM-SST and Rijndael-GCM-SST.  The tag lengths 32, 64, and 80
-   have been chosen to align with secure media frames [RFC9605].  The
-   key length and tag length are related to different security
-   properties, and an application encrypting audio packets with small
-   tags might require 256-bit confidentiality.
+   AES-GCM-SST and Rijndael-GCM-SST with tag lengths 32, 64, and 96
+   bits.  The key length and tag length are related to different
+   security properties, and an application encrypting audio packets with
+   small tags might require 256-bit confidentiality.
 
      +============+==========================+=========+============+
      | Numeric ID | Name                     |   K_LEN | tag_length |
@@ -456,28 +453,28 @@ Table of Contents
      +------------+--------------------------+---------+------------+
      |       TBD2 | AEAD_AES_128_GCM_SST_8   |      16 |         64 |
      +------------+--------------------------+---------+------------+
-     |       TBD3 | AEAD_AES_128_GCM_SST_10  |      16 |         80 |
+     |       TBD3 | AEAD_AES_128_GCM_SST_10  |      16 |         96 |
      +------------+--------------------------+---------+------------+
      |       TBD4 | AEAD_AES_256_GCM_SST_4   |      32 |         32 |
      +------------+--------------------------+---------+------------+
      |       TBD5 | AEAD_AES_256_GCM_SST_8   |      32 |         64 |
      +------------+--------------------------+---------+------------+
-     |       TBD6 | AEAD_AES_256_GCM_SST_10  |      32 |         80 |
+     |       TBD6 | AEAD_AES_256_GCM_SST_10  |      32 |         96 |
      +------------+--------------------------+---------+------------+
      |       TBD7 | AEAD_RIJNDAEL_GCM_SST_4  |      32 |         32 |
      +------------+--------------------------+---------+------------+
      |       TBD8 | AEAD_RIJNDAEL_GCM_SST_8  |      32 |         64 |
      +------------+--------------------------+---------+------------+
-     |       TBD9 | AEAD_RIJNDAEL_GCM_SST_10 |      32 |         80 |
+     |       TBD9 | AEAD_RIJNDAEL_GCM_SST_10 |      32 |         96 |
      +------------+--------------------------+---------+------------+
 
                          Table 1: AEAD Algorithms
 
    Common parameters for the six AEAD instances:
 
-   *  P_MAX (maximum size of the plaintext) is 2^36 - 48 octets.
+   *  P_MAX (maximum size of the plaintext) is 2^35 octets.
 
-   *  A_MAX (maximum size of the associated data) is 2^36 octets.
+   *  A_MAX (maximum size of the associated data) is 2^35 octets.
 
    *  N_MIN = N_MAX (minimum and maximum size of the nonce) is 12 octets
       for AES, while for Rijndael-256-256, it is 28 bytes.
@@ -485,16 +482,15 @@ Table of Contents
    *  C_MAX (maximum size of the ciphertext and tag) is P_MAX +
       tag_length (in bytes)
 
-   The maximum size of the plaintext (P_MAX) has been adjusted from GCM
-   [RFC5116] as there is now three subkeys instead of two.  The maximum
-   size of the associated data (A_MAX) has been lowered from GCM
-   [RFC5116] to enable forgery probability close to ideal for larger
-   tags even with maximum size plaintexts and associated data.  Just
-   like [RFC5116], AES-GCM-SST and Rijndael-GCM-SST only allow a fixed
-   nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively.
-   For the AEAD algorithms in Table 1 the worst-case forgery probability
-   is bounded by ≈ 2^(-tag_length) [Nyberg].  This is true for all
-   allowed plaintext and associated data lengths.
+   The maximum size of the plaintext (P_MAX) and the maximum size of the
+   associated data (A_MAX) have been lowered from GCM [RFC5116] to
+   enable forgery probability close to ideal for 96-bit tags even with
+   maximum size plaintexts and associated data.  Just like [RFC5116],
+   AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length
+   (N_MIN = N_MAX) of 96-bit and 224-bits respectively.  For the AEAD
+   algorithms in Table 1 the worst-case forgery probability is bounded
+   by ≈ 2^(-tag_length) [Nyberg].  This is true for all allowed
+   plaintext and associated data lengths.
 
 5.  Security Considerations
 
@@ -530,8 +526,8 @@ Table of Contents
    be larger than 16 bytes.  For short tags with tag_length < 128 -
    log2(n + m + 1) bits, the worst-case forgery probability is bounded
    by ≈ 2^(-tag_length) [Nyberg].  With the constraints listed in
-   Section 4.3, n + m + 1 < 2^33 128-bit blocks, and tags of length up
-   to 95 bits therefore have an almost perfect security level.  This is
+   Section 4.3, n + m + 1 < 2^32 128-bit blocks, and tags of length up
+   to 96 bits therefore have an almost perfect security level.  This is
    significantly better than GCM where the security level is only
    tag_length - log2(n + m + 1) bits [GCM].  For a graph of the forgery
    probability, refer to Fig. 3 in [Inoue].  As one can note, for
