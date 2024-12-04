@@ -729,6 +729,12 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
+Changes from -06 to -07:
+
+* Changed P_MAX and A_MAX to 2^35 to enable 96-bit tags with near-ideal security.
+* Changed 80-bit tags to 96-bit tags.
+* Clarified that GCM-SST tags have near-ideal forgery probabilities, even against multiple forgery attacks.
+
 Changes from -04 to -06:
 
 * Reference to Inoue et al. for security proof, forgery probability graph, and improved attack when GCM-SST is used without replay protection.
