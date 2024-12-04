@@ -73,6 +73,13 @@ informative:
   RFC9605:
   I-D.irtf-cfrg-aegis-aead:
 
+  BSI:
+    target: https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/TechGuidelines/TG02102/BSI-TR-02102-1.html
+    title: "Cryptographic Mechanisms Recommendations and Key Lengths"
+    seriesinfo:
+      "BSI": "Technical Guideline TR-02102-1"
+    date: February 2024
+
   Multiple:
     target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/multi-forge-01.pdf
     title: "Multiple Forgery Attacks Against Message Authentication Codes"
