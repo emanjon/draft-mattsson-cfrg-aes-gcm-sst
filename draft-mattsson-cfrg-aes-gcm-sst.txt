@@ -685,6 +685,12 @@ Table of Contents
    [MoQ]      IETF, "Media Over QUIC", September 2022,
               <https://datatracker.ietf.org/wg/moq/about/>.
 
+   [Multiple] David McGrew and Scott Fluhrer, "Multiple Forgery Attacks
+              Against Message Authentication Codes", November 2024,
+              <https://csrc.nist.gov/csrc/media/projects/block-cipher-
+              techniques/documents/bcm/comments/cwc-gcm/multi-forge-
+              01.pdf>.
+
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
               <https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-
