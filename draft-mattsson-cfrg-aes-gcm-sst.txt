@@ -22,9 +22,9 @@ Abstract
    use of an additional subkey Q, the derivation of fresh subkeys H and
    Q for each nonce, and the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
-   near-ideal forgery probabilities, even for multiple forgery attacks.
-   GCM-SST is designed for unicast security protocols with replay
-   protection and addresses the strong industry demand for fast
+   near-ideal forgery probabilities, even against multiple forgery
+   attacks.  GCM-SST is designed for unicast security protocols with
+   replay protection and addresses the strong industry demand for fast
    encryption with secure short tags.  This document registers several
    instances of GCM-SST using Advanced Encryption Standard (AES) and
    Rijndael-256-256.
@@ -173,10 +173,10 @@ Table of Contents
    subkey Q, the derivation of fresh subkeys H and Q for each nonce, and
    the replacement of the GHASH function with the POLYVAL function from
    AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
-   tags with near-ideal forgery probabilities, even for multiple forgery
-   attacks, see Section 5.  GCM-SST is designed for use in unicast
-   security protocols with replay protection.  Its performance is
-   similar to GCM [GCM], with the two additional AES invocations
+   tags with near-ideal forgery probabilities, even against multiple
+   forgery attacks, see Section 5.  GCM-SST is designed for use in
+   unicast security protocols with replay protection.  Its performance
+   is similar to GCM [GCM], with the two additional AES invocations
    compensated by the use of POLYVAL, the ”little-endian version” of
    GHASH, which is faster on little-endian architectures.  GCM-SST
    retains the additive encryption characteristic of GCM, which enables
