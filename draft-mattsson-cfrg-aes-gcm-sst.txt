@@ -123,7 +123,7 @@ Table of Contents
    forgery.  The second weakness reveals the subkey H if an attacker
    succeeds in creating forgeries.  Once H is known, the attacker can
    consistently forge subsequent messages, drastically increasing the
-   probability of multiple successful forgeries [Multiple].
+   probability of multiple successful forgeries.
 
    In a comment to NIST, Nyberg et al.  [Nyberg] explained how small
    changes based on proven theoretical constructions mitigate these
