@@ -538,13 +538,13 @@ Table of Contents
    application explicitly incorporates tag length into the keystream or
    the nonce.
 
-   When tag_length < 128 - log2(n + m + 1) bits, the expected numer of
+   When tag_length < 128 - log2(n + m + 1) bits, the expected number of
    forgeries is ≈ q ⋅ 2^(-tag_length), where q is the number of
    decryption queries, which is ideal.  This far outperforms GCM, where
    the expected number of forgeries is q^2 ⋅ (n + m + 1) ⋅
    2^(-tag_length + 1) [Multiple].  BSI states that an ideal MAC with a
    96-bit tag length is considered acceptable [BSI], a requirement that
-   GCM-SST with 96/bit tags satisfies.  Achieving a comparable level of
+   GCM-SST with 96-bit tags satisfies.  Achieving a comparable level of
    security with AES-GCM, AES-CCM, or ChaCha20-Poly1305 is nearly
    impossible.  These algorithms are constrained by AES's narrow 128-bit
    block size and the 128-bit digest size of GHASH and Poly1305.
