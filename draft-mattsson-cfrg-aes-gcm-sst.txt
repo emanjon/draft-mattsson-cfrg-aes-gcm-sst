@@ -539,16 +539,16 @@ Table of Contents
    the nonce.
 
    For tags with tag_length < 128 - log2(n + m + 1) bits, the expected
-   numer of forgeries is ≈ q ⋅ 2^(-tag_length), which is ideal.  This is
-   much better than GCM, where the expected number of forgeries is q^2 ⋅
+   numer of forgeries is ≈ q ⋅ 2^(-tag_length), which is ideal.  This
+   far outperforms GCM, where the expected number of forgeries is q^2 ⋅
    (n + m + 1) ⋅ 2^(-tag_length + 1) [Multiple].  BSI states that using
-   an ideal MAC with 96-bit tag length is acceptable [BSI].  GCM-SST
-   achieves this.  Achieving this level of security with AES-GCM, AES-
-   CCM, or ChaCha20-Poly1305 is almost impossible.  These algorithms are
-   constrained by AES's narrow 128-bit block size and the 128-bit digest
-   size of GHASH and Poly1305.  Moreover, their orgery probability
-   depends on the message length, and they offer zero reforgeability
-   resistance.
+   an ideal MAC with a 96-bit tag length is acceptable [BSI], and GCM-
+   SST meets this standard.  Achieving a comparable level of security
+   with AES-GCM, AES-CCM, or ChaCha20-Poly1305 is nearly impossible as .
+   These algorithms are constrained by AES's narrow 128-bit block size
+   and the 128-bit digest size of GHASH and Poly1305.  Moreover, their
+   forgery probability depends on the message length, and they offer
+   zero reforgeability resistance.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
