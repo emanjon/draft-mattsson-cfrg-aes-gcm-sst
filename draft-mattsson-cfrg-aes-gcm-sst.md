@@ -73,6 +73,16 @@ informative:
   RFC9605:
   I-D.irtf-cfrg-aegis-aead:
 
+  Multiple:
+    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/multi-forge-01.pdf
+    title: "Multiple Forgery Attacks Against Message Authentication Codes"
+    author:
+      -
+        ins: David McGrew
+      -
+        ins: Scott Fluhrer
+    date: November 2024
+
   Inoue:
     target: https://eprint.iacr.org/2024/1928.pdf
     title: "Generic Security of GCM-SST"
