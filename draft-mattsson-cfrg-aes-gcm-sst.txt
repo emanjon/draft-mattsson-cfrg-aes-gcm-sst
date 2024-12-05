@@ -546,7 +546,7 @@ Table of Contents
    When tag_length < 128 - log2(n + m + 1) bits, the expected number of
    forgeries is ≈ q ⋅ 2^(-tag_length), where q is the number of
    decryption queries, which is ideal.  This far outperforms GCM, where
-   the expected number of forgeries is q^2 ⋅ (n + m + 1) ⋅
+   the expected number of forgeries is ≈ q^2 ⋅ (n + m + 1) ⋅
    2^(-tag_length + 1) [Multiple].  BSI states that an ideal MAC with a
    96-bit tag length is considered acceptable for most applications
    [BSI], a requirement that GCM-SST with 96- and 112-bit tags
