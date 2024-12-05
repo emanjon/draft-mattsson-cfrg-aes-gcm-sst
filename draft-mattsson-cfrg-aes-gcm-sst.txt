@@ -492,7 +492,7 @@ Table of Contents
    associated data (A_MAX) have been lowered from GCM [RFC5116].  To
    enable forgery probability close to ideal, even with maximum size
    plaintexts and associated data, we set P_MAX = A_MAX = min(2^(131 -
-   tag_lenth), 2^36 - 48).  Just like [RFC5116], AES-GCM-SST and
+   tag_length), 2^36 - 48).  Just like [RFC5116], AES-GCM-SST and
    Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of
    96-bit and 224-bits respectively.  For the AEAD algorithms in Table 1
    the worst-case forgery probability is bounded by ≈ 2^(-tag_length)
