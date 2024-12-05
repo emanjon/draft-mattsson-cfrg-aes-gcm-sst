@@ -546,12 +546,8 @@ Table of Contents
    the expected number of forgeries is q^2 ⋅ (n + m + 1) ⋅
    2^(-tag_length + 1) [Multiple].  BSI states that an ideal MAC with a
    96-bit tag length is considered acceptable [BSI], a requirement that
-   GCM-SST with 96-bit tags satisfies.  Achieving a comparable level of
-   security with AES-GCM, AES-CCM, or ChaCha20-Poly1305 is nearly
-   impossible.  These algorithms are constrained by AES's narrow 128-bit
-   block size and the 128-bit digest size of GHASH and Poly1305.
-   Moreover, their forgery probability depends on the message length,
-   and they offer zero reforgeability resistance.
+   GCM-SST with 96- and 112-bit tags satisfies.  Achieving a comparable
+   level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
@@ -592,7 +588,7 @@ Table of Contents
 
 6.  IANA Considerations
 
-   IANA is requested to assign the entries in the first two columns of
+   IANA is requested to assign the entries in the first column of
    Table 1 to the "AEAD Algorithms" registry under the "Authenticated
    Encryption with Associated Data (AEAD) Parameters" heading with this
    document as reference.
