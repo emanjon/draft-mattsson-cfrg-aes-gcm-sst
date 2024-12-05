@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-03T01:52:36.887146+00:00",
+  "timestamp": "2024-12-05T01:53:00.516595+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -297,15 +297,15 @@
       "id": "I_kwDOJat8lM6KUMwc",
       "title": "Adress active attacks on privacy",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/11",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "bellebaum",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "The draft mentions passive attacks on confidentiality, as well as an adversary's ability to generate forgeries.\r\nThe assumption seems to be that \"a forgery now and then\" is harmless. This however depends very much on the protocol and I believe should be addressed. In particular, it should be mentioned in the security considerations that tag forgeries may have an impact on confidentiality, rather than just integrity and authenticity.\r\n\r\nFor example, consider a protocol which takes noticeably longer to process inputs with a particular bit pattern, say starting with 32 ones (but imagine any form of structured header here). Finding out whether a given ciphertext `c` corresponds to a plaintext starting with the arbitrary 32-bit sequence `B` could involve calculating `c' := c xor ((B xor 111...111)||0000)`, forging a tag for this and measuring the time it takes the recipient to process `c'`.\r\n\r\nThis attack vector is very different from the occasional forged packet problem and may, depending on the context, have severe implications for privacy. In general, this is a special case of a so-called Chosen Ciphertext Attack, and there are many more forms varying e.g. in the number of forged messages that need to be sent. Yehuda Lindell mentioned on the mailing list the possibility of a statement like \"Any attack taking `Q` queries without tags would take `2^t * Q` queries with length-t tags\", but this has not been proven yet. Even if it eventually is proven, the outlined attack above has `Q=1`, so in general, if `2^t` is online bruteforceable, then there is a potential threat to privacy which protocol designers need to be aware of when choosing `t`.",
       "createdAt": "2024-05-28T09:17:17Z",
-      "updatedAt": "2024-11-24T09:01:27Z",
-      "closedAt": null,
+      "updatedAt": "2024-12-04T21:45:48Z",
+      "closedAt": "2024-12-04T21:45:48Z",
       "comments": [
         {
           "author": "bellebaum",
@@ -320,6 +320,13 @@
           "body": "Good point. That should definitely be described. We will do so in the next update\r\n\r\nI don't think changing keys helps at all for this attack. Using 32-bit tags, the attacker will have a forgery probability of 2^-32 for each packet independently of rekeying. Rekeying only lowers forgery probability if the integrity algorithm is not behaving like an ideal MAC. It also helps to minimize damage in case of key compromise.\r\n\r\n",
           "createdAt": "2024-11-24T09:01:26Z",
           "updatedAt": "2024-11-24T09:01:26Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in -04",
+          "createdAt": "2024-12-04T21:45:48Z",
+          "updatedAt": "2024-12-04T21:45:48Z"
         }
       ]
     },
@@ -352,16 +359,48 @@
       "id": "I_kwDOJat8lM6hfKW3",
       "title": "Ideal security for 96-bit tags?",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/15",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "The current of P_MAX and A_MAX was based on the P_MAX value of around 2^36 bytes in RFC 5116. This leads to ideal forgery probability for up to 95-bit tags.\r\n\r\nShould we change P_MAX and A_MAX to <= 2^35 bytes to get ideal forgery probability for 96-bit tags?\r\n",
       "createdAt": "2024-12-01T14:45:19Z",
-      "updatedAt": "2024-12-01T14:45:19Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2024-12-04T17:30:49Z",
+      "closedAt": "2024-12-04T17:30:49Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Done in main",
+          "createdAt": "2024-12-04T17:30:49Z",
+          "updatedAt": "2024-12-04T17:30:49Z"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOJat8lM6iB2uS",
+      "title": "Explain the increased security against multiple forgery attacks.",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/16",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Explain the increased security against multiple forgery attacks. Compared to GCM, GCM-SST has much better properties. Very close to ideal tags for up to 96-bit tags.\r\n\r\nLink to \r\nhttps://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/multi-forge-01.pdf\r\n\r\nand \r\n\r\nBSI stating that they recommend use of 96 bit ideal tags. GCM, AES-CCM, AES-CMAC, Poly1305 are not as strong as 96-bit ideal tags.",
+      "createdAt": "2024-12-04T17:33:58Z",
+      "updatedAt": "2024-12-04T21:54:07Z",
+      "closedAt": "2024-12-04T21:54:07Z",
+      "comments": [
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Fixed in main",
+          "createdAt": "2024-12-04T21:54:07Z",
+          "updatedAt": "2024-12-04T21:54:07Z"
+        }
+      ]
     }
   ],
   "pulls": [
