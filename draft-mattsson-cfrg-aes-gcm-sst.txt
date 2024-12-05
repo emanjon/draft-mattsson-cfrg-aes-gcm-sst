@@ -439,7 +439,7 @@ Table of Contents
 
 4.3.  AEAD Instances and Constraints
 
-   We define nine AEAD instances, in the format of [RFC5116], that use
+   We define twelve AEAD instances, in the format of [RFC5116], that use
    AES-GCM-SST and Rijndael-GCM-SST with tag lengths of 32, 64, 96, and
    112 bits.  The key length and tag length are related to different
    security properties, and an application encrypting audio packets with
