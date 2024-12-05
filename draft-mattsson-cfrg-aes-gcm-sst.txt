@@ -515,7 +515,7 @@ Table of Contents
    protection.  Every key MUST be randomly chosen from a uniform
    distribution.  GCM-SST MUST be used in a nonce-respecting setting:
    for a given key, a nonce MUST only be used once in the encryption
-   function and only once succesfully in the decryption function.  The
+   function and only once in a successful decryption function call.  The
    nonce MAY be public or predictable.  It can be a counter, the output
    of a permutation, or a generator with a long period.  GCM-SST MUST
    NOT be used with random nonces [Collision] and MUST be used with
