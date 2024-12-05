@@ -509,16 +509,16 @@ where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
 
 We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST and Rijndael-GCM-SST with tag lengths of 32, 64, and 96 bits. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
 
-| Numeric ID | Name | K_LEN (bytes) | tag_length (bits) |
-| TBD1 | AEAD_AES_128_GCM_SST_4 | 16 | 32 |
-| TBD2 | AEAD_AES_128_GCM_SST_8 | 16 | 64 |
-| TBD3 | AEAD_AES_128_GCM_SST_10 | 16 | 96 |
-| TBD4 | AEAD_AES_256_GCM_SST_4 | 32 | 32 |
-| TBD5 | AEAD_AES_256_GCM_SST_8 | 32 | 64 |
-| TBD6 | AEAD_AES_256_GCM_SST_10 | 32 | 96 |
-| TBD7 | AEAD_RIJNDAEL_GCM_SST_4 | 32 | 32 |
-| TBD8 | AEAD_RIJNDAEL_GCM_SST_8 | 32 | 64 |
-| TBD9 | AEAD_RIJNDAEL_GCM_SST_10 | 32 | 96 |
+| Name | K_LEN (bytes) | P_MAX = A_MAX | tag_length (bits) |
+| AEAD_AES_128_GCM_SST_4 | 16 | 2<sup>35</sup> | 32 |
+| AEAD_AES_128_GCM_SST_8 | 16 | 2<sup>35</sup> | 64 |
+| AEAD_AES_128_GCM_SST_10 | 16 | 2<sup>35</sup> | 96 |
+| AEAD_AES_256_GCM_SST_4 | 32 | 2<sup>35</sup> | 32 |
+| AEAD_AES_256_GCM_SST_8 | 32 | 2<sup>35</sup> | 64 |
+| AEAD_AES_256_GCM_SST_10 | 32 | 2<sup>35</sup> | 96 |
+| AEAD_RIJNDAEL_GCM_SST_4 | 32 | 2<sup>35</sup> | 32 |
+| AEAD_RIJNDAEL_GCM_SST_8 | 32 | 2<sup>35</sup> | 64 |
+| AEAD_RIJNDAEL_GCM_SST_10 | 32 | 2<sup>35</sup> | 96 |
 {: #iana-algs title="AEAD Algorithms" cols="r l r r"}
 
 Common parameters for the six AEAD instances:
