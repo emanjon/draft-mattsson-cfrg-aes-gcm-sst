@@ -522,7 +522,7 @@ We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SS
 | AEAD_RIJNDAEL_GCM_SST_8 | 32 | 2<sup>36</sup> - 48 | 64 |
 | AEAD_RIJNDAEL_GCM_SST_10 | 32 | 2<sup>35</sup> | 96 |
 | AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>19</sup> | 112 |
-{: #iana-algs title="AEAD Algorithms" cols="r l r r"}
+{: #iana-algs title="AEAD Algorithms" cols="l r r r"}
 
 Common parameters for the six AEAD instances:
 
