@@ -527,9 +527,8 @@ Table of Contents
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
    be larger than 16 bytes.  When tag_length < 128 - log2(n + m + 1)
    bits, the worst-case forgery probability is bounded by ≈
-   2^(-tag_length) [Nyberg].  With the constraints listed in
-   Section 4.3, n + m + 1 < 2^32 128-bit blocks, and tags of length up
-   to 96 bits therefore have an almost perfect security level.  This is
+   2^(-tag_length) [Nyberg].  The tags in the AEAD algorithm listed in
+   Section 4.3 therefore have an almost perfect security level.  This is
    significantly better than GCM where the security level is only
    tag_length - log2(n + m + 1) bits [GCM].  For a graph of the forgery
    probability, refer to Fig. 3 in [Inoue].  As one can note, for
@@ -545,9 +544,10 @@ Table of Contents
    decryption queries, which is ideal.  This far outperforms GCM, where
    the expected number of forgeries is q^2 ⋅ (n + m + 1) ⋅
    2^(-tag_length + 1) [Multiple].  BSI states that an ideal MAC with a
-   96-bit tag length is considered acceptable [BSI], a requirement that
-   GCM-SST with 96- and 112-bit tags satisfies.  Achieving a comparable
-   level of security with GCM, CCM, or Poly1305 is nearly impossible.
+   96-bit tag length is considered acceptable for most applications
+   [BSI], a requirement that GCM-SST with 96- and 112-bit tags
+   satisfies.  Achieving a comparable level of security with GCM, CCM,
+   or Poly1305 is nearly impossible.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
@@ -567,7 +567,7 @@ Table of Contents
    [Degabriele] or other alternatives such as [SMAC].
 
    The confidentiality offered by AES-GCM-SST against active attackers
-   is irectly linked to the forgery probability.  Depending on the
+   is directly linked to the forgery probability.  Depending on the
    protocol and application, forgeries MAY significantly compromise
    privacy, in addition to affecting integrity and authenticity.  It
    MUST be assumed that attackers always receive feedback on the success
