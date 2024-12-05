@@ -149,7 +149,7 @@ Table of Contents
    Audio packets are small, numerous, and ephemeral.  As such, they are
    highly sensitive to cryptographic overhead, but forgery of individual
    packets is not a big concern as it typically is barely noticeable as
-   each packet often only encodea 20 ms of audio.  Due to its
+   each packet often only encodes 20 ms of audio.  Due to its
    weaknesses, GCM is typically not used with short tags.  The result is
    either decreased performance from larger than needed tags [MoQ], or
    decreased performance from using much slower constructions such as
