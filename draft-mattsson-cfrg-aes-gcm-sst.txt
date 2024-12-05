@@ -961,8 +961,10 @@ Change Log
       even against multiple forgery attacks, which is not the case at
       all for GCM.
 
-   *  Added formulas for expeted number of forgeries and stated that
-      GCM-SST fulfils BSI recommendation of using 96-bit ideal MACs.
+   *  Added formulas for expeted number of forgeries for GCM-SST (q ⋅
+      2^(-tag_length)) and GCM (q^2 ⋅ (n + m + 1) ⋅ 2^(-tag_length + 1))
+      and stated that GCM-SST fulfils BSI recommendation of using 96-bit
+      ideal MACs.
 
    Changes from -04 to -06:
 
