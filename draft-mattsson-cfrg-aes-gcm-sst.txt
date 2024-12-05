@@ -282,7 +282,7 @@ Table of Contents
    are a whole number of octets.
 
    Figures illustrating the GCM-SST encryption and decryption functions
-   are shown in [SST1][SST2][Inoue].
+   can be found in [SST1], [SST2], and [Inoue].
 
 3.1.  Authenticated Encryption Function
 
