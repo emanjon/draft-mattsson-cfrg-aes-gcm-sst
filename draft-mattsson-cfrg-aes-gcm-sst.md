@@ -509,23 +509,22 @@ where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
 
 We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST and Rijndael-GCM-SST with tag lengths of 32, 64, and 96 bits. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.
 
-| Name | K_LEN (bytes) | P_MAX = A_MAX | tag_length (bits) |
-| AEAD_AES_128_GCM_SST_4 | 16 | 2<sup>35</sup> | 32 |
-| AEAD_AES_128_GCM_SST_8 | 16 | 2<sup>35</sup> | 64 |
+| Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | tag_length (bits) |
+| AEAD_AES_128_GCM_SST_4 | 16 | 2<sup>36</sup> - 48 | 32 |
+| AEAD_AES_128_GCM_SST_8 | 16 | 2<sup>36</sup> - 48 | 64 |
 | AEAD_AES_128_GCM_SST_10 | 16 | 2<sup>35</sup> | 96 |
-| AEAD_AES_256_GCM_SST_4 | 32 | 2<sup>35</sup> | 32 |
-| AEAD_AES_256_GCM_SST_8 | 32 | 2<sup>35</sup> | 64 |
+| AEAD_AES_128_GCM_SST_12 | 16 | 2<sup>19</sup> | 112 |
+| AEAD_AES_256_GCM_SST_4 | 32 | 2<sup>36</sup> - 48 | 32 |
+| AEAD_AES_256_GCM_SST_8 | 32 | 2<sup>36</sup> - 48 | 64 |
 | AEAD_AES_256_GCM_SST_10 | 32 | 2<sup>35</sup> | 96 |
-| AEAD_RIJNDAEL_GCM_SST_4 | 32 | 2<sup>35</sup> | 32 |
-| AEAD_RIJNDAEL_GCM_SST_8 | 32 | 2<sup>35</sup> | 64 |
+| AEAD_AES_256_GCM_SST_12 | 32 | 2<sup>19</sup> | 112 |
+| AEAD_RIJNDAEL_GCM_SST_4 | 32 | 2<sup>36</sup> - 48 | 32 |
+| AEAD_RIJNDAEL_GCM_SST_8 | 32 | 2<sup>36</sup> - 48 | 64 |
 | AEAD_RIJNDAEL_GCM_SST_10 | 32 | 2<sup>35</sup> | 96 |
+| AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>19</sup> | 112 |
 {: #iana-algs title="AEAD Algorithms" cols="r l r r"}
 
 Common parameters for the six AEAD instances:
-
-* P_MAX (maximum size of the plaintext) is 2<sup>35</sup> octets.
-
-* A_MAX (maximum size of the associated data) is 2<sup>35</sup> octets.
 
 * N_MIN = N_MAX (minimum and maximum size of the nonce) is 12 octets for AES, while for Rijndael-256-256, it is 28 bytes.
 
@@ -750,8 +749,8 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -06 to -07:
 
-* Changed P_MAX and A_MAX to 2^35 to enable 96-bit tags with near-ideal security.
-* Changed 80-bit tags to 96-bit tags.
+* Changed P_MAX and A_MAX to enable 96- and 112-bit tags with near-ideal security.
+* Replaced 80-bit tags with 96-bit and 112-tags.
 * Clarified that GCM-SST tags have near-ideal forgery probabilities, even against multiple forgery attacks.
 
 Changes from -04 to -06:
