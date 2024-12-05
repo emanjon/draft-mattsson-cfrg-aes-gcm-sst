@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 7 June 2025                                   J. Preuß Mattsson
+Expires: 8 June 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                         4 December 2024
+                                                         5 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -62,7 +62,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 June 2025.
+   This Internet-Draft will expire on 8 June 2025.
 
 Copyright Notice
 
@@ -445,30 +445,30 @@ Table of Contents
    security properties, and an application encrypting audio packets with
    small tags might require 256-bit confidentiality.
 
-     +============+==========================+=========+============+
-     | Numeric ID | Name                     |   K_LEN | tag_length |
-     |            |                          | (bytes) |     (bits) |
-     +============+==========================+=========+============+
-     |       TBD1 | AEAD_AES_128_GCM_SST_4   |      16 |         32 |
-     +------------+--------------------------+---------+------------+
-     |       TBD2 | AEAD_AES_128_GCM_SST_8   |      16 |         64 |
-     +------------+--------------------------+---------+------------+
-     |       TBD3 | AEAD_AES_128_GCM_SST_10  |      16 |         96 |
-     +------------+--------------------------+---------+------------+
-     |       TBD4 | AEAD_AES_256_GCM_SST_4   |      32 |         32 |
-     +------------+--------------------------+---------+------------+
-     |       TBD5 | AEAD_AES_256_GCM_SST_8   |      32 |         64 |
-     +------------+--------------------------+---------+------------+
-     |       TBD6 | AEAD_AES_256_GCM_SST_10  |      32 |         96 |
-     +------------+--------------------------+---------+------------+
-     |       TBD7 | AEAD_RIJNDAEL_GCM_SST_4  |      32 |         32 |
-     +------------+--------------------------+---------+------------+
-     |       TBD8 | AEAD_RIJNDAEL_GCM_SST_8  |      32 |         64 |
-     +------------+--------------------------+---------+------------+
-     |       TBD9 | AEAD_RIJNDAEL_GCM_SST_10 |      32 |         96 |
-     +------------+--------------------------+---------+------------+
+    +==========================+===============+=========+============+
+    |                     Name | K_LEN (bytes) | P_MAX = | tag_length |
+    |                          |               |   A_MAX |     (bits) |
+    +==========================+===============+=========+============+
+    |   AEAD_AES_128_GCM_SST_4 | 16            |    2^35 |         32 |
+    +--------------------------+---------------+---------+------------+
+    |   AEAD_AES_128_GCM_SST_8 | 16            |    2^35 |         64 |
+    +--------------------------+---------------+---------+------------+
+    |  AEAD_AES_128_GCM_SST_10 | 16            |    2^35 |         96 |
+    +--------------------------+---------------+---------+------------+
+    |   AEAD_AES_256_GCM_SST_4 | 32            |    2^35 |         32 |
+    +--------------------------+---------------+---------+------------+
+    |   AEAD_AES_256_GCM_SST_8 | 32            |    2^35 |         64 |
+    +--------------------------+---------------+---------+------------+
+    |  AEAD_AES_256_GCM_SST_10 | 32            |    2^35 |         96 |
+    +--------------------------+---------------+---------+------------+
+    |  AEAD_RIJNDAEL_GCM_SST_4 | 32            |    2^35 |         32 |
+    +--------------------------+---------------+---------+------------+
+    |  AEAD_RIJNDAEL_GCM_SST_8 | 32            |    2^35 |         64 |
+    +--------------------------+---------------+---------+------------+
+    | AEAD_RIJNDAEL_GCM_SST_10 | 32            |    2^35 |         96 |
+    +--------------------------+---------------+---------+------------+
 
-                         Table 1: AEAD Algorithms
+                          Table 1: AEAD Algorithms
 
    Common parameters for the six AEAD instances:
 
