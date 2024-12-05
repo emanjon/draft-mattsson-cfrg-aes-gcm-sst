@@ -181,14 +181,18 @@ Table of Contents
    GHASH, which is faster on little-endian architectures.  GCM-SST
    retains the additive encryption characteristic of GCM, which enables
    efficient implementations on modern processor architectures, see
-   [Gueron] and Section 2.4 of [GCM-Update].  This document registers
-   several GCM-SST instances using Advanced Encryption Standard (AES)
-   [AES] and Rijndael with 256-bit keys and blocks (Rijndael-256-256)
-   [Rijndael] in counter mode as keystream generators, see Section 4.
-   3GPP has standardized the use of Rijndael-256-256 for authentication
-   and key generation in 3GPP TS 35.234–35.237 [WID23].  NIST is
-   anticipated to standardize Rijndael-256-256 [Options], although there
-   may be revisions to the key schedule.
+   [Gueron] and Section 2.4 of [GCM-Update].
+
+   This document also registers several GCM-SST instances using Advanced
+   Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
+   blocks (Rijndael-256-256) [Rijndael] in counter mode as keystream
+   generators and with tag lengths of 32, 64, 96, and 112 bits, see
+   Section 4.  The authentication tags in all registered GCM-SST
+   instances behave like ideal MACs, which is not the case at all for
+   GCM [GCM]. 3GPP has standardized the use of Rijndael-256-256 for
+   authentication and key generation in 3GPP TS 35.234–35.237 [WID23].
+   NIST is anticipated to standardize Rijndael-256-256 [Options],
+   although there may be revisions to the key schedule.
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion and
