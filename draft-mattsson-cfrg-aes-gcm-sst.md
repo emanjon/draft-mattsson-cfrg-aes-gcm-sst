@@ -530,7 +530,7 @@ Common parameters for the six AEAD instances:
 
 * C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
 
-The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}} to enable forgery probability close to ideal for 96-bit tags even with maximum size plaintexts and associated data. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
+The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}} to enable forgery probability close to ideal even with maximum size plaintexts and associated data. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
 
 # Security Considerations {#Security}
 
