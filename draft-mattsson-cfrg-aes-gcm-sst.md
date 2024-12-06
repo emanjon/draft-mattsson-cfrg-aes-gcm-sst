@@ -1,6 +1,6 @@
 ---
 title: "Galois Counter Mode with Secure Truncated Tags (GCM-STT)"
-abbrev: "GCM-SST"
+abbrev: "GCM-STT"
 category: info
 
 docname: draft-mattsson-cfrg-gcm-stt-latest
@@ -344,7 +344,7 @@ informative:
 
 --- abstract
 
-This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV. This enables truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks. GCM-SST is designed for unicast security protocols with replay protection and addresses the strong industry demand for fast encryption with secure short tags. This document registers several instances of GCM-SST using Advanced Encryption Standard (AES) and Rijndael-256-256.
+This document defines the Galois Counter Mode with Secure Truncated Tags (GCM-STT) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-STT can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV. This enables truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks. GCM-STT is designed for unicast security protocols with replay protection and addresses the strong industry demand for fast encryption with secure short tags. This document registers several instances of GCM-STT using Advanced Encryption Standard (AES) and Rijndael-256-256.
 
 --- middle
 
