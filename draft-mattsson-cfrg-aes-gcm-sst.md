@@ -395,7 +395,7 @@ The following notation is used in the document:
 
 This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}} and Inoue et al. {{Inoue}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first two chunks Z[0] and Z[1] are used as the two subkeys H and Q. The following keystream chunks Z[2], Z[3], ..., Z[n + 1] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL. As the subkeys H and Q are nonce-dependent, the masking can be replaced by an injective non-zero padding of the ciphertext {{Inoue}}. Both encryption and decryption are only defined on inputs that are a whole number of octets.
 
 Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, and {{Inoue}}.
 
@@ -429,14 +429,14 @@ Steps:
 
 1. If the lengths of K, N, A, P are not supported return error and abort
 2. Initiate keystream generator with K and N
-3. Let H = Z[0], Q = Z[1], M = Z[2]
-4. Let ct = P XOR truncate(Z[3:n + 2], len(P))
-5. Let S = zeropad(A) \|\| zeropad(ct)
-6. Let L = LE64(len(ct)) \|\| LE64(len(A))
-7. Let X = POLYVAL(H, S[0], S[1], ...)
-8. Let full_tag = POLYVAL(Q, X XOR L) XOR M
-9. Let tag = truncate(full_tag, tag_length)
-10. Return (ct, tag)
+3. Let H = Z[0], Q = Z[1]
+5. Let ct = P XOR truncate(Z[2:n + 1], len(P))
+6. Let S = zeropad(A) \|\| zeropad(ct \|\| 0x80)
+7. Let L = LE64(len(ct)) \|\| LE64(len(A))
+8. Let X = POLYVAL(H, S[0], S[1], ...)
+9. Let full_tag = POLYVAL(Q, X XOR L)
+10. Let tag = truncate(full_tag, tag_length)
+11. Return (ct, tag)
 
 ## Authenticated Decryption Function
 
@@ -468,15 +468,15 @@ Steps:
 
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
 2. Initiate keystream generator with K and N
-3. Let H = Z[0], Q = Z[1], M = Z[2]
-4. Let S = zeropad(A) \|\| zeropad(ct)
-5. Let L = LE64(len(ct)) \|\| LE64(len(A))
-6. Let X = POLYVAL(H, S[0], S[1], ...)
-7. Let full_tag = POLYVAL(Q, X XOR L) XOR M
-8. Let expected_tag = truncate(full_tag, tag_length)
-9. If tag != expected_tag, return error and abort
-10. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
-11. Return P
+3. Let H = Z[0], Q = Z[1]
+5. Let S = zeropad(A) \|\| zeropad(ct \|\| 0x80)
+6. Let L = LE64(len(ct)) \|\| LE64(len(A))
+7. Let X = POLYVAL(H, S[0], S[1], ...)
+8. Let full_tag = POLYVAL(Q, X XOR L)
+9. Let expected_tag = truncate(full_tag, tag_length)
+10. If tag != expected_tag, return error and abort
+11. Let P = ct XOR truncate(Z[2:n + 1], len(ct))
+12. Return P
 
 The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte.
 
