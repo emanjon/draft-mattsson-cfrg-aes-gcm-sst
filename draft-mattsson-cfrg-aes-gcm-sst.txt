@@ -180,9 +180,9 @@ Table of Contents
    forgery probabilities, even against multiple forgery attacks, see
    Section 5.  GCM-SST is designed for use in unicast security protocols
    with replay protection.  Its performance is similar to GCM [GCM],
-   with the two additional AES invocations compensated by the use of
-   POLYVAL, the ”little-endian version” of GHASH, which is faster on
-   little-endian architectures.  GCM-SST retains the additive encryption
+   with the additional AES invocation compensated by the use of POLYVAL,
+   the ”little-endian version” of GHASH, which is faster on little-
+   endian architectures.  GCM-SST retains the additive encryption
    characteristic of GCM, which enables efficient implementations on
    modern processor architectures, see [Gueron] and Section 2.4 of
    [GCM-Update].
