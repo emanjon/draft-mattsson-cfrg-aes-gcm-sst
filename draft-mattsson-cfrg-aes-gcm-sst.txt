@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 8 June 2025                                   J. Preuß Mattsson
+Expires: 9 June 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                         5 December 2024
+                                                         6 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -23,9 +23,10 @@ Abstract
    Q for each nonce, and the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
    near-ideal forgery probabilities, even against multiple forgery
-   attacks.  GCM-SST is designed for unicast security protocols with
-   replay protection and addresses the strong industry demand for fast
-   encryption with secure short tags.  This document registers several
+   attacks, which are significant improvements over GCM.  GCM-SST is
+   designed for unicast security protocols with replay protection and
+   addresses the strong industry demand for fast encryption with less
+   overhead and secure short tags.  This document registers several
    instances of GCM-SST using Advanced Encryption Standard (AES) and
    Rijndael-256-256.
 
@@ -62,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 June 2025.
+   This Internet-Draft will expire on 9 June 2025.
 
 Copyright Notice
 
