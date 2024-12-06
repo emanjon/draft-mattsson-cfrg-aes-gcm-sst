@@ -21,7 +21,8 @@ Abstract
    just 128-bit block ciphers.  The main differences from GCM are the
    use of an additional subkey Q, the derivation of fresh subkeys H and
    Q for each nonce, and the replacement of the GHASH function with the
-   POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
+   POLYVAL function from AES-GCM-SIV, and the substitution of masking
+   with injective non-zero padding.  This enables truncated tags with
    near-ideal forgery probabilities, even against multiple forgery
    attacks, which are significant improvements over GCM.  GCM-SST is
    designed for unicast security protocols with replay protection and
@@ -167,22 +168,24 @@ Table of Contents
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
-   algorithm following the recommendations from Nyberg et al.  [Nyberg].
-   GCM-SST is defined with a general interface, allowing it to be used
-   with any keystream generator, not just 128-bit block ciphers.  The
-   main differences from GCM [GCM] are the introduction of an additional
-   subkey Q, the derivation of fresh subkeys H and Q for each nonce, and
-   the replacement of the GHASH function with the POLYVAL function from
-   AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
-   tags with near-ideal forgery probabilities, even against multiple
-   forgery attacks, see Section 5.  GCM-SST is designed for use in
-   unicast security protocols with replay protection.  Its performance
-   is similar to GCM [GCM], with the two additional AES invocations
-   compensated by the use of POLYVAL, the ”little-endian version” of
-   GHASH, which is faster on little-endian architectures.  GCM-SST
-   retains the additive encryption characteristic of GCM, which enables
-   efficient implementations on modern processor architectures, see
-   [Gueron] and Section 2.4 of [GCM-Update].
+   algorithm following the recommendations from Nyberg et al.  [Nyberg]
+   and Inoue et al.  [Inoue].  GCM-SST is defined with a general
+   interface, allowing it to be used with any keystream generator, not
+   just 128-bit block ciphers.  The main differences from GCM [GCM] are
+   the introduction of an additional subkey Q, the derivation of fresh
+   subkeys H and Q for each nonce, and the replacement of the GHASH
+   function with the POLYVAL function from AES-GCM-SIV [RFC8452], and
+   the replacement of masking with injective non-zero padding, see
+   Section 3.  These changes enable truncated tags with near-ideal
+   forgery probabilities, even against multiple forgery attacks, see
+   Section 5.  GCM-SST is designed for use in unicast security protocols
+   with replay protection.  Its performance is similar to GCM [GCM],
+   with the two additional AES invocations compensated by the use of
+   POLYVAL, the ”little-endian version” of GHASH, which is faster on
+   little-endian architectures.  GCM-SST retains the additive encryption
+   characteristic of GCM, which enables efficient implementations on
+   modern processor architectures, see [Gueron] and Section 2.4 of
+   [GCM-Update].
 
    This document also registers several GCM-SST instances using Advanced
    Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
@@ -233,6 +236,8 @@ Table of Contents
 
    *  XOR is the bitwise exclusive OR operator
 
+   *  0x is a prefix used to denote hexadecimal numbers
+
    *  len(x) is the length of x in bits.
 
    *  zeropad(x) right pads an octet string x with zeroes to a multiple
@@ -241,7 +246,7 @@ Table of Contents
    *  truncate(x, t) is the truncation operation.  The first t bits of x
       are kept
 
-   *  n is the number of 128-bit chunks in zeropad(P)
+   *  n is the number of 128-bit chunks in zeropad(ct || 0x80)
 
    *  m is the number of 128-bit chunks in zeropad(A)
 
@@ -260,9 +265,9 @@ Table of Contents
 
    This section defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) AEAD algorithm following the recommendations from Nyberg et
-   al.  [Nyberg].  GCM-SST is defined with a general interface so that
-   it can be used with any keystream generator, not just a 128-bit block
-   cipher.
+   al.  [Nyberg] and Inoue et al.  [Inoue].  GCM-SST is defined with a
+   general interface so that it can be used with any keystream
+   generator, not just a 128-bit block cipher.
 
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four variable-length octet string parameters.  A
@@ -454,25 +459,25 @@ Table of Contents
     | Name                     |   K_LEN | P_MAX = A_MAX | tag_length |
     |                          | (bytes) |       (bytes) |     (bits) |
     +==========================+=========+===============+============+
-    | AEAD_AES_128_GCM_SST_4   |      16 |     2^36 - 48 |         32 |
+    | AEAD_AES_128_GCM_SST_4   |      16 |     2^36 - 33 |         32 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_128_GCM_SST_8   |      16 |     2^36 - 48 |         64 |
+    | AEAD_AES_128_GCM_SST_8   |      16 |     2^36 - 33 |         64 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_128_GCM_SST_10  |      16 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_128_GCM_SST_12  |      16 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_4   |      32 |     2^36 - 48 |         32 |
+    | AEAD_AES_256_GCM_SST_4   |      32 |     2^36 - 33 |         32 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_8   |      32 |     2^36 - 48 |         64 |
+    | AEAD_AES_256_GCM_SST_8   |      32 |     2^36 - 33 |         64 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_10  |      32 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_12  |      32 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_4  |      32 |     2^36 - 48 |         32 |
+    | AEAD_RIJNDAEL_GCM_SST_4  |      32 |     2^36 - 33 |         32 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_8  |      32 |     2^36 - 48 |         64 |
+    | AEAD_RIJNDAEL_GCM_SST_8  |      32 |     2^36 - 33 |         64 |
     +--------------------------+---------+---------------+------------+
     | AEAD_RIJNDAEL_GCM_SST_10 |      32 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
@@ -493,7 +498,7 @@ Table of Contents
    associated data (A_MAX) have been lowered from GCM [RFC5116].  To
    enable forgery probability close to ideal, even with maximum size
    plaintexts and associated data, we set P_MAX = A_MAX = min(2^(131 -
-   tag_length), 2^36 - 48).  Just like [RFC5116], AES-GCM-SST and
+   tag_length), 2^36 - 33).  Just like [RFC5116], AES-GCM-SST and
    Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of
    96-bit and 224-bits respectively.  For the AEAD algorithms in Table 1
    the worst-case forgery probability is bounded by ≈ 2^(-tag_length)
@@ -954,6 +959,11 @@ A.4.  AES-GCM-SST Test #4 (256-bit key)
 Change Log
 
    This section is to be removed before publishing as an RFC.
+
+   Changes from -07 to -08:
+
+   *  Replaced masking with non-zero injective padding as suggested by
+      Inoue et al.
 
    Changes from -06 to -07:
 
