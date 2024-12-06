@@ -1,9 +1,9 @@
 ---
-title: "Galois Counter Mode with Secure Short Tags (GCM-SST)"
+title: "Galois Counter Mode with Secure Truncated Tags (GCM-STT)"
 abbrev: "GCM-SST"
 category: info
 
-docname: draft-mattsson-cfrg-aes-gcm-sst-latest
+docname: draft-mattsson-cfrg-gcm-stt-latest
 submissiontype: IRTF  # also: "independent", "IAB", or "IRTF"
 number:
 date:
