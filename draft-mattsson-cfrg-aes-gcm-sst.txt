@@ -20,7 +20,7 @@ Abstract
    algorithm.  GCM-SST can be used with any keystream generator, not
    just 128-bit block ciphers.  The main differences from GCM are the
    use of an additional subkey Q, the derivation of fresh subkeys H and
-   Q for each nonce, and the replacement of the GHASH function with the
+   Q for each nonce, the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV, and the substitution of masking
    with injective non-zero padding.  This enables truncated tags with
    near-ideal forgery probabilities, even against multiple forgery
