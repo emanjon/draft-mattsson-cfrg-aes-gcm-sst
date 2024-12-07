@@ -292,9 +292,6 @@ Table of Contents
    [Inoue].  Both encryption and decryption are only defined on inputs
    that are a whole number of octets.
 
-   Figures illustrating the GCM-SST encryption and decryption functions
-   can be found in [SST1], [SST2], and [Inoue].
-
 3.1.  Authenticated Encryption Function
 
    The encryption function Encrypt(K, N, A, P) encrypts a plaintext and
