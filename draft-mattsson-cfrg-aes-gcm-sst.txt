@@ -179,10 +179,11 @@ Table of Contents
    Section 3.  These changes enable truncated tags with near-ideal
    forgery probabilities, even against multiple forgery attacks, see
    Section 5.  GCM-SST is designed for use in unicast security protocols
-   with replay protection.  Its performance is similar to GCM [GCM],
-   with the additional AES invocation compensated by the use of POLYVAL,
-   the ”little-endian version” of GHASH, which is faster on little-
-   endian architectures.  GCM-SST retains the additive encryption
+   with replay protection, where its authentication tag behaves like an
+   ideal MAC.  Its performance is similar to GCM [GCM], with the
+   additional AES invocation compensated by the use of POLYVAL, the
+   ”little-endian version” of GHASH, which is faster on little-endian
+   architectures.  GCM-SST retains the additive encryption
    characteristic of GCM, which enables efficient implementations on
    modern processor architectures, see [Gueron] and Section 2.4 of
    [GCM-Update].
@@ -201,8 +202,11 @@ Table of Contents
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion and
    refinement contributing to its design [SAGE23][SAGE24]. 3GPP has
-   decided to standardize GCM-SST for use with AES-256 [AES], SNOW 5G
-   [SNOW], and ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].
+   decided to standardize Mac5G for use with AES-256 [AES], SNOW 5G
+   [SNOW], and ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].  Mac5G is
+   constructed similarly to the integrity algorithms used for SNOW 3G
+   [UIA2] and ZUC [EIA3].  GCM-SST is an evolution of Mac5G
+   incorporating the ideas proposed by Inoue et al.  [Inoue].
 
 2.  Conventions and Definitions
 
@@ -671,6 +675,11 @@ Table of Contents
               universal-hash-designs-for-an-accordion-mode/images-media/
               sess-7-degabriele-acm-workshop-2024.pdf>.
 
+   [EIA3]     ETSI SAGE, "128-EEA3 and 128-EIA3 Specification", January
+              2019, <https://www.gsma.com/solutions-and-
+              impact/technologies/security/wp-content/uploads/2019/05/
+              EEA3_EIA3_specification_v1_8.pdf>.
+
    [Ferguson] Ferguson, N., "Authentication weaknesses in GCM", May
               2005, <https://csrc.nist.gov/CSRC/media/Projects/Block-
               Cipher-Techniques/documents/BCM/Comments/CWC-GCM/
@@ -791,6 +800,11 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/Presentations/2023/
               galois-counter-mode-with-secure-short-tags/images-media/
               sess-5-mattsson-bcm-workshop-2023.pdf>.
+
+   [UIA2]     ETSI SAGE, "UEA2 and UIA2 Specification", March 2009,
+              <https://www.gsma.com/solutions-and-
+              impact/technologies/security/wp-content/uploads/2019/05/
+              uea2uia2d1v21.pdf>.
 
    [WID23]    3GPP, "New WID on Milenage-256 algorithm", November 2023,
               <https://www.3gpp.org/ftp/tsg_sa/WG3_Security/
