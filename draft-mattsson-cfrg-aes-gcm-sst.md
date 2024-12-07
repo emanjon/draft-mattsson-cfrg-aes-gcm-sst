@@ -413,8 +413,6 @@ This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AE
 
 GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first two chunks Z[0] and Z[1] are used as the two subkeys H and Q. The following keystream chunks Z[2], Z[3], ..., Z[n + 1] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL. As the subkeys H and Q are nonce-dependent, the masking can be replaced by an injective non-zero padding of the ciphertext {{Inoue}}. Both encryption and decryption are only defined on inputs that are a whole number of octets.
 
-Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, and {{Inoue}}.
-
 ## Authenticated Encryption Function
 
 The encryption function Encrypt(K, N, A, P) encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.
