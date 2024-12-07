@@ -753,7 +753,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -07 to -08:
 
 * Replaced masking with non-zero injective padding as suggested by Inoue et al. This saves one AES invocation for 94% of plaintext lengths.
-* Added a note explainting that "GCM allows universal forgery with lower	complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.
+* Added a note explainting that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.
 
 Changes from -06 to -07:
 
