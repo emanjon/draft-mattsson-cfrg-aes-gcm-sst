@@ -201,11 +201,11 @@ Table of Contents
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion and
-   refinement contributing to its design [SAGE23][SAGE24]. 3GPP has
-   decided to standardize Mac5G for use with AES-256 [AES], SNOW 5G
-   [SNOW], and ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].  Mac5G is
+   refinement contributing to its design [SAGE23][SAGE24].  Mac5G is
    constructed similarly to the integrity algorithms used for SNOW 3G
-   [UIA2] and ZUC [EIA3].  GCM-SST is an evolution of Mac5G
+   [UIA2] and ZUC [EIA3]. 3GPP has decided to standardize Mac5G for use
+   with AES-256 [AES], SNOW 5G [SNOW], and ZUC-256 [ZUC] in 3GPP TS
+   35.240–35.248 [WID24].  GCM-SST is an evolution of Mac5G
    incorporating the ideas proposed by Inoue et al.  [Inoue].
 
 2.  Conventions and Definitions
