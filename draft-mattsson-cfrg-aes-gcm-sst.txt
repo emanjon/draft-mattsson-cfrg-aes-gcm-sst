@@ -1001,6 +1001,8 @@ Change Log
       to avoid any misconceptions that Lindell's attack makes GCM-SST
       weaker than GCM in any way.
 
+   *  Consideration on replay protection mechanisms
+
    Changes from -06 to -07:
 
    *  Replaced 80-bit tags with 96- and 112-bit tags.
