@@ -602,6 +602,16 @@ Table of Contents
    SST, H and Q are generated with a permutation on different input, so
    H and Q cannot both be zero.
 
+   The details of the replay protection mechanism is determined by the
+   security protocol utilizing GCM-SST.  If the nonce includes a
+   sequence number, it can be used for replay protection.
+   Alternatively, a separate sequence number can be used, provided there
+   is a one-to-one mapping between sequence numbers and nonces.  The
+   choice of a replay protection mechanism depends on factors such as
+   the expected degree of packet reordering, as well as protocol and
+   implementation details.  For examples of replay protection
+   mechanisms, see [RFC4303] and [RFC6479].
+
 6.  IANA Considerations
 
    IANA is requested to assign the entries in the first column of
@@ -748,6 +758,14 @@ Table of Contents
               Norrman, "The Secure Real-time Transport Protocol (SRTP)",
               RFC 3711, DOI 10.17487/RFC3711, March 2004,
               <https://www.rfc-editor.org/rfc/rfc3711>.
+
+   [RFC4303]  Kent, S., "IP Encapsulating Security Payload (ESP)",
+              RFC 4303, DOI 10.17487/RFC4303, December 2005,
+              <https://www.rfc-editor.org/rfc/rfc4303>.
+
+   [RFC6479]  Zhang, X. and T. Tsou, "IPsec Anti-Replay Algorithm
+              without Bit Shifting", RFC 6479, DOI 10.17487/RFC6479,
+              January 2012, <https://www.rfc-editor.org/rfc/rfc6479>.
 
    [RFC9605]  Omara, E., Uberti, J., Murillo, S. G., Barnes, R., Ed.,
               and Y. Fablet, "Secure Frame (SFrame): Lightweight
