@@ -545,14 +545,15 @@ Table of Contents
    2^(-tag_length) [Nyberg].  The tags in the AEAD algorithm listed in
    Section 4.3 therefore have an almost perfect security level.  This is
    significantly better than GCM where the security level is only
-   tag_length - log2(n + m + 1) bits [GCM].  For a graph of the forgery
-   probability, refer to Fig. 3 in [Inoue].  As one can note, for
-   128-bit tags and long messages, the forgery probability is not close
-   to ideal and similar to GCM [GCM].  If tag verification fails, the
-   plaintext and expected_tag MUST NOT be given as output.  In GCM-SST,
-   the full_tag is independent of the specified tag length unless the
-   application explicitly incorporates tag length into the keystream or
-   the nonce.
+   tag_length - log2(n + m + 1) bits [GCM].  Note that n and m in this
+   context represent the maximum values allowed by the decryption
+   function.  For a graph of the forgery probability, refer to Fig. 3 in
+   [Inoue].  As one can note, for 128-bit tags and long messages, the
+   forgery probability is not close to ideal and similar to GCM [GCM].
+   If tag verification fails, the plaintext and expected_tag MUST NOT be
+   given as output.  In GCM-SST, the full_tag is independent of the
+   specified tag length unless the application explicitly incorporates
+   tag length into the keystream or the nonce.
 
    When tag_length < 128 - log2(n + m + 1) bits, the expected number of
    forgeries is ≈ q ⋅ 2^(-tag_length), where q is the number of
