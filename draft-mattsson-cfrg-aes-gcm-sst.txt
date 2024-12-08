@@ -464,25 +464,25 @@ Table of Contents
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_128_GCM_SST_8   |      16 |     2^36 - 33 |         64 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_128_GCM_SST_10  |      16 |          2^35 |         96 |
+    | AEAD_AES_128_GCM_SST_12  |      16 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_128_GCM_SST_12  |      16 |          2^19 |        112 |
+    | AEAD_AES_128_GCM_SST_14  |      16 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_4   |      32 |     2^36 - 33 |         32 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_8   |      32 |     2^36 - 33 |         64 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_10  |      32 |          2^35 |         96 |
+    | AEAD_AES_256_GCM_SST_12  |      32 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_12  |      32 |          2^19 |        112 |
+    | AEAD_AES_256_GCM_SST_14  |      32 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
     | AEAD_RIJNDAEL_GCM_SST_4  |      32 |     2^36 - 33 |         32 |
     +--------------------------+---------+---------------+------------+
     | AEAD_RIJNDAEL_GCM_SST_8  |      32 |     2^36 - 33 |         64 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_10 |      32 |          2^35 |         96 |
+    | AEAD_RIJNDAEL_GCM_SST_12 |      32 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_12 |      32 |          2^19 |        112 |
+    | AEAD_RIJNDAEL_GCM_SST_14 |      32 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
 
                           Table 1: AEAD Algorithms
@@ -592,12 +592,12 @@ Table of Contents
 
    As a practical example, in protocols like QUIC [RFC9001], where the
    size of plaintext and associated data is less than ≈ 2^16 bytes,
-   AEAD_AES_128_GCM_SST_12 offers superior confidentiality and integrity
+   AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity
    compared to AEAD_AES_128_GCM, while also reducing overhead by 2
    bytes.  Both algorithms provide equivalent security against passive
-   attackers; however, AEAD_AES_128_GCM_SST_12 significantly enhances
-   security against active attackers by significantly reducing the
-   expected number of successful forgeries.
+   attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against
+   active attackers by significantly reducing the expected number of
+   successful forgeries.
 
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
