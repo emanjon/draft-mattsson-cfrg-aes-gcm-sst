@@ -590,6 +590,15 @@ Table of Contents
    integrity, authenticity, and confidentiality MUST all be carefully
    evaluated when selecting an appropriate tag length.
 
+   As a practical example, in protocols like QUIC [RFC9001], where the
+   size of plaintext and associated data is less than ≈ 2^16 bytes,
+   AEAD_AES_128_GCM_SST_12 offers superior confidentiality and integrity
+   compared to AEAD_AES_128_GCM, while also reducing overhead by 2
+   bytes.  Both algorithms provide equivalent security against passive
+   attackers; however, AEAD_AES_128_GCM_SST_12 significantly enhances
+   security against active attackers by significantly reducing the
+   expected number of successful forgeries.
+
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
    is zero, the authentication tag depends only on the length of P and A
@@ -765,6 +774,10 @@ Table of Contents
    [RFC6479]  Zhang, X. and T. Tsou, "IPsec Anti-Replay Algorithm
               without Bit Shifting", RFC 6479, DOI 10.17487/RFC6479,
               January 2012, <https://www.rfc-editor.org/rfc/rfc6479>.
+
+   [RFC9001]  Thomson, M., Ed. and S. Turner, Ed., "Using TLS to Secure
+              QUIC", RFC 9001, DOI 10.17487/RFC9001, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9001>.
 
    [RFC9605]  Omara, E., Uberti, J., Murillo, S. G., Barnes, R., Ed.,
               and Y. Fablet, "Secure Frame (SFrame): Lightweight
