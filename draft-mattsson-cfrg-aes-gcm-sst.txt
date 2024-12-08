@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 10 June 2025                                  J. Preuß Mattsson
+Expires: 11 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                         7 December 2024
+                                                         8 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -22,14 +22,13 @@ Abstract
    use of an additional subkey Q, the derivation of fresh subkeys H and
    Q for each nonce, the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV, and the substitution of masking
-   with injective non-zero padding.  This enables truncated tags with
-   near-ideal forgery probabilities, even against multiple forgery
-   attacks, which are significant security improvements over GCM.  GCM-
-   SST is designed for unicast security protocols with replay protection
-   and addresses the strong industry demand for fast encryption with
-   less overhead and secure short tags.  This document registers several
-   instances of GCM-SST using Advanced Encryption Standard (AES) and
-   Rijndael-256-256.
+   with non-zero padding.  This enables truncated tags with near-ideal
+   forgery probabilities, even against multiple forgery attacks, which
+   are significant security improvements over GCM.  GCM-SST is designed
+   for unicast security protocols with replay protection and addresses
+   the strong industry demand for fast encryption with less overhead and
+   secure short tags.  This document registers several instances of GCM-
+   SST using Advanced Encryption Standard (AES) and Rijndael-256-256.
 
 About This Document
 
@@ -64,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 June 2025.
+   This Internet-Draft will expire on 11 June 2025.
 
 Copyright Notice
 
