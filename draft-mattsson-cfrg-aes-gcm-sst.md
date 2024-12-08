@@ -532,16 +532,16 @@ We define twelve AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-
 | Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | tag_length (bits) |
 | AEAD_AES_128_GCM_SST_4 | 16 | 2<sup>36</sup> - 33 | 32 |
 | AEAD_AES_128_GCM_SST_8 | 16 | 2<sup>36</sup> - 33 | 64 |
-| AEAD_AES_128_GCM_SST_10 | 16 | 2<sup>35</sup> | 96 |
-| AEAD_AES_128_GCM_SST_12 | 16 | 2<sup>19</sup> | 112 |
+| AEAD_AES_128_GCM_SST_12 | 16 | 2<sup>35</sup> | 96 |
+| AEAD_AES_128_GCM_SST_14 | 16 | 2<sup>19</sup> | 112 |
 | AEAD_AES_256_GCM_SST_4 | 32 | 2<sup>36</sup> - 33 | 32 |
 | AEAD_AES_256_GCM_SST_8 | 32 | 2<sup>36</sup> - 33 | 64 |
-| AEAD_AES_256_GCM_SST_10 | 32 | 2<sup>35</sup> | 96 |
-| AEAD_AES_256_GCM_SST_12 | 32 | 2<sup>19</sup> | 112 |
+| AEAD_AES_256_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
+| AEAD_AES_256_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
 | AEAD_RIJNDAEL_GCM_SST_4 | 32 | 2<sup>36</sup> - 33 | 32 |
 | AEAD_RIJNDAEL_GCM_SST_8 | 32 | 2<sup>36</sup> - 33 | 64 |
-| AEAD_RIJNDAEL_GCM_SST_10 | 32 | 2<sup>35</sup> | 96 |
-| AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>19</sup> | 112 |
+| AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
+| AEAD_RIJNDAEL_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
 {: #iana-algs title="AEAD Algorithms" cols="l r r r"}
 
 Common parameters for the six AEAD instances:
@@ -566,7 +566,7 @@ The confidentiality offered by AES-GCM-SST against passive attackers is equal to
 
 The confidentiality offered by AES-GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries MAY significantly compromise privacy, in addition to affecting integrity and authenticity. It MUST be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality MUST all be carefully evaluated when selecting an appropriate tag length.
 
-As a practical example, in protocols like QUIC {{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, AEAD_AES_128_GCM_SST_12 offers superior confidentiality and integrity compared to AEAD_AES_128_GCM, while also reducing overhead by 2 bytes. Both algorithms provide equivalent security against passive attackers; however, AEAD_AES_128_GCM_SST_12 significantly enhances security against active attackers by significantly reducing the expected number of successful forgeries.
+As a practical example, in protocols like QUIC {{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity compared to AEAD_AES_128_GCM, while also reducing overhead by 2 bytes. Both algorithms provide equivalent security against passive attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against active attackers by significantly reducing the expected number of successful forgeries.
 
 In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If Q is zero, the authentication tag does not depends on the field L encoding the length of P and A. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and Q are generated with a permutation on different input, so H and Q cannot both be zero.
 
