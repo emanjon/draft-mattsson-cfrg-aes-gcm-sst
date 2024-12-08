@@ -72,6 +72,7 @@ informative:
   RFC3711:
   RFC4303:
   RFC6479:
+  RFC9001:
   RFC9605:
   I-D.irtf-cfrg-aegis-aead:
 
@@ -564,6 +565,8 @@ When tag_length < 128 - log2(n + m + 1) bits, the expected number of forgeries i
 The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / k, where k is the number of invocations of the AES encryption function. In contrast, the confidentiality offered by Rijndael-256-256-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-256-256-GCM-SST is approximately 2<sup>257</sup> / k, where k is the number of invocations of the Rijndael-256-256 encryption function. While Rijndael-256-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
 
 The confidentiality offered by AES-GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries MAY significantly compromise privacy, in addition to affecting integrity and authenticity. It MUST be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality MUST all be carefully evaluated when selecting an appropriate tag length.
+
+As a practical example, in protocols like QUIC {{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, AEAD_AES_128_GCM_SST_12 offers superior confidentiality and integrity compared to AEAD_AES_128_GCM, while also reducing overhead by 2 bytes. Both algorithms provide equivalent security against passive attackers; however, AEAD_AES_128_GCM_SST_12 significantly enhances security against active attackers by significantly reducing the expected number of successful forgeries.
 
 In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If Q is zero, the authentication tag does not depends on the field L encoding the length of P and A. There are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and Q are generated with a permutation on different input, so H and Q cannot both be zero.
 
