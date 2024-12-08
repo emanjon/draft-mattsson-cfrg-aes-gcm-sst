@@ -1017,6 +1017,9 @@ Change Log
 
    *  Consideration on replay protection mechanisms
 
+   *  Added a comparision between AEAD_AES_128_GCM_SST_14 and
+      AEAD_AES_128_GCM in protocols like QUIC
+
    Changes from -06 to -07:
 
    *  Replaced 80-bit tags with 96- and 112-bit tags.
