@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-05T01:53:00.516595+00:00",
+  "timestamp": "2024-12-08T01:59:42.099877+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -335,15 +335,15 @@
       "id": "I_kwDOJat8lM6hPxsn",
       "title": "New paper - Generic Security of GCM-SST",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/12",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "https://eprint.iacr.org/2024/1928\r\n\r\n_\"In this work, we fill this gap and perform a detailed security analysis of GCM-SST. In particular, we prove that GCM-SST achieves security in the nonce-misuse resilience model of Ashur et al.~(CRYPTO 2017), roughly guaranteeing that even if nonces are reused, evaluations of GCM-SST for new nonces are secure. Our security bound also verified the designers' (informal) claim on tag truncation. Additionally, we investigate and describe possibilities to optimize the hashing in GCM-SST further, and we describe a universal forgery attack in a complexity of around , improving over an earlier attack of  complexity of Lindell, when the tag is 32 bits.\"_\r\n\r\nThe draft should refer to this work, in particular to the security proof in the nonce-misuse resilience model, and the improvements of Lindell's attack, which applies if GCM-SST is used without replay protection.\r\n",
       "createdAt": "2024-11-29T14:28:09Z",
-      "updatedAt": "2024-12-01T12:18:35Z",
-      "closedAt": null,
+      "updatedAt": "2024-12-06T12:03:12Z",
+      "closedAt": "2024-12-06T12:03:12Z",
       "comments": [
         {
           "author": "emanjon",
@@ -351,6 +351,20 @@
           "body": "Several references to the paper was added in -06.",
           "createdAt": "2024-12-01T12:18:34Z",
           "updatedAt": "2024-12-01T12:18:34Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "Remaining question is is masking should be replaced with injective non-zero padding",
+          "createdAt": "2024-12-05T07:10:56Z",
+          "updatedAt": "2024-12-05T07:10:56Z"
+        },
+        {
+          "author": "emanjon",
+          "authorAssociation": "OWNER",
+          "body": "#14 has been merged into main",
+          "createdAt": "2024-12-06T12:02:36Z",
+          "updatedAt": "2024-12-06T12:02:36Z"
         }
       ]
     },
@@ -401,6 +415,54 @@
           "updatedAt": "2024-12-04T21:54:07Z"
         }
       ]
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOJat8lM6iTCd6",
+      "title": "Update test vectors",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/18",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The test vectors are for masking and are not correct for the non-zero padding",
+      "createdAt": "2024-12-06T12:03:48Z",
+      "updatedAt": "2024-12-06T12:05:19Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOJat8lM6iTXGJ",
+      "title": "Explain the use of BE32()",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/19",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-06T12:49:04Z",
+      "updatedAt": "2024-12-06T12:49:04Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 20,
+      "id": "I_kwDOJat8lM6iY5-h",
+      "title": "Discuss replay",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/20",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-07T07:19:03Z",
+      "updatedAt": "2024-12-07T22:46:52Z",
+      "closedAt": "2024-12-07T22:46:52Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -463,21 +525,21 @@
       "id": "PR_kwDOJat8lM6DqfLi",
       "title": "Replace masking with injective non-zero padding",
       "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/pull/14",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "emanjon",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-12-01T14:26:54Z",
-      "updatedAt": "2024-12-01T14:45:37Z",
+      "updatedAt": "2024-12-06T12:02:06Z",
       "baseRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
       "baseRefName": "main",
       "baseRefOid": "adb4b56320a05ed53f37bcaad79815eb16b4bb08",
       "headRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
       "headRefName": "Replace-masking-with-injective-non-zero-padding-1",
       "headRefOid": "169d8f0ec3cca2d6c3973a256b0263f83ecee9c3",
-      "closedAt": null,
+      "closedAt": "2024-12-06T12:02:06Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -490,6 +552,32 @@
           "updatedAt": "2024-12-01T14:45:36Z"
         }
       ],
+      "reviews": []
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOJat8lM6ESMzd",
+      "title": "Galois Counter Mode with Secure Truncated Tags (GCM-STT)",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/pull/17",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-06T07:32:32Z",
+      "updatedAt": "2024-12-06T11:47:37Z",
+      "baseRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "baseRefName": "main",
+      "baseRefOid": "e60424e0424768da03d8d5aca6b2901262952608",
+      "headRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "headRefName": "emanjon-patch-1",
+      "headRefOid": "33fac775dbe7e6e7f7613a5fd5fa6718674c31d4",
+      "closedAt": "2024-12-06T11:47:37Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
       "reviews": []
     }
   ]
