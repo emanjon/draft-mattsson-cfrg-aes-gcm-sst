@@ -1461,13 +1461,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-3.1.1">The calculation of the plaintext P (step 10) <span class="bcp14">MAY</span> be done in parallel with the tag verification (step 3-9). If the tag verification fails, the plaintext P and the expected_tag <span class="bcp14">MUST NOT</span> be given as output.<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-3.2">
-            <p id="section-3.2-3.2.1">For a given key, a nonce for which a plaintext has been returned <span class="bcp14">MUST NOT</span> be reused under any circumstances.<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-3.2.1">Each key <span class="bcp14">MUST</span> be restricted to a single tag_length.<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-3.3">
-            <p id="section-3.2-3.3.1">Each key <span class="bcp14">MUST</span> be restricted to a single tag_length.<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.2-3.4">
-            <p id="section-3.2-3.4.1">Definitions of supported input-output lengths.<a href="#section-3.2-3.4.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-3.3.1">Definitions of supported input-output lengths.<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-3.2-4">Inputs:<a href="#section-3.2-4" class="pilcrow">¶</a></p>
@@ -1527,10 +1524,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-9.10.1">Let P = ct XOR truncate(Z[2:n + 1], len(ct))<a href="#section-3.2-9.10.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-9.11">
-            <p id="section-3.2-9.11.1">Return P<a href="#section-3.2-9.11.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-9.11.1">If N passes replay protrection, return P<a href="#section-3.2-9.11.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
-<p id="section-3.2-10">The comparison of tag and expected_tag in step 9 <span class="bcp14">MUST</span> be performed in constant time to prevent any information leakage about the position of the first mismatched byte.<a href="#section-3.2-10" class="pilcrow">¶</a></p>
+<p id="section-3.2-10">The comparison of tag and expected_tag in step 9 <span class="bcp14">MUST</span> be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext <span class="bcp14">MUST NOT</span> be returned unless it is certain that a plaintext has not be returned for the same nonce. Replay protection can be performed iperformed either before step 1 or during step 12.<a href="#section-3.2-10" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="encoding-ct-tag-tuples">
