@@ -529,7 +529,7 @@ Table of Contents
    NOT be used with random nonces [Collision] and MUST be used with
    replay protection.  GCM-SST MUST NOT be used in multicast or
    broadcast.  Reuse of nonces in the encryption function and the
-   decryption function enable universal forgery Lindell [Inoue].  It is
+   decryption function enable universal forgery [Lindell][Inoue].  It is
    important to note that GCM allows universal forgery with lower
    complexity than GCM-SST, even when nonces are not reused.
    Implementations MAY add randomness to the nonce by XORing a unique
