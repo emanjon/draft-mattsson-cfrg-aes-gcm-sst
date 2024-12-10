@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 11 June 2025                                  J. Preuß Mattsson
+Expires: 13 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                         8 December 2024
+                                                        10 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 June 2025.
+   This Internet-Draft will expire on 13 June 2025.
 
 Copyright Notice
 
@@ -596,7 +596,7 @@ Table of Contents
    size of plaintext and associated data is less than ≈ 2^16 bytes,
    AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity
    compared to AEAD_AES_128_GCM, while also reducing overhead by 2
-   bytes.  Both algorithms provide equivalent security against passive
+   bytes.  Both algorithms provide similar security against passive
    attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against
    active attackers by significantly reducing the expected number of
    successful forgeries.
