@@ -463,8 +463,6 @@ Prerequisites and security:
 
 * The calculation of the plaintext P (step 10) MAY be done in parallel with the tag verification (step 3-9). If the tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
 
-* For a given key, a nonce for which a plaintext has been returned MUST NOT be reused under any circumstances.
-
 * Each key MUST be restricted to a single tag_length.
 
 * Definitions of supported input-output lengths.
@@ -493,9 +491,9 @@ Steps:
 9. Let expected_tag = truncate(full_tag, tag_length)
 10. If tag != expected_tag, return error and abort
 11. Let P = ct XOR truncate(Z[2:n + 1], len(ct))
-12. Return P
+12. If N passes replay protrection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not be returned for the same nonce. Replay protection can be performed iperformed either before step 1 or during step 12.
 
 ## Encoding (ct, tag) Tuples
 
