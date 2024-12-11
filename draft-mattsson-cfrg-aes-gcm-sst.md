@@ -548,19 +548,19 @@ The details of the replay protection mechanism is determined by the security pro
 
 A comparision with GCM and Poly1305 in unicast security protocols with replay protection is presented in {{comp1}}, where q represents the number of decryption queries, and ℓ is the maximum length of plaintext and associated data in 128-bit chunks, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with q.
 
-| Name | Forgery probability | Expected number of forgeries |
-| AEAD_AES_128_GCM        | ℓ / 2<sup>127</sup> | ℓ ⋅ q<sup>2</sup> / 2<sup>128</sup> |
-| AEAD_CHACHA20_POLY1305  | ℓ / 2<sup>103</sup> | ℓ ⋅ q / 2<sup>103</sup> |
-| AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
-| AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
-{: #comp1 title="Comparision with GCM and Poly1305. q is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r"}
+| Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected&nbsp;number of forgeries |
+| GCM | ℓ / 2<sup>127</sup> | 1 | ℓ ⋅ q<sup>2</sup> / 2<sup>128</sup> |
+| POLY1305 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | ℓ ⋅ q / 2<sup>103</sup> |
+| GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
+| GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
+{: #comp1 title="Comparision with GCM and Poly1305. q is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r r"}
 
-| Name | Forgery probability | Expected number of forgeries |
-| AEAD_AES_128_GCM        | 1 / 2<sup>115</sup> | q<sup>2</sup> / 2<sup>116</sup> |
-| AEAD_CHACHA20_POLY1305  | 1 / 2<sup>91</sup> | q / 2<sup>91</sup> |
-| AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
-| AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
-{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where ℓ ≈ 2<sup>12</sup>" cols="l r r"}
+| Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected&nbsp;number of forgeries |
+| GCM | 1 / 2<sup>115</sup> | 1 | q<sup>2</sup> / 2<sup>116</sup> |
+| POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | q / 2<sup>91</sup> |
+| GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
+| GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
+{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where ℓ ≈ 2^12" cols="l r r r"}
 
 # IANA Considerations
 
