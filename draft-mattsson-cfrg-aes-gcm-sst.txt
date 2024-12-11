@@ -21,14 +21,14 @@ Abstract
    just 128-bit block ciphers.  The main differences from GCM are the
    use of an additional subkey Q, the derivation of fresh subkeys H and
    Q for each nonce, the replacement of the GHASH function with the
-   POLYVAL function from AES-GCM-SIV, and the substitution of masking
-   with non-zero padding.  This enables truncated tags with near-ideal
-   forgery probabilities, even against multiple forgery attacks, which
-   are significant security improvements over GCM.  GCM-SST is designed
-   for unicast security protocols with replay protection and addresses
-   the strong industry demand for fast encryption with less overhead and
-   secure short tags.  This document registers several instances of GCM-
-   SST using Advanced Encryption Standard (AES) and Rijndael-256-256.
+   POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
+   near-ideal forgery probabilities, even against multiple forgery
+   attacks, which are significant security improvements over GCM.  GCM-
+   SST is designed for unicast security protocols with replay protection
+   and addresses the strong industry demand for fast encryption with
+   less overhead and secure short tags.  This document registers several
+   instances of GCM-SST using Advanced Encryption Standard (AES) and
+   Rijndael-256-256.
 
 About This Document
 
@@ -167,25 +167,23 @@ Table of Contents
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
-   algorithm following the recommendations from Nyberg et al.  [Nyberg]
-   and Inoue et al.  [Inoue].  GCM-SST is defined with a general
-   interface, allowing it to be used with any keystream generator, not
-   just 128-bit block ciphers.  The main differences from GCM [GCM] are
-   the introduction of an additional subkey Q, the derivation of fresh
-   subkeys H and Q for each nonce, and the replacement of the GHASH
-   function with the POLYVAL function from AES-GCM-SIV [RFC8452], and
-   the replacement of masking with injective non-zero padding, see
-   Section 3.  These changes enable truncated tags with near-ideal
-   forgery probabilities, even against multiple forgery attacks, see
-   Section 5.  GCM-SST is designed for use in unicast security protocols
-   with replay protection, where its authentication tag behaves like an
-   ideal MAC.  Its performance is similar to GCM [GCM], with the
-   additional AES invocation compensated by the use of POLYVAL, the
-   ”little-endian version” of GHASH, which is faster on little-endian
-   architectures.  GCM-SST retains the additive encryption
-   characteristic of GCM, which enables efficient implementations on
-   modern processor architectures, see [Gueron] and Section 2.4 of
-   [GCM-Update].
+   algorithm following the recommendations from Nyberg et al.  [Nyberg].
+   GCM-SST is defined with a general interface, allowing it to be used
+   with any keystream generator, not just 128-bit block ciphers.  The
+   main differences from GCM [GCM] are the introduction of an additional
+   subkey Q, the derivation of fresh subkeys H and Q for each nonce, and
+   the replacement of the GHASH function with the POLYVAL function from
+   AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
+   tags with near-ideal forgery probabilities, even against multiple
+   forgery attacks, see Section 5.  GCM-SST is designed for use in
+   unicast security protocols with replay protection, where its
+   authentication tag behaves like an ideal MAC.  Its performance is
+   similar to GCM [GCM], with the two additional AES invocations
+   compensated by the use of POLYVAL, the ”little-endian version” of
+   GHASH, which is faster on little-endian architectures.  GCM-SST
+   retains the additive encryption characteristic of GCM, which enables
+   efficient implementations on modern processor architectures, see
+   [Gueron] and Section 2.4 of [GCM-Update].
 
    This document also registers several GCM-SST instances using Advanced
    Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
@@ -204,8 +202,7 @@ Table of Contents
    constructed similarly to the integrity algorithms used for SNOW 3G
    [UIA2] and ZUC [EIA3]. 3GPP has decided to standardize Mac5G for use
    with AES-256 [AES], SNOW 5G [SNOW], and ZUC-256 [ZUC] in 3GPP TS
-   35.240–35.248 [WID24].  GCM-SST is an evolution of Mac5G
-   incorporating the ideas proposed by Inoue et al.  [Inoue].
+   35.240–35.248 [WID24].
 
 2.  Conventions and Definitions
 
@@ -239,8 +236,6 @@ Table of Contents
 
    *  XOR is the bitwise exclusive OR operator
 
-   *  0x is a prefix used to denote hexadecimal numbers
-
    *  len(x) is the length of x in bits.
 
    *  zeropad(x) right pads an octet string x with zeroes to a multiple
@@ -249,7 +244,7 @@ Table of Contents
    *  truncate(x, t) is the truncation operation.  The first t bits of x
       are kept
 
-   *  n is the number of 128-bit chunks in zeropad(ct || 0x80)
+   *  n is the number of 128-bit chunks in zeropad(P)
 
    *  m is the number of 128-bit chunks in zeropad(A)
 
@@ -268,9 +263,9 @@ Table of Contents
 
    This section defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) AEAD algorithm following the recommendations from Nyberg et
-   al.  [Nyberg] and Inoue et al.  [Inoue].  GCM-SST is defined with a
-   general interface so that it can be used with any keystream
-   generator, not just a 128-bit block cipher.
+   al.  [Nyberg].  GCM-SST is defined with a general interface so that
+   it can be used with any keystream generator, not just a 128-bit block
+   cipher.
 
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four variable-length octet string parameters.  A
@@ -279,17 +274,21 @@ Table of Contents
    MAY depend on P and A.  The minimum and maximum lengths of all
    parameters depend on the keystream generator.  The keystream
    generator produces a keystream Z consisting of 128-bit chunks where
-   the first two chunks Z[0] and Z[1] are used as the two subkeys H and
-   Q.  The following keystream chunks Z[2], Z[3], ..., Z[n + 1] are used
-   to encrypt the plaintext.  Instead of GHASH [GCM], GCM-SST makes use
-   of the POLYVAL function from AES-GCM-SIV [RFC8452], which results in
-   more efficient software implementations on little-endian
-   architectures.  GHASH and POLYVAL can be defined in terms of one
-   another [RFC8452].  The subkeys H and Q are field elements used in
-   POLYVAL.  As the subkeys H and Q are nonce-dependent, the masking can
-   be replaced by an injective non-zero padding of the ciphertext
-   [Inoue].  Both encryption and decryption are only defined on inputs
-   that are a whole number of octets.
+   the first three chunks Z[0], Z[1], and Z[2] are used as the three
+   subkeys H, Q, and M.  The following keystream chunks Z[3], Z[3], ...,
+   Z[n + 2] are used to encrypt the plaintext.  Instead of GHASH [GCM],
+   GCM-SST makes use of the POLYVAL function from AES-GCM-SIV [RFC8452],
+   which results in more efficient software implementations on little-
+   endian architectures.  GHASH and POLYVAL can be defined in terms of
+   one another [RFC8452].  The subkeys H and Q are field elements used
+   in POLYVAL while the subkey M is used for the final masking of the
+   tag.  As the subkeys H and Q are nonce-dependent, the masking can be
+   replaced by an injective non-zero padding of the ciphertext [Inoue].
+   Both encryption and decryption are only defined on inputs that are a
+   whole number of octets.
+
+   Figures illustrating the GCM-SST encryption and decryption functions
+   can be found in [SST1], [SST2], and [Inoue].
 
 3.1.  Authenticated Encryption Function
 
@@ -331,17 +330,17 @@ Table of Contents
 
    2.   Initiate keystream generator with K and N
 
-   3.   Let H = Z[0], Q = Z[1]
+   3.   Let H = Z[0], Q = Z[1], M = Z[2]
 
-   4.   Let ct = P XOR truncate(Z[2:n + 1], len(P))
+   4.   Let ct = P XOR truncate(Z[3:n + 2], len(P))
 
-   5.   Let S = zeropad(A) || zeropad(ct || 0x80)
+   5.   Let S = zeropad(A) || zeropad(ct)
 
    6.   Let L = LE64(len(ct)) || LE64(len(A))
 
    7.   Let X = POLYVAL(H, S[0], S[1], ...)
 
-   8.   Let full_tag = POLYVAL(Q, X XOR L)
+   8.   Let full_tag = POLYVAL(Q, X XOR L) XOR M
 
    9.   Let tag = truncate(full_tag, tag_length)
 
@@ -389,21 +388,21 @@ Table of Contents
 
    2.   Initiate keystream generator with K and N
 
-   3.   Let H = Z[0], Q = Z[1]
+   3.   Let H = Z[0], Q = Z[1], M = Z[2]
 
-   4.   Let S = zeropad(A) || zeropad(ct || 0x80)
+   4.   Let S = zeropad(A) || zeropad(ct)
 
    5.   Let L = LE64(len(ct)) || LE64(len(A))
 
    6.   Let X = POLYVAL(H, S[0], S[1], ...)
 
-   7.   Let full_tag = POLYVAL(Q, X XOR L)
+   7.   Let full_tag = POLYVAL(Q, X XOR L) XOR M
 
    8.   Let expected_tag = truncate(full_tag, tag_length)
 
    9.   If tag != expected_tag, return error and abort
 
-   10.  Let P = ct XOR truncate(Z[2:n + 1], len(ct))
+   10.  Let P = ct XOR truncate(Z[3:n + 2], len(ct))
 
    11.  If N passes replay protrection, return P
 
@@ -461,25 +460,25 @@ Table of Contents
     | Name                     |   K_LEN | P_MAX = A_MAX | tag_length |
     |                          | (bytes) |       (bytes) |     (bits) |
     +==========================+=========+===============+============+
-    | AEAD_AES_128_GCM_SST_4   |      16 |     2^36 - 33 |         32 |
+    | AEAD_AES_128_GCM_SST_4   |      16 |     2^36 - 48 |         32 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_128_GCM_SST_8   |      16 |     2^36 - 33 |         64 |
+    | AEAD_AES_128_GCM_SST_8   |      16 |     2^36 - 48 |         64 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_128_GCM_SST_12  |      16 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_128_GCM_SST_14  |      16 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_4   |      32 |     2^36 - 33 |         32 |
+    | AEAD_AES_256_GCM_SST_4   |      32 |     2^36 - 48 |         32 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_8   |      32 |     2^36 - 33 |         64 |
+    | AEAD_AES_256_GCM_SST_8   |      32 |     2^36 - 48 |         64 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_12  |      32 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_14  |      32 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_4  |      32 |     2^36 - 33 |         32 |
+    | AEAD_RIJNDAEL_GCM_SST_4  |      32 |     2^36 - 48 |         32 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_8  |      32 |     2^36 - 33 |         64 |
+    | AEAD_RIJNDAEL_GCM_SST_8  |      32 |     2^36 - 48 |         64 |
     +--------------------------+---------+---------------+------------+
     | AEAD_RIJNDAEL_GCM_SST_12 |      32 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
@@ -500,7 +499,7 @@ Table of Contents
    associated data (A_MAX) have been lowered from GCM [RFC5116].  To
    enable forgery probability close to ideal, even with maximum size
    plaintexts and associated data, we set P_MAX = A_MAX = min(2^(131 -
-   tag_length), 2^36 - 33).  Just like [RFC5116], AES-GCM-SST and
+   tag_length), 2^36 - 48).  Just like [RFC5116], AES-GCM-SST and
    Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of
    96-bit and 224-bits respectively.  For the AEAD algorithms in Table 1
    the worst-case forgery probability is bounded by ≈ 2^(-tag_length)
@@ -882,6 +881,20 @@ Table of Contents
               "SNOW-Vi: an extreme performance variant of SNOW-V for
               lower grade CPUs", March 2021,
               <https://eprint.iacr.org/2021/236>.
+
+   [SST1]     Campagna, M., Maximov, A., and J. Preuß Mattsson, "Galois
+              Counter Mode with Secure Short Tags (GCM-SST)", October
+              2023, <https://csrc.nist.gov/csrc/media/Events/2023/third-
+              workshop-on-block-cipher-modes-of-operation/documents/
+              accepted-papers/Galois%20Counter%20Mode%20with%20Secure%20
+              Short%20Tags.pdf>.
+
+   [SST2]     Campagna, M., Maximov, A., and J. Preuß Mattsson, "Galois
+              Counter Mode with Secure Short Tags (GCM-SST)", October
+              2023,
+              <https://csrc.nist.gov/csrc/media/Presentations/2023/
+              galois-counter-mode-with-secure-short-tags/images-media/
+              sess-5-mattsson-bcm-workshop-2023.pdf>.
 
    [UIA2]     ETSI SAGE, "UEA2 and UIA2 Specification", March 2009,
               <https://www.gsma.com/solutions-and-
