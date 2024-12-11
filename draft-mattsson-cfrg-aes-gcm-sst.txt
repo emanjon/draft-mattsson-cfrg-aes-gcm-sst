@@ -616,14 +616,24 @@ Table of Contents
    implementation details.  For examples of replay protection
    mechanisms, see [RFC4303] and [RFC6479].
 
-   As a practical example, in protocols like QUIC [RFC9001], where the
-   size of plaintext and associated data is less than ≈ 2^16 bytes,
+   A comparision with GCM and Poly1305 can be found in Table 2 where q
+   is the number of decryption queries and ℓ is the maximum length of
+   plaintext and associated data in 128-bit chunks, see
+   [I-D.irtf-cfrg-aead-limits][Multiple].  Table 2 shows a comparision
+   with GCM and Poly1305 in a when in protocols like QUIC
+   [RFC9000][RFC9001], where the size of plaintext and associated data
+   is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^16.  When ℓ ≈ 2^16,
    AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity
    compared to AEAD_AES_128_GCM, while also reducing overhead by 2
    bytes.  Both algorithms provide similar security against passive
    attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against
    active attackers by significantly reducing the expected number of
-   successful forgeries.
+   successful forgeries.  AEAD_AES_128_GCM_SST_12 offers superior
+   integrity compared to AEAD_CHACHA20_POLY1305, while also reducing
+   overhead by 4 bytes.  For GCM-SST and Poly1305, the expected number
+   of forgeries are linear in q when used with replay protection.  For
+   GCM, replay protection does not help and the expected number of
+   forgeries are quadratic in q.
 
     +=========================+=====================+=================+
     | Name                    | Forgery probability | Expected number |
@@ -653,7 +663,7 @@ Table of Contents
     | AEAD_AES_128_GCM_SST_12 |            1 / 2^96 |        q / 2^96 |
     +-------------------------+---------------------+-----------------+
 
-                 Table 3: Comparision with GCM and Poly1305
+             Table 3: Comparision with GCM and Poly1305 in QUIC
 
 6.  IANA Considerations
 
@@ -753,6 +763,13 @@ Table of Contents
               constructions-based-on-the-aes-round/images-media/sess-5-
               gueron-bcm-workshop-2023.pdf>.
 
+   [I-D.irtf-cfrg-aead-limits]
+              Günther, F., Thomson, M., and C. A. Wood, "Usage Limits on
+              AEAD Algorithms", Work in Progress, Internet-Draft, draft-
+              irtf-cfrg-aead-limits-09, 9 October 2024,
+              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
+              aead-limits-09>.
+
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
               Encryption Algorithms", Work in Progress, Internet-Draft,
@@ -809,6 +826,11 @@ Table of Contents
    [RFC6479]  Zhang, X. and T. Tsou, "IPsec Anti-Replay Algorithm
               without Bit Shifting", RFC 6479, DOI 10.17487/RFC6479,
               January 2012, <https://www.rfc-editor.org/rfc/rfc6479>.
+
+   [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", RFC 9000,
+              DOI 10.17487/RFC9000, May 2021,
+              <https://www.rfc-editor.org/rfc/rfc9000>.
 
    [RFC9001]  Thomson, M., Ed. and S. Turner, Ed., "Using TLS to Secure
               QUIC", RFC 9001, DOI 10.17487/RFC9001, May 2021,
