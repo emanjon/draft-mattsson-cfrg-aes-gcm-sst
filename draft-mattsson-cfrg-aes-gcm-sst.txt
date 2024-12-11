@@ -20,7 +20,7 @@ Abstract
    algorithm.  GCM-SST can be used with any keystream generator, not
    just 128-bit block ciphers.  The main differences from GCM are the
    use of an additional subkey Q, the derivation of fresh subkeys H and
-   Q for each nonce, the replacement of the GHASH function with the
+   Q for each nonce, and the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
    near-ideal forgery probabilities, even against multiple forgery
    attacks, which are significant security improvements over GCM.  GCM-
@@ -275,17 +275,15 @@ Table of Contents
    parameters depend on the keystream generator.  The keystream
    generator produces a keystream Z consisting of 128-bit chunks where
    the first three chunks Z[0], Z[1], and Z[2] are used as the three
-   subkeys H, Q, and M.  The following keystream chunks Z[3], Z[3], ...,
+   subkeys H, Q, and M.  The following keystream chunks Z[3], Z[4], ...,
    Z[n + 2] are used to encrypt the plaintext.  Instead of GHASH [GCM],
    GCM-SST makes use of the POLYVAL function from AES-GCM-SIV [RFC8452],
    which results in more efficient software implementations on little-
    endian architectures.  GHASH and POLYVAL can be defined in terms of
    one another [RFC8452].  The subkeys H and Q are field elements used
    in POLYVAL while the subkey M is used for the final masking of the
-   tag.  As the subkeys H and Q are nonce-dependent, the masking can be
-   replaced by an injective non-zero padding of the ciphertext [Inoue].
-   Both encryption and decryption are only defined on inputs that are a
-   whole number of octets.
+   tag.  Both encryption and decryption are only defined on inputs that
+   are a whole number of octets.
 
    Figures illustrating the GCM-SST encryption and decryption functions
    can be found in [SST1], [SST2], and [Inoue].
