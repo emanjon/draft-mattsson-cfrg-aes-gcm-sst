@@ -875,20 +875,6 @@ Table of Contents
               lower grade CPUs", March 2021,
               <https://eprint.iacr.org/2021/236>.
 
-   [SST1]     Campagna, M., Maximov, A., and J. Preuß Mattsson, "Galois
-              Counter Mode with Secure Short Tags (GCM-SST)", October
-              2023, <https://csrc.nist.gov/csrc/media/Events/2023/third-
-              workshop-on-block-cipher-modes-of-operation/documents/
-              accepted-papers/Galois%20Counter%20Mode%20with%20Secure%20
-              Short%20Tags.pdf>.
-
-   [SST2]     Campagna, M., Maximov, A., and J. Preuß Mattsson, "Galois
-              Counter Mode with Secure Short Tags (GCM-SST)", October
-              2023,
-              <https://csrc.nist.gov/csrc/media/Presentations/2023/
-              galois-counter-mode-with-secure-short-tags/images-media/
-              sess-5-mattsson-bcm-workshop-2023.pdf>.
-
    [UIA2]     ETSI SAGE, "UEA2 and UIA2 Specification", March 2009,
               <https://www.gsma.com/solutions-and-
               impact/technologies/security/wp-content/uploads/2019/05/
