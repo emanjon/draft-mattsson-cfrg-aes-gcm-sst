@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 13 June 2025                                  J. Preuß Mattsson
+Expires: 14 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                        10 December 2024
+                                                        11 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 June 2025.
+   This Internet-Draft will expire on 14 June 2025.
 
 Copyright Notice
 
@@ -412,7 +412,7 @@ Table of Contents
    of the first mismatched byte.  For a given key, a plaintext MUST NOT
    be returned unless it is certain that a plaintext has not be returned
    for the same nonce.  Replay protection can be performed iperformed
-   either before step 1 or during step 12.
+   either before step 1 or during step 11.
 
 3.3.  Encoding (ct, tag) Tuples
 
