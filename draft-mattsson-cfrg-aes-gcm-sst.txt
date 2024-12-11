@@ -648,7 +648,9 @@ Table of Contents
     | AEAD_AES_128_GCM_SST_12 |            1 / 2^96 |        q / 2^96 |
     +-------------------------+---------------------+-----------------+
 
-                 Table 2: Comparision with GCM and Poly1305
+       Table 2: Comparision with GCM and Poly1305. q is the number of
+        decryption queries, and ℓ is the maximum length of plaintext
+              and associated data, measured in 128-bit chunks.
 
     +=========================+=====================+=================+
     | Name                    | Forgery probability | Expected number |
@@ -663,7 +665,8 @@ Table of Contents
     | AEAD_AES_128_GCM_SST_12 |            1 / 2^96 |        q / 2^96 |
     +-------------------------+---------------------+-----------------+
 
-             Table 3: Comparision with GCM and Poly1305 in QUIC
+       Table 3: Comparision with GCM and Poly1305 in a protocol like
+                       QUIC, where ℓ ≈ 2<sup>16</sup>
 
 6.  IANA Considerations
 
