@@ -527,10 +527,10 @@ Table of Contents
    nonce MAY be public or predictable.  It can be a counter, the output
    of a permutation, or a generator with a long period.  GCM-SST MUST
    NOT be used with random nonces [Collision] and MUST be used with
-   replay protection.  GCM-SST MUST NOT be used in multicast or
-   broadcast.  Reuse of nonces in the encryption function and the
-   decryption function enable universal forgery [Lindell][Inoue].  It is
-   important to note that GCM allows universal forgery with lower
+   replay protection.  Reuse of nonces in successful encryption and
+   decryption function calls enable universal forgery [Lindell][Inoue].
+   For a given tag length, GCM-SST has stricly better security
+   properties than GCM.  GCM allows universal forgery with lower
    complexity than GCM-SST, even when nonces are not reused.
    Implementations MAY add randomness to the nonce by XORing a unique
    number like a sequence number with a per-key random secret salt.
@@ -538,7 +538,10 @@ Table of Contents
    attacks [Bellare].  By increasing the nonce length from 96 bits to
    224 bits, Rijndael-256-256-GCM-SST can offer significantly greater
    security against pre-computation and multi-key attacks compared to
-   AES-256-GCM-SST.
+   AES-256-GCM-SST.  GCM-SST SHOULD NOT be used in multicast or
+   broadcast scenarios.  While GCM-SST offers better security properties
+   than GCM for a given tag length in such contexts, it does not behave
+   like an ideal MAC.
 
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
    be larger than 16 bytes.  When tag_length < 128 - log2(n + m + 1)
@@ -560,7 +563,7 @@ Table of Contents
    forgeries is ≈ q ⋅ 2^(-tag_length), where q is the number of
    decryption queries, which is ideal.  This far outperforms GCM, where
    the expected number of forgeries is ≈ q^2 ⋅ (n + m + 1) ⋅
-   2^(-tag_length + 1) [Multiple].  BSI states that an ideal MAC with a
+   2^(-tag_length) [Multiple].  BSI states that an ideal MAC with a
    96-bit tag length is considered acceptable for most applications
    [BSI], a requirement that GCM-SST with 96- and 112-bit tags
    satisfies.  Achieving a comparable level of security with GCM, CCM,
@@ -592,15 +595,6 @@ Table of Contents
    integrity, authenticity, and confidentiality MUST all be carefully
    evaluated when selecting an appropriate tag length.
 
-   As a practical example, in protocols like QUIC [RFC9001], where the
-   size of plaintext and associated data is less than ≈ 2^16 bytes,
-   AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity
-   compared to AEAD_AES_128_GCM, while also reducing overhead by 2
-   bytes.  Both algorithms provide similar security against passive
-   attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against
-   active attackers by significantly reducing the expected number of
-   successful forgeries.
-
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
    is zero, the authentication tag depends only on the length of P and A
@@ -621,6 +615,45 @@ Table of Contents
    the expected degree of packet reordering, as well as protocol and
    implementation details.  For examples of replay protection
    mechanisms, see [RFC4303] and [RFC6479].
+
+   As a practical example, in protocols like QUIC [RFC9001], where the
+   size of plaintext and associated data is less than ≈ 2^16 bytes,
+   AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity
+   compared to AEAD_AES_128_GCM, while also reducing overhead by 2
+   bytes.  Both algorithms provide similar security against passive
+   attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against
+   active attackers by significantly reducing the expected number of
+   successful forgeries.
+
+    +=========================+=====================+=================+
+    | Name                    | Forgery probability | Expected number |
+    |                         |                     |    of forgeries |
+    +=========================+=====================+=================+
+    | AEAD_AES_128_GCM        |           l / 2^127 | l ⋅ q^2 / 2^128 |
+    +-------------------------+---------------------+-----------------+
+    | AEAD_CHACHA20_POLY1305  |           l / 2^103 |   l ⋅ q / 2^103 |
+    +-------------------------+---------------------+-----------------+
+    | AEAD_AES_128_GCM_SST_12 |           1 / 2^112 |       q / 2^112 |
+    +-------------------------+---------------------+-----------------+
+    | AEAD_AES_128_GCM_SST_14 |            1 / 2^96 |        q / 2^96 |
+    +-------------------------+---------------------+-----------------+
+
+                 Table 2: Comparision with GCM and Poly1305
+
+    +=========================+=====================+=================+
+    | Name                    | Forgery probability | Expected number |
+    |                         |                     |    of forgeries |
+    +=========================+=====================+=================+
+    | AEAD_AES_128_GCM        |           l / 2^115 |     q^2 / 2^116 |
+    +-------------------------+---------------------+-----------------+
+    | AEAD_CHACHA20_POLY1305  |            l / 2^91 |        q / 2^91 |
+    +-------------------------+---------------------+-----------------+
+    | AEAD_AES_128_GCM_SST_12 |           1 / 2^112 |       q / 2^112 |
+    +-------------------------+---------------------+-----------------+
+    | AEAD_AES_128_GCM_SST_14 |            1 / 2^96 |        q / 2^96 |
+    +-------------------------+---------------------+-----------------+
+
+                 Table 3: Comparision with GCM and Poly1305
 
 6.  IANA Considerations
 
