@@ -264,7 +264,7 @@ informative:
         ins: J. Yang
     date: March 2021
 
- SST1:
+  SST1:
     target: https://csrc.nist.gov/csrc/media/Events/2023/third-workshop-on-block-cipher-modes-of-operation/documents/accepted-papers/Galois%20Counter%20Mode%20with%20Secure%20Short%20Tags.pdf
     title: "Galois Counter Mode with Secure Short Tags (GCM-SST)"
     author:
