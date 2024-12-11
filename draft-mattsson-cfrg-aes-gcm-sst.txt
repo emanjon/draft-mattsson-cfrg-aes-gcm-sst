@@ -625,16 +625,17 @@ Table of Contents
    protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
    and associated data is less than ≈ 2^16 bytes, i.e. s ≈ 2^12.  When s
    ≈ 2^12, AEAD_AES_128_GCM_SST_14 offers better confidentiality and
-   integrity compared to AEAD_AES_128_GCM, while also reducing overhead
-   by 2 bytes.  Both algorithms provide similar security against passive
-   attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances
-   security against active attackers by reducing the expected number of
-   successful forgeries.  Similarly, AEAD_AES_128_GCM_SST_12 offers
-   superior integrity compared to AEAD_CHACHA20_POLY1305, with a 4-byte
-   reduction in overhead.  For GCM-SST and Poly1305, the expected number
-   of forgeries are linear in q when replay protection is employed.  For
-   GCM, replay protection does not help, and the expected number of
-   forgeries grows quadratically with q.
+   integrity compared to AEAD_AES_128_GCM [RFC5116], while also reducing
+   overhead by 2 bytes.  Both algorithms provide similar security
+   against passive attackers; however, AEAD_AES_128_GCM_SST_14
+   significantly enhances security against active attackers by reducing
+   the expected number of successful forgeries.  Similarly,
+   AEAD_AES_128_GCM_SST_12 offers superior integrity compared to
+   AEAD_CHACHA20_POLY1305 [RFC7253], with a 4-byte reduction in
+   overhead.  For GCM-SST and Poly1305, the expected number of forgeries
+   are linear in q when replay protection is employed.  For GCM, replay
+   protection does not help, and the expected number of forgeries grows
+   quadratically with q.
 
     +============+====================+=============+=================+
     | Name       |            Forgery |     Forgery | Expected number |
@@ -834,6 +835,10 @@ Table of Contents
    [RFC6479]  Zhang, X. and T. Tsou, "IPsec Anti-Replay Algorithm
               without Bit Shifting", RFC 6479, DOI 10.17487/RFC6479,
               January 2012, <https://www.rfc-editor.org/rfc/rfc6479>.
+
+   [RFC7253]  Krovetz, T. and P. Rogaway, "The OCB Authenticated-
+              Encryption Algorithm", RFC 7253, DOI 10.17487/RFC7253, May
+              2014, <https://www.rfc-editor.org/rfc/rfc7253>.
 
    [RFC9000]  Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", RFC 9000,
