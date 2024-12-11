@@ -571,17 +571,17 @@ The details of the replay protection mechanism is determined by the security pro
 As a practical example, in protocols like QUIC {{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity compared to AEAD_AES_128_GCM, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against active attackers by significantly reducing the expected number of successful forgeries.
 
 | Name | Forgery probability | Expected number of forgeries |
-| AEAD_AES_128_GCM        | l / 2<sup>127</sup> | l ⋅ q<sup>2</sup> / 2<sup>128</sup> |
-| AEAD_CHACHA20_POLY1305  | l / 2<sup>103</sup> | l ⋅ q / 2<sup>103</sup> |
-| AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
-| AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
+| AEAD_AES_128_GCM        | ℓ / 2<sup>127</sup> | ℓ ⋅ q<sup>2</sup> / 2<sup>128</sup> |
+| AEAD_CHACHA20_POLY1305  | ℓ / 2<sup>103</sup> | ℓ ⋅ q / 2<sup>103</sup> |
+| AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
+| AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
 {: #algs3 title="Comparision with GCM and Poly1305" cols="l r r"}
 
 | Name | Forgery probability | Expected number of forgeries |
-| AEAD_AES_128_GCM        | l / 2<sup>115</sup> | q<sup>2</sup> / 2<sup>116</sup> |
-| AEAD_CHACHA20_POLY1305  | l / 2<sup>91</sup> | q / 2<sup>91</sup> |
-| AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
-| AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
+| AEAD_AES_128_GCM        | ℓ / 2<sup>115</sup> | q<sup>2</sup> / 2<sup>116</sup> |
+| AEAD_CHACHA20_POLY1305  | ℓ / 2<sup>91</sup> | q / 2<sup>91</sup> |
+| AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
+| AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
 {: #algs4 title="Comparision with GCM and Poly1305" cols="l r r"}
 
 # IANA Considerations
