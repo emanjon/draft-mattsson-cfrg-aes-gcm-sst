@@ -1707,34 +1707,42 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">Name</th>
-            <th class="text-right" rowspan="1" colspan="1">Forgery probability</th>
-            <th class="text-right" rowspan="1" colspan="1">Expected number of forgeries</th>
+            <th class="text-right" rowspan="1" colspan="1">Forgery probability before first forgery</th>
+            <th class="text-right" rowspan="1" colspan="1">Forgery probability after first forgery</th>
+            <th class="text-right" rowspan="1" colspan="1">Expected number of forgeries</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM</td>
+            <td class="text-left" rowspan="1" colspan="1">GCM</td>
             <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>127</sup>
 </td>
+            <td class="text-right" rowspan="1" colspan="1">1</td>
             <td class="text-right" rowspan="1" colspan="1">ℓ ⋅ q<sup>2</sup> / 2<sup>128</sup>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_CHACHA20_POLY1305</td>
+            <td class="text-left" rowspan="1" colspan="1">POLY1305</td>
+            <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>103</sup>
+</td>
             <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>103</sup>
 </td>
             <td class="text-right" rowspan="1" colspan="1">ℓ ⋅ q / 2<sup>103</sup>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_14</td>
+            <td class="text-left" rowspan="1" colspan="1">GCM_SST_14</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>112</sup>
+</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>112</sup>
 </td>
             <td class="text-right" rowspan="1" colspan="1">q / 2<sup>112</sup>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_12</td>
+            <td class="text-left" rowspan="1" colspan="1">GCM_SST_12</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>96</sup>
+</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>96</sup>
 </td>
             <td class="text-right" rowspan="1" colspan="1">q / 2<sup>96</sup>
@@ -1747,39 +1755,47 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <table class="center" id="table-3">
         <caption>
 <a href="#table-3" class="selfRef">Table 3</a>:
-<a href="#name-comparision-with-gcm-and-pol" class="selfRef">Comparision with GCM and Poly1305 in a protocol like QUIC, where ℓ ≈ 2&lt;sup&gt;12&lt;/sup&gt;</a>
+<a href="#name-comparision-with-gcm-and-pol" class="selfRef">Comparision with GCM and Poly1305 in a protocol like QUIC, where ℓ ≈ 2^12</a>
         </caption>
 <thead>
           <tr>
             <th class="text-left" rowspan="1" colspan="1">Name</th>
-            <th class="text-right" rowspan="1" colspan="1">Forgery probability</th>
-            <th class="text-right" rowspan="1" colspan="1">Expected number of forgeries</th>
+            <th class="text-right" rowspan="1" colspan="1">Forgery probability before first forgery</th>
+            <th class="text-right" rowspan="1" colspan="1">Forgery probability after first forgery</th>
+            <th class="text-right" rowspan="1" colspan="1">Expected number of forgeries</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM</td>
+            <td class="text-left" rowspan="1" colspan="1">GCM</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>115</sup>
 </td>
+            <td class="text-right" rowspan="1" colspan="1">1</td>
             <td class="text-right" rowspan="1" colspan="1">q<sup>2</sup> / 2<sup>116</sup>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_CHACHA20_POLY1305</td>
+            <td class="text-left" rowspan="1" colspan="1">POLY1305</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>91</sup>
+</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>91</sup>
 </td>
             <td class="text-right" rowspan="1" colspan="1">q / 2<sup>91</sup>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_14</td>
+            <td class="text-left" rowspan="1" colspan="1">GCM_SST_14</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>112</sup>
+</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>112</sup>
 </td>
             <td class="text-right" rowspan="1" colspan="1">q / 2<sup>112</sup>
 </td>
           </tr>
           <tr>
-            <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_12</td>
+            <td class="text-left" rowspan="1" colspan="1">GCM_SST_12</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>96</sup>
+</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>96</sup>
 </td>
             <td class="text-right" rowspan="1" colspan="1">q / 2<sup>96</sup>
