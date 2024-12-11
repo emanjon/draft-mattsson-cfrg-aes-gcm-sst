@@ -616,24 +616,24 @@ Table of Contents
    implementation details.  For examples of replay protection
    mechanisms, see [RFC4303] and [RFC6479].
 
-   A comparision with GCM and Poly1305 can be found in Table 2 where q
-   is the number of decryption queries and ℓ is the maximum length of
-   plaintext and associated data in 128-bit chunks, see
-   [I-D.irtf-cfrg-aead-limits][Multiple].  Table 3 shows a comparision
-   with GCM and Poly1305 in a when in protocols like QUIC
-   [RFC9000][RFC9001], where the size of plaintext and associated data
-   is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^16.  When ℓ ≈ 2^16,
-   AEAD_AES_128_GCM_SST_14 offers superior confidentiality and integrity
-   compared to AEAD_AES_128_GCM, while also reducing overhead by 2
-   bytes.  Both algorithms provide similar security against passive
-   attackers; however, AEAD_AES_128_GCM_SST_14 enhances security against
-   active attackers by significantly reducing the expected number of
-   successful forgeries.  AEAD_AES_128_GCM_SST_12 offers superior
-   integrity compared to AEAD_CHACHA20_POLY1305, while also reducing
-   overhead by 4 bytes.  For GCM-SST and Poly1305, the expected number
-   of forgeries are linear in q when used with replay protection.  For
-   GCM, replay protection does not help and the expected number of
-   forgeries are quadratic in q.
+   A comparision with GCM and Poly1305 is presented in Table 2, where q
+   represents the number of decryption queries, and ℓ is the maximum
+   length of plaintext and associated data in 128-bit chunks, see
+   [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally, Table 3
+   provides a comparison with GCM and Poly1305 in the context of
+   protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
+   and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^16.  When ℓ
+   ≈ 2^16, AEAD_AES_128_GCM_SST_14 offers better confidentiality and
+   integrity compared to AEAD_AES_128_GCM, while also reducing overhead
+   by 2 bytes.  Both algorithms provide similar security against passive
+   attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances
+   security against active attackers by reducing the expected number of
+   successful forgeries.  Similarly, AEAD_AES_128_GCM_SST_12 offers
+   superior integrity compared to AEAD_CHACHA20_POLY1305, with a 4-byte
+   reduction in overhead.  For GCM-SST and Poly1305, the expected number
+   of forgeries are linear in q when replay protection is employed.  For
+   GCM, replay protection does not help, and the expected number of
+   forgeries grows quadratically with qq.
 
     +=========================+=====================+=================+
     | Name                    | Forgery probability | Expected number |
