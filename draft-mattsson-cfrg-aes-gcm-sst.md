@@ -493,7 +493,7 @@ Steps:
 10. Let P = ct XOR truncate(Z[2:n + 1], len(ct))
 11. If N passes replay protrection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not be returned for the same nonce. Replay protection can be performed iperformed either before step 1 or during step 11.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not be returned for the same nonce. Replay protection can be performed either before step 1 or during step 11.
 
 ## Encoding (ct, tag) Tuples
 
