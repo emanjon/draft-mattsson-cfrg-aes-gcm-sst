@@ -570,7 +570,7 @@ In general, there is a very small possibility in GCM-SST that either or both of 
 
 The details of the replay protection mechanism is determined by the security protocol utilizing GCM-SST. If the nonce includes a sequence number, it can be used for replay protection. Alternatively, a separate sequence number can be used, provided there is a one-to-one mapping between sequence numbers and nonces. The choice of a replay protection mechanism depends on factors such as the expected degree of packet reordering, as well as protocol and implementation details. For examples of replay protection mechanisms, see {{RFC4303}} and {{RFC6479}}.
 
-A comparision with GCM and Poly1305 is presented in {{comp1}}, where q represents the number of decryption queries, and ℓ is the maximum length of plaintext and associated data in 128-bit chunks, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>16</sup>. When ℓ ≈ 2<sup>16</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with qq.
+A comparision with GCM and Poly1305 is presented in {{comp1}}, where q represents the number of decryption queries, and ℓ is the maximum length of plaintext and associated data in 128-bit chunks, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with qq.
 
 | Name | Forgery probability | Expected number of forgeries |
 | AEAD_AES_128_GCM        | ℓ / 2<sup>127</sup> | ℓ ⋅ q<sup>2</sup> / 2<sup>128</sup> |
@@ -584,7 +584,7 @@ A comparision with GCM and Poly1305 is presented in {{comp1}}, where q represent
 | AEAD_CHACHA20_POLY1305  | 1 / 2<sup>91</sup> | q / 2<sup>91</sup> |
 | AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
 | AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
-{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where ℓ ≈ 2<sup>16</sup>" cols="l r r"}
+{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where ℓ ≈ 2<sup>12</sup>" cols="l r r"}
 
 # IANA Considerations
 
@@ -788,7 +788,9 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -07 to -08:
 
 * Replaced masking with non-zero injective padding as suggested by Inoue et al. This saves one AES invocation for 94% of plaintext lengths.
-* Added a note explainting that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.
+* Added text explainting that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.
+* Consideration on replay protection mechanisms
+* Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.
 * Consideration on replay protection mechanisms
 * Added a comparision between AEAD_AES_128_GCM_SST_14 and AEAD_AES_128_GCM in protocols like QUIC
 
