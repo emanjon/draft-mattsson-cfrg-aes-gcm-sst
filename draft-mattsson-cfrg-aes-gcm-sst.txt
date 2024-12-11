@@ -411,8 +411,8 @@ Table of Contents
    constant time to prevent any information leakage about the position
    of the first mismatched byte.  For a given key, a plaintext MUST NOT
    be returned unless it is certain that a plaintext has not be returned
-   for the same nonce.  Replay protection can be performed iperformed
-   either before step 1 or during step 11.
+   for the same nonce.  Replay protection can be performed either before
+   step 1 or during step 11.
 
 3.3.  Encoding (ct, tag) Tuples
 
