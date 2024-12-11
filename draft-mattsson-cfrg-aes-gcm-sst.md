@@ -580,8 +580,8 @@ A comparision with GCM and Poly1305 is presented in {{comp1}}, where q represent
 {: #comp1 title="Comparision with GCM and Poly1305. q is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r"}
 
 | Name | Forgery probability | Expected number of forgeries |
-| AEAD_AES_128_GCM        | ℓ / 2<sup>115</sup> | q<sup>2</sup> / 2<sup>116</sup> |
-| AEAD_CHACHA20_POLY1305  | ℓ / 2<sup>91</sup> | q / 2<sup>91</sup> |
+| AEAD_AES_128_GCM        | 1 / 2<sup>115</sup> | q<sup>2</sup> / 2<sup>116</sup> |
+| AEAD_CHACHA20_POLY1305  | 1 / 2<sup>91</sup> | q / 2<sup>91</sup> |
 | AEAD_AES_128_GCM_SST_14 | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
 | AEAD_AES_128_GCM_SST_12 | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
 {: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where ℓ ≈ 2<sup>16</sup>" cols="l r r"}
