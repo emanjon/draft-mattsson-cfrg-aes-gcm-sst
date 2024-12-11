@@ -447,13 +447,13 @@ Steps:
 1. If the lengths of K, N, A, P are not supported return error and abort
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], Q = Z[1]
-5. Let ct = P XOR truncate(Z[2:n + 1], len(P))
-6. Let S = zeropad(A) \|\| zeropad(ct \|\| 0x80)
-7. Let L = LE64(len(ct)) \|\| LE64(len(A))
-8. Let X = POLYVAL(H, S[0], S[1], ...)
-9. Let full_tag = POLYVAL(Q, X XOR L)
-10. Let tag = truncate(full_tag, tag_length)
-11. Return (ct, tag)
+4. Let ct = P XOR truncate(Z[2:n + 1], len(P))
+5. Let S = zeropad(A) \|\| zeropad(ct \|\| 0x80)
+6. Let L = LE64(len(ct)) \|\| LE64(len(A))
+7. Let X = POLYVAL(H, S[0], S[1], ...)
+8. Let full_tag = POLYVAL(Q, X XOR L)
+9. Let tag = truncate(full_tag, tag_length)
+10. Return (ct, tag)
 
 ## Authenticated Decryption Function
 
@@ -484,16 +484,16 @@ Steps:
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], Q = Z[1]
-5. Let S = zeropad(A) \|\| zeropad(ct \|\| 0x80)
-6. Let L = LE64(len(ct)) \|\| LE64(len(A))
-7. Let X = POLYVAL(H, S[0], S[1], ...)
-8. Let full_tag = POLYVAL(Q, X XOR L)
-9. Let expected_tag = truncate(full_tag, tag_length)
-10. If tag != expected_tag, return error and abort
-11. Let P = ct XOR truncate(Z[2:n + 1], len(ct))
-12. If N passes replay protrection, return P
+4. Let S = zeropad(A) \|\| zeropad(ct \|\| 0x80)
+5. Let L = LE64(len(ct)) \|\| LE64(len(A))
+6. Let X = POLYVAL(H, S[0], S[1], ...)
+7. Let full_tag = POLYVAL(Q, X XOR L)
+8. Let expected_tag = truncate(full_tag, tag_length)
+9. If tag != expected_tag, return error and abort
+10. Let P = ct XOR truncate(Z[2:n + 1], len(ct))
+11. If N passes replay protrection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not be returned for the same nonce. Replay protection can be performed iperformed either before step 1 or during step 12.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not be returned for the same nonce. Replay protection can be performed iperformed either before step 1 or during step 11.
 
 ## Encoding (ct, tag) Tuples
 
