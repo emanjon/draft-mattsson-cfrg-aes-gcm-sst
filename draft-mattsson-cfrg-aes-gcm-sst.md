@@ -126,18 +126,6 @@ informative:
         ins: Kazuhiko Minematsu
     date: November 2024
 
-  Iwata:
-    target: https://eprint.iacr.org/2012/438
-    title: "Breaking and Repairing GCM Security Proofs"
-    author:
-      -
-        ins: Tetsu Iwata
-      -
-        ins: Keisuke Ohashi
-      -
-        ins: Kazuhiko Minematsu
-    date: August 2012
-
   SAGE23:
     target: https://www.3gpp.org/ftp/TSG_SA/WG3_Security/TSGS3_110_Athens/docs/S3-230642.zip
     title: "Specification of the 256-bit air interface algorithms"
@@ -802,11 +790,11 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -07 to -08:
 
 * Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.
-* Added a comparision between GCM_SST_14, GCM_SST_12, GCM, POLY1305 in protocols like QUIC
+* Added a comparision between GCM_SST_14, GCM_SST_12, GCM_16, POLY1305 in protocols like QUIC
 * Added text on the importance of behaving like an ideal MAC
 * Consideration on replay protection mechanisms
 * Added text and alternative implementations borrowed from NIST
-* Added constrainst for invocations based on (22) in [Iwata]
+* Added constrainst of 2^32 encryption invocations aligning with NIST
 * Added text explainting that GCM-SST offer strictly better security than GCM and that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.
 
 Changes from -06 to -07:
