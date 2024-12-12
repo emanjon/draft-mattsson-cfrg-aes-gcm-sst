@@ -20,7 +20,7 @@ Abstract
    algorithm.  GCM-SST can be used with any keystream generator, not
    just 128-bit block ciphers.  The main differences from GCM are the
    use of an additional subkey Q, the derivation of fresh subkeys H and
-   Q for each nonce, and the replacement of the GHASH function with the
+   for each nonce, and the replacement of the GHASH function with the
    POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
    near-ideal forgery probabilities, even against multiple forgery
    attacks, which are significant security improvements over GCM.  GCM-
@@ -172,7 +172,7 @@ Table of Contents
    GCM-SST is defined with a general interface, allowing it to be used
    with any keystream generator, not just 128-bit block ciphers.  The
    main differences from GCM [GCM] are the introduction of an additional
-   subkey Q, the derivation of fresh subkeys H and Q for each nonce, and
+   subkey Q, the derivation of fresh subkeys H and for each nonce, and
    the replacement of the GHASH function with the POLYVAL function from
    AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
    tags with near-ideal forgery probabilities, even against multiple
@@ -281,12 +281,11 @@ Table of Contents
    GCM-SST makes use of the POLYVAL function from AES-GCM-SIV [RFC8452],
    which results in more efficient software implementations on little-
    endian architectures.  GHASH and POLYVAL can be defined in terms of
-   one another [RFC8452].  The subkeys H and Q are field elements used
-   in POLYVAL while the subkey M is used for the final masking of the
-   tag.  Both encryption and decryption are only defined on inputs that
-   are a whole number of octets.  Figures illustrating the GCM-SST
-   encryption and decryption functions can be found in [SST1], [SST2],
-   and [Inoue].
+   one another [RFC8452].  The subkeys H and are field elements used in
+   POLYVAL while the subkey M is used for the final masking of the tag.
+   Both encryption and decryption are only defined on inputs that are a
+   whole number of octets.  Figures illustrating the GCM-SST encryption
+   and decryption functions can be found in [SST1], [SST2], and [Inoue].
 
    For every computational procedure that is specified in this document,
    a conforming implementation may replace the given set of steps with
@@ -334,7 +333,7 @@ Table of Contents
 
    2.   Initiate keystream generator with K and N
 
-   3.   Let H = Z[0], Q = Z[1], M = Z[2]
+   3.   Let H = Z[0], = Z[1], M = Z[2]
 
    4.   Let ct = P XOR truncate(Z[3:n + 2], len(P))
 
@@ -392,7 +391,7 @@ Table of Contents
 
    2.   Initiate keystream generator with K and N
 
-   3.   Let H = Z[0], Q = Z[1], M = Z[2]
+   3.   Let H = Z[0], = Z[1], M = Z[2]
 
    4.   Let S = zeropad(A) || zeropad(ct)
 
@@ -514,8 +513,8 @@ Table of Contents
 5.  Security Considerations
 
    GCM-SST introduces an additional subkey Q, alongside the subkey H.
-   The inclusion of Q enables truncated tags with forgery probabilities
-   close to ideal.  Both Q and H are derived for each nonce, which
+   The inclusion of enables truncated tags with forgery probabilities
+   close to ideal.  Both and H are derived for each nonce, which
    significantly decreases the probability of multiple successful
    forgeries.  These changes are based on proven theoretical
    constructions and follows the recommendations in [Nyberg].  Inoue et
@@ -600,15 +599,14 @@ Table of Contents
    evaluated when selecting an appropriate tag length.
 
    In general, there is a very small possibility in GCM-SST that either
-   or both of the subkeys H and Q are zero, so called weak keys.  If H
-   is zero, the authentication tag depends only on the length of P and A
-   and not on their content.  If Q is zero, the authentication tag does
+   or both of the subkeys H and are zero, so called weak keys.  If H is
+   zero, the authentication tag depends only on the length of P and A
+   and not on their content.  If is zero, the authentication tag does
    not depend on P and A.  There are no obvious ways to detect this
    condition for an attacker, and the specification admits this
    possibility in favor of complicating the flow with additional checks
-   and regeneration of values.  In AES-GCM-SST, H and Q are generated
-   with a permutation on different input, so H and Q cannot both be
-   zero.
+   and regeneration of values.  In AES-GCM-SST, H and are generated with
+   a permutation on different input, so H and cannot both be zero.
 
    The details of the replay protection mechanism is determined by the
    security protocol utilizing GCM-SST.  If the nonce includes a
@@ -621,7 +619,7 @@ Table of Contents
    mechanisms, see [RFC4303] and [RFC6479].
 
    A comparision with GCM and Poly1305 in unicast security protocols
-   with replay protection is presented in Table 2, where q represents
+   with replay protection is presented in Table 2, where q' represents
    the number of decryption queries, and ℓ is the maximum length of
    plaintext and associated data in 128-bit chunks, see
    [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally, Table 3
@@ -637,7 +635,7 @@ Table of Contents
    AEAD_AES_128_GCM_SST_12 offers superior integrity compared to
    AEAD_CHACHA20_POLY1305 [RFC7253], with a 4-byte reduction in
    overhead.  For GCM-SST and Poly1305, the expected number of forgeries
-   are linear in q when replay protection is employed.  For GCM, replay
+   are linear in q' when replay protection is employed.  For GCM, replay
    protection does not help, and the expected number of forgeries grows
    quadratically with q.
 
