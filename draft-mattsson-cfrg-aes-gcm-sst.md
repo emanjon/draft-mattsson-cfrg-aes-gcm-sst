@@ -802,7 +802,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -07 to -08:
 
 * Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.
-* Added a comparision between AEAD_AES_128_GCM_SST_14 and AEAD_AES_128_GCM in protocols like QUIC
+* Added a comparision between GCM_SST_14, GCM_SST_12, GCM, POLY1305 in protocols like QUIC
 * Added text on the importance of behaving like an ideal MAC
 * Consideration on replay protection mechanisms
 * Added text and alternative implementations borrowed from NIST
