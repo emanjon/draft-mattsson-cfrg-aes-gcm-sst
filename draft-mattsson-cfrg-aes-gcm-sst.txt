@@ -619,12 +619,12 @@ Table of Contents
 
    A comparision with GCM and Poly1305 in unicast security protocols
    with replay protection is presented in Table 2, where q represents
-   the number of decryption queries, and s is the maximum length of
+   the number of decryption queries, and ℓ is the maximum length of
    plaintext and associated data in 128-bit chunks, see
    [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally, Table 3
    provides a comparison with GCM and Poly1305 in the context of
    protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
-   and associated data is less than ≈ 2^16 bytes, i.e. s ≈ 2^12.  When s
+   and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^12.  When ℓ
    ≈ 2^12, AEAD_AES_128_GCM_SST_14 offers better confidentiality and
    integrity compared to AEAD_AES_128_GCM [RFC5116], while also reducing
    overhead by 2 bytes.  Both algorithms provide similar security
@@ -644,9 +644,9 @@ Table of Contents
     |            |      first forgery | after first |                 |
     |            |                    |     forgery |                 |
     +============+====================+=============+=================+
-    | GCM        |          s / 2^127 |           1 | q^2 ⋅ s / 2^128 |
+    | GCM        |          ℓ / 2^127 |           1 | q^2 ⋅ ℓ / 2^128 |
     +------------+--------------------+-------------+-----------------+
-    | POLY1305   |          s / 2^103 |   s / 2^103 |   q ⋅ s / 2^103 |
+    | POLY1305   |          ℓ / 2^103 |   ℓ / 2^103 |   q ⋅ ℓ / 2^103 |
     +------------+--------------------+-------------+-----------------+
     | GCM_SST_14 |          1 / 2^112 |   1 / 2^112 |       q / 2^112 |
     +------------+--------------------+-------------+-----------------+
@@ -654,7 +654,7 @@ Table of Contents
     +------------+--------------------+-------------+-----------------+
 
        Table 2: Comparision with GCM and Poly1305. q is the number of
-        decryption queries, and s is the maximum length of plaintext
+        decryption queries, and ℓ is the maximum length of plaintext
               and associated data, measured in 128-bit chunks.
 
    +============+====================+===================+=============+
