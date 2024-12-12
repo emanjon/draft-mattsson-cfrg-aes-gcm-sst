@@ -564,7 +564,7 @@ Common parameters for the six AEAD instances:
 
 * C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
 
-The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}}. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48). Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
+The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}}. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48). Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths. For a given key, the total number of invocations of the authenticated encryption function shall not exceed 2<sup>32</sup>.
 
 # Security Considerations {#Security}
 
@@ -587,18 +587,18 @@ The details of the replay protection mechanism is determined by the security pro
 A comparision with GCM and Poly1305 in unicast security protocols with replay protection is presented in {{comp1}}, where q represents the number of decryption queries, and ℓ is the maximum length of plaintext and associated data in 128-bit chunks, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM {{RFC5116}}, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305 {{RFC7253}}, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with q.
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
-| GCM | ℓ / 2<sup>127</sup> | 1 | q<sup>2</sup>&nbsp;⋅&nbsp;ℓ&nbsp;/&nbsp;2<sup>128</sup> |
-| POLY1305 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | q ⋅ ℓ / 2<sup>103</sup> |
-| GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q / 2<sup>112</sup> |
-| GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q / 2<sup>96</sup> |
-{: #comp1 title="Comparision with GCM and Poly1305. q is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r r"}
+| GCM_16 | ℓ / 2<sup>127</sup> | 1 | q'<sup>2</sup>&nbsp;⋅&nbsp;ℓ&nbsp;/&nbsp;2<sup>128</sup> |
+| POLY1305 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | q' ⋅ ℓ / 2<sup>103</sup> |
+| GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' / 2<sup>112</sup> |
+| GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' / 2<sup>96</sup> |
+{: #comp1 title="Comparision with GCM and Poly1305. q' is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r r"}
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
-| GCM | 1 / 2<sup>115</sup> | 1 | q'<sup>2</sup>&nbsp;/&nbsp;2<sup>116</sup> |
+| GCM_16 | 1 / 2<sup>115</sup> | 1 | q'<sup>2</sup>&nbsp;/&nbsp;2<sup>116</sup> |
 | POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | q' / 2<sup>91</sup> |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' / 2<sup>112</sup> |
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' / 2<sup>96</sup> |
-{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where s ≈ 2^12" cols="l r r r"}
+{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where the maximum packet size 65536 bytes." cols="l r r r"}
 
 # IANA Considerations
 
