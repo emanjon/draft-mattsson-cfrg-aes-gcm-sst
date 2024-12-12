@@ -126,6 +126,18 @@ informative:
         ins: Kazuhiko Minematsu
     date: November 2024
 
+  Iwata:
+    target: https://eprint.iacr.org/2012/438
+    title: "Breaking and Repairing GCM Security Proofs"
+    author:
+      -
+        ins: Tetsu Iwata
+      -
+        ins: Keisuke Ohashi
+      -
+        ins: Kazuhiko Minematsu
+    date: August 2012
+
   SAGE23:
     target: https://www.3gpp.org/ftp/TSG_SA/WG3_Security/TSGS3_110_Athens/docs/S3-230642.zip
     title: "Specification of the 256-bit air interface algorithms"
