@@ -1908,10 +1908,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <dd>
 <span class="refAuthor">Akiko Inoue</span>, <span class="refAuthor">Ashwin Jha</span>, <span class="refAuthor">Bart Mennink</span>, and <span class="refAuthor">Kazuhiko Minematsu</span>, <span class="refTitle">"Generic Security of GCM-SST"</span>, <time datetime="2024-11" class="refDate">November 2024</time>, <span>&lt;<a href="https://eprint.iacr.org/2024/1928.pdf">https://eprint.iacr.org/2024/1928.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="Iwata">[Iwata]</dt>
-        <dd>
-<span class="refAuthor">Tetsu Iwata</span>, <span class="refAuthor">Keisuke Ohashi</span>, and <span class="refAuthor">Kazuhiko Minematsu</span>, <span class="refTitle">"Breaking and Repairing GCM Security Proofs"</span>, <time datetime="2012-08" class="refDate">August 2012</time>, <span>&lt;<a href="https://eprint.iacr.org/2012/438">https://eprint.iacr.org/2012/438</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="Lindell">[Lindell]</dt>
         <dd>
 <span class="refAuthor">Lindell, Y.</span>, <span class="refTitle">"Comment on AES-GCM-SST"</span>, <time datetime="2024-05" class="refDate">May 2024</time>, <span>&lt;<a href="https://mailarchive.ietf.org/arch/browse/cfrg/?gbt=1&amp;index=cWpv0QgX2ltkWhtd3R9pEW7E1CA">https://mailarchive.ietf.org/arch/browse/cfrg/?gbt=1&amp;index=cWpv0QgX2ltkWhtd3R9pEW7E1CA</a>&gt;</span>. </dd>
@@ -2302,7 +2298,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
           <p id="appendix-B-3.1.1">Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-3.2">
-          <p id="appendix-B-3.2.1">Added a comparision between GCM_SST_14, GCM_SST_12, GCM, POLY1305 in protocols like QUIC<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.2.1">Added a comparision between GCM_SST_14, GCM_SST_12, GCM_16, POLY1305 in protocols like QUIC<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-3.3">
           <p id="appendix-B-3.3.1">Added text on the importance of behaving like an ideal MAC<a href="#appendix-B-3.3.1" class="pilcrow">¶</a></p>
@@ -2314,7 +2310,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
           <p id="appendix-B-3.5.1">Added text and alternative implementations borrowed from NIST<a href="#appendix-B-3.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-3.6">
-          <p id="appendix-B-3.6.1">Added constrainst for invocations based on (22) in <span>[<a href="#Iwata" class="cite xref">Iwata</a>]</span><a href="#appendix-B-3.6.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.6.1">Added constrainst of 2^32 encryption invocations aligning with NIST<a href="#appendix-B-3.6.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-3.7">
           <p id="appendix-B-3.7.1">Added text explainting that GCM-SST offer strictly better security than GCM and that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.<a href="#appendix-B-3.7.1" class="pilcrow">¶</a></p>
