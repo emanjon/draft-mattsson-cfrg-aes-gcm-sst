@@ -283,10 +283,15 @@ Table of Contents
    one another [RFC8452].  The subkeys H and Q are field elements used
    in POLYVAL while the subkey M is used for the final masking of the
    tag.  Both encryption and decryption are only defined on inputs that
-   are a whole number of octets.
+   are a whole number of octets.  Figures illustrating the GCM-SST
+   encryption and decryption functions can be found in [SST1], [SST2],
+   and [Inoue].
 
-   Figures illustrating the GCM-SST encryption and decryption functions
-   can be found in [SST1], [SST2], and [Inoue].
+   For every computational procedure that is specified in this document,
+   a conforming implementation may replace the given set of steps with
+   any mathematically equivalent set of steps.  In other words,
+   different procedures that produce the correct output for every input
+   are permitted.
 
 3.1.  Authenticated Encryption Function
 
