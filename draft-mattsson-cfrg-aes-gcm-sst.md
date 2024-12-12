@@ -382,7 +382,7 @@ This document defines the Galois Counter Mode with Secure Short Tags (GCM-SST) A
 
 This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in counter mode as keystream generators and with tag lengths of 32, 64, 96, and 112 bits, see {{AES-GCM-SST}}. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM {{GCM}}. 3GPP has standardized the use of Rijndael-256-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST is anticipated to standardize Rijndael-256-256 {{Options}}, although there may be revisions to the key schedule.
 
-GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP, with several years of discussion and refinement contributing to its design {{SAGE23}}{{SAGE24}}.  Mac5G is constructed similarly to the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}. 3GPP has decided to standardize Mac5G for use with AES-256 {{AES}}, SNOW 5G {{SNOW}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}.
+GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP, with several years of discussion and refinement contributing to its design {{SAGE23}}{{SAGE24}}.  Mac5G is constructed similarly to the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}. 3GPP has decided to standardize GCM-SST for use with AES-256 {{AES}}, SNOW 5G {{SNOW}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}.
 
 # Conventions and Definitions
 
@@ -497,7 +497,7 @@ Steps:
 10. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protrection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not be returned for the same nonce. Replay protection can be performed either before step 1 or during step 11.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection can be performed either before step 1 or during step 11.
 
 ## Encoding (ct, tag) Tuples
 
