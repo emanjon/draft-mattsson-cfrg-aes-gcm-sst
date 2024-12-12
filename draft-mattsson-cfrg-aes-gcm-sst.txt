@@ -676,7 +676,8 @@ Table of Contents
      +------------+--------------------+-------------+--------------+
 
          Table 3: Comparision with GCM and Poly1305 in a protocol
-          like QUIC, where the maximum packet size 65536 bytes.
+         like QUIC, where the maximum packet size 2<sup>16</sup>
+                                  bytes.
 
 6.  IANA Considerations
 
