@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 14 June 2025                                  J. Preuß Mattsson
+Expires: 15 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                        11 December 2024
+                                                        12 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 June 2025.
+   This Internet-Draft will expire on 15 June 2025.
 
 Copyright Notice
 
@@ -200,8 +200,8 @@ Table of Contents
    following a request from 3GPP, with several years of discussion and
    refinement contributing to its design [SAGE23][SAGE24].  Mac5G is
    constructed similarly to the integrity algorithms used for SNOW 3G
-   [UIA2] and ZUC [EIA3]. 3GPP has decided to standardize Mac5G for use
-   with AES-256 [AES], SNOW 5G [SNOW], and ZUC-256 [ZUC] in 3GPP TS
+   [UIA2] and ZUC [EIA3]. 3GPP has decided to standardize GCM-SST for
+   use with AES-256 [AES], SNOW 5G [SNOW], and ZUC-256 [ZUC] in 3GPP TS
    35.240–35.248 [WID24].
 
 2.  Conventions and Definitions
@@ -407,9 +407,9 @@ Table of Contents
    The comparison of tag and expected_tag in step 9 MUST be performed in
    constant time to prevent any information leakage about the position
    of the first mismatched byte.  For a given key, a plaintext MUST NOT
-   be returned unless it is certain that a plaintext has not be returned
-   for the same nonce.  Replay protection can be performed either before
-   step 1 or during step 11.
+   be returned unless it is certain that a plaintext has not been
+   returned for the same nonce.  Replay protection can be performed
+   either before step 1 or during step 11.
 
 3.3.  Encoding (ct, tag) Tuples
 
