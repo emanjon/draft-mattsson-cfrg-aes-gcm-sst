@@ -586,7 +586,7 @@ A comparision with GCM and Poly1305 in unicast security protocols with replay pr
 | POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | q' / 2<sup>91</sup> |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' / 2<sup>112</sup> |
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' / 2<sup>96</sup> |
-{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where the maximum packet size 2¹⁶ bytes." cols="l r r r"}
+{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where the maximum packet size 65536 bytes." cols="l r r r"}
 
 # IANA Considerations
 
