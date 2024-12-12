@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-10T01:54:31.909829+00:00",
+  "timestamp": "2024-12-12T01:52:29.537495+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -633,6 +633,34 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 24,
+      "id": "PR_kwDOJat8lM6ExiIm",
+      "title": "Update draft-mattsson-cfrg-aes-gcm-sst.md",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/pull/24",
+      "state": "MERGED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2024-12-10T22:50:14Z",
+      "updatedAt": "2024-12-10T22:51:34Z",
+      "baseRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "baseRefName": "main",
+      "baseRefOid": "0b38250e6d4cae767d1ec36e7406605702c51785",
+      "headRepository": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
+      "headRefName": "emanjon-patch-2",
+      "headRefOid": "84acd7fc307b574361a8c641eca1265cd8390d7b",
+      "closedAt": "2024-12-10T22:51:29Z",
+      "mergedAt": "2024-12-10T22:51:29Z",
+      "mergedBy": "emanjon",
+      "mergeCommit": {
+        "oid": "2759cf75a7f89b27358e136eb2fc727709d68246"
+      },
       "comments": [],
       "reviews": []
     }
