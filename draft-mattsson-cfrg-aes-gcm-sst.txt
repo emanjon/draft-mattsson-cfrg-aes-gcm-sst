@@ -161,9 +161,10 @@ Table of Contents
    preclude many repeated trial.  For all applications of short tags it
    is essential that the MAC behaves like an ideal MAC, i.e., the
    forgery probability is ≈ 2^(-tag_length) even after many generated
-   MACs, many forgery attempts, and after a successful forgery.  For a
-   comprehensive discussion on the use cases and requirements of short
-   tags, see [Comments38B].
+   MACs, many forgery attempts, and after a successful forgery.  Users
+   and implementors of cryptography expect that MACs behaves like an
+   ideal MACs.  For a comprehensive discussion on the use cases and
+   requirements of short tags, see [Comments38B].
 
    This document defines the Galois Counter Mode with Secure Short Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
@@ -562,9 +563,9 @@ Table of Contents
    tag length into the keystream or the nonce.
 
    When tag_length < 128 - log2(n + m + 1) bits, the expected number of
-   forgeries is ≈ q ⋅ 2^(-tag_length), where q is the number of
+   forgeries is ≈ q' ⋅ 2^(-tag_length), where q' is the number of
    decryption queries, which is ideal.  This far outperforms GCM, where
-   the expected number of forgeries is ≈ q^2 ⋅ (n + m + 1) ⋅
+   the expected number of forgeries is ≈ q'^2 ⋅ (n + m + 1) ⋅
    2^(-tag_length) [Multiple].  BSI states that an ideal MAC with a
    96-bit tag length is considered acceptable for most applications
    [BSI], a requirement that GCM-SST with 96- and 112-bit tags
@@ -600,12 +601,13 @@ Table of Contents
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
    is zero, the authentication tag depends only on the length of P and A
-   and not on their content.  If Q is zero, the authentication tag
-   becomes zero.  There are no obvious ways to detect this condition for
-   an attacker, and the specification admits this possibility in favor
-   of complicating the flow with additional checks and regeneration of
-   values.  In AES-GCM-SST, H and Q are generated with a permutation on
-   different input, so H and Q cannot both be zero.
+   and not on their content.  If Q is zero, the authentication tag does
+   not depend on P and A.  There are no obvious ways to detect this
+   condition for an attacker, and the specification admits this
+   possibility in favor of complicating the flow with additional checks
+   and regeneration of values.  In AES-GCM-SST, H and Q are generated
+   with a permutation on different input, so H and Q cannot both be
+   zero.
 
    The details of the replay protection mechanism is determined by the
    security protocol utilizing GCM-SST.  If the nonce includes a
@@ -657,23 +659,23 @@ Table of Contents
         decryption queries, and ℓ is the maximum length of plaintext
               and associated data, measured in 128-bit chunks.
 
-   +============+====================+===================+=============+
-   | Name       |            Forgery |           Forgery |    Expected |
-   |            | probability before |       probability |   number of |
-   |            |      first forgery |       after first |   forgeries |
-   |            |                    |           forgery |             |
-   +============+====================+===================+=============+
-   | GCM        |          1 / 2^115 |                 1 | q^2 / 2^116 |
-   +------------+--------------------+-------------------+-------------+
-   | POLY1305   |           1 / 2^91 |          1 / 2^91 |    q / 2^91 |
-   +------------+--------------------+-------------------+-------------+
-   | GCM_SST_14 |          1 / 2^112 |         1 / 2^112 |   q / 2^112 |
-   +------------+--------------------+-------------------+-------------+
-   | GCM_SST_12 |           1 / 2^96 |          1 / 2^96 |    q / 2^96 |
-   +------------+--------------------+-------------------+-------------+
+     +============+====================+=============+==============+
+     | Name       |            Forgery |     Forgery |     Expected |
+     |            | probability before | probability |    number of |
+     |            |      first forgery | after first |    forgeries |
+     |            |                    |     forgery |              |
+     +============+====================+=============+==============+
+     | GCM        |          1 / 2^115 |           1 | q'^2 / 2^116 |
+     +------------+--------------------+-------------+--------------+
+     | POLY1305   |           1 / 2^91 |    1 / 2^91 |    q' / 2^91 |
+     +------------+--------------------+-------------+--------------+
+     | GCM_SST_14 |          1 / 2^112 |   1 / 2^112 |   q' / 2^112 |
+     +------------+--------------------+-------------+--------------+
+     | GCM_SST_12 |           1 / 2^96 |    1 / 2^96 |    q' / 2^96 |
+     +------------+--------------------+-------------+--------------+
 
-       Table 3: Comparision with GCM and Poly1305 in a protocol like
-                            QUIC, where s ≈ 2^12
+         Table 3: Comparision with GCM and Poly1305 in a protocol
+                        like QUIC, where s ≈ 2^12
 
 6.  IANA Considerations
 
@@ -1091,7 +1093,7 @@ Change Log
 
    *  Added text and alternative implementations borrowed from NIST
 
-   *  Added constrainst for invocations based on (22) in Iwata
+   *  Added constrainst for invocations based on (22) in [Iwata]
 
    *  Added text explainting that GCM-SST offer strictly better security
       than GCM and that "GCM allows universal forgery with lower
