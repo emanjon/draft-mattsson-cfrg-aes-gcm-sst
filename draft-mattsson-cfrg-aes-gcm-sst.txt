@@ -1075,6 +1075,8 @@ Change Log
 
    Changes from -08 to -09:
 
+   *  Corrected some probabilites that were off by a factor 2
+
    *  Editorial changes.
 
    Changes from -07 to -08:
