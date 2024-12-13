@@ -1072,6 +1072,10 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
+   Changes from -08 to -09:
+
+   *  Editorial changes.
+
    Changes from -07 to -08:
 
    *  Changed replay requirements to allow replay protection after
