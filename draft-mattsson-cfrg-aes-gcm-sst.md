@@ -789,6 +789,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -08 to -09:
 
+* Corrected some probabilites that were off by a factor 2
 * Editorial changes.
 
 Changes from -07 to -08:
