@@ -635,7 +635,7 @@ Table of Contents
    overhead.  For GCM-SST and Poly1305, the expected number of forgeries
    are linear in q' when replay protection is employed.  For GCM, replay
    protection does not help, and the expected number of forgeries grows
-   quadratically with q.
+   quadratically with q'.
 
    +============+====================+=============+==================+
    | Name       |            Forgery |     Forgery |  Expected number |
