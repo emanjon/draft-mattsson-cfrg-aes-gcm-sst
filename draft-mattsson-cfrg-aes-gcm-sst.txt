@@ -263,9 +263,10 @@ Table of Contents
 3.  Galois Counter Mode with Secure Short Tags (GCM-SST)
 
    This section defines the Galois Counter Mode with Secure Short Tags
-   (GCM-SST) following the recommendations from Nyberg et al.  [Nyberg].
-   GCM-SST is defined with a general interface so that it can be used
-   with any keystream generator, not just a 128-bit block cipher.
+   (GCM-SST) algorithm following the recommendations from Nyberg et al.
+   [Nyberg].  GCM-SST is defined with a general interface so that it can
+   be used with any keystream generator, not just a 128-bit block
+   cipher.
 
    GCM-SST adheres to an AEAD interface [RFC5116] and the encryption
    function takes four variable-length octet string parameters.  A
@@ -488,7 +489,7 @@ Table of Contents
     | AEAD_RIJNDAEL_GCM_SST_14 |      32 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
 
-                                 Table 1: s
+                          Table 1: AEAD Algorithms
 
    Common parameters for the six AEAD instances:
 
