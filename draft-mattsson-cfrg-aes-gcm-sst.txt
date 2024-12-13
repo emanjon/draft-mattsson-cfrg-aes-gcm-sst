@@ -547,7 +547,7 @@ Table of Contents
    like an ideal MAC.
 
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
-   be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX + 16) / 16.  When
+   be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When
    tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability
    is bounded by ≈ 2^(-tag_length) [Nyberg].  The tags in the AEAD
    algorithm listed in Section 4.3 therefore have an almost perfect
