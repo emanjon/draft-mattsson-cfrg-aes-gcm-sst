@@ -547,30 +547,28 @@ Table of Contents
    like an ideal MAC.
 
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
-   be larger than 16 bytes.  When tag_length < 128 - log2(n + m + 1)
-   bits, the worst-case forgery probability is bounded by ≈
-   2^(-tag_length) [Nyberg].  The tags in the AEAD algorithm listed in
-   Section 4.3 therefore have an almost perfect security level.  This is
-   significantly better than GCM where the security level is only
-   tag_length - log2(n + m + 1) bits [GCM].  Note that n and m in this
-   context represent the maximum values allowed by the decryption
-   function.  For a graph of the forgery probability, refer to Fig. 3 in
-   [Inoue].  As one can note, for 128-bit tags and long messages, the
-   forgery probability is not close to ideal and similar to GCM [GCM].
-   If tag verification fails, the plaintext and expected_tag MUST NOT be
-   given as output.  In GCM-SST, the full_tag is independent of the
-   specified tag length unless the application explicitly incorporates
-   tag length into the keystream or the nonce.
+   be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX + 16) / 16.  When
+   tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability
+   is bounded by ≈ 2^(-tag_length) [Nyberg].  The tags in the AEAD
+   algorithm listed in Section 4.3 therefore have an almost perfect
+   security level.  This is significantly better than GCM where the
+   security level is only tag_length - log2(ℓ) bits [GCM].  For a graph
+   of the forgery probability, refer to Fig. 3 in [Inoue].  As one can
+   note, for 128-bit tags and long messages, the forgery probability is
+   not close to ideal and similar to GCM [GCM].  If tag verification
+   fails, the plaintext and expected_tag MUST NOT be given as output.
+   In GCM-SST, the full_tag is independent of the specified tag length
+   unless the application explicitly incorporates tag length into the
+   keystream or the nonce.
 
-   When tag_length < 128 - log2(n + m + 1) bits, the expected number of
+   When tag_length < 128 - log2(ℓ) bits, the expected number of
    forgeries is ≈ q' ⋅ 2^(-tag_length), where q' is the number of
    decryption queries, which is ideal.  This far outperforms GCM, where
-   the expected number of forgeries is ≈ q'^2 ⋅ (n + m + 1) ⋅
-   2^(-tag_length) [Multiple].  BSI states that an ideal MAC with a
-   96-bit tag length is considered acceptable for most applications
-   [BSI], a requirement that GCM-SST with 96- and 112-bit tags
-   satisfies.  Achieving a comparable level of security with GCM, CCM,
-   or Poly1305 is nearly impossible.
+   the expected number of forgeries is ≈ q'^2 ⋅ ℓ ⋅ 2^(-tag_length)
+   [Multiple].  BSI states that an ideal MAC with a 96-bit tag length is
+   considered acceptable for most applications [BSI], a requirement that
+   GCM-SST with 96- and 112-bit tags satisfies.  Achieving a comparable
+   level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
