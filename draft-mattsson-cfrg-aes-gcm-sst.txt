@@ -172,7 +172,7 @@ Table of Contents
    GCM-SST is defined with a general interface, allowing it to be used
    with any keystream generator, not just 128-bit block ciphers.  The
    main differences from GCM [GCM] are the introduction of an additional
-   subkey Q, the derivation of fresh subkeys H and for each nonce, and
+   subkey Q, the derivation of fresh subkeys H and Q for each nonce, and
    the replacement of the GHASH function with the POLYVAL function from
    AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
    tags with near-ideal forgery probabilities, even against multiple
@@ -281,11 +281,12 @@ Table of Contents
    GCM-SST makes use of the POLYVAL function from AES-GCM-SIV [RFC8452],
    which results in more efficient software implementations on little-
    endian architectures.  GHASH and POLYVAL can be defined in terms of
-   one another [RFC8452].  The subkeys H and are field elements used in
-   POLYVAL while the subkey M is used for the final masking of the tag.
-   Both encryption and decryption are only defined on inputs that are a
-   whole number of octets.  Figures illustrating the GCM-SST encryption
-   and decryption functions can be found in [SST1], [SST2], and [Inoue].
+   one another [RFC8452].  The subkeys H and Q are field elements used
+   in POLYVAL while the subkey M is used for the final masking of the
+   tag.  Both encryption and decryption are only defined on inputs that
+   are a whole number of octets.  Figures illustrating the GCM-SST
+   encryption and decryption functions can be found in [SST1], [SST2],
+   and [Inoue].
 
    For every computational procedure that is specified in this document,
    a conforming implementation may replace the given set of steps with
@@ -514,7 +515,7 @@ Table of Contents
 
    GCM-SST introduces an additional subkey Q, alongside the subkey H.
    The inclusion of enables truncated tags with forgery probabilities
-   close to ideal.  Both and H are derived for each nonce, which
+   close to ideal.  Both H and Q are derived for each nonce, which
    significantly decreases the probability of multiple successful
    forgeries.  These changes are based on proven theoretical
    constructions and follows the recommendations in [Nyberg].  Inoue et
