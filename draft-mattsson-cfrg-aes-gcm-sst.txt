@@ -603,8 +603,9 @@ Table of Contents
    not depend on P and A.  There are no obvious ways to detect this
    condition for an attacker, and the specification admits this
    possibility in favor of complicating the flow with additional checks
-   and regeneration of values.  In AES-GCM-SST, H and are generated with
-   a permutation on different input, so H and cannot both be zero.
+   and regeneration of values.  In AES-GCM-SST, H and Q are generated
+   with a permutation on different input, so H and Q cannot both be
+   zero.
 
    The details of the replay protection mechanism is determined by the
    security protocol utilizing GCM-SST.  If the nonce includes a
