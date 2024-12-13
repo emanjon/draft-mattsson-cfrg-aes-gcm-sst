@@ -597,9 +597,9 @@ Table of Contents
    evaluated when selecting an appropriate tag length.
 
    In general, there is a very small possibility in GCM-SST that either
-   or both of the subkeys H and are zero, so called weak keys.  If H is
-   zero, the authentication tag depends only on the length of P and A
-   and not on their content.  If is zero, the authentication tag does
+   or both of the subkeys H and Q are zero, so called weak keys.  If H
+   is zero, the authentication tag depends only on the length of P and A
+   and not on their content.  If Q is zero, the authentication tag does
    not depend on P and A.  There are no obvious ways to detect this
    condition for an attacker, and the specification admits this
    possibility in favor of complicating the flow with additional checks
