@@ -619,9 +619,8 @@ Table of Contents
 
    A comparision with GCM and Poly1305 in unicast security protocols
    with replay protection is presented in Table 2, where q' represents
-   the number of decryption queries, and ℓ is the maximum length of
-   plaintext and associated data in 128-bit chunks, see
-   [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally, Table 3
+   the number of decryption queries, and ℓ = (P_MAX + A_MAX) / 16 + 1,
+   see [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally, Table 3
    provides a comparison with GCM and Poly1305 in the context of
    protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
    and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^12.  When ℓ
