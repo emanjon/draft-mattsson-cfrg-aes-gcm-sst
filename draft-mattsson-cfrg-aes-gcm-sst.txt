@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 15 June 2025                                  J. Preuß Mattsson
+Expires: 16 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                        12 December 2024
+                                                        13 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 15 June 2025.
+   This Internet-Draft will expire on 16 June 2025.
 
 Copyright Notice
 
@@ -674,7 +674,7 @@ Table of Contents
      +------------+--------------------+-------------+--------------+
 
          Table 3: Comparision with GCM and Poly1305 in a protocol
-          like QUIC, where the maximum packet size 65536 bytes.
+         like QUIC, where the maximum packet size is 65536 bytes.
 
 6.  IANA Considerations
 
@@ -784,9 +784,9 @@ Table of Contents
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
               Encryption Algorithms", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-aegis-aead-13, 14 October 2024,
+              draft-irtf-cfrg-aegis-aead-14, 12 December 2024,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              aegis-aead-13>.
+              aegis-aead-14>.
 
    [Inoue]    Akiko Inoue, Ashwin Jha, Bart Mennink, and Kazuhiko
               Minematsu, "Generic Security of GCM-SST", November 2024,
