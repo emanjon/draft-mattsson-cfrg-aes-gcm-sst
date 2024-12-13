@@ -573,12 +573,12 @@ Table of Contents
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
    Regardless of key length, an attacker can mount a distinguishing
-   attack with a complexity of approximately 2^129 / k, where k is the
+   attack with a complexity of approximately 2^129 / q, where q is the
    number of invocations of the AES encryption function.  In contrast,
    the confidentiality offered by Rijndael-256-256-GCM-SST against
    passive attackers is significantly higher.  The complexity of
    distinguishing attacks for Rijndael-256-256-GCM-SST is approximately
-   2^257 / k, where k is the number of invocations of the Rijndael-
+   2^257 / q, where q is the number of invocations of the Rijndael-
    256-256 encryption function.  While Rijndael-256-256 in counter mode
    can provide strong confidentiality for plaintexts much larger than
    2^36 octets, GHASH and POLYVAL do not offer adequate integrity for
