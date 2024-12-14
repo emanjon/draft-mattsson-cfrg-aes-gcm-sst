@@ -540,11 +540,11 @@ Table of Contents
    number like a sequence number with a per-key random secret salt of
    the same length as the nonce.  This significantly improves security
    against precomputation attacks and multi-key attacks [Bellare] and is
-   implemented in TLS 1.3 [RFC8446], OSCORE [RFC8613], and [Ascon].  By
-   increasing the nonce length from 96 bits to 224 bits, Rijndael-
-   256-256-GCM-SST can offer significantly greater security against
-   precomputation and multi-key attacks compared to AES-256-GCM-SST.
-   GCM-SST SHOULD NOT be used in multicast or broadcast scenarios.
+   for example implemented in TLS 1.3 [RFC8446], OSCORE [RFC8613], and
+   [Ascon].  By increasing the nonce length from 96 bits to 224 bits,
+   Rijndael-256-256-GCM-SST can offer significantly greater security
+   against precomputation and multi-key attacks compared to AES-256-GCM-
+   SST.  GCM-SST SHOULD NOT be used in multicast or broadcast scenarios.
    While GCM-SST offers better security properties than GCM for a given
    tag length in such contexts, it does not behave like an ideal MAC.
 
