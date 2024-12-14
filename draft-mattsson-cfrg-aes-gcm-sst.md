@@ -482,7 +482,7 @@ Steps:
 
 1. If the lengths of K, N, A, P are not supported return error and abort
 2. Initiate keystream generator with K and N
-3. Let H = Z[0], = Z[1], M = Z[2]
+3. Let H = Z[0], Q = Z[1], M = Z[2]
 4. Let ct = P XOR truncate(Z[3:n + 2], len(P))
 5. Let S = zeropad(A) \|\| zeropad(ct)
 6. Let L = LE64(len(ct)) \|\| LE64(len(A))
@@ -519,7 +519,7 @@ Steps:
 
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
 2. Initiate keystream generator with K and N
-3. Let H = Z[0], = Z[1], M = Z[2]
+3. Let H = Z[0], Q = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct)
 5. Let L = LE64(len(ct)) \|\| LE64(len(A))
 6. Let X = POLYVAL(H, S[0], S[1], ...)
