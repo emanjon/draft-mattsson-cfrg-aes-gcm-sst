@@ -787,12 +787,12 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
-Changes from -08 to -09:
+Changes from -09 to -10:
 
 * Corrected some probabilites that were off by a factor 2
 * Editorial changes.
 
-Changes from -07 to -08:
+Changes from -07 to -09:
 
 * Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.
 * Added a comparision between GCM_SST_14, GCM_SST_12, GCM_16, POLY1305 in protocols like QUIC
