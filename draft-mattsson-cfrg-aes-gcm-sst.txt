@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 16 June 2025                                  J. Preuß Mattsson
+Expires: 17 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                        13 December 2024
+                                                        14 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 June 2025.
+   This Internet-Draft will expire on 17 June 2025.
 
 Copyright Notice
 
@@ -1073,13 +1073,13 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
-   Changes from -08 to -09:
+   Changes from -09 to -10:
 
    *  Corrected some probabilites that were off by a factor 2
 
    *  Editorial changes.
 
-   Changes from -07 to -08:
+   Changes from -07 to -09:
 
    *  Changed replay requirements to allow replay protection after
       decryption to align with protocols like QUIC and DTLS 1.3.
