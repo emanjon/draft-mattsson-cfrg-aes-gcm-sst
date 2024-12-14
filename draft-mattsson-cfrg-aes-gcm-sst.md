@@ -72,7 +72,9 @@ informative:
   RFC3711:
   RFC4303:
   RFC6479:
-  RFC7253:
+  RFC7539:
+  RFC8446:
+  RFC8613:
   RFC9000:
   RFC9001:
   RFC9605:
@@ -309,6 +311,24 @@ informative:
       -
         ins: M. Dworkin
     date: November 2007
+
+  Ascon:
+    target: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-232.ipd.pdf
+    title: "Ascon-Based Lightweight Cryptography Standards for Constrained Devices"
+    seriesinfo:
+      "NIST": "Special Publication 800-232 Initial Public Draft"
+    author:
+      -
+        ins: Meltem Sönmez Turan
+      -
+        ins: Kerry A. McKay
+      -
+        ins: Donghoon Chang
+      -
+        ins: Jinkeon Kang
+      -
+        ins: John Kelsey
+    date: November 2024
 
   GCM-Update:
     target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/gcm-update.pdf
@@ -570,7 +590,7 @@ The maximum size of the plaintext (P_MAX) and the maximum size of the associated
 
 GCM-SST introduces an additional subkey Q, alongside the subkey H. The inclusion of enables truncated tags with forgery probabilities close to ideal. Both H and Q are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} prove that GCM-SST is a provably secure authenticated encryption mode, with security guaranteed for evaluations under fresh nonces, even if some earlier nonces have been reused.
 
-GCM-SST is designed for use in unicast security protocols with replay protection. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and only once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. GCM-SST MUST NOT be used with random nonces [Collision] and MUST be used with replay protection. Reuse of nonces in successful encryption and decryption function calls enable universal forgery {{Lindell}}{{Inoue}}. For a given tag length, GCM-SST has stricly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations MAY add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt. This improves security against pre-computation attacks and multi-key attacks [Bellare]. By increasing the nonce length from 96 bits to 224 bits, Rijndael-256-256-GCM-SST can offer significantly greater security against pre-computation and multi-key attacks compared to AES-256-GCM-SST. GCM-SST SHOULD NOT be used in multicast or broadcast scenarios. While GCM-SST offers better security properties than GCM for a given tag length in such contexts, it does not behave like an ideal MAC.
+GCM-SST is designed for use in unicast security protocols with replay protection. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and only once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. GCM-SST MUST NOT be used with random nonces [Collision] and MUST be used with replay protection. Reuse of nonces in successful encryption and decryption function calls enable universal forgery {{Lindell}}{{Inoue}}. For a given tag length, GCM-SST has stricly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations SHOULD add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks [Bellare] and is implemented in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-256-256-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-256-GCM-SST. GCM-SST SHOULD NOT be used in multicast or broadcast scenarios. While GCM-SST offers better security properties than GCM for a given tag length in such contexts, it does not behave like an ideal MAC.
 
 The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore have an almost perfect security level. This is significantly better than GCM where the security level is only tag_length - log2(ℓ) bits {{GCM}}. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. As one can note, for 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output. In GCM-SST, the full_tag is independent of the specified tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
 
@@ -584,7 +604,7 @@ In general, there is a very small possibility in GCM-SST that either or both of 
 
 The details of the replay protection mechanism is determined by the security protocol utilizing GCM-SST. If the nonce includes a sequence number, it can be used for replay protection. Alternatively, a separate sequence number can be used, provided there is a one-to-one mapping between sequence numbers and nonces. The choice of a replay protection mechanism depends on factors such as the expected degree of packet reordering, as well as protocol and implementation details. For examples of replay protection mechanisms, see {{RFC4303}} and {{RFC6479}}. Implementing replay protection by requiring ciphertexts to arrive in order and terminating the connection if a single decryption fails is NOT RECOMMENDED. This approach reduces robustness and availability while exposing the system to denial-of-service attacks {{Robust}}.
 
-A comparision with GCM and Poly1305 in unicast security protocols with replay protection is presented in {{comp1}}, where q' represents the number of decryption queries, and ℓ = (P_MAX + A_MAX) / 16 + 1, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM {{RFC5116}}, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305 {{RFC7253}}, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q' when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with q'.
+A comparision with GCM and Poly1305 in unicast security protocols with replay protection is presented in {{comp1}}, where q' represents the number of decryption queries, and ℓ = (P_MAX + A_MAX) / 16 + 1, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM {{RFC5116}}, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305 {{RFC7539}}, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q' when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with q'.
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
 | GCM_16 | ℓ / 2<sup>128</sup> | 1 | q'<sup>2</sup>&nbsp;⋅&nbsp;ℓ&nbsp;/&nbsp;2<sup>128</sup> |
@@ -798,6 +818,12 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 # Change Log
 {:removeInRFC="true" numbered="false"}
+
+Changes from -10 to -11:
+
+* More info on replay protection implementation.
+* More info on nonce constructions.
+* Editorial changes.
 
 Changes from -09 to -10:
 
