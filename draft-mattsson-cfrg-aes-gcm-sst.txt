@@ -334,7 +334,7 @@ Table of Contents
 
    2.   Initiate keystream generator with K and N
 
-   3.   Let H = Z[0], = Z[1], M = Z[2]
+   3.   Let H = Z[0], Q = Z[1], M = Z[2]
 
    4.   Let ct = P XOR truncate(Z[3:n + 2], len(P))
 
@@ -392,7 +392,7 @@ Table of Contents
 
    2.   Initiate keystream generator with K and N
 
-   3.   Let H = Z[0], = Z[1], M = Z[2]
+   3.   Let H = Z[0], Q = Z[1], M = Z[2]
 
    4.   Let S = zeropad(A) || zeropad(ct)
 
