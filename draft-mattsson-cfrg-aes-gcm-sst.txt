@@ -514,7 +514,7 @@ Table of Contents
 5.  Security Considerations
 
    GCM-SST introduces an additional subkey Q, alongside the subkey H.
-   The inclusion of enables truncated tags with forgery probabilities
+   The inclusion of Q enables truncated tags with forgery probabilities
    close to ideal.  Both H and Q are derived for each nonce, which
    significantly decreases the probability of multiple successful
    forgeries.  These changes are based on proven theoretical
