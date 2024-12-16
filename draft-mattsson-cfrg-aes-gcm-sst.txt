@@ -572,10 +572,10 @@ Table of Contents
    generator, the expected number of forgeries is ≈ q' / 2^(tag_length),
    where q' is the number of decryption queries, which is ideal.  For
    AES-GCM-SST, the expected number of forgeries is ≈ q' ⋅ δ_128 /
-   2^(tag_length), where δ_b ⪅ 1 + ℓ^2 ⋅ (q + q')^2 / 2^(b+1), which is
+   2^(tag_length), where δ_b ⪅ 1 + (q + q')^2 ⋅ ℓ^2 / 2^(b+1), which is
    near-ideal.  This far outperforms AES-GCM, where the expected number
-   of forgeries is ≈ q'^2 ⋅ ℓ ⋅ δ_128 / 2^(tag_length+1).  For Rijndael-
-   GCM-SST, the expected number of forgeries is ≈ q' ⋅ δ_256 /
+   of forgeries is ≈ δ_128 ⋅ q'^2 ⋅ ℓ / 2^(tag_length+1).  For Rijndael-
+   GCM-SST, the expected number of forgeries is ≈ δ_256 ⋅ q' /
    2^(tag_length) ≈ q' / 2^(tag_length), which is ideal.  For further
    details on the integrity advantages and expected number of forgeries
    for GCM and GCM-SST, see [Iwata], [Inoue], [Bernstein], and
