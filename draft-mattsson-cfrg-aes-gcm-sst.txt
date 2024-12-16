@@ -508,7 +508,7 @@ Table of Contents
    96-bit and 224-bits respectively.  For the AEAD algorithms in Table 1
    the worst-case forgery probability is bounded by ≈ 2^(-tag_length)
    [Nyberg].  This is true for all allowed plaintext and associated data
-   lengths.  For a given key, the total number of invocations of the
+   lengths.  For a given key, the number of invocations q of the
    authenticated encryption function shall not exceed 2^32.
 
 5.  Security Considerations
