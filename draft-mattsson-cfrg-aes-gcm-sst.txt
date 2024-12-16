@@ -572,7 +572,7 @@ Table of Contents
    number of forgeries is ≈ q' ⋅ δ_128 / 2^(tag_length), where δ_b ⪅ 1 +
    ℓ^2 ⋅ (q + q')^2 / 2^(b+1), which is near-ideal.  This far
    outperforms AES-GCM, where the expected number of forgeries is ≈ q'^2
-   ⋅ ℓ ⋅ δsub>128</sub> / 2^(tag_length+1).  For Rijndael-GCM-SST, when
+   ⋅ ℓ ⋅ δ_128 / 2^(tag_length+1).  For Rijndael-GCM-SST, when
    tag_length < 128 - log2(ℓ) bits, the expected number of forgeries is
    ≈ q' ⋅ δ_256 / 2^(tag_length) ≈ q' / 2^(tag_length), which is ideal.
    See [Iwata], [Inoue], [Bernstein], and [Multiple] for more details on
