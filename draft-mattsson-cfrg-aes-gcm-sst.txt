@@ -644,24 +644,24 @@ Table of Contents
    protection does not help, and the expected number of forgeries grows
    quadratically with q'.
 
-   +============+====================+=============+==================+
-   | Name       |            Forgery |     Forgery |  Expected number |
-   |            | probability before | probability |     of forgeries |
-   |            |      first forgery | after first |                  |
-   |            |                    |     forgery |                  |
-   +============+====================+=============+==================+
-   | GCM_16     |          ℓ / 2^128 |           1 | q'^2 ⋅ ℓ / 2^128 |
-   +------------+--------------------+-------------+------------------+
-   | POLY1305   |          ℓ / 2^103 |   ℓ / 2^103 |   q' ⋅ ℓ / 2^103 |
-   +------------+--------------------+-------------+------------------+
-   | GCM_SST_14 |          1 / 2^112 |   1 / 2^112 |       q' / 2^111 |
-   +------------+--------------------+-------------+------------------+
-   | GCM_SST_12 |           1 / 2^96 |    1 / 2^96 |        q' / 2^95 |
-   +------------+--------------------+-------------+------------------+
+    +============+==============+=============+======================+
+    | Name       |      Forgery |     Forgery |   Expected number of |
+    |            |  probability | probability |            forgeries |
+    |            | before first | after first |                      |
+    |            |      forgery |     forgery |                      |
+    +============+==============+=============+======================+
+    | GCM_16     |    ℓ / 2^128 |           1 | q'^2 ⋅ δ ⋅ ℓ / 2^129 |
+    +------------+--------------+-------------+----------------------+
+    | POLY1305   |    ℓ / 2^103 |   ℓ / 2^103 |       q' ⋅ ℓ / 2^103 |
+    +------------+--------------+-------------+----------------------+
+    | GCM_SST_14 |    1 / 2^112 |   1 / 2^112 |       q' ⋅ δ / 2^112 |
+    +------------+--------------+-------------+----------------------+
+    | GCM_SST_12 |     1 / 2^96 |    1 / 2^96 |        q' ⋅ δ / 2^96 |
+    +------------+--------------+-------------+----------------------+
 
-     Table 2: Comparision with GCM and Poly1305. q' is the number of
-     decryption queries, and ℓ is the maximum length of plaintext and
-               associated data, measured in 128-bit chunks.
+       Table 2: Comparision with GCM and Poly1305. q' is the number
+          of decryption queries, and ℓ is the maximum length of
+        plaintext and associated data, measured in 128-bit chunks.
 
    +============+====================+=============+==================+
    | Name       |            Forgery |     Forgery |  Expected number |
