@@ -195,7 +195,7 @@ Table of Contents
    GCM [GCM]. 3GPP has standardized the use of Rijndael-256-256 for
    authentication and key generation in 3GPP TS 35.234–35.237 [WID23].
    NIST is anticipated to standardize Rijndael-256-256 [Options],
-   although there may be revisions to the key schedule.
+   although there might be revisions to the key schedule.
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion and
@@ -289,7 +289,7 @@ Table of Contents
    and [Inoue].
 
    For every computational procedure that is specified in this document,
-   a conforming implementation may replace the given set of steps with
+   a conforming implementation MAY replace the given set of steps with
    any mathematically equivalent set of steps.  In other words,
    different procedures that produce the correct output for every input
    are permitted.
@@ -503,16 +503,16 @@ Table of Contents
    associated data (A_MAX) have been lowered from GCM [RFC5116].  To
    enable forgery probability close to ideal, even with maximum size
    plaintexts and associated data, we set P_MAX = A_MAX = min(2^(131 -
-   tag_length), 2^36 - 48).  Security protocols employing GCM-SST may
+   tag_length), 2^36 - 48).  Security protocols employing GCM-SST MAY
    impose stricter limits on P_MAX and A_MAX.  Just like [RFC5116], AES-
    GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN =
    N_MAX) of 96-bit and 224-bits respectively.  For the AEAD algorithms
    in Table 1 the worst-case forgery probability is bounded by ≈
    2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
    associated data lengths.  For a given key, the number of invocations
-   q of the authenticated encryption function shall not exceed 2^32.
+   q of the authenticated encryption function SHALL NOT exceed 2^32.
    For a given key, the number of invocations q' of the authenticated
-   decryption function shall not exceed 2^48 for AES-GCM and shall not
+   decryption function SHALL NOT exceed 2^48 for AES-GCM and SHALL NOT
    exceed 2^88 for Rijndael-GCM-SST.
 
 5.  Security Considerations
@@ -605,7 +605,7 @@ Table of Contents
 
    The confidentiality offered by AES-GCM-SST against active attackers
    is directly linked to the forgery probability.  Depending on the
-   protocol and application, forgeries MAY significantly compromise
+   protocol and application, forgeries can significantly compromise
    privacy, in addition to affecting integrity and authenticity.  It
    MUST be assumed that attackers always receive feedback on the success
    or failure of their forgery attempts.  Therefore, attacks on
