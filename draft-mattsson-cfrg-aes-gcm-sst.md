@@ -614,10 +614,10 @@ A comparision with GCM and Poly1305 in unicast security protocols with replay pr
 {: #comp1 title="Comparision with GCM and Poly1305. q' is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r r"}
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
-| GCM_16 | 1 / 2<sup>116</sup> | 1 | q'<sup>2</sup>&nbsp;/&nbsp;2<sup>116</sup> |
+| GCM_16 | 1 / 2<sup>116</sup> | 1 | q'<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;/&nbsp;2<sup>117</sup> |
 | POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | q' / 2<sup>91</sup> |
-| GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' / 2<sup>111</sup> |
-| GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' / 2<sup>95</sup> |
+| GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' ⋅ δ / 2<sup>112</sup> |
+| GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' ⋅ δ / 2<sup>96</sup> |
 {: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where the maximum packet size is 65536 bytes." cols="l r r r"}
 
 # IANA Considerations
