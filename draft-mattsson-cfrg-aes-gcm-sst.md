@@ -432,7 +432,7 @@ The following notation is used in the document:
 * = is the assignment operator
 * != is the inequality operator
 * x \|\| y is concatenation of the octet strings x and y
-* ⊕ is the bitwise exclusive OR operator XOR
+* ⊕ is the bitwise exclusive or operator XOR
 * len(x) is the length of x in bits.
 * zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits
 * truncate(x, t) is the truncation operation.  The first t bits of x are kept
