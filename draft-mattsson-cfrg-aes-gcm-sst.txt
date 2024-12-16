@@ -653,10 +653,10 @@ Table of Contents
    the expected number of successful forgeries.  Similarly,
    AEAD_AES_128_GCM_SST_12 offers superior integrity compared to
    AEAD_CHACHA20_POLY1305 [RFC7539], with a 4-byte reduction in
-   overhead.  For GCM-SST and Poly1305, the expected number of forgeries
-   are linear in q' when replay protection is employed.  For GCM, replay
-   protection does not help, and the expected number of forgeries grows
-   quadratically with q'.
+   overhead.  For AES-GCM-SST and ChaCha20-Poly1305, the expected number
+   of forgeries are linear in q' when replay protection is employed.
+   For AES-GCM, replay protection does not help, and the expected number
+   of forgeries grows quadratically with q'.
 
     +============+==============+=============+======================+
     | Name       |      Forgery |     Forgery |   Expected number of |
