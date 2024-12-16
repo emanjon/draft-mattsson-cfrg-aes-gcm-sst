@@ -512,7 +512,8 @@ Table of Contents
    associated data lengths.  For a given key, the number of invocations
    q of the authenticated encryption function shall not exceed 2^32.
    For a given key, the number of invocations q' of the authenticated
-   decryption function shall not exceed 2^48.
+   decryption function shall not exceed 2^48 for AES-GCM and shall not
+   exceed 2^88 for Rijndael-GCM-SST.
 
 5.  Security Considerations
 
