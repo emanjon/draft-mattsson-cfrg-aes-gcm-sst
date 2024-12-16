@@ -639,7 +639,7 @@ Table of Contents
    A comparision between AES-GCM-SST, AES-GCM [RFC5116], and
    ChaCha20-Poly1305 [RFC7539] in unicast security protocols with replay
    protection is presented in Table 2, where q' represents the number of
-   decryption queries and ℓ = (P_MAX + A_MAX) / 16 + 1, see See [Iwata],
+   decryption queries and ℓ = (P_MAX + A_MAX) / 16 + 1, see [Iwata],
    [Procter], and [Multiple].  Additionally, Table 3 provides a
    comparison with AES-GCM and ChaCha20-Poly1305 in the context of
    protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
