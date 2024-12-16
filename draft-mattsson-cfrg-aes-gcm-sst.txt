@@ -634,11 +634,12 @@ Table of Contents
    RECOMMENDED as this approach reduces robustness and availability
    while exposing the system to denial-of-service attacks [Robust].
 
-   A comparision with AES-GCM and ChaCha20-Poly1305 in unicast security
-   protocols with replay protection is presented in Table 2, where q'
-   represents the number of decryption queries, and ℓ = (P_MAX + A_MAX)
-   / 16 + 1, see [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally,
-   Table 3 provides a comparison with GCM and Poly1305 in the context of
+   A comparision between AES-GCM-SST, AES-GCM [RFC5116], and
+   ChaCha20-Poly1305 [RFC7539] in unicast security protocols with replay
+   protection is presented in Table 2, where q' represents the number of
+   decryption queries and ℓ = (P_MAX + A_MAX) / 16 + 1, see See [Iwata],
+   [Procter], and [Multiple].  Additionally, Table 3 provides a
+   comparison with AES-GCM and ChaCha20-Poly1305 in the context of
    protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
    and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^12.  When ℓ
    ≈ 2^12, AEAD_AES_128_GCM_SST_14 offers better confidentiality and
@@ -801,13 +802,6 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/Presentations/2023/
               constructions-based-on-the-aes-round/images-media/sess-5-
               gueron-bcm-workshop-2023.pdf>.
-
-   [I-D.irtf-cfrg-aead-limits]
-              Günther, F., Thomson, M., and C. A. Wood, "Usage Limits on
-              AEAD Algorithms", Work in Progress, Internet-Draft, draft-
-              irtf-cfrg-aead-limits-09, 9 October 2024,
-              <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              aead-limits-09>.
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
