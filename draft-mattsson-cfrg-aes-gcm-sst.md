@@ -638,14 +638,14 @@ A comparision between AES-GCM-SST, AES-GCM {{RFC5116}}, and ChaCha20-Poly1305 {{
 | POLY1305 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | q' ⋅ ℓ / 2<sup>103</sup> |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' ⋅ δ / 2<sup>112</sup> |
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' ⋅ δ / 2<sup>96</sup> |
-{: #comp1 title="Comparision with GCM and Poly1305. q' is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r r"}
+{: #comp1 title="Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in a unicast security protocols with replay protection. q' is the number of decryption queries, and ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks." cols="l r r r"}
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
 | GCM_16 | 1 / 2<sup>116</sup> | 1 | q'<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;/&nbsp;2<sup>117</sup> |
 | POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | q' / 2<sup>91</sup> |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' / 2<sup>112</sup> |
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' / 2<sup>96</sup> |
-{: #comp2 title="Comparision with GCM and Poly1305 in a protocol like QUIC, where the maximum packet size is 65536 bytes." cols="l r r r"}
+{: #comp2 title="Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in QUIC, where the maximum packet size is 65536 bytes." cols="l r r r"}
 
 # IANA Considerations
 
