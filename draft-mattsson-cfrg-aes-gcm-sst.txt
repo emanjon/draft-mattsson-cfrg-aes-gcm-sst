@@ -621,8 +621,8 @@ Table of Contents
    mechanisms, see [RFC4303] and [RFC6479].  Implementing replay
    protection by requiring ciphertexts to arrive in order and
    terminating the connection if a single decryption fails is NOT
-   RECOMMENDED.  This approach reduces robustness and availability while
-   exposing the system to denial-of-service attacks [Robust].
+   RECOMMENDED as this approach reduces robustness and availability
+   while exposing the system to denial-of-service attacks [Robust].
 
    A comparision with GCM and Poly1305 in unicast security protocols
    with replay protection is presented in Table 2, where q' represents
