@@ -571,7 +571,7 @@ Table of Contents
    bits, depends on the keystream generator.  For an ideal keystream
    generator, the expected number of forgeries is ≈ q' / 2^(tag_length),
    where q' is the number of decryption queries, which is ideal.  For
-   AES-GCM-SST, the expected number of forgeries is ≈ q' ⋅ δ_128 /
+   AES-GCM-SST, the expected number of forgeries is ≈ δ_128 ⋅ q' /
    2^(tag_length), where δ_b ⪅ 1 + (q + q')^2 ⋅ ℓ^2 / 2^(b+1), which is
    near-ideal.  This far outperforms AES-GCM, where the expected number
    of forgeries is ≈ δ_128 ⋅ q'^2 ⋅ ℓ / 2^(tag_length+1).  For Rijndael-
