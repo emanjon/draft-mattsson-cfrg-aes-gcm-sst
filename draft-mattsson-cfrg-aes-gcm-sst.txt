@@ -235,7 +235,7 @@ Table of Contents
 
    *  x || y is concatenation of the octet strings x and y
 
-   *  ⊕ is the bitwise exclusive OR operator XOR
+   *  ⊕ is the bitwise exclusive or operator XOR
 
    *  len(x) is the length of x in bits.
 
