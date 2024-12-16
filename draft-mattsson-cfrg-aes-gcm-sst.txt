@@ -826,6 +826,10 @@ Table of Contents
               techniques/documents/bcm/comments/cwc-gcm/multi-forge-
               01.pdf>.
 
+   [Niwa]     Yuichi Niwa, Keisuke Ohashi, Kazuhiko Minematsu, and Tetsu
+              Iwata, "GCM Security Bounds Reconsidered", March 2015,
+              <https://eprint.iacr.org/2015/214.pdf>.
+
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
               <https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-
