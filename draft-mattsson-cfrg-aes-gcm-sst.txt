@@ -567,11 +567,13 @@ Table of Contents
    forgeries is ≈ q' ⋅ δ / 2^(tag_length), where q' is the number of
    decryption queries and δ ⪅ 1 + ℓ^2 ⋅ (q + q')^2 / 2^129, which is
    near-ideal.  This far outperforms GCM, where the expected number of
-   forgeries is ≈ q'^2 ⋅ ℓ ⋅ δ / 2^(tag_length+1).  BSI states that an
-   ideal MAC with a 96-bit tag length is considered acceptable for most
-   applications [BSI], a requirement that GCM-SST with 96-bit tags
-   satisfies when δ ≈ 1.  Achieving a comparable level of security with
-   GCM, CCM, or Poly1305 is nearly impossible.
+   forgeries is ≈ q'^2 ⋅ ℓ ⋅ δ / 2^(tag_length+1).  See [Iwata],
+   [Inoue], [Bernstein], and [Multiple] for more details on integrity
+   advantages and expected number of forgeries for GCM and GCM-SST.  BSI
+   states that an ideal MAC with a 96-bit tag length is considered
+   acceptable for most applications [BSI], a requirement that GCM-SST
+   with 96-bit tags satisfies when δ ≈ 1.  Achieving a comparable level
+   of security with GCM, CCM, or Poly1305 is nearly impossible.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
@@ -624,11 +626,11 @@ Table of Contents
    RECOMMENDED as this approach reduces robustness and availability
    while exposing the system to denial-of-service attacks [Robust].
 
-   A comparision with GCM and Poly1305 in unicast security protocols
-   with replay protection is presented in Table 2, where q' represents
-   the number of decryption queries, and ℓ = (P_MAX + A_MAX) / 16 + 1,
-   see [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally, Table 3
-   provides a comparison with GCM and Poly1305 in the context of
+   A comparision with AES-GCM and ChaCha20-Poly1305 in unicast security
+   protocols with replay protection is presented in Table 2, where q'
+   represents the number of decryption queries, and ℓ = (P_MAX + A_MAX)
+   / 16 + 1, see [I-D.irtf-cfrg-aead-limits][Multiple].  Additionally,
+   Table 3 provides a comparison with GCM and Poly1305 in the context of
    protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
    and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^12.  When ℓ
    ≈ 2^12, AEAD_AES_128_GCM_SST_14 offers better confidentiality and
@@ -735,6 +737,11 @@ Table of Contents
               Authenticated Encryption: AES-GCM in TLS 1.3", November
               2017, <https://eprint.iacr.org/2016/564.pdf>.
 
+   [Bernstein]
+              Daniel J Bernstein, "Stronger Security Bounds for
+              Permutations", March 2005,
+              <https://cr.yp.to/antiforgery/permutations-20050323.pdf>.
+
    [BSI]      "Cryptographic Mechanisms Recommendations and Key
               Lengths", BSI Technical Guideline TR-02102-1, February
               2024, <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI
@@ -825,10 +832,6 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/projects/block-cipher-
               techniques/documents/bcm/comments/cwc-gcm/multi-forge-
               01.pdf>.
-
-   [Niwa]     Yuichi Niwa, Keisuke Ohashi, Kazuhiko Minematsu, and Tetsu
-              Iwata, "GCM Security Bounds Reconsidered", March 2015,
-              <https://eprint.iacr.org/2015/214.pdf>.
 
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
