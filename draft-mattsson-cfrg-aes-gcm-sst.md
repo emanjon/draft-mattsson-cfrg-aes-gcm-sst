@@ -432,7 +432,7 @@ The following notation is used in the document:
 * = is the assignment operator
 * != is the inequality operator
 * x \|\| y is concatenation of the octet strings x and y
-* XOR is the bitwise exclusive OR operator
+* ⊕ is the bitwise exclusive OR operator XOR
 * len(x) is the length of x in bits.
 * zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits
 * truncate(x, t) is the truncation operation.  The first t bits of x are kept
@@ -483,11 +483,11 @@ Steps:
 1. If the lengths of K, N, A, P are not supported return error and abort
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], Q = Z[1], M = Z[2]
-4. Let ct = P XOR truncate(Z[3:n + 2], len(P))
+4. Let ct = P ⊕ truncate(Z[3:n + 2], len(P))
 5. Let S = zeropad(A) \|\| zeropad(ct)
 6. Let L = LE64(len(ct)) \|\| LE64(len(A))
 7. Let X = POLYVAL(H, S[0], S[1], ...)
-8. Let full_tag = POLYVAL(Q, X XOR L) XOR M
+8. Let full_tag = POLYVAL(Q, X ⊕ L) ⊕ M
 9. Let tag = truncate(full_tag, tag_length)
 10. Return (ct, tag)
 
@@ -523,10 +523,10 @@ Steps:
 4. Let S = zeropad(A) \|\| zeropad(ct)
 5. Let L = LE64(len(ct)) \|\| LE64(len(A))
 6. Let X = POLYVAL(H, S[0], S[1], ...)
-7. Let full_tag = POLYVAL(Q, X XOR L) XOR M
+7. Let full_tag = POLYVAL(Q, X ⊕ L) ⊕ M
 8. Let expected_tag = truncate(full_tag, tag_length)
 9. If tag != expected_tag, return error and abort
-10. Let P = ct XOR truncate(Z[3:n + 2], len(ct))
+10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protrection, return P
 
 The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection can be performed either before step 1 or during step 11.
