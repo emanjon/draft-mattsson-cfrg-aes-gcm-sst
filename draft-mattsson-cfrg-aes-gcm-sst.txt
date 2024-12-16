@@ -673,9 +673,11 @@ Table of Contents
     | GCM_SST_12 |     1 / 2^96 |    1 / 2^96 |        q' ⋅ δ / 2^96 |
     +------------+--------------+-------------+----------------------+
 
-       Table 2: Comparision with GCM and Poly1305. q' is the number
-          of decryption queries, and ℓ is the maximum length of
-        plaintext and associated data, measured in 128-bit chunks.
+          Table 2: Comparision between AES-GCM-SST, AES-GCM, and
+      ChaCha20-Poly1305 in a unicast security protocols with replay
+       protection. q' is the number of decryption queries, and ℓ is
+      the maximum length of plaintext and associated data, measured
+                            in 128-bit chunks.
 
    +============+====================+=============+==================+
    | Name       |            Forgery |     Forgery |  Expected number |
@@ -692,8 +694,9 @@ Table of Contents
    | GCM_SST_12 |           1 / 2^96 |    1 / 2^96 |        q' / 2^96 |
    +------------+--------------------+-------------+------------------+
 
-      Table 3: Comparision with GCM and Poly1305 in a protocol like
-           QUIC, where the maximum packet size is 65536 bytes.
+          Table 3: Comparision between AES-GCM-SST, AES-GCM, and
+       ChaCha20-Poly1305 in QUIC, where the maximum packet size is
+                               65536 bytes.
 
 6.  IANA Considerations
 
