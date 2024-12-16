@@ -140,6 +140,20 @@ informative:
         ins: Kazuhiko Minematsu
     date: August 2012
 
+  Niwa:
+    target: https://eprint.iacr.org/2015/214.pdf
+    title: "GCM Security Bounds Reconsidered"
+    author:
+      -
+        ins: Yuichi Niwa
+      -
+        ins: Keisuke Ohashi
+      -
+        ins: Kazuhiko Minematsu
+      -
+        ins: Tetsu Iwata
+    date: March 2015
+
   Procter:
     target: https://eprint.iacr.org/2014/613.pdf
     title: "A Security Analysis of the Composition of ChaCha20 and Poly1305"
