@@ -805,6 +805,10 @@ Table of Contents
               Minematsu, "Generic Security of GCM-SST", November 2024,
               <https://eprint.iacr.org/2024/1928.pdf>.
 
+   [Iwata]    Tetsu Iwata, Keisuke Ohashi, and Kazuhiko Minematsu,
+              "Breaking and Repairing GCM Security Proofs", August 2012,
+              <https://eprint.iacr.org/2012/438.pdf>.
+
    [Lindell]  Lindell, Y., "Comment on AES-GCM-SST", May 2024,
               <https://mailarchive.ietf.org/arch/browse/
               cfrg/?gbt=1&index=cWpv0QgX2ltkWhtd3R9pEW7E1CA>.
@@ -833,6 +837,10 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/Presentations/2024/
               options-for-encryption-algorithms-and-modes/images-media/
               sess-3-regenscheid-acm-workshop-2024.pdf>.
+
+   [Procter]  Gordon Procter, "A Security Analysis of the Composition of
+              ChaCha20 and Poly1305", August 2014,
+              <https://eprint.iacr.org/2014/613.pdf>.
 
    [Revise]   NIST, "Announcement of Proposal to Revise SP 800-38D",
               August 2023, <https://csrc.nist.gov/news/2023/proposal-to-
