@@ -140,19 +140,13 @@ informative:
         ins: Kazuhiko Minematsu
     date: August 2012
 
-  Niwa:
-    target: https://eprint.iacr.org/2015/214.pdf
-    title: "GCM Security Bounds Reconsidered"
+  Bernstein:
+    target: https://cr.yp.to/antiforgery/permutations-20050323.pdf
+    title: "Stronger Security Bounds for Permutations"
     author:
       -
-        ins: Yuichi Niwa
-      -
-        ins: Keisuke Ohashi
-      -
-        ins: Kazuhiko Minematsu
-      -
-        ins: Tetsu Iwata
-    date: March 2015
+        ins: Daniel J. Bernstein
+    date: March 2005
 
   Procter:
     target: https://eprint.iacr.org/2014/613.pdf
@@ -628,7 +622,7 @@ GCM-SST is designed for use in unicast security protocols with replay protection
 
 The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore have an almost perfect security level. This is significantly better than GCM where the security level is only tag_length - log2(ℓ) bits {{GCM}}. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. As one can note, for 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output. In GCM-SST, the full_tag is independent of the specified tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
 
-When tag_length < 128 - log2(ℓ) bits, the expected number of forgeries is ≈ q' ⋅ δ / 2<sup>tag_length</sup>, where q' is the number of decryption queries and δ ⪅ 1 + ℓ<sup>2</sup> ⋅ (q + q')<sup>2</sup> / 2<sup>129</sup>, which is near-ideal. This far outperforms GCM, where the expected number of forgeries is ≈ q'<sup>2</sup> ⋅ ℓ ⋅ δ  / 2<sup>tag_length+1</sup>. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
+When tag_length < 128 - log2(ℓ) bits, the expected number of forgeries is ≈ q' ⋅ δ / 2<sup>tag_length</sup>, where q' is the number of decryption queries and δ ⪅ 1 + ℓ<sup>2</sup> ⋅ (q + q')<sup>2</sup> / 2<sup>129</sup>, which is near-ideal. This far outperforms GCM, where the expected number of forgeries is ≈ q'<sup>2</sup> ⋅ ℓ ⋅ δ  / 2<sup>tag_length+1</sup>. See {{Iwata}}, {{Inoue}}, {{Bernstein}}, and {{Multiple}} for more details on integrity advantages and expected number of forgeries for GCM and GCM-SST. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
 The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / q, where q is the number of invocations of the AES encryption function. In contrast, the confidentiality offered by Rijndael-256-256-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-256-256-GCM-SST is approximately 2<sup>257</sup> / q, where q is the number of invocations of the Rijndael-256-256 encryption function. While Rijndael-256-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
 
@@ -638,7 +632,7 @@ In general, there is a very small possibility in GCM-SST that either or both of 
 
 The details of the replay protection mechanism is determined by the security protocol utilizing GCM-SST. If the nonce includes a sequence number, it can be used for replay protection. Alternatively, a separate sequence number can be used, provided there is a one-to-one mapping between sequence numbers and nonces. The choice of a replay protection mechanism depends on factors such as the expected degree of packet reordering, as well as protocol and implementation details. For examples of replay protection mechanisms, see {{RFC4303}} and {{RFC6479}}. Implementing replay protection by requiring ciphertexts to arrive in order and terminating the connection if a single decryption fails is NOT RECOMMENDED as this approach reduces robustness and availability while exposing the system to denial-of-service attacks {{Robust}}.
 
-A comparision with GCM and Poly1305 in unicast security protocols with replay protection is presented in {{comp1}}, where q' represents the number of decryption queries, and ℓ = (P_MAX + A_MAX) / 16 + 1, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM {{RFC5116}}, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305 {{RFC7539}}, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q' when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with q'.
+A comparision with AES-GCM and ChaCha20-Poly1305 in unicast security protocols with replay protection is presented in {{comp1}}, where q' represents the number of decryption queries, and ℓ = (P_MAX + A_MAX) / 16 + 1, see {{I-D.irtf-cfrg-aead-limits}}{{Multiple}}. Additionally, {{comp2}} provides a comparison with GCM and Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM {{RFC5116}}, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers superior integrity compared to AEAD_CHACHA20_POLY1305 {{RFC7539}}, with a 4-byte reduction in overhead. For GCM-SST and Poly1305, the expected number of forgeries are linear in q' when replay protection is employed. For GCM, replay protection does not help, and the expected number of forgeries grows quadratically with q'.
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
 | GCM_16 | ℓ / 2<sup>128</sup> | 1 | q'<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;⋅&nbsp;ℓ&nbsp;/&nbsp;2<sup>129</sup> |
