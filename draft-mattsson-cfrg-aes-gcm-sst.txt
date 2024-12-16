@@ -511,6 +511,8 @@ Table of Contents
    2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
    associated data lengths.  For a given key, the number of invocations
    q of the authenticated encryption function shall not exceed 2^32.
+   For a given key, the number of invocations q' of the authenticated
+   decryption function shall not exceed 2^48.
 
 5.  Security Considerations
 
