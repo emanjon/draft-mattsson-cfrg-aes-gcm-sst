@@ -569,18 +569,18 @@ Table of Contents
    bits, the expected number of forgeries is ≈ q' / 2^(tag_length),
    where q' is the number of decryption queries, which is ideal.  For
    AES-GCM-SST, when tag_length < 128 - log2(ℓ) bits, the expected
-   number of forgeries is ≈ q' ⋅ δ_129 / 2^(tag_length), where δ_b ⪅ 1 +
-   ℓ^2 ⋅ (q + q')^2 / 2^b, which is near-ideal.  This far outperforms
-   AES-GCM, where the expected number of forgeries is ≈ q'^2 ⋅ ℓ ⋅ δ /
-   2^(tag_length+1).  For Rijndael-GCM-SST, when tag_length < 128 -
-   log2(ℓ) bits, the expected number of forgeries is ≈ q' ⋅ δ_257 /
-   2^(tag_length), which is near-ideal.  See [Iwata], [Inoue],
-   [Bernstein], and [Multiple] for more details on integrity advantages
-   and expected number of forgeries for GCM and GCM-SST.  BSI states
-   that an ideal MAC with a 96-bit tag length is considered acceptable
-   for most applications [BSI], a requirement that AES-GCM-SST with
-   96-bit tags satisfies when δ ≈ 1.  Achieving a comparable level of
-   security with GCM, CCM, or Poly1305 is nearly impossible.
+   number of forgeries is ≈ q' ⋅ δ_128 / 2^(tag_length), where δ_b ⪅ 1 +
+   ℓ^2 ⋅ (q + q')^2 / 2^(b+1), which is near-ideal.  This far
+   outperforms AES-GCM, where the expected number of forgeries is ≈ q'^2
+   ⋅ ℓ ⋅ δ / 2^(tag_length+1).  For Rijndael-GCM-SST, when tag_length <
+   128 - log2(ℓ) bits, the expected number of forgeries is ≈ q' ⋅ δ_256
+   / 2^(tag_length) ≈ q' / 2^(tag_length), which is ideal.  See [Iwata],
+   [Inoue], [Bernstein], and [Multiple] for more details on integrity
+   advantages and expected number of forgeries for GCM and GCM-SST.  BSI
+   states that an ideal MAC with a 96-bit tag length is considered
+   acceptable for most applications [BSI], a requirement that AES-GCM-
+   SST with 96-bit tags satisfies when δ ≈ 1.  Achieving a comparable
+   level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
