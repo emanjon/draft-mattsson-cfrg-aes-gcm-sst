@@ -517,7 +517,8 @@ Table of Contents
    function SHALL NOT exceed 2^48 for AES-GCM-SST, and 2^88 for
    Rijndael-GCM-SST.  These constraints on q' ensure that the Bernstein
    bound factor δ remains approximately 1 for both Rijndael-GCM-SST at
-   all times and for AES-GCM-SST in protocols where P_MAX = 2^16.
+   all times and for AES-GCM-SST in protocols where P_MAX = 2^16, see
+   Section 5.
 
 5.  Security Considerations
 
