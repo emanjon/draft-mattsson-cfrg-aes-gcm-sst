@@ -577,18 +577,18 @@ Table of Contents
    generator, the expected number of forgeries is ≈ q' / 2^(tag_length),
    where q' is the number of decryption queries, which is ideal.  For
    AES-GCM-SST, the expected number of forgeries is ≈ δ_128 ⋅ q' /
-   2^(tag_length), where δ_b ⪅ 1 + (q + q')^2 ⋅ ℓ^2 / 2^(b+1), which is
-   near-ideal.  This far outperforms AES-GCM, where the expected number
-   of forgeries is ≈ δ_128 ⋅ q'^2 ⋅ ℓ / 2^(tag_length+1).  For Rijndael-
-   GCM-SST, the expected number of forgeries is ≈ δ_256 ⋅ q' /
-   2^(tag_length) ≈ q' / 2^(tag_length), which is ideal.  For further
-   details on the integrity advantages and expected number of forgeries
-   for GCM and GCM-SST, see [Iwata], [Inoue], [Bernstein], and
-   [Multiple].  BSI states that an ideal MAC with a 96-bit tag length is
-   considered acceptable for most applications [BSI], a requirement that
-   AES-GCM-SST with 96-bit tags satisfies when δ ≈ 1.  Achieving a
-   comparable level of security with GCM, CCM, or Poly1305 is nearly
-   impossible.
+   2^(tag_length), where the Bernstein bound factor δ_b ⪅ 1 + (q + q')^2
+   ⋅ ℓ^2 / 2^(b+1), which is near-ideal.  This far outperforms AES-GCM,
+   where the expected number of forgeries is ≈ δ_128 ⋅ q'^2 ⋅ ℓ /
+   2^(tag_length+1).  For Rijndael-GCM-SST, the expected number of
+   forgeries is ≈ δ_256 ⋅ q' / 2^(tag_length) ≈ q' / 2^(tag_length),
+   which is ideal.  For further details on the integrity advantages and
+   expected number of forgeries for GCM and GCM-SST, see [Iwata],
+   [Inoue], [Bernstein], and [Multiple].  BSI states that an ideal MAC
+   with a 96-bit tag length is considered acceptable for most
+   applications [BSI], a requirement that AES-GCM-SST with 96-bit tags
+   satisfies when δ ≈ 1.  Achieving a comparable level of security with
+   GCM, CCM, or Poly1305 is nearly impossible.
 
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
@@ -679,9 +679,9 @@ Table of Contents
 
           Table 2: Comparision between AES-GCM-SST, AES-GCM, and
       ChaCha20-Poly1305 in a unicast security protocols with replay
-       protection. q' is the number of decryption queries, and ℓ is
-      the maximum length of plaintext and associated data, measured
-                            in 128-bit chunks.
+       protection. q' is the number of decryption queries, ℓ is the
+       maximum length of plaintext and associated data, measured in
+           128-bit chunks, and δ is the Bernstein bound factor.
 
    +============+====================+=============+==================+
    | Name       |            Forgery |     Forgery |  Expected number |
