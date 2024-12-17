@@ -640,7 +640,7 @@ A comparision between AES-GCM-SST, AES-GCM {{RFC5116}}, and ChaCha20-Poly1305 {{
 | POLY1305 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | q' ⋅ ℓ / 2<sup>103</sup> |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | q' ⋅ δ / 2<sup>112</sup> |
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | q' ⋅ δ / 2<sup>96</sup> |
-{: #comp1 title="Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in a unicast security protocols with replay protection. q' is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor." cols="l r r r"}
+{: #comp1 title="Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in unicast security protocols with replay protection. q' is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor." cols="l r r r"}
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
 | GCM_16 | 1 / 2<sup>116</sup> | 1 | q'<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;/&nbsp;2<sup>117</sup> |
