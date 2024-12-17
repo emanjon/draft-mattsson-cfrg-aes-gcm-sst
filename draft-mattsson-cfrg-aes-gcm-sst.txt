@@ -654,7 +654,7 @@ Table of Contents
    against passive attackers; however, AEAD_AES_128_GCM_SST_14
    significantly enhances security against active attackers by reducing
    the expected number of successful forgeries.  Similarly,
-   AEAD_AES_128_GCM_SST_12 offers superior integrity compared to
+   AEAD_AES_128_GCM_SST_12 offers better integrity compared to
    AEAD_CHACHA20_POLY1305 [RFC7539], with a 4-byte reduction in
    overhead.  For AES-GCM-SST and ChaCha20-Poly1305, the expected number
    of forgeries are linear in v when replay protection is employed.  For
