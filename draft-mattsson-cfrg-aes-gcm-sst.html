@@ -1365,7 +1365,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-galois-counter-mode-with-se" class="section-name selfRef">Galois Counter Mode with Secure Short Tags (GCM-SST)</a>
       </h2>
 <p id="section-3-1">This section defines the Galois Counter Mode with Secure Short Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream <span class="bcp14">MAY</span> depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the      tag. Both encryption and decryption are only defined on inputs that are a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in <span>[<a href="#SST1" class="cite xref">SST1</a>]</span>, <span>[<a href="#SST2" class="cite xref">SST2</a>]</span>, and <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-2">GCM-SST adheres to an AEAD interface <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream <span class="bcp14">MAY</span> depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in <span>[<a href="#SST1" class="cite xref">SST1</a>]</span>, <span>[<a href="#SST2" class="cite xref">SST2</a>]</span>, and <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span>.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">For every computational procedure that is specified in this document, a conforming implementation <span class="bcp14">MAY</span> replace the given set of steps with any mathematically equivalent set of steps. In other words, different procedures that produce the correct output for every input are permitted.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <div id="authenticated-encryption-function">
 <section id="section-3.1">
@@ -2320,16 +2320,28 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 <p id="appendix-B-2">Changes from -10 to -11:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-3.1">
-          <p id="appendix-B-3.1.1">Added that protocols can impose stricter limits on P_MAX and A_MAX.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.1.1">Added that protocols can impose stricter limits on P_MAX and A_MAX<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-3.2">
-          <p id="appendix-B-3.2.1">More info on replay protection implementation.<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.2.1">Added constraints on the number of decryption queries v<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-3.3">
-          <p id="appendix-B-3.3.1">More info on nonce constructions.<a href="#appendix-B-3.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.3.1">More info on replay protection implementation<a href="#appendix-B-3.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-3.4">
-          <p id="appendix-B-3.4.1">Editorial changes including RFC 2119 terminology.<a href="#appendix-B-3.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.4.1">More info on nonce constructions<a href="#appendix-B-3.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-3.5">
+          <p id="appendix-B-3.5.1">Introduced the Bernstein bound factor δ instead of just assuming that δ &lt; 2<a href="#appendix-B-3.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-3.6">
+          <p id="appendix-B-3.6.1">Clarified differences between GCM-SST with different keystream generators (ideal, AES, Rijndael)<a href="#appendix-B-3.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-3.7">
+          <p id="appendix-B-3.7.1">Made it clearer that Table 1 is for unicast security protocols with replay protection and that Poly1305 is keyed with ChaCha20.<a href="#appendix-B-3.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-3.8">
+          <p id="appendix-B-3.8.1">Editorial changes including RFC 2119 terminology<a href="#appendix-B-3.8.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-B-4">Changes from -09 to -10:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
