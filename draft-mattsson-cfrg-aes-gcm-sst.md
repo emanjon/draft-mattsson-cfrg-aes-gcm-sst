@@ -613,7 +613,7 @@ Common parameters for the six AEAD instances:
 
 The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}}. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48). Security protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
 
-For a given key, the number of invocations q of the authenticated encryption function SHALL NOT exceed 2<sup>32</sup>. Similarly, for a given key, the number of invocations v of the authenticated decryption function SHALL NOT exceed 2<sup>48</sup> for AES-GCM-SST, and 2<sup>88</sup> for Rijndael-GCM-SST. These constraints on v ensure that the Bernstein bound factor δ remains approximately 1 for Rijndael-GCM-SST at all times and for AES-GCM-SST in protocols where P_MAX = 2<sup>16</sup>, see {{Security}}.
+For a given key, the number of invocations q of the encryption function SHALL NOT exceed 2<sup>32</sup>. Similarly, for a given key, the number of invocations v of the decryption function SHALL NOT exceed 2<sup>48</sup> for AES-GCM-SST, and 2<sup>88</sup> for Rijndael-GCM-SST. These constraints on v ensure that the Bernstein bound factor δ remains approximately 1 for Rijndael-GCM-SST at all times and for AES-GCM-SST in protocols where P_MAX = 2<sup>16</sup>, see {{Security}}.
 
 # Security Considerations {#Security}
 
@@ -850,9 +850,10 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -10 to -11:
 
+* Added that protocols can impose stricter limits on P_MAX and A_MAX.
 * More info on replay protection implementation.
 * More info on nonce constructions.
-* Editorial changes.
+* Editorial changes including RFC 2119 terminology.
 
 Changes from -09 to -10:
 
