@@ -511,14 +511,13 @@ Table of Contents
    2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
    associated data lengths.
 
-   For a given key, the number of invocations q of the authenticated
-   encryption function SHALL NOT exceed 2^32.  Similarly, for a given
-   key, the number of invocations v of the authenticated decryption
-   function SHALL NOT exceed 2^48 for AES-GCM-SST, and 2^88 for
-   Rijndael-GCM-SST.  These constraints on v ensure that the Bernstein
-   bound factor δ remains approximately 1 for Rijndael-GCM-SST at all
-   times and for AES-GCM-SST in protocols where P_MAX = 2^16, see
-   Section 5.
+   For a given key, the number of invocations q of the encryption
+   function SHALL NOT exceed 2^32.  Similarly, for a given key, the
+   number of invocations v of the decryption function SHALL NOT exceed
+   2^48 for AES-GCM-SST, and 2^88 for Rijndael-GCM-SST.  These
+   constraints on v ensure that the Bernstein bound factor δ remains
+   approximately 1 for Rijndael-GCM-SST at all times and for AES-GCM-SST
+   in protocols where P_MAX = 2^16, see Section 5.
 
 5.  Security Considerations
 
@@ -1131,11 +1130,14 @@ Change Log
 
    Changes from -10 to -11:
 
+   *  Added that protocols can impose stricter limits on P_MAX and
+      A_MAX.
+
    *  More info on replay protection implementation.
 
    *  More info on nonce constructions.
 
-   *  Editorial changes.
+   *  Editorial changes including RFC 2119 terminology.
 
    Changes from -09 to -10:
 
