@@ -856,7 +856,7 @@ Changes from -10 to -11:
 * More info on nonce constructions
 * Introduced the Bernstein bound factor δ instead of just assuming that δ < 2
 * Clarified differences between GCM-SST with different keystream generators (ideal, AES, Rijndael)
-* Made it clearer that Table 1 is for unicast security protocols with replay protection and that Poly1305 is keyed with ChaCha20. 
+* Made it clearer that Table 1 is for unicast security protocols with replay protection and that Poly1305 is keyed with ChaCha20.
 * Editorial changes including RFC 2119 terminology
 
 Changes from -09 to -10:
