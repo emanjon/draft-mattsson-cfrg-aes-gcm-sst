@@ -520,7 +520,7 @@ Table of Contents
    2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
    associated data lengths.  The V_MAX constraint values ensure that the
    Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ
-   ≈ 2^12, and always δ ≈ 1 for Rijndael-GCM-SST see Section 5.
+   ≈ 2^12, and always δ ≈ 1 for Rijndael-GCM-SST, see Section 5.
 
 5.  Security Considerations
 
