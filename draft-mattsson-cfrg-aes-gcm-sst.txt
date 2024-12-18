@@ -185,7 +185,9 @@ Table of Contents
    GHASH, which is faster on little-endian architectures.  GCM-SST
    retains the additive encryption characteristic of GCM, which enables
    efficient implementations on modern processor architectures, see
-   [Gueron] and Section 2.4 of [GCM-Update].
+   [Gueron] and Section 2.4 of [GCM-Update].  Compared to Poly1305
+   [RFC7539], GCM-SST can provide higher security with less overhead and
+   with the same performance as GCM.
 
    This document also registers several GCM-SST instances using Advanced
    Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
