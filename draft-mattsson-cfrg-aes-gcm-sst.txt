@@ -643,26 +643,13 @@ Table of Contents
    RECOMMENDED as this approach reduces robustness and availability
    while exposing the system to denial-of-service attacks [Robust].
 
-   A comparision between AES-GCM-SST, AES-GCM [RFC5116], and
+   Table 2 compares AES-GCM-SST, AES-GCM [RFC5116], and
    ChaCha20-Poly1305 [RFC7539] in unicast security protocols with replay
-   protection is presented in Table 2, where v represents the number of
-   decryption queries and ℓ = (P_MAX + A_MAX) / 16 + 1, see [Iwata],
-   [Procter], and [Multiple].  Additionally, Table 3 provides a
-   comparison with AES-GCM and ChaCha20-Poly1305 in the context of
-   protocols like QUIC [RFC9000][RFC9001], where the size of plaintext
-   and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^12.  When ℓ
-   ≈ 2^12, AEAD_AES_128_GCM_SST_14 offers better confidentiality and
-   integrity compared to AEAD_AES_128_GCM [RFC5116], while also reducing
-   overhead by 2 bytes.  Both algorithms provide similar security
-   against passive attackers; however, AEAD_AES_128_GCM_SST_14
-   significantly enhances security against active attackers by reducing
-   the expected number of successful forgeries.  Similarly,
-   AEAD_AES_128_GCM_SST_12 offers better integrity compared to
-   AEAD_CHACHA20_POLY1305 [RFC7539], with a 4-byte reduction in
-   overhead.  For AES-GCM-SST and ChaCha20-Poly1305, the expected number
-   of forgeries are linear in v when replay protection is employed.  For
-   AES-GCM, replay protection does not help, and the expected number of
-   forgeries grows quadratically with v.
+   protection, where v represents the number of decryption queries.  In
+   GCM and Poly1305, the forgery probability depends on ℓ = (P_MAX +
+   A_MAX) / 16 + 1.  In AES-based algorithms, the Bernstein bound
+   introduces a factor δ ⪅ 1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  Notably, GCM
+   provides no reforgeability resistance.
 
      +============+==============+=============+=====================+
      | Name       |      Forgery |     Forgery |  Expected number of |
@@ -684,6 +671,22 @@ Table of Contents
         protection. v is the number of decryption queries, ℓ is the
         maximum length of plaintext and associated data, measured in
             128-bit chunks, and δ is the Bernstein bound factor.
+
+   Table 3 compares AES-GCM-SST, AES-GCM [RFC5116], and
+   ChaCha20-Poly1305 [RFC7539] in QUIC [RFC9000][RFC9001], where the
+   size of plaintext and associated data is less than ≈ 2^16 bytes, i.e.
+   ℓ ≈ 2^12.  When ℓ ≈ 2^12, AEAD_AES_128_GCM_SST_14 offers better
+   confidentiality and integrity compared to AEAD_AES_128_GCM [RFC5116],
+   while also reducing overhead by 2 bytes.  Both algorithms provide
+   similar security against passive attackers; however,
+   AEAD_AES_128_GCM_SST_14 significantly enhances security against
+   active attackers by reducing the expected number of successful
+   forgeries.  Similarly, AEAD_AES_128_GCM_SST_12 offers better
+   integrity compared to AEAD_CHACHA20_POLY1305 [RFC7539], with a 4-byte
+   reduction in overhead.  For AES-GCM-SST and ChaCha20-Poly1305, the
+   expected number of forgeries are linear in v when replay protection
+   is employed.  For AES-GCM, replay protection does not help, and the
+   expected number of forgeries grows quadratically with v.
 
     +============+====================+=============+=================+
     | Name       |            Forgery |     Forgery | Expected number |
