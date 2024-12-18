@@ -646,18 +646,18 @@ The details of the replay protection mechanism is determined by the security pro
 A comparision between AES-GCM-SST, AES-GCM {{RFC5116}}, and ChaCha20-Poly1305 {{RFC7539}} in unicast security protocols with replay protection is presented in {{comp1}}, where v represents the number of decryption queries and ℓ = (P_MAX + A_MAX) / 16 + 1, see {{Iwata}}, {{Procter}}, and {{Multiple}}. Additionally, {{comp2}} provides a comparison with AES-GCM and ChaCha20-Poly1305 in the context of protocols like QUIC {{RFC9000}}{{RFC9001}}, where the size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes, i.e. ℓ ≈ 2<sup>12</sup>. When ℓ ≈ 2<sup>12</sup>, AEAD_AES_128_GCM_SST_14 offers better confidentiality and integrity compared to AEAD_AES_128_GCM {{RFC5116}}, while also reducing overhead by 2 bytes. Both algorithms provide similar security against passive attackers; however, AEAD_AES_128_GCM_SST_14 significantly enhances security against active attackers by reducing the expected number of successful forgeries. Similarly, AEAD_AES_128_GCM_SST_12 offers better integrity compared to AEAD_CHACHA20_POLY1305 {{RFC7539}}, with a 4-byte reduction in overhead. For AES-GCM-SST and ChaCha20-Poly1305, the expected number of forgeries are linear in v when replay protection is employed. For AES-GCM, replay protection does not help, and the expected number of forgeries grows quadratically with v.
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
-| GCM | ℓ / 2<sup>128</sup> | 1 | v<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;⋅&nbsp;ℓ&nbsp;/&nbsp;2<sup>129</sup> |
-| POLY1305 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | v ⋅ ℓ / 2<sup>103</sup> |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | v ⋅ δ / 2<sup>112</sup> |
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | v ⋅ δ / 2<sup>96</sup> |
-{: #comp1 title="Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in unicast security protocols with replay protection. v is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor." cols="l r r r"}
+| POLY1305 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | v ⋅ ℓ / 2<sup>103</sup> |
+| GCM | ℓ / 2<sup>128</sup> | 1 | v<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;⋅&nbsp;ℓ&nbsp;/&nbsp;2<sup>129</sup> |
+{: #comp1 title="Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast security protocols with replay protection. v is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor." cols="l r r r"}
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
-| GCM | 1 / 2<sup>116</sup> | 1 | v<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;/&nbsp;2<sup>117</sup> |
-| POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | v / 2<sup>91</sup> |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | v / 2<sup>112</sup> |
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | v / 2<sup>96</sup> |
-{: #comp2 title="Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in QUIC, where the maximum packet size is 65536 bytes." cols="l r r r"}
+| POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | v / 2<sup>91</sup> |
+| GCM | 1 / 2<sup>116</sup> | 1 | v<sup>2</sup>&nbsp;⋅&nbsp;δ&nbsp;/&nbsp;2<sup>117</sup> |
+{: #comp2 title="Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in QUIC, where the maximum packet size is 65536 bytes." cols="l r r r"}
 
 # IANA Considerations
 
