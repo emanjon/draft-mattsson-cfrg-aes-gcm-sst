@@ -670,17 +670,17 @@ Table of Contents
      |            | before first | after first |                     |
      |            |      forgery |     forgery |                     |
      +============+==============+=============+=====================+
-     | GCM        |    ℓ / 2^128 |           1 | v^2 ⋅ δ ⋅ ℓ / 2^129 |
-     +------------+--------------+-------------+---------------------+
-     | POLY1305   |    ℓ / 2^103 |   ℓ / 2^103 |       v ⋅ ℓ / 2^103 |
-     +------------+--------------+-------------+---------------------+
      | GCM_SST_14 |    1 / 2^112 |   1 / 2^112 |       v ⋅ δ / 2^112 |
      +------------+--------------+-------------+---------------------+
      | GCM_SST_12 |     1 / 2^96 |    1 / 2^96 |        v ⋅ δ / 2^96 |
      +------------+--------------+-------------+---------------------+
+     | POLY1305   |    ℓ / 2^103 |   ℓ / 2^103 |       v ⋅ ℓ / 2^103 |
+     +------------+--------------+-------------+---------------------+
+     | GCM        |    ℓ / 2^128 |           1 | v^2 ⋅ δ ⋅ ℓ / 2^129 |
+     +------------+--------------+-------------+---------------------+
 
-           Table 2: Comparision between AES-GCM-SST, AES-GCM, and
-        ChaCha20-Poly1305 in unicast security protocols with replay
+        Table 2: Comparision between AES-GCM-SST, ChaCha20-Poly1305,
+           and AES-GCM in unicast security protocols with replay
         protection. v is the number of decryption queries, ℓ is the
         maximum length of plaintext and associated data, measured in
             128-bit chunks, and δ is the Bernstein bound factor.
@@ -691,18 +691,18 @@ Table of Contents
     |            |      first forgery | after first |                 |
     |            |                    |     forgery |                 |
     +============+====================+=============+=================+
-    | GCM        |          1 / 2^116 |           1 | v^2 ⋅ δ / 2^117 |
-    +------------+--------------------+-------------+-----------------+
-    | POLY1305   |           1 / 2^91 |    1 / 2^91 |        v / 2^91 |
-    +------------+--------------------+-------------+-----------------+
     | GCM_SST_14 |          1 / 2^112 |   1 / 2^112 |       v / 2^112 |
     +------------+--------------------+-------------+-----------------+
     | GCM_SST_12 |           1 / 2^96 |    1 / 2^96 |        v / 2^96 |
     +------------+--------------------+-------------+-----------------+
+    | POLY1305   |           1 / 2^91 |    1 / 2^91 |        v / 2^91 |
+    +------------+--------------------+-------------+-----------------+
+    | GCM        |          1 / 2^116 |           1 | v^2 ⋅ δ / 2^117 |
+    +------------+--------------------+-------------+-----------------+
 
-           Table 3: Comparision between AES-GCM-SST, AES-GCM, and
-        ChaCha20-Poly1305 in QUIC, where the maximum packet size is
-                                65536 bytes.
+        Table 3: Comparision between AES-GCM-SST, ChaCha20-Poly1305,
+        and AES-GCM in QUIC, where the maximum packet size is 65536
+                                   bytes.
 
 6.  IANA Considerations
 

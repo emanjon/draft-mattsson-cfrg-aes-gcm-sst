@@ -1706,7 +1706,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <table class="center" id="table-2">
         <caption>
 <a href="#table-2" class="selfRef">Table 2</a>:
-<a href="#name-comparision-between-aes-gcm" class="selfRef">Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in unicast security protocols with replay protection. v is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor.</a>
+<a href="#name-comparision-between-aes-gcm" class="selfRef">Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast security protocols with replay protection. v is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor.</a>
         </caption>
 <thead>
           <tr>
@@ -1717,23 +1717,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">GCM</td>
-            <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>128</sup>
-</td>
-            <td class="text-right" rowspan="1" colspan="1">1</td>
-            <td class="text-right" rowspan="1" colspan="1">v<sup>2</sup> ⋅ δ ⋅ ℓ / 2<sup>129</sup>
-</td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">POLY1305</td>
-            <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>103</sup>
-</td>
-            <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>103</sup>
-</td>
-            <td class="text-right" rowspan="1" colspan="1">v ⋅ ℓ / 2<sup>103</sup>
-</td>
-          </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">GCM_SST_14</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>112</sup>
@@ -1752,6 +1735,23 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <td class="text-right" rowspan="1" colspan="1">v ⋅ δ / 2<sup>96</sup>
 </td>
           </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">POLY1305</td>
+            <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>103</sup>
+</td>
+            <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>103</sup>
+</td>
+            <td class="text-right" rowspan="1" colspan="1">v ⋅ ℓ / 2<sup>103</sup>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">GCM</td>
+            <td class="text-right" rowspan="1" colspan="1">ℓ / 2<sup>128</sup>
+</td>
+            <td class="text-right" rowspan="1" colspan="1">1</td>
+            <td class="text-right" rowspan="1" colspan="1">v<sup>2</sup> ⋅ δ ⋅ ℓ / 2<sup>129</sup>
+</td>
+          </tr>
         </tbody>
       </table>
 </div>
@@ -1759,7 +1759,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <table class="center" id="table-3">
         <caption>
 <a href="#table-3" class="selfRef">Table 3</a>:
-<a href="#name-comparision-between-aes-gcm-" class="selfRef">Comparision between AES-GCM-SST, AES-GCM, and ChaCha20-Poly1305 in QUIC, where the maximum packet size is 65536 bytes.</a>
+<a href="#name-comparision-between-aes-gcm-" class="selfRef">Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in QUIC, where the maximum packet size is 65536 bytes.</a>
         </caption>
 <thead>
           <tr>
@@ -1770,23 +1770,6 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">GCM</td>
-            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>116</sup>
-</td>
-            <td class="text-right" rowspan="1" colspan="1">1</td>
-            <td class="text-right" rowspan="1" colspan="1">v<sup>2</sup> ⋅ δ / 2<sup>117</sup>
-</td>
-          </tr>
-          <tr>
-            <td class="text-left" rowspan="1" colspan="1">POLY1305</td>
-            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>91</sup>
-</td>
-            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>91</sup>
-</td>
-            <td class="text-right" rowspan="1" colspan="1">v / 2<sup>91</sup>
-</td>
-          </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">GCM_SST_14</td>
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>112</sup>
@@ -1803,6 +1786,23 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>96</sup>
 </td>
             <td class="text-right" rowspan="1" colspan="1">v / 2<sup>96</sup>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">POLY1305</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>91</sup>
+</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>91</sup>
+</td>
+            <td class="text-right" rowspan="1" colspan="1">v / 2<sup>91</sup>
+</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">GCM</td>
+            <td class="text-right" rowspan="1" colspan="1">1 / 2<sup>116</sup>
+</td>
+            <td class="text-right" rowspan="1" colspan="1">1</td>
+            <td class="text-right" rowspan="1" colspan="1">v<sup>2</sup> ⋅ δ / 2<sup>117</sup>
 </td>
           </tr>
         </tbody>
