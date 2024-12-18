@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 20 June 2025                                  J. Preuß Mattsson
+Expires: 21 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                        17 December 2024
+                                                        18 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 June 2025.
+   This Internet-Draft will expire on 21 June 2025.
 
 Copyright Notice
 
@@ -121,10 +121,10 @@ Table of Contents
    weaknesses in the GCM authentication function [Ferguson],
    particularly problematic when short tags are used.  The first
    weakness significantly increases the probability of successful
-   forgery.  The second weakness reveals the subkey H if an attacker
-   succeeds in creating forgeries.  Once H is known, the attacker can
-   consistently forge subsequent messages, drastically increasing the
-   probability of multiple successful forgeries.
+   forgery for long messages.  The second weakness reveals the subkey H
+   if an attacker succeeds in creating forgeries.  Once H is known, the
+   attacker can consistently forge subsequent messages, drastically
+   increasing the probability of multiple successful forgeries.
 
    In a comment to NIST, Nyberg et al.  [Nyberg] explained how small
    changes based on proven theoretical constructions mitigate these
