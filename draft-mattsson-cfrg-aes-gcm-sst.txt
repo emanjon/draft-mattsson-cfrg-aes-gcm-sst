@@ -502,6 +502,12 @@ Table of Contents
    *  C_MAX (maximum size of the ciphertext and tag) is P_MAX +
       tag_length (in bytes)
 
+   *  Q_MAX (maximum number of invocations of the encryption function)
+      is 2^32.
+
+   *  V_MAX (maximum number of invocations of the decryption function)
+      is 2^48 for AES-GCM-SST, while for Rijndael-GCM-SST, it is 2^88.
+
    The maximum size of the plaintext (P_MAX) and the maximum size of the
    associated data (A_MAX) have been lowered from GCM [RFC5116].  To
    enable forgery probability close to ideal, even with maximum size
@@ -512,15 +518,9 @@ Table of Contents
    N_MAX) of 96-bit and 224-bits respectively.  For the AEAD algorithms
    in Table 1 the worst-case forgery probability is bounded by ≈
    2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
-   associated data lengths.
-
-   For a given key, the number of invocations q of the encryption
-   function SHALL NOT exceed 2^32.  Similarly, for a given key, the
-   number of invocations v of the decryption function SHALL NOT exceed
-   2^48 for AES-GCM-SST, and 2^88 for Rijndael-GCM-SST.  These
-   constraints on v ensure that the Bernstein bound factor δ remains
-   approximately 1 for Rijndael-GCM-SST at all times and for AES-GCM-SST
-   in protocols where P_MAX = 2^16, see Section 5.
+   associated data lengths.  The V_MAX constraint values ensure that the
+   Bernstein bound factor is always δ ≈ 1 for Rijndael-GCM-SST, and δ ≈
+   1 for AES-GCM-SST in protocols where ℓ ≈ 2^12, see Section 5.
 
 5.  Security Considerations
 
