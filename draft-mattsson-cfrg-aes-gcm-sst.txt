@@ -693,8 +693,8 @@ Table of Contents
    the expected number of forgeries grows quadratically with v, and GCM
    provides significantly worse integrity than AES-GCM-SST and
    ChaCha20-Poly1305 unless v is kept very small.  With v = 2^52 as
-   allowed for AES-GCM in QUIC, AES-GCM provides a security level
-   equivalent to that of an ideal MAC with a length of 64.4 bits.
+   allowed for AES-GCM in QUIC [RFC9001], AES-GCM provides a security
+   level equivalent to that of an ideal MAC with a length of 64.4 bits.
 
     +============+====================+=============+=================+
     | Name       |            Forgery |     Forgery | Expected number |
