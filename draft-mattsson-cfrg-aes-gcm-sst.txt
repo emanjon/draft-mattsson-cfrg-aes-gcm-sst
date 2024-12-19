@@ -683,15 +683,16 @@ Table of Contents
    GCM [RFC5116] in unicast QUIC [RFC9000][RFC9001], which is a security
    protocol with mandatory replay protection where the size of plaintext
    and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^12.
-   AEAD_AES_128_GCM_SST_14 and AEAD_AES_128_GCM_SST_12 offers better
-   integrity than AES-GCM [RFC5116] and ChaCha20-Poly1305 [RFC7539] ,
+   AEAD_AES_128_GCM_SST_14 and AEAD_AES_128_GCM_SST_12 offer better
+   integrity than ChaCha20-Poly1305 [RFC7539] and AES-GCM [RFC5116],
    while also reducing overhead by 2–4 bytes.  For AES-GCM-SST and
-   ChaCha20-Poly1305, the expected number of forgeries are linear in v
+   ChaCha20-Poly1305, the expected number of forgeries is linear in v
    when replay protection is employed.  ChaCha20-Poly1305 provides the
    same security as an ideal MAC of lenght 91 bits.  For AES-GCM, replay
-   protection does not help, the expected number of forgeries grows
-   quadratically with v, and GCM provides significantly worse integrity
-   unless v is kept very small.
+   protection does not help against reforgery, the expected number of
+   forgeries grows quadratically with v, and GCM provides significantly
+   worse integrity than AES-GCM-SST and ChaCha20-Poly1305 unless v is
+   kept very small.
 
     +============+====================+=============+=================+
     | Name       |            Forgery |     Forgery | Expected number |
