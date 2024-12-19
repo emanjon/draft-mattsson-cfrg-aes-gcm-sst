@@ -872,6 +872,10 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
+Changes from -11 to -12:
+
+* Editorial changes.
+
 Changes from -10 to -11:
 
 * Added that protocols can impose stricter limits on P_MAX and A_MAX
