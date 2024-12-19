@@ -89,6 +89,7 @@ Table of Contents
      4.2.  Rijndael-GCM-SST
      4.3.  AEAD Instances and Constraints
    5.  Security Considerations
+     5.1.  Comparision with ChaCha20-Poly1305 and AES-GCM
    6.  IANA Considerations
    7.  References
      7.1.  Normative References
@@ -648,6 +649,8 @@ Table of Contents
    terminating the connection if a single decryption fails is NOT
    RECOMMENDED as this approach reduces robustness and availability
    while exposing the system to denial-of-service attacks [Robust].
+
+5.1.  Comparision with ChaCha20-Poly1305 and AES-GCM
 
    Table 2 compares the integrity of AES-GCM-SST, ChaCha20-Poly1305
    [RFC7539], and AES-GCM [RFC5116] in unicast security protocols with
