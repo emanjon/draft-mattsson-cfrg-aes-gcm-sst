@@ -531,7 +531,9 @@ Table of Contents
    factor, the Q_MAX constraint also keeps the attack complexity of
    distinguishing attacks at an acceptable level.  Since encryption and
    decryption queries play an equivalent role in the Bernstein bound, it
-   follows that Q_MAX ≤ V_MAX.  Refer to Section 5 for further details.
+   follows that Q_MAX ≤ V_MAX.  Security protocols employing GCM-SST MAY
+   impose stricter limits on Q_MAX and V_MAX.  Refer to Section 5 for
+   further details.
 
 5.  Security Considerations
 
