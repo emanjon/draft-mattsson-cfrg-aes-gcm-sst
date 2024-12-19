@@ -654,9 +654,9 @@ Table of Contents
    where v represents the number of decryption queries.  In Poly1305 and
    GCM, the forgery probability depends on ℓ = (P_MAX + A_MAX) / 16 + 1.
    In AES-based algorithms, the Bernstein bound introduces a factor δ ⪅
-   1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  Notably, GCM provides no reforgeability
-   resistance, which significantly increases the expected number of
-   forgeries.
+   1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  Notably, GCM does not provide any
+   reforgeability resistance, which significantly increases the expected
+   number of forgeries.
 
      +============+==============+=============+=====================+
      | Name       |      Forgery |     Forgery |  Expected number of |
