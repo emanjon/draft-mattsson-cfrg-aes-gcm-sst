@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 21 June 2025                                  J. Preuß Mattsson
+Expires: 22 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                        18 December 2024
+                                                        19 December 2024
 
 
           Galois Counter Mode with Secure Short Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 June 2025.
+   This Internet-Draft will expire on 22 June 2025.
 
 Copyright Notice
 
@@ -518,7 +518,7 @@ Table of Contents
    N_MAX) of 96-bit and 224-bits respectively.  For the AEAD algorithms
    in Table 1 the worst-case forgery probability is bounded by ≈
    2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
-   associated data lengths.  The V_MAX constraint values ensure that the
+   associated data lengths.  The V_MAX constraint ensure that the
    Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ
    ≈ 2^12, and always δ ≈ 1 for Rijndael-GCM-SST, see Section 5.
 
