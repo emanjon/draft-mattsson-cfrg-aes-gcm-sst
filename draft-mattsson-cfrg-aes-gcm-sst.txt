@@ -1147,6 +1147,10 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
+   Changes from -11 to -12:
+
+   *  Editorial changes.
+
    Changes from -10 to -11:
 
    *  Added that protocols can impose stricter limits on P_MAX and A_MAX
