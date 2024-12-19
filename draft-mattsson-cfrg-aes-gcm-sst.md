@@ -155,6 +155,16 @@ informative:
         ins: Gordon Procter
     date: August 2014
 
+  Gueron:
+    target: https://eprint.iacr.org/2017/702.pdf
+    title: "Better Bounds for Block Cipher Modes of Operation via Nonce-Based Key Derivation"
+    author:
+      -
+        ins: Shay Gueron
+      -
+        ins: Yehuda Lindell
+    date: August 2017
+
   SAGE23:
     target: https://www.3gpp.org/ftp/TSG_SA/WG3_Security/TSGS3_110_Athens/docs/S3-230642.zip
     title: "Specification of the 256-bit air interface algorithms"
