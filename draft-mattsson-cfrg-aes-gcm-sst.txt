@@ -89,7 +89,11 @@ Table of Contents
      4.2.  Rijndael-GCM-SST
      4.3.  AEAD Instances and Constraints
    5.  Security Considerations
-     5.1.  Comparision with ChaCha20-Poly1305 and AES-GCM
+     5.1.  Integrity
+     5.2.  Confidentiality
+     5.3.  Weak keys
+     5.4.  Replay Protection
+     5.5.  Comparision with ChaCha20-Poly1305 and AES-GCM
    6.  IANA Considerations
    7.  References
      7.1.  Normative References
@@ -566,6 +570,8 @@ Table of Contents
    While GCM-SST offers better security properties than GCM for a given
    tag length in such contexts, it does not behave like an ideal MAC.
 
+5.1.  Integrity
+
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
    be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When
    tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability
@@ -599,6 +605,8 @@ Table of Contents
    satisfies when δ ≈ 1.  Achieving a comparable level of security with
    GCM, CCM, or Poly1305 is nearly impossible.
 
+5.2.  Confidentiality
+
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
    Regardless of key length, an attacker can mount a distinguishing
@@ -625,6 +633,8 @@ Table of Contents
    integrity, authenticity, and confidentiality MUST all be carefully
    evaluated when selecting an appropriate tag length.
 
+5.3.  Weak keys
+
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and Q are zero, so called weak keys.  If H
    is zero, the authentication tag depends only on the length of P and A
@@ -635,6 +645,8 @@ Table of Contents
    and regeneration of values.  In AES-GCM-SST, H and Q are generated
    with a permutation on different input, so H and Q cannot both be
    zero.
+
+5.4.  Replay Protection
 
    The details of the replay protection mechanism is determined by the
    security protocol utilizing GCM-SST.  If the nonce includes a
@@ -650,7 +662,7 @@ Table of Contents
    RECOMMENDED as this approach reduces robustness and availability
    while exposing the system to denial-of-service attacks [Robust].
 
-5.1.  Comparision with ChaCha20-Poly1305 and AES-GCM
+5.5.  Comparision with ChaCha20-Poly1305 and AES-GCM
 
    Table 2 compares the integrity of AES-GCM-SST, ChaCha20-Poly1305
    [RFC7539], and AES-GCM [RFC5116] in unicast security protocols with
