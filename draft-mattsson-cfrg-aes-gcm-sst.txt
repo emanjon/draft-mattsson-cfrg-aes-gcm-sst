@@ -649,14 +649,14 @@ Table of Contents
    RECOMMENDED as this approach reduces robustness and availability
    while exposing the system to denial-of-service attacks [Robust].
 
-   Table 2 compares AES-GCM-SST, AES-GCM [RFC5116], and
-   ChaCha20-Poly1305 [RFC7539] in unicast security protocols with replay
-   protection, where v represents the number of decryption queries.  In
-   GCM and Poly1305, the forgery probability depends on ℓ = (P_MAX +
-   A_MAX) / 16 + 1.  In AES-based algorithms, the Bernstein bound
-   introduces a factor δ ⪅ 1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  Notably, GCM
-   provides no reforgeability resistance, which significantly increases
-   the expected number of forgeries.
+   Table 2 compares AES-GCM-SST, ChaCha20-Poly1305 [RFC7539], and AES-
+   GCM [RFC5116] in unicast security protocols with replay protection,
+   where v represents the number of decryption queries.  In Poly1305 and
+   GCM, the forgery probability depends on ℓ = (P_MAX + A_MAX) / 16 + 1.
+   In AES-based algorithms, the Bernstein bound introduces a factor δ ⪅
+   1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  Notably, GCM provides no reforgeability
+   resistance, which significantly increases the expected number of
+   forgeries.
 
      +============+==============+=============+=====================+
      | Name       |      Forgery |     Forgery |  Expected number of |
@@ -679,19 +679,19 @@ Table of Contents
         maximum length of plaintext and associated data, measured in
             128-bit chunks, and δ is the Bernstein bound factor.
 
-   Table 3 compares AES-GCM-SST, AES-GCM [RFC5116], and
-   ChaCha20-Poly1305 [RFC7539] in unicast QUIC [RFC9000][RFC9001], which
-   is a security protocols with mandatory replay protection where the
-   size of plaintext and associated data is less than ≈ 2^16 bytes, i.e.
-   ℓ ≈ 2^12.  AEAD_AES_128_GCM_SST_14 and AEAD_AES_128_GCM_SST_12 offers
-   better integrity than AES-GCM [RFC5116] and ChaCha20-Poly1305
-   [RFC7539] , while also reducing overhead by 2–4 bytes.  For AES-GCM-
-   SST and ChaCha20-Poly1305, the expected number of forgeries are
-   linear in v when replay protection is employed.  ChaCha20-Poly1305
-   provides the same security as an ideal MAC of lenght 91 bits.  For
-   AES-GCM, replay protection does not help, the expected number of
-   forgeries grows quadratically with v, and GCM provides significantly
-   worse integrity unless v is kept very small.
+   Table 3 compares AES-GCM-SST, ChaCha20-Poly1305 [RFC7539], and AES-
+   GCM [RFC5116] in unicast QUIC [RFC9000][RFC9001], which is a security
+   protocol with mandatory replay protection where the size of plaintext
+   and associated data is less than ≈ 2^16 bytes, i.e. ℓ ≈ 2^12.
+   AEAD_AES_128_GCM_SST_14 and AEAD_AES_128_GCM_SST_12 offers better
+   integrity than AES-GCM [RFC5116] and ChaCha20-Poly1305 [RFC7539] ,
+   while also reducing overhead by 2–4 bytes.  For AES-GCM-SST and
+   ChaCha20-Poly1305, the expected number of forgeries are linear in v
+   when replay protection is employed.  ChaCha20-Poly1305 provides the
+   same security as an ideal MAC of lenght 91 bits.  For AES-GCM, replay
+   protection does not help, the expected number of forgeries grows
+   quadratically with v, and GCM provides significantly worse integrity
+   unless v is kept very small.
 
     +============+====================+=============+=================+
     | Name       |            Forgery |     Forgery | Expected number |
