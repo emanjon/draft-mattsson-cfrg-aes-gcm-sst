@@ -503,7 +503,7 @@ Table of Contents
       tag_length (in bytes)
 
    *  Q_MAX (maximum number of invocations of the encryption function)
-      is 2^32.
+      is 2^32 for AES-GCM-SST, while for Rijndael-GCM-SST, it is 2^88.
 
    *  V_MAX (maximum number of invocations of the decryption function)
       is 2^48 for AES-GCM-SST, while for Rijndael-GCM-SST, it is 2^88.
@@ -518,9 +518,15 @@ Table of Contents
    N_MAX) of 96-bit and 224-bits respectively.  For the AEAD algorithms
    in Table 1 the worst-case forgery probability is bounded by ≈
    2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
-   associated data lengths.  The V_MAX constraint ensure that the
-   Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ
-   ≈ 2^12, and always δ ≈ 1 for Rijndael-GCM-SST, see Section 5.
+   associated data lengths.
+
+   The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1
+   for AES-GCM-SST in protocols where ℓ ≈ 2^12, and always δ ≈ 1 for
+   Rijndael-GCM-SST.  In addtion to restricting the Bernstein bound
+   factor, the Q_MAX constraint also keeps the attack complexity of
+   distinguishing attacks at an acceptable level.  Since encryption and
+   decryption queries play an equivalent role in the Bernstein bound, it
+   follows that Q_MAX ≤ V_MAX.  Refer to Section 5 for further details.
 
 5.  Security Considerations
 
