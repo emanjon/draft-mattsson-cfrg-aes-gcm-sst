@@ -673,7 +673,8 @@ Table of Contents
    (P_MAX + A_MAX) / 16 + 1.  In AES-based algorithms, the Bernstein
    bound introduces a factor δ ⪅ 1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  Notably,
    GCM does not provide any reforgeability resistance, which
-   significantly increases the expected number of forgeries.
+   significantly increases the expected number of forgeries.  Refer to
+   [Procter], [Iwata], and [Multiple] for further details.
 
      +============+==============+=============+=====================+
      | Name       |      Forgery |     Forgery |  Expected number of |
