@@ -875,6 +875,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -12 to -13:
 
+* Changed name to Strong Secure Tags to better illustrate that GCM-SST is intended to improve security for all tag lengths.
 * Editorial changes
 
 Changes from -11 to -12:
