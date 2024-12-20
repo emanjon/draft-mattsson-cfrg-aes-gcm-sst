@@ -113,7 +113,7 @@ informative:
         ins: Scott Fluhrer
     date: November 2024
 
-  Reforgeability:
+  Reforge:
     target: https://eprint.iacr.org/2017/332.pdf
     title: "Reforgeability of Authenticated Encryption Schemes"
     author:
