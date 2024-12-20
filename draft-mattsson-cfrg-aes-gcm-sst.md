@@ -672,7 +672,7 @@ Refer to {{Procter}}, {{Iwata}}, and {{Multiple}} for further details.
 | GCM_SST_12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | v / 2<sup>96</sup> | 12 |
 | POLY1305 | 1 / 2<sup>91</sup> | 1 / 2<sup>91</sup> | v / 2<sup>91</sup> | 16 |
 | GCM | 1 / 2<sup>116</sup> | 1 | δ&nbsp;⋅&nbsp;v<sup>2</sup>&nbsp;/&nbsp;2<sup>117</sup> | 16 |
-{: #comp2 title="Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes." cols="l r r r"}
+{: #comp2 title="Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes." cols="l r r r r"}
 
 # IANA Considerations
 
