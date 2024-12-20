@@ -26,9 +26,9 @@ Abstract
    attacks, which are significant security improvements over GCM.  GCM-
    SST is designed for unicast security protocols with replay protection
    and addresses the strong industry demand for fast encryption with
-   less overhead and Strong Secure Tags.  This document registers
-   several instances of GCM-SST using Advanced Encryption Standard (AES)
-   and Rijndael-256-256.
+   less overhead and high security.  This document registers several
+   instances of GCM-SST using Advanced Encryption Standard (AES) and
+   Rijndael-256-256.
 
 About This Document
 
@@ -123,13 +123,14 @@ Table of Contents
    [GCM] is a widely used AEAD algorithm [RFC5116] due to its attractive
    performance in both software and hardware as well as its provable
    security.  During the NIST standardization, Ferguson pointed out two
-   weaknesses in the GCM authentication function [Ferguson],
-   particularly problematic when short tags are used.  The first
+   weaknesses in the GCM authentication function [Ferguson].  The first
    weakness significantly increases the probability of successful
    forgery for long messages.  The second weakness reveals the subkey H
    if an attacker succeeds in creating forgeries.  Once H is known, the
    attacker can consistently forge subsequent messages, drastically
-   increasing the probability of multiple successful forgeries.
+   increasing the probability of multiple successful forgeries.  The two
+   weaknesses are problematic for all tag lengths but are especially
+   critical when short tags are used.
 
    In a comment to NIST, Nyberg et al.  [Nyberg] explained how small
    changes based on proven theoretical constructions mitigate these
@@ -144,9 +145,11 @@ Table of Contents
    calculating the parameters.  Rogaway [Rogaway] criticizes the use of
    GCM with short tags and recommends prohibiting tags shorter than 96
    bits.  Reflecting the critique, NIST is planning to remove support
-   for GCM with tags shorter than 96 bits [Revise].  While Counter with
-   CBC-MAC (CCM) [RFC5116] with short tags has forgery probabilities
-   close to ideal, its performance is lower than that of GCM.
+   for GCM with tags shorter than 96 bits [Revise].  NIST has not
+   indicated any plans to address the absence of reforgeability
+   resistance.  When AES-GCM is used in QUIC [RFC9001], the expected
+   number of forgeries can be equivalent to that of an ideal MAC with a
+   length of 64.4 bits.
 
    Short tags are widely used, 32-bit tags are standard in most radio
    link layers including 5G [Sec5G], 64-bit tags are very common in
