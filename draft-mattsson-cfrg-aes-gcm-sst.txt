@@ -526,14 +526,14 @@ Table of Contents
    associated data lengths.
 
    The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1
-   for AES-GCM-SST in protocols where ℓ ≈ 2^12, and always δ ≈ 1 for
-   Rijndael-GCM-SST.  In addtion to restricting the Bernstein bound
-   factor, the Q_MAX constraint also keeps the attack complexity of
-   distinguishing attacks at an acceptable level.  Since encryption and
-   decryption queries play an equivalent role in the Bernstein bound, it
-   follows that Q_MAX ≤ V_MAX.  Security protocols employing GCM-SST MAY
-   impose stricter limits on Q_MAX and V_MAX.  Refer to Section 5 for
-   further details.
+   for AES-GCM-SST in protocols where ℓ ≈ 2^12, such as QUIC [RFC9000],
+   and always δ ≈ 1 for Rijndael-GCM-SST.  In addtion to restricting the
+   Bernstein bound factor, the Q_MAX constraint also keeps the attack
+   complexity of distinguishing attacks at an acceptable level.  Since
+   encryption and decryption queries play an equivalent role in the
+   Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Security protocols
+   employing GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
+   Refer to Section 5 for further details.
 
 5.  Security Considerations
 
