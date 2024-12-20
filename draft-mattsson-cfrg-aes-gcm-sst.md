@@ -113,6 +113,20 @@ informative:
         ins: Scott Fluhrer
     date: November 2024
 
+  Reforgeability:
+    target: https://eprint.iacr.org/2017/332.pdf
+    title: "Reforgeability of Authenticated Encryption Schemes"
+    author:
+      -
+        ins: Christian Forler
+      -
+        ins: Eik List
+      -
+        ins: Stefan Lucks
+      -
+        ins: akob Wenzel
+    date: April 2017
+
   Inoue:
     target: https://eprint.iacr.org/2024/1928.pdf
     title: "Generic Security of GCM-SST"
