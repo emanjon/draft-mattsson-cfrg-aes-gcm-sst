@@ -731,7 +731,8 @@ Table of Contents
    +----------+--------------+-------------+-----------------+--------+
 
      Table 3: Comparision between AES-GCM-SST, ChaCha20-Poly1305, and
-      AES-GCM in QUIC, where the maximum packet size is 65536 bytes.
+     AES-GCM in unicast QUIC, where the maximum packet size is 65536
+                                  bytes.
 
 6.  IANA Considerations
 
