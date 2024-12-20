@@ -718,24 +718,25 @@ Table of Contents
    forgeries for AES-GCM is equivalent to that of an ideal MAC with a
    length of 64.4 bits.
 
-   +========+==========+==============+=============+=================+
-   |Name    | Overhead |      Forgery |     Forgery | Expected number |
-   |        |  (bytes) |  probability | probability |    of forgeries |
-   |        |          | before first | after first |                 |
-   |        |          |      forgery |     forgery |                 |
-   +========+==========+==============+=============+=================+
-   |GCM_SST |       14 |    1 / 2^112 |   1 / 2^112 |       v / 2^112 |
-   +--------+----------+--------------+-------------+-----------------+
-   |GCM_SST |       12 |     1 / 2^96 |    1 / 2^96 |        v / 2^96 |
-   +--------+----------+--------------+-------------+-----------------+
-   |POLY1305|       16 |     1 / 2^91 |    1 / 2^91 |        v / 2^91 |
-   +--------+----------+--------------+-------------+-----------------+
-   |GCM     |       16 |    1 / 2^116 |           1 | δ ⋅ v^2 / 2^117 |
-   +--------+----------+--------------+-------------+-----------------+
+   +============+=======+==============+=============+=================+
+   | Name       |    Tag|      Forgery |     Forgery | Expected number |
+   |            | length|  probability | probability |    of forgeries |
+   |            |(bytes)|       before | after first |                 |
+   |            |       |        first |     forgery |                 |
+   |            |       |      forgery |             |                 |
+   +============+=======+==============+=============+=================+
+   | GCM_SST_14 |     14|    1 / 2^112 |   1 / 2^112 |       v / 2^112 |
+   +------------+-------+--------------+-------------+-----------------+
+   | GCM_SST_12 |     12|     1 / 2^96 |    1 / 2^96 |        v / 2^96 |
+   +------------+-------+--------------+-------------+-----------------+
+   | POLY1305   |     16|     1 / 2^91 |    1 / 2^91 |        v / 2^91 |
+   +------------+-------+--------------+-------------+-----------------+
+   | GCM        |     16|    1 / 2^116 |           1 | δ ⋅ v^2 / 2^117 |
+   +------------+-------+--------------+-------------+-----------------+
 
-     Table 3: Comparision between AES-GCM-SST, ChaCha20-Poly1305, and
-     AES-GCM in unicast QUIC, where the maximum packet size is 65536
-                                  bytes.
+      Table 3: Comparision between AES-GCM-SST, ChaCha20-Poly1305, and
+      AES-GCM in unicast QUIC, where the maximum packet size is 65536
+                                   bytes.
 
 6.  IANA Considerations
 
