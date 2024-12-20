@@ -146,10 +146,10 @@ Table of Contents
    GCM with short tags and recommends prohibiting tags shorter than 96
    bits.  Reflecting the critique, NIST is planning to remove support
    for GCM with tags shorter than 96 bits [Revise].  NIST has not
-   indicated any plans to address the absence of reforgeability
-   resistance.  When AES-GCM is used in QUIC [RFC9001], the expected
-   number of forgeries can be equivalent to that of an ideal MAC with a
-   length of 64.4 bits.
+   indicated plans to address the weaknesses for longer tags.  See
+   absence of reforgeability resistance [Reforge].  When AES-GCM is used
+   in QUIC [RFC9001], the expected number of forgeries can be equivalent
+   to that of an ideal MAC with a length of 64.4 bits.
 
    Short tags are widely used, 32-bit tags are standard in most radio
    link layers including 5G [Sec5G], 64-bit tags are very common in
@@ -171,8 +171,10 @@ Table of Contents
    forgery probability is ≈ 2^(-tag_length) even after many generated
    MACs, many forgery attempts, and after a successful forgery.  Users
    and implementors of cryptography expect algorithms to behave like
-   ideal MACs.  For a comprehensive discussion on the use cases and
-   requirements of short tags, see [Comments38B].
+   ideal MACs.  While Counter with CBC-MAC (CCM) [RFC5116] with short
+   tags has forgery probabilities close to ideal, its performance is
+   lower than that of GCM.  For a comprehensive discussion on the use
+   cases and requirements of short tags, see [Comments38B].
 
    This document defines the Galois Counter Mode with Strong Secure Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
