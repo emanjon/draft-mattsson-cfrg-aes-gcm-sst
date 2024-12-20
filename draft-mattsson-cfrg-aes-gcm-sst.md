@@ -873,6 +873,10 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
+Changes from -12 to -13:
+
+* Editorial changes
+
 Changes from -11 to -12:
 
 * Introduced Q_MAX and V_MAX as formal names for the invocation constraints.
@@ -953,4 +957,4 @@ Changes from -00 to -01:
 # Acknowledgments
 {:numbered="false"}
 
-The authors thank {{{Richard Barnes}}}, {{{Thomas Bellebaum}}}, {{{Scott Fluhrer}}}, {{{Eric Lagergren}}}, {{{Yehuda Lindell}}}, and {{{Erik Thormarker}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
+The authors thank {{{Richard Barnes}}}, {{{Thomas Bellebaum}}}, {{{Scott Fluhrer}}}, {{{Eric Lagergren}}}, {{{Yehuda Lindell}}}, {{{Kazuhiko Minematsu}}}, and {{{Erik Thormarker}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
