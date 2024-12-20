@@ -884,7 +884,10 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 
 Changes from -11 to -12:
 
-* Editorial changes.
+* Introduced Q_MAX and V_MAX as formal names for the invocation constraints.
+* Described that masking is important to mitigate weak keys.
+* Improved and expanded the section comparing GCM-SST with Poly1305 and GCM.
+* Editorial changes including subsections in the security considerations.
 
 Changes from -10 to -11:
 
