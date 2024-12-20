@@ -901,6 +901,11 @@ Table of Contents
               ChaCha20 and Poly1305", August 2014,
               <https://eprint.iacr.org/2014/613.pdf>.
 
+   [Reforgeability]
+              Christian Forler, Eik List, Stefan Lucks, and akob Wenzel,
+              "Reforgeability of Authenticated Encryption Schemes",
+              April 2017, <https://eprint.iacr.org/2017/332.pdf>.
+
    [Revise]   NIST, "Announcement of Proposal to Revise SP 800-38D",
               August 2023, <https://csrc.nist.gov/news/2023/proposal-to-
               revise-sp-800-38d>.
