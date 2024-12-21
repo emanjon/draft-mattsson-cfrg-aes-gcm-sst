@@ -285,7 +285,7 @@ informative:
         ins: T. Johansson
     date: June 2024
 
-  Robust:
+  AEZ:
     target: https://eprint.iacr.org/2014/793.pdf
     title: "Robust Authenticated-Encryption: AEZ and the Problem that it Solves"
     author:
