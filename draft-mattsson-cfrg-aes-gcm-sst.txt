@@ -721,7 +721,8 @@ Table of Contents
    ChaCha20-Poly1305 unless v is kept very small.  With v = 2^52 as
    allowed for AES-GCM in QUIC [RFC9001], the expected number of
    forgeries for AES-GCM is equivalent to that of an ideal MAC with a
-   length of 64.4 bits.
+   length of 64.4 bits.  The effective tag length of AES-GCM in QUIC is
+   117 - log2(δ ⋅v).
 
    +============+=======+==============+=============+=================+
    | Name       |    Tag|      Forgery |     Forgery | Expected number |
