@@ -209,7 +209,9 @@ Table of Contents
    GCM [GCM]. 3GPP has standardized the use of Rijndael-256-256 for
    authentication and key generation in 3GPP TS 35.234–35.237 [WID23].
    NIST is anticipated to standardize Rijndael-256-256 [Options],
-   although there might be revisions to the key schedule.
+   although there might be revisions to the key schedule.  Rijndael-
+   256-256 has very good performance on modern x86-64 platforms equipped
+   with AES-NI and VAES instructions [Ducker].
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion and
@@ -828,6 +830,11 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/Presentations/2024/
               universal-hash-designs-for-an-accordion-mode/images-media/
               sess-7-degabriele-acm-workshop-2024.pdf>.
+
+   [Ducker]   Nir Drucker and Shay Gueron, "Software Optimization of
+              Rijndael for Modern x86-64 Platforms", May 2022,
+              <https://rd.springer.com/
+              chapter/10.1007/978-3-030-97652-1_18>.
 
    [EIA3]     ETSI SAGE, "128-EEA3 and 128-EIA3 Specification", January
               2019, <https://www.gsma.com/solutions-and-
