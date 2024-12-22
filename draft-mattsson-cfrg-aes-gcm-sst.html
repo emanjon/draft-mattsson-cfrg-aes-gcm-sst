@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 24 June 2025</td>
+<td class="center">Expires 25 June 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-21" class="published">21 December 2024</time>
+<time datetime="2024-12-22" class="published">22 December 2024</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-06-24">24 June 2025</time></dd>
+<dd class="expires"><time datetime="2025-06-25">25 June 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 June 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1753,11 +1753,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-comparision-with-chacha20-p" class="section-name selfRef">Comparision with ChaCha20-Poly1305 and AES-GCM</a>
         </h3>
 <p id="section-5.5-1"><a href="#comp1" class="auto internal xref">Table 2</a> compares the integrity of AES-GCM-SST, ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, and AES-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> in unicast security protocols with replay protection, where v represents the number of decryption queries. In Poly1305 and GCM, the forgery probability depends on ℓ = (P_MAX + A_MAX) / 16 + 1. In AES-based algorithms, the Bernstein bound introduces a factor δ ⪅ 1 + (q + v)<sup>2</sup> ⋅ ℓ<sup>2</sup> / 2<sup>129</sup>. Notably, GCM does not provide any reforgeability resistance, which significantly increases the expected number of forgeries. Refer to <span>[<a href="#Procter" class="cite xref">Procter</a>]</span>, <span>[<a href="#Iwata" class="cite xref">Iwata</a>]</span>, and <span>[<a href="#Multiple" class="cite xref">Multiple</a>]</span> for further details.<a href="#section-5.5-1" class="pilcrow">¶</a></p>
-<span id="name-comparision-between-aes-gcm"></span><div id="comp1">
+<span id="name-comparison-between-aes-gcm-"></span><div id="comp1">
 <table class="center" id="table-2">
           <caption>
 <a href="#table-2" class="selfRef">Table 2</a>:
-<a href="#name-comparision-between-aes-gcm" class="selfRef">Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast security protocols with replay protection. v is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor.</a>
+<a href="#name-comparison-between-aes-gcm-" class="selfRef">Comparison between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast security protocols with replay protection. v is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks, and δ is the Bernstein bound factor.</a>
           </caption>
 <thead>
             <tr>
@@ -1807,11 +1807,11 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         </table>
 </div>
 <p id="section-5.5-3"><a href="#comp2" class="auto internal xref">Table 3</a> compares the integrity of AES-GCM-SST, ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, and AES-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> in unicast QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span><span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span>, a security protocol with mandatory replay protection, and where the combined size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes (ℓ ≈ 2<sup>12</sup>). GCM_SST_14 and GCM_SST_12 provide better integrity than ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span> and AES-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, while also reducing overhead by 2–4 bytes. For AES-GCM-SST and ChaCha20-Poly1305, the expected number of forgeries is linear in v when replay protection is employed. ChaCha20-Poly1305 achieves a security level equivalent to that of an ideal MAC with a length of 91 bits. For AES-GCM, replay protection does not mitigate reforgeries, the expected number of forgeries grows quadratically with v, and GCM provides significantly worse integrity than AES-GCM-SST and ChaCha20-Poly1305 unless v is kept very small. With v = 2<sup>52</sup> as allowed for AES-GCM in QUIC <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span>, the expected number of forgeries for AES-GCM is equivalent to that of an ideal MAC with a length of 64.4 bits. The effective tag length of AES-GCM in QUIC is 117 - log2(δ ⋅ v).<a href="#section-5.5-3" class="pilcrow">¶</a></p>
-<span id="name-comparision-between-aes-gcm-"></span><div id="comp2">
+<span id="name-comparison-between-aes-gcm-s"></span><div id="comp2">
 <table class="center" id="table-3">
           <caption>
 <a href="#table-3" class="selfRef">Table 3</a>:
-<a href="#name-comparision-between-aes-gcm-" class="selfRef">Comparision between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes.</a>
+<a href="#name-comparison-between-aes-gcm-s" class="selfRef">Comparison between AES-GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes.</a>
           </caption>
 <thead>
             <tr>
