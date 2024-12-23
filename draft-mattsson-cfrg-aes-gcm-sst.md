@@ -926,7 +926,7 @@ Changes from -13 to -14:
 
 * Explained the formatting of L as well as why replay protection after decryption may be used.
 * Updated link to NIST's plans to standardize Rijndael-256 and aligned the name with NIST
-* Aligned test vector tag length with specification
+* Aligned test vector tag length and terminology with the rest of the specification
 * Editorial changes
 
 Changes from -12 to -13:
