@@ -171,6 +171,18 @@ informative:
         ins: Shay Gueron
     date: May 2022
 
+  Bellare:
+    target: https://eprint.iacr.org/2019/624.pdf
+    title: "Nonces are Noticed: AEAD Revisited"
+    author:
+      -
+        ins: Mihir Bellare
+      -
+        ins: Ruth Ng
+      -
+        ins: Björn Tackmann
+    date: November 2019
+
   Procter:
     target: https://eprint.iacr.org/2014/613.pdf
     title: "A Security Analysis of the Composition of ChaCha20 and Poly1305"
@@ -602,7 +614,7 @@ Steps:
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection can be performed either before step 1 or during step 11.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection can be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks.
 
 ## Encoding (ct, tag) Tuples
 
