@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 25 June 2025                                  J. Preuß Mattsson
+Expires: 26 June 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                        22 December 2024
+                                                        23 December 2024
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 June 2025.
+   This Internet-Draft will expire on 26 June 2025.
 
 Copyright Notice
 
@@ -424,7 +424,7 @@ Table of Contents
 
    10.  Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 
-   11.  If N passes replay protrection, return P
+   11.  If N passes replay protection, return P
 
    The comparison of tag and expected_tag in step 9 MUST be performed in
    constant time to prevent any information leakage about the position
