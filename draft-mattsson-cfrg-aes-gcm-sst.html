@@ -2135,8 +2135,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         </h3>
 <div class="alignLeft art-text artwork" id="appendix-A.1-1">
 <pre>
-       KEY = { 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f }
-     NONCE = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
+         K = { 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f }
+         N = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
          H = { 22 ce 92 da cb 50 77 4b ab 0d 18 29 3d 6e ae 7f }
          Q = { 03 13 63 96 74 be fa 86 4d fa fb 80 36 b7 a0 3c }
          M = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
@@ -2149,12 +2149,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.1.1-1">
 <pre>
-       AAD = { }
- PLAINTEXT = { }
-encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-TAG = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
-       TAG = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d }
-CIPHERTEXT = { }
+         A = { }
+         P = { }
+         L = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full_tag = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
+       tag = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d }
+        ct = { }
 </pre><a href="#appendix-A.1.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2166,12 +2166,12 @@ CIPHERTEXT = { }
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.1.2-1">
 <pre>
-       AAD = { 40 41 42 43 44 }
- PLAINTEXT = { }
-encode-LEN = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
-  full-TAG = { 7f f3 cb a4 d5 f3 08 a5 70 4e 2f d5 f2 3a e8 f9 }
-       TAG = { 7f f3 cb a4 d5 f3 08 a5 70 4e 2f d5 }
-CIPHERTEXT = { }
+         A = { 40 41 42 43 44 }
+         P = { }
+         L = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
+  full_tag = { 7f f3 cb a4 d5 f3 08 a5 70 4e 2f d5 f2 3a e8 f9 }
+       tag = { 7f f3 cb a4 d5 f3 08 a5 70 4e 2f d5 }
+        ct = { }
 </pre><a href="#appendix-A.1.2-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2183,12 +2183,12 @@ CIPHERTEXT = { }
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.1.3-1">
 <pre>
-       AAD = { }
- PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
-encode-LEN = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-TAG = { f8 de 17 85 fd 1a 90 d9 81 8f cb 7b 44 69 8a 8b }
-       TAG = { f8 de 17 85 fd 1a 90 d9 81 8f cb 7b }
-CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
+         A = { }
+         P = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
+         L = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full_tag = { f8 de 17 85 fd 1a 90 d9 81 8f cb 7b 44 69 8a 8b }
+       tag = { f8 de 17 85 fd 1a 90 d9 81 8f cb 7b }
+        ct = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
 </pre><a href="#appendix-A.1.3-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2200,13 +2200,13 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd }
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.1.4-1">
 <pre>
-       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
- PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+         A = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
+         P = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 71 72 73 74 75 76 77 78 79 7a 7b 7c 7d 7e }
-encode-LEN = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
-  full-TAG = { 93 43 56 14 0b 84 48 2c d0 14 c7 40 7e e9 cc b6 }
-       TAG = { 93 43 56 14 0b 84 48 2c d0 14 c7 40 }
-CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
+         L = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
+  full_tag = { 93 43 56 14 0b 84 48 2c d0 14 c7 40 7e e9 cc b6 }
+       tag = { 93 43 56 14 0b 84 48 2c d0 14 c7 40 }
+        ct = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
                7d c0 cb c7 85 a7 a9 20 db 42 28 ff 63 32 10 }
 </pre><a href="#appendix-A.1.4-1" class="pilcrow">¶</a>
 </div>
@@ -2219,13 +2219,13 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.1.5-1">
 <pre>
-       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
- PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+         A = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
+         P = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 }
-encode-LEN = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
-  full-TAG = { f8 50 b7 97 11 43 ab e9 31 5a d7 eb 3b 0a 16 81 }
-       TAG = { f8 50 b7 97 11 43 ab e9 31 5a d7 eb }
-CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
+         L = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
+  full_tag = { f8 50 b7 97 11 43 ab e9 31 5a d7 eb 3b 0a 16 81 }
+       tag = { f8 50 b7 97 11 43 ab e9 31 5a d7 eb }
+        ct = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
                7d }
 </pre><a href="#appendix-A.1.5-1" class="pilcrow">¶</a>
 </div>
@@ -2240,19 +2240,19 @@ CIPHERTEXT = { 64 f0 5b ae 1e d2 40 3a 71 25 5e dd 53 49 5c e1
         </h3>
 <div class="alignLeft art-text artwork" id="appendix-A.2-1">
 <pre>
-       KEY = { 29 23 be 84 e1 6c d6 ae 52 90 49 f1 f1 bb e9 eb }
-     NONCE = { 9a 50 ee 40 78 36 fd 12 49 32 f6 9e }
-       AAD = { 1f 03 5a 7d 09 38 25 1f 5d d4 cb fc 96 f5 45 3b
+         K = { 29 23 be 84 e1 6c d6 ae 52 90 49 f1 f1 bb e9 eb }
+         N = { 9a 50 ee 40 78 36 fd 12 49 32 f6 9e }
+         A = { 1f 03 5a 7d 09 38 25 1f 5d d4 cb fc 96 f5 45 3b
                13 0d }
- PLAINTEXT = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
+         P = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
                f6 22 91 9d }
          H = { 2d 6d 7f 1c 52 a7 a0 6b f2 bc bd 23 75 47 03 88 }
          Q = { 3b fd 00 96 25 84 2a 86 65 71 a4 66 e5 62 05 92 }
          M = { 9e 6c 98 3e e0 6c 1a ab c8 99 b7 8d 57 32 0a f5 }
-encode-LEN = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
-  full-TAG = { 45 03 bf b0 96 82 39 b3 67 e9 70 c3 83 c5 10 6f }
-       TAG = { 45 03 bf b0 }
-CIPHERTEXT = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
+         L = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
+  full_tag = { 45 03 bf b0 96 82 39 b3 67 e9 70 c3 83 c5 10 6f }
+       tag = { 45 03 bf b0 }
+        ct = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
                da 9d b8 09 }
 </pre><a href="#appendix-A.2-1" class="pilcrow">¶</a>
 </div>
@@ -2265,9 +2265,9 @@ CIPHERTEXT = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
         </h3>
 <div class="alignLeft art-text artwork" id="appendix-A.3-1">
 <pre>
-       KEY = { 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
+         K = { 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
                10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f }
-     NONCE = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
+         N = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
          H = { 3b d9 9f 8d 38 f0 2e a1 80 96 a4 b0 b1 d9 3b 1b }
          Q = { af 7f 54 00 16 aa b8 bc 91 56 d9 d1 83 59 cc e5 }
          M = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
@@ -2280,12 +2280,12 @@ CIPHERTEXT = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.3.1-1">
 <pre>
-       AAD = { }
- PLAINTEXT = { }
-encode-LEN = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-TAG = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
-       TAG = { b3 35 31 c0 e9 6f 4a 03 }
-CIPHERTEXT = { }
+         A = { }
+         P = { }
+         L = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full_tag = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
+       tag = { b3 35 31 c0 e9 6f 4a 03 }
+        ct = { }
 </pre><a href="#appendix-A.3.1-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2297,12 +2297,12 @@ CIPHERTEXT = { }
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.3.2-1">
 <pre>
-       AAD = { 40 41 42 43 44 }
- PLAINTEXT = { }
-encode-LEN = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
-  full-TAG = { 63 ac ca 4d 20 9f b3 90 28 ff c3 17 04 01 67 61 }
-       TAG = { 63 ac ca 4d 20 9f b3 90 }
-CIPHERTEXT = { }
+         A = { 40 41 42 43 44 }
+         P = { }
+         L = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
+  full_tag = { 63 ac ca 4d 20 9f b3 90 28 ff c3 17 04 01 67 61 }
+       tag = { 63 ac ca 4d 20 9f b3 90 }
+        ct = { }
 </pre><a href="#appendix-A.3.2-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2314,12 +2314,12 @@ CIPHERTEXT = { }
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.3.3-1">
 <pre>
-       AAD = { }
- PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
-encode-LEN = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
-  full-TAG = { e1 de bf fd 5f 3a 85 e3 48 bd 6f cc 6e 62 10 90 }
-       TAG = { e1 de bf fd 5f 3a 85 e3 }
-CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
+         A = { }
+         P = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
+         L = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
+  full_tag = { e1 de bf fd 5f 3a 85 e3 48 bd 6f cc 6e 62 10 90 }
+       tag = { e1 de bf fd 5f 3a 85 e3 }
+        ct = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
 </pre><a href="#appendix-A.3.3-1" class="pilcrow">¶</a>
 </div>
 </section>
@@ -2331,13 +2331,13 @@ CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.3.4-1">
 <pre>
-       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
- PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+         A = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f }
+         P = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 71 72 73 74 75 76 77 78 79 7a 7b 7c 7d 7e }
-encode-LEN = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
-  full-TAG = { c3 5e d7 83 9f 21 f7 bb a5 a8 a2 8e 1f 49 ed 04 }
-       TAG = { c3 5e d7 83 9f 21 f7 bb }
-CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
+         L = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
+  full_tag = { c3 5e d7 83 9f 21 f7 bb a5 a8 a2 8e 1f 49 ed 04 }
+       tag = { c3 5e d7 83 9f 21 f7 bb }
+        ct = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
                33 11 7e 17 58 b5 ed d0 d6 5d 68 32 06 bb ad }
 </pre><a href="#appendix-A.3.4-1" class="pilcrow">¶</a>
 </div>
@@ -2350,13 +2350,13 @@ CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
           </h4>
 <div class="alignLeft art-text artwork" id="appendix-A.3.5-1">
 <pre>
-       AAD = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
- PLAINTEXT = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
+         A = { 40 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e }
+         P = { 60 61 62 63 64 65 66 67 68 69 6a 6b 6c 6d 6e 6f
                70 }
-encode-LEN = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
-  full-TAG = { 49 7c 14 77 67 a5 3d 57 64 ce fd 03 26 fe e7 b5 }
-       TAG = { 49 7c 14 77 67 a5 3d 57 }
-CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
+         L = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
+  full_tag = { 49 7c 14 77 67 a5 3d 57 64 ce fd 03 26 fe e7 b5 }
+       tag = { 49 7c 14 77 67 a5 3d 57 }
+        ct = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
                33 }
 </pre><a href="#appendix-A.3.5-1" class="pilcrow">¶</a>
 </div>
@@ -2371,20 +2371,20 @@ CIPHERTEXT = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
         </h3>
 <div class="alignLeft art-text artwork" id="appendix-A.4-1">
 <pre>
-       KEY = { 29 23 be 84 e1 6c d6 ae 52 90 49 f1 f1 bb e9 eb
+         K = { 29 23 be 84 e1 6c d6 ae 52 90 49 f1 f1 bb e9 eb
                b3 a6 db 3c 87 0c 3e 99 24 5e 0d 1c 06 b7 b3 12 }
-     NONCE = { 9a 50 ee 40 78 36 fd 12 49 32 f6 9e }
-       AAD = { 1f 03 5a 7d 09 38 25 1f 5d d4 cb fc 96 f5 45 3b
+         N = { 9a 50 ee 40 78 36 fd 12 49 32 f6 9e }
+         A = { 1f 03 5a 7d 09 38 25 1f 5d d4 cb fc 96 f5 45 3b
                13 0d }
- PLAINTEXT = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
+         P = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
                f6 22 91 9d }
          H = { 13 53 4b f7 8a 91 38 fd f5 41 65 7f c2 39 55 23 }
          Q = { 32 69 75 a3 3a ff ae ac af a8 fb d1 bd 62 66 95 }
          M = { 59 48 44 80 b6 cd 59 06 69 27 5e 7d 81 4a d1 74 }
-encode-LEN = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
-  full-TAG = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c d5 4d }
-       TAG = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c }
-CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
+         L = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
+  full-tag = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c d5 4d }
+       tag = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c }
+        ct = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
                eb 8f f7 cc }
 </pre><a href="#appendix-A.4-1" class="pilcrow">¶</a>
 </div>
