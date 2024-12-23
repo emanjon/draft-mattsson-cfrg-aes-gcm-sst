@@ -93,7 +93,7 @@ Table of Contents
      5.2.  Confidentiality
      5.3.  Weak keys
      5.4.  Replay Protection
-     5.5.  Comparision with ChaCha20-Poly1305 and AES-GCM
+     5.5.  Comparison with ChaCha20-Poly1305 and AES-GCM
    6.  IANA Considerations
    7.  References
      7.1.  Normative References
@@ -535,13 +535,13 @@ Table of Contents
 
    The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1
    for AES-GCM-SST in protocols where ℓ ≈ 2^12, such as QUIC [RFC9000],
-   and always δ ≈ 1 for Rijndael-GCM-SST.  In addtion to restricting the
-   Bernstein bound factor, the Q_MAX constraint also keeps the attack
-   complexity of distinguishing attacks at an acceptable level.  Since
-   encryption and decryption queries play an equivalent role in the
-   Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Security protocols
-   employing GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
-   Refer to Section 5 for further details.
+   and always δ ≈ 1 for Rijndael-GCM-SST.  In addition to restricting
+   the Bernstein bound factor, the Q_MAX constraint also keeps the
+   attack complexity of distinguishing attacks at an acceptable level.
+   Since encryption and decryption queries play an equivalent role in
+   the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Security
+   protocols employing GCM-SST MAY impose stricter limits on Q_MAX and
+   V_MAX.  Refer to Section 5 for further details.
 
 5.  Security Considerations
 
@@ -565,7 +565,7 @@ Table of Contents
    NOT be used with random nonces [Collision] and MUST be used with
    replay protection.  Reuse of nonces in successful encryption and
    decryption function calls enable universal forgery [Lindell][Inoue].
-   For a given tag length, GCM-SST has stricly better security
+   For a given tag length, GCM-SST has strictly better security
    properties than GCM.  GCM allows universal forgery with lower
    complexity than GCM-SST, even when nonces are not reused.
    Implementations SHOULD add randomness to the nonce by XORing a unique
@@ -672,7 +672,7 @@ Table of Contents
    RECOMMENDED as this approach reduces robustness and availability
    while exposing the system to denial-of-service attacks [Robust].
 
-5.5.  Comparision with ChaCha20-Poly1305 and AES-GCM
+5.5.  Comparison with ChaCha20-Poly1305 and AES-GCM
 
    Table 2 compares the integrity of AES-GCM-SST, ChaCha20-Poly1305
    [RFC7539], and AES-GCM [RFC5116] in unicast security protocols with
