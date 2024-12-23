@@ -574,7 +574,7 @@ Steps:
 9. Let tag = truncate(full_tag, tag_length)
 10. Return (ct, tag)
 
-The encoding of L align with existing implementations of GCM.
+The encoding of L aligns with existing implementations of GCM.
 
 ## Authenticated Decryption Function
 
