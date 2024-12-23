@@ -366,6 +366,8 @@ Table of Contents
 
    10.  Return (ct, tag)
 
+   The encoding of L align with existing implementations of GCM.
+
 3.2.  Authenticated Decryption Function
 
    The decryption function Decrypt(K, N, A, ct, tag) decrypts a
