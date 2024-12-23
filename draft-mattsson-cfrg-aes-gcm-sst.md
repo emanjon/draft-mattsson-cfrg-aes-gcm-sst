@@ -908,6 +908,10 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
+Changes from -13 to -14:
+
+* Editorial changes
+
 Changes from -12 to -13:
 
 * Changed name to Strong Secure Tags to better illustrate that GCM-SST is intended to improve security for all tag lengths.
@@ -933,25 +937,25 @@ Changes from -10 to -11:
 
 Changes from -09 to -10:
 
-* Corrected some probabilites that were off by a factor 2
+* Corrected some probabilities that were off by a factor 2
 * Editorial changes.
 
 Changes from -07 to -09:
 
 * Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.
-* Added a comparision between GCM_SST_14, GCM_SST_12, GCM_16, POLY1305 in protocols like QUIC
+* Added a comparison between GCM_SST_14, GCM_SST_12, GCM_16, POLY1305 in protocols like QUIC
 * Added text on the importance of behaving like an ideal MAC
 * Consideration on replay protection mechanisms
 * Added text and alternative implementations borrowed from NIST
-* Added constrainst of 2^32 encryption invocations aligning with NIST
-* Added text explainting that GCM-SST offer strictly better security than GCM and that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.
+* Added constraints of 2^32 encryption invocations aligning with NIST
+* Added text explaining that GCM-SST offer strictly better security than GCM and that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.
 
 Changes from -06 to -07:
 
 * Replaced 80-bit tags with 96- and 112-bit tags.
 * Changed P_MAX and A_MAX and made them tag_length dependent to enable 96- and 112-bit tags with near-ideal security.
 * Clarified that GCM-SST tags have near-ideal forgery probabilities, even against multiple forgery attacks, which is not the case at all for GCM.
-* Added formulas for expeted number of forgeries for GCM-SST (q ⋅ 2<sup>-tag_length</sup>) and GCM (q<sup>2</sup> ⋅ (n + m + 1) ⋅ 2<sup>-tag_length + 1</sup>) and stated that GCM-SST fulfils BSI recommendation of using 96-bit ideal MACs.
+* Added formulas for expected number of forgeries for GCM-SST (q ⋅ 2<sup>-tag_length</sup>) and GCM (q<sup>2</sup> ⋅ (n + m + 1) ⋅ 2<sup>-tag_length + 1</sup>) and stated that GCM-SST fulfils BSI recommendation of using 96-bit ideal MACs.
 
 Changes from -04 to -06:
 
