@@ -562,6 +562,8 @@ Steps:
 9. Let tag = truncate(full_tag, tag_length)
 10. Return (ct, tag)
 
+The encoding of L align with existing implementations of GCM.
+
 ## Authenticated Decryption Function
 
 The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if the tag verification failed.
