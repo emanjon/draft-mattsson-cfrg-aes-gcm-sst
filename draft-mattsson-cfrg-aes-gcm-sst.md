@@ -598,7 +598,7 @@ Steps:
 8. Let expected_tag = truncate(full_tag, tag_length)
 9. If tag != expected_tag, return error and abort
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
-11. If N passes replay protrection, return P
+11. If N passes replay protection, return P
 
 The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection can be performed either before step 1 or during step 11.
 
