@@ -433,7 +433,9 @@ Table of Contents
    of the first mismatched byte.  For a given key, a plaintext MUST NOT
    be returned unless it is certain that a plaintext has not been
    returned for the same nonce.  Replay protection can be performed
-   either before step 1 or during step 11.
+   either before step 1 or during step 11.  Protocols with nonce-hiding
+   mechanisms [Bellare], such as QUIC [RFC9001], implement replay
+   protection after decryption to mitigate timing side-channel attacks.
 
 3.3.  Encoding (ct, tag) Tuples
 
