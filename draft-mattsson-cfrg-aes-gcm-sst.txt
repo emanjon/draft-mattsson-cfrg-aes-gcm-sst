@@ -1196,6 +1196,9 @@ Change Log
 
    Changes from -13 to -14:
 
+   *  Explained the formatting of L as well as why replay protection
+      after decryption may be used.
+
    *  Editorial changes
 
    Changes from -12 to -13:
