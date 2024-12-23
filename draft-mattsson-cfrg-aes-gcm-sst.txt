@@ -1199,6 +1199,8 @@ Change Log
    *  Explained the formatting of L as well as why replay protection
       after decryption may be used.
 
+   *  Aligned test vector tag length with specification
+
    *  Editorial changes
 
    Changes from -12 to -13:
