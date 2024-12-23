@@ -231,13 +231,13 @@ informative:
         ins: ZUC Design Team
     date: September 2024
 
-  Options:
-    target: https://csrc.nist.gov/csrc/media/Presentations/2024/options-for-encryption-algorithms-and-modes/images-media/sess-3-regenscheid-acm-workshop-2024.pdf
-    title: "NIST Options in for Encryption Algorithms and Modes of Operation"
+  Plans:
+    target: https://csrc.nist.gov/pubs/sp/800/197/iprd
+    title: "NIST Proposes to Standardize a Wider Variant of AES"
     author:
       -
         ins: NIST
-    date: June 2024
+    date: December 2024
 
   Comments38B:
     target: https://csrc.nist.gov/csrc/media/Projects/crypto-publication-review-project/documents/initial-comments/sp800-38b-initial-public-comments-2024.pdf
@@ -481,7 +481,7 @@ informative:
 
 --- abstract
 
-This document defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV. This enables truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks, which are significant security improvements over GCM. GCM-SST is designed for unicast security protocols with replay protection and addresses the strong industry demand for fast encryption with less overhead and high security. This document registers several instances of GCM-SST using Advanced Encryption Standard (AES) and Rijndael-256-256.
+This document defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm. GCM-SST can be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM are the use of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV. This enables truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks, which are significant security improvements over GCM. GCM-SST is designed for unicast security protocols with replay protection and addresses the strong industry demand for fast encryption with less overhead and high security. This document registers several instances of GCM-SST using Advanced Encryption Standard (AES) and Rijndael-256.
 
 --- middle
 
@@ -495,7 +495,7 @@ Short tags are widely used, 32-bit tags are standard in most radio link layers i
 
 This document defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface, allowing it to be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the introduction of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. These changes enable truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks, see {{Security}}. GCM-SST is designed for use in unicast security protocols with replay protection such as TLS {{RFC8446}}, QUIC {{RFC9000}}, SRTP {{RFC3711}}, and PDCP {{PDCP}}, where its authentication tag behaves like an ideal MAC, including reforgeability resistance. Compared to Poly1305 {{RFC7539}} and GCM {{RFC5116}}, GCM-SST can provide better integrity with less overhead. Its performance is similar to GCM {{GCM}}, with the two additional AES invocations compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST retains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}.
 
-This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in counter mode as keystream generators and with tag lengths of 32, 64, 96, and 112 bits, see {{AES-GCM-SST}}. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM {{GCM}}. 3GPP has standardized the use of Rijndael-256-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST is anticipated to standardize Rijndael-256-256 {{Options}}, although there might be revisions to the key schedule. Rijndael-256-256 has very good performance on modern x86-64 platforms equipped with AES-NI and VAES instructions {{Ducker}}.
+This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256) {{Rijndael}} in counter mode as keystream generators and with tag lengths of 32, 64, 96, and 112 bits, see {{AES-GCM-SST}}. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM {{GCM}}. 3GPP has standardized the use of Rijndael-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST is anticipated to standardize Rijndael-256 {{Plans}}, although there might be revisions to the key schedule. Rijndael-256 has very good performance on modern x86-64 platforms equipped with AES-NI and VAES instructions {{Ducker}}.
 
 GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP, with several years of discussion and refinement contributing to its design {{SAGE23}}{{SAGE24}}.  Mac5G is constructed similarly to the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}. 3GPP has decided to standardize GCM-SST for use with AES-256 {{AES}}, SNOW 5G {{SNOW}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}.
 
@@ -622,9 +622,9 @@ Applications MAY keep the ciphertext and the authentication tag in distinct stru
 
 C = ct \|\| tag
 
-# AES and Rijndael-256-256 in GCM-SST {#AES-GCM-SST}
+# AES and Rijndael-256 in GCM-SST {#AES-GCM-SST}
 
-This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256-256) {{Rijndael}} in Galois Counter Mode with Strong Secure Tags.
+This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256) {{Rijndael}} in Galois Counter Mode with Strong Secure Tags.
 
 ## AES-GCM-SST
 
@@ -636,13 +636,13 @@ where ENC is the AES Cipher function {{AES}}. Big-endian counters align with exi
 
 ## Rijndael-GCM-SST
 
-When GCM-SST is instantiated with Rijndael-256-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256-256 in counter mode
+When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256 in counter mode
 
 Z[2i]   = ENC(K, N \|\| BE32(i))[0]
 
 Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
 
-where ENC is the Rijndael-256-256 Cipher function {{Rijndael}}.
+where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 
 ## AEAD Instances and Constraints {#instances}
 
@@ -665,7 +665,7 @@ We define twelve AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-
 
 Common parameters for the six AEAD instances:
 
-* N_MIN = N_MAX (minimum and maximum size of the nonce) is 12 octets for AES, while for Rijndael-256-256, it is 28 bytes.
+* N_MIN = N_MAX (minimum and maximum size of the nonce) is 12 octets for AES, while for Rijndael-256, it is 28 bytes.
 
 * C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
 
@@ -681,7 +681,7 @@ The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES
 
 GCM-SST introduces an additional subkey Q, alongside the subkey H. The inclusion of Q enables truncated tags with forgery probabilities close to ideal. Both H and Q are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} prove that GCM-SST is a provably secure authenticated encryption mode, with security guaranteed for evaluations under fresh nonces, even if some earlier nonces have been reused.
 
-GCM-SST is designed for use in unicast security protocols with replay protection. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and only once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. GCM-SST MUST NOT be used with random nonces [Collision] and MUST be used with replay protection. Reuse of nonces in successful encryption and decryption function calls enable universal forgery {{Lindell}}{{Inoue}}. For a given tag length, GCM-SST has strictly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations SHOULD add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks [Bellare] and is for example implemented in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-256-256-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-256-GCM-SST. GCM-SST SHOULD NOT be used in multicast or broadcast scenarios. While GCM-SST offers better security properties than GCM for a given tag length in such contexts, it does not behave like an ideal MAC.
+GCM-SST is designed for use in unicast security protocols with replay protection. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and only once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. GCM-SST MUST NOT be used with random nonces [Collision] and MUST be used with replay protection. Reuse of nonces in successful encryption and decryption function calls enable universal forgery {{Lindell}}{{Inoue}}. For a given tag length, GCM-SST has strictly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations SHOULD add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks [Bellare] and is for example implemented in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-256-GCM-SST. GCM-SST SHOULD NOT be used in multicast or broadcast scenarios. While GCM-SST offers better security properties than GCM for a given tag length in such contexts, it does not behave like an ideal MAC.
 
 ## Integrity
 
@@ -691,7 +691,7 @@ The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depend
 
 ## Confidentiality
 
-The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / q, where q is the number of invocations of the AES encryption function. In contrast, the confidentiality offered by Rijndael-256-256-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-256-256-GCM-SST is approximately 2<sup>257</sup> / q, where q is the number of invocations of the Rijndael-256-256 encryption function. While Rijndael-256-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
+The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM {{GCM}} and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / q, where q is the number of invocations of the AES encryption function. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>257</sup> / q, where q is the number of invocations of the Rijndael-256 encryption function. While Rijndael-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
 
 The confidentiality offered by AES-GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries can significantly compromise privacy, in addition to affecting integrity and authenticity. It MUST be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality MUST all be carefully evaluated when selecting an appropriate tag length.
 
@@ -925,6 +925,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -13 to -14:
 
 * Explained the formatting of L as well as why replay protection after decryption may be used.
+* Updated link to NIST's plans to standardize Rijndael-256 and aligned the name with NIST
 * Aligned test vector tag length with specification
 * Editorial changes
 
