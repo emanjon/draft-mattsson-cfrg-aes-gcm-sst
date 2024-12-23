@@ -2397,184 +2397,190 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 <a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
 <p id="appendix-B-1">This section is to be removed before publishing as an RFC.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">Changes from -12 to -13:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">Changes from -13 to -14:<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-3.1">
-          <p id="appendix-B-3.1.1">Changed name to Strong Secure Tags to better illustrate that GCM-SST is intended to improve security for all tag lengths.<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-3.2">
-          <p id="appendix-B-3.2.1">Editorial changes<a href="#appendix-B-3.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-3.1.1">Editorial changes<a href="#appendix-B-3.1.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-4">Changes from -11 to -12:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
+<p id="appendix-B-4">Changes from -12 to -13:<a href="#appendix-B-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-5.1">
-          <p id="appendix-B-5.1.1">Introduced Q_MAX and V_MAX as formal names for the invocation constraints.<a href="#appendix-B-5.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-5.1.1">Changed name to Strong Secure Tags to better illustrate that GCM-SST is intended to improve security for all tag lengths.<a href="#appendix-B-5.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-5.2">
-          <p id="appendix-B-5.2.1">Described that masking is important to mitigate weak keys.<a href="#appendix-B-5.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-5.3">
-          <p id="appendix-B-5.3.1">Improved and expanded the section comparing GCM-SST with Poly1305 and GCM.<a href="#appendix-B-5.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-5.4">
-          <p id="appendix-B-5.4.1">Editorial changes including subsections in the security considerations.<a href="#appendix-B-5.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-5.2.1">Editorial changes<a href="#appendix-B-5.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-6">Changes from -10 to -11:<a href="#appendix-B-6" class="pilcrow">¶</a></p>
+<p id="appendix-B-6">Changes from -11 to -12:<a href="#appendix-B-6" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-7.1">
-          <p id="appendix-B-7.1.1">Added that protocols can impose stricter limits on P_MAX and A_MAX<a href="#appendix-B-7.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-7.1.1">Introduced Q_MAX and V_MAX as formal names for the invocation constraints.<a href="#appendix-B-7.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-7.2">
-          <p id="appendix-B-7.2.1">Added constraints on the number of decryption queries v<a href="#appendix-B-7.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-7.2.1">Described that masking is important to mitigate weak keys.<a href="#appendix-B-7.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-7.3">
-          <p id="appendix-B-7.3.1">More info on replay protection implementation<a href="#appendix-B-7.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-7.3.1">Improved and expanded the section comparing GCM-SST with Poly1305 and GCM.<a href="#appendix-B-7.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-7.4">
-          <p id="appendix-B-7.4.1">More info on nonce constructions<a href="#appendix-B-7.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-7.5">
-          <p id="appendix-B-7.5.1">Introduced the Bernstein bound factor δ instead of just assuming that δ &lt; 2<a href="#appendix-B-7.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-7.6">
-          <p id="appendix-B-7.6.1">Clarified differences between GCM-SST with different keystream generators (ideal, AES, Rijndael)<a href="#appendix-B-7.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-7.7">
-          <p id="appendix-B-7.7.1">Made it clearer that Table 1 is for unicast security protocols with replay protection and that Poly1305 is keyed with ChaCha20.<a href="#appendix-B-7.7.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-7.8">
-          <p id="appendix-B-7.8.1">Editorial changes including RFC 2119 terminology<a href="#appendix-B-7.8.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-7.4.1">Editorial changes including subsections in the security considerations.<a href="#appendix-B-7.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-8">Changes from -09 to -10:<a href="#appendix-B-8" class="pilcrow">¶</a></p>
+<p id="appendix-B-8">Changes from -10 to -11:<a href="#appendix-B-8" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-9.1">
-          <p id="appendix-B-9.1.1">Corrected some probabilites that were off by a factor 2<a href="#appendix-B-9.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-9.1.1">Added that protocols can impose stricter limits on P_MAX and A_MAX<a href="#appendix-B-9.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-9.2">
-          <p id="appendix-B-9.2.1">Editorial changes.<a href="#appendix-B-9.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-9.2.1">Added constraints on the number of decryption queries v<a href="#appendix-B-9.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.3">
+          <p id="appendix-B-9.3.1">More info on replay protection implementation<a href="#appendix-B-9.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.4">
+          <p id="appendix-B-9.4.1">More info on nonce constructions<a href="#appendix-B-9.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.5">
+          <p id="appendix-B-9.5.1">Introduced the Bernstein bound factor δ instead of just assuming that δ &lt; 2<a href="#appendix-B-9.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.6">
+          <p id="appendix-B-9.6.1">Clarified differences between GCM-SST with different keystream generators (ideal, AES, Rijndael)<a href="#appendix-B-9.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.7">
+          <p id="appendix-B-9.7.1">Made it clearer that Table 1 is for unicast security protocols with replay protection and that Poly1305 is keyed with ChaCha20.<a href="#appendix-B-9.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-9.8">
+          <p id="appendix-B-9.8.1">Editorial changes including RFC 2119 terminology<a href="#appendix-B-9.8.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-10">Changes from -07 to -09:<a href="#appendix-B-10" class="pilcrow">¶</a></p>
+<p id="appendix-B-10">Changes from -09 to -10:<a href="#appendix-B-10" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-11.1">
-          <p id="appendix-B-11.1.1">Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.<a href="#appendix-B-11.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-11.1.1">Corrected some probabilities that were off by a factor 2<a href="#appendix-B-11.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-11.2">
-          <p id="appendix-B-11.2.1">Added a comparision between GCM_SST_14, GCM_SST_12, GCM_16, POLY1305 in protocols like QUIC<a href="#appendix-B-11.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-11.3">
-          <p id="appendix-B-11.3.1">Added text on the importance of behaving like an ideal MAC<a href="#appendix-B-11.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-11.4">
-          <p id="appendix-B-11.4.1">Consideration on replay protection mechanisms<a href="#appendix-B-11.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-11.5">
-          <p id="appendix-B-11.5.1">Added text and alternative implementations borrowed from NIST<a href="#appendix-B-11.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-11.6">
-          <p id="appendix-B-11.6.1">Added constrainst of 2^32 encryption invocations aligning with NIST<a href="#appendix-B-11.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-11.7">
-          <p id="appendix-B-11.7.1">Added text explainting that GCM-SST offer strictly better security than GCM and that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.<a href="#appendix-B-11.7.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-11.2.1">Editorial changes.<a href="#appendix-B-11.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-12">Changes from -06 to -07:<a href="#appendix-B-12" class="pilcrow">¶</a></p>
+<p id="appendix-B-12">Changes from -07 to -09:<a href="#appendix-B-12" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-13.1">
-          <p id="appendix-B-13.1.1">Replaced 80-bit tags with 96- and 112-bit tags.<a href="#appendix-B-13.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-13.1.1">Changed replay requirements to allow replay protection after decryption to align with protocols like QUIC and DTLS 1.3.<a href="#appendix-B-13.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-13.2">
-          <p id="appendix-B-13.2.1">Changed P_MAX and A_MAX and made them tag_length dependent to enable 96- and 112-bit tags with near-ideal security.<a href="#appendix-B-13.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-13.2.1">Added a comparison between GCM_SST_14, GCM_SST_12, GCM_16, POLY1305 in protocols like QUIC<a href="#appendix-B-13.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-13.3">
-          <p id="appendix-B-13.3.1">Clarified that GCM-SST tags have near-ideal forgery probabilities, even against multiple forgery attacks, which is not the case at all for GCM.<a href="#appendix-B-13.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-13.3.1">Added text on the importance of behaving like an ideal MAC<a href="#appendix-B-13.3.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-13.4">
-          <p id="appendix-B-13.4.1">Added formulas for expeted number of forgeries for GCM-SST (q ⋅ 2<sup>-tag_length</sup>) and GCM (q<sup>2</sup> ⋅ (n + m + 1) ⋅ 2<sup>-tag_length + 1</sup>) and stated that GCM-SST fulfils BSI recommendation of using 96-bit ideal MACs.<a href="#appendix-B-13.4.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-13.4.1">Consideration on replay protection mechanisms<a href="#appendix-B-13.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-13.5">
+          <p id="appendix-B-13.5.1">Added text and alternative implementations borrowed from NIST<a href="#appendix-B-13.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-13.6">
+          <p id="appendix-B-13.6.1">Added constraints of 2^32 encryption invocations aligning with NIST<a href="#appendix-B-13.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-13.7">
+          <p id="appendix-B-13.7.1">Added text explaining that GCM-SST offer strictly better security than GCM and that "GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused", to avoid any misconceptions that Lindell's attack makes GCM-SST weaker than GCM in any way.<a href="#appendix-B-13.7.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-14">Changes from -04 to -06:<a href="#appendix-B-14" class="pilcrow">¶</a></p>
+<p id="appendix-B-14">Changes from -06 to -07:<a href="#appendix-B-14" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-15.1">
-          <p id="appendix-B-15.1.1">Reference to Inoue et al. for security proof, forgery probability graph, and improved attack when GCM-SST is used without replay protection.<a href="#appendix-B-15.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-15.1.1">Replaced 80-bit tags with 96- and 112-bit tags.<a href="#appendix-B-15.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-15.2">
-          <p id="appendix-B-15.2.1">Editorial changes.<a href="#appendix-B-15.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-15.2.1">Changed P_MAX and A_MAX and made them tag_length dependent to enable 96- and 112-bit tags with near-ideal security.<a href="#appendix-B-15.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-15.3">
+          <p id="appendix-B-15.3.1">Clarified that GCM-SST tags have near-ideal forgery probabilities, even against multiple forgery attacks, which is not the case at all for GCM.<a href="#appendix-B-15.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-15.4">
+          <p id="appendix-B-15.4.1">Added formulas for expected number of forgeries for GCM-SST (q ⋅ 2<sup>-tag_length</sup>) and GCM (q<sup>2</sup> ⋅ (n + m + 1) ⋅ 2<sup>-tag_length + 1</sup>) and stated that GCM-SST fulfils BSI recommendation of using 96-bit ideal MACs.<a href="#appendix-B-15.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-16">Changes from -03 to -04:<a href="#appendix-B-16" class="pilcrow">¶</a></p>
+<p id="appendix-B-16">Changes from -04 to -06:<a href="#appendix-B-16" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-17.1">
-          <p id="appendix-B-17.1.1">Added that GCM-SST is designed for unicast protocol with replay protection<a href="#appendix-B-17.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-17.1.1">Reference to Inoue et al. for security proof, forgery probability graph, and improved attack when GCM-SST is used without replay protection.<a href="#appendix-B-17.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-17.2">
-          <p id="appendix-B-17.2.1">Update info on use cases for short tags<a href="#appendix-B-17.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-17.3">
-          <p id="appendix-B-17.3.1">Updated info on ETSI and 3GPP standardization of GCM-SST<a href="#appendix-B-17.3.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-17.4">
-          <p id="appendix-B-17.4.1">Added Rijndael-256-256<a href="#appendix-B-17.4.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-17.5">
-          <p id="appendix-B-17.5.1">Added that replay is required and that random nonces, multicast, and broadcast are forbidden based on attack from Yehuda Lindell<a href="#appendix-B-17.5.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-17.6">
-          <p id="appendix-B-17.6.1">Security considerations for active attacks on privacy as suggested by Thomas Bellebaum<a href="#appendix-B-17.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-17.7">
-          <p id="appendix-B-17.7.1">Improved text on H and Q being zero.<a href="#appendix-B-17.7.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-17.8">
-          <p id="appendix-B-17.8.1">Editorial changes.<a href="#appendix-B-17.8.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-17.2.1">Editorial changes.<a href="#appendix-B-17.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-18">Changes from -02 to -03:<a href="#appendix-B-18" class="pilcrow">¶</a></p>
+<p id="appendix-B-18">Changes from -03 to -04:<a href="#appendix-B-18" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-19.1">
-          <p id="appendix-B-19.1.1">Added performance information and considerations.<a href="#appendix-B-19.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-19.1.1">Added that GCM-SST is designed for unicast protocol with replay protection<a href="#appendix-B-19.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-19.2">
-          <p id="appendix-B-19.2.1">Editorial changes.<a href="#appendix-B-19.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-19.2.1">Update info on use cases for short tags<a href="#appendix-B-19.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-19.3">
+          <p id="appendix-B-19.3.1">Updated info on ETSI and 3GPP standardization of GCM-SST<a href="#appendix-B-19.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-19.4">
+          <p id="appendix-B-19.4.1">Added Rijndael-256-256<a href="#appendix-B-19.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-19.5">
+          <p id="appendix-B-19.5.1">Added that replay is required and that random nonces, multicast, and broadcast are forbidden based on attack from Yehuda Lindell<a href="#appendix-B-19.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-19.6">
+          <p id="appendix-B-19.6.1">Security considerations for active attacks on privacy as suggested by Thomas Bellebaum<a href="#appendix-B-19.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-19.7">
+          <p id="appendix-B-19.7.1">Improved text on H and Q being zero.<a href="#appendix-B-19.7.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-19.8">
+          <p id="appendix-B-19.8.1">Editorial changes.<a href="#appendix-B-19.8.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-20">Changes from -01 to -02:<a href="#appendix-B-20" class="pilcrow">¶</a></p>
+<p id="appendix-B-20">Changes from -02 to -03:<a href="#appendix-B-20" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-21.1">
-          <p id="appendix-B-21.1.1">The length encoding chunk is now called L<a href="#appendix-B-21.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-21.1.1">Added performance information and considerations.<a href="#appendix-B-21.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-21.2">
-          <p id="appendix-B-21.2.1">Use of the notation POLYVAL(H, X_1, X_2, ...) from RFC 8452<a href="#appendix-B-21.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="appendix-B-21.3">
-          <p id="appendix-B-21.3.1">Removed duplicated text in security considerations.<a href="#appendix-B-21.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-21.2.1">Editorial changes.<a href="#appendix-B-21.2.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="appendix-B-22">Changes from -00 to -01:<a href="#appendix-B-22" class="pilcrow">¶</a></p>
+<p id="appendix-B-22">Changes from -01 to -02:<a href="#appendix-B-22" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-B-23.1">
-          <p id="appendix-B-23.1.1">Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.<a href="#appendix-B-23.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-23.1.1">The length encoding chunk is now called L<a href="#appendix-B-23.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-23.2">
-          <p id="appendix-B-23.2.1">Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.<a href="#appendix-B-23.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-23.2.1">Use of the notation POLYVAL(H, X_1, X_2, ...) from RFC 8452<a href="#appendix-B-23.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-B-23.3">
-          <p id="appendix-B-23.3.1">Corrected reference to step numbers during decryption<a href="#appendix-B-23.3.1" class="pilcrow">¶</a></p>
+          <p id="appendix-B-23.3.1">Removed duplicated text in security considerations.<a href="#appendix-B-23.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-23.4">
-          <p id="appendix-B-23.4.1">Changed T to full_tag to align with tag and expected_tag<a href="#appendix-B-23.4.1" class="pilcrow">¶</a></p>
+      </ul>
+<p id="appendix-B-24">Changes from -00 to -01:<a href="#appendix-B-24" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="appendix-B-25.1">
+          <p id="appendix-B-25.1.1">Link to NIST decision to remove support for GCM with tags shorter than 96-bits based on Mattsson et al.<a href="#appendix-B-25.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-23.5">
-          <p id="appendix-B-23.5.1">Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.<a href="#appendix-B-23.5.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-25.2">
+          <p id="appendix-B-25.2.1">Mention that 3GPP 5G Advance will use GCM-SST with AES-256 and SNOW 5G.<a href="#appendix-B-25.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-23.6">
-          <p id="appendix-B-23.6.1">Updated definitions<a href="#appendix-B-23.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-25.3">
+          <p id="appendix-B-25.3.1">Corrected reference to step numbers during decryption<a href="#appendix-B-25.3.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="appendix-B-23.7">
-          <p id="appendix-B-23.7.1">Editorial changes.<a href="#appendix-B-23.7.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="appendix-B-25.4">
+          <p id="appendix-B-25.4.1">Changed T to full_tag to align with tag and expected_tag<a href="#appendix-B-25.4.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-25.5">
+          <p id="appendix-B-25.5.1">Link to images from the NIST encryption workshop illustrating the GCM-SST encryption and decryption functions.<a href="#appendix-B-25.5.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-25.6">
+          <p id="appendix-B-25.6.1">Updated definitions<a href="#appendix-B-25.6.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-B-25.7">
+          <p id="appendix-B-25.7.1">Editorial changes.<a href="#appendix-B-25.7.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
