@@ -925,6 +925,7 @@ CIPHERTEXT = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
 Changes from -13 to -14:
 
 * Explained the formatting of L as well as why replay protection after decryption may be used.
+* Aligned test vector tag length with specification
 * Editorial changes
 
 Changes from -12 to -13:
