@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-22T01:50:18.800501+00:00",
+  "timestamp": "2024-12-24T01:43:05.492443+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -559,6 +559,22 @@
           "updatedAt": "2024-12-20T05:36:15Z"
         }
       ]
+    },
+    {
+      "number": 26,
+      "id": "I_kwDOJat8lM6kP6P1",
+      "title": "Test vectors",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/26",
+      "state": "CLOSED",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Change names to align with the specification\r\nExpands some tags to 96 bits",
+      "createdAt": "2024-12-23T09:41:11Z",
+      "updatedAt": "2024-12-23T14:04:44Z",
+      "closedAt": "2024-12-23T14:04:44Z",
+      "comments": []
     }
   ],
   "pulls": [
