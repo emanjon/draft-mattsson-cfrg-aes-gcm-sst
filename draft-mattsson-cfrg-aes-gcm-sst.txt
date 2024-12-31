@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 26 June 2025                                  J. Preuß Mattsson
+Expires: 4 July 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                        23 December 2024
+                                                        31 December 2024
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 June 2025.
+   This Internet-Draft will expire on 4 July 2025.
 
 Copyright Notice
 
@@ -211,7 +211,10 @@ Table of Contents
    NIST plans to standardize Rijndael-256 [Plans], although there might
    be revisions to the key schedule.  Rijndael-256 has very good
    performance on modern x86-64 platforms equipped with AES-NI and VAES
-   instructions [Ducker].
+   instructions [Ducker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead],
+   AES-GCM-SST offers significantly higher performance in pure hardware
+   implementations while retaining the advantage of being a mode of
+   operation for AES.
 
    GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
    following a request from 3GPP, with several years of discussion and
