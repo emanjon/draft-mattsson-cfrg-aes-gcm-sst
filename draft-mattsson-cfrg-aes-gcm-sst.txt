@@ -26,7 +26,7 @@ Abstract
    attacks, which are significant security improvements over GCM.  GCM-
    SST is designed for unicast security protocols with replay protection
    and addresses the strong industry demand for fast encryption with
-   less overhead and high security.  This document registers several
+   minimal overhead and high security.  This document registers several
    instances of GCM-SST using Advanced Encryption Standard (AES) and
    Rijndael-256.
 
