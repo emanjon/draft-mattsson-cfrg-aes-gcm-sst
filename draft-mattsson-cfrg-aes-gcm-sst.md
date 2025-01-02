@@ -657,8 +657,8 @@ We define twelve AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-
 | AEAD_AES_256_GCM_SST_8 | 32 | 2<sup>36</sup> - 48 | 64 |
 | AEAD_AES_256_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
 | AEAD_AES_256_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
-| AEAD_RIJNDAEL_GCM_SST_4 | 32 | 2<sup>36</sup> - 48 | 32 |
-| AEAD_RIJNDAEL_GCM_SST_8 | 32 | 2<sup>36</sup> - 48 | 64 |
+| AEAD_RIJNDAEL_GCM_SST_4 | 32 | 2<sup>68</sup> - 48 | 32 |
+| AEAD_RIJNDAEL_GCM_SST_8 | 32 | 2<sup>67</sup> | 64 |
 | AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
 | AEAD_RIJNDAEL_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
 {: #iana-algs title="AEAD Algorithms" cols="l r r r"}
@@ -673,7 +673,7 @@ Common parameters for the six AEAD instances:
 
 * V_MAX (maximum number of invocations of the decryption function) is 2<sup>48</sup> for AES-GCM-SST, while for Rijndael-GCM-SST, it is 2<sup>88</sup>.
 
-The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}}. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48). Security protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
+The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}}. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48) for AES-GCM-SST, and P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>68</sup> - 48) for Rijndael-GCM-SST. Security protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
 
 The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ ≈ 2<sup>12</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to restricting the Bernstein bound factor, the Q_MAX constraint also keeps the attack complexity of distinguishing attacks at an acceptable level. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Security protocols employing GCM-SST MAY impose stricter limits on Q_MAX and V_MAX. Refer to {{Security}} for further details.
 
