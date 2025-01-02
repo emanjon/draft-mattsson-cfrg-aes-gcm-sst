@@ -1295,7 +1295,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-2">In a comment to NIST, Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span> explained how small changes based on proven theoretical constructions mitigate these weaknesses. Unfortunately, NIST did not follow the advice from Nyberg et al. and instead specified additional requirements for use with short tags in Appendix C of <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. NIST did not give any motivations for the parameter choices or the assumed security levels. Mattsson et al. <span>[<a href="#Mattsson" class="cite xref">Mattsson</a>]</span> later demonstrated that attackers can almost always obtain feedback on the success or failure of forgery attempts, contradicting the assumptions NIST made for short tags. Furthermore, NIST appears to have relied on non-optimal attacks when calculating the parameters. Rogaway <span>[<a href="#Rogaway" class="cite xref">Rogaway</a>]</span> criticizes the use of GCM with short tags and recommends prohibiting tags shorter than 96 bits. Reflecting the critique, NIST is planning to remove support for GCM with tags shorter than 96 bits <span>[<a href="#Revise" class="cite xref">Revise</a>]</span>. NIST has not addressed the weaknesses for longer tags, such as the absence of reforgeability resistance <span>[<a href="#Reforge" class="cite xref">Reforge</a>]</span>. When AES-GCM is used in QUIC <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span>, the expected number of forgeries can be equivalent to that of an ideal MAC with a length of 64.4 bits. Reforgeability resistance is a key design criterion in modern AEAD algorithms <span>[<a href="#AEZ" class="cite xref">AEZ</a>]</span>.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Short tags are widely used, 32-bit tags are standard in most radio link layers including 5G <span>[<a href="#Sec5G" class="cite xref">Sec5G</a>]</span>, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral. As such, they are highly sensitive to cryptographic overhead, but as each packet typically encodes only 20 ms of audio, forgery of individual packets is not a big concern and barely noticeable. Due to its weaknesses, GCM is typically not used with short tags. The result is either decreased performance from larger than needed tags <span>[<a href="#MoQ" class="cite xref">MoQ</a>]</span>, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC <span>[<a href="#RFC3711" class="cite xref">RFC3711</a>]</span><span>[<a href="#RFC9605" class="cite xref">RFC9605</a>]</span>. Short tags are also useful to protect packets whose payloads are secured at higher layers, protocols where the security is given by the sum of the tag lengths, and in constrained radio networks, where the low bandwidth preclude many repeated trial. For all applications of short tags it is essential that the MAC behaves like an ideal MAC, i.e., the forgery probability is ≈ 2<sup>-tag_length</sup> even after many generated MACs, many forgery attempts, and after a successful forgery. Users and implementors of cryptography expect algorithms to behave like ideal MACs. While Counter with CBC-MAC (CCM) <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> with short tags has forgery probabilities close to ideal, its performance is lower than that of GCM. For a comprehensive discussion on the use cases and requirements of short tags, see <span>[<a href="#Comments38B" class="cite xref">Comments38B</a>]</span>.<a href="#section-1-3" class="pilcrow">¶</a></p>
 <p id="section-1-4">This document defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface, allowing it to be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> are the introduction of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>, see <a href="#GCM-SST" class="auto internal xref">Section 3</a>. These changes enable truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks, see <a href="#Security" class="auto internal xref">Section 5</a>. GCM-SST is designed for use in unicast security protocols with replay protection such as TLS <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>, SRTP <span>[<a href="#RFC3711" class="cite xref">RFC3711</a>]</span>, and PDCP <span>[<a href="#PDCP" class="cite xref">PDCP</a>]</span>, where its authentication tag behaves like an ideal MAC, including reforgeability resistance. Compared to Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span> and GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, GCM-SST can provide better integrity with less overhead. Its performance is similar to GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, with the two additional AES invocations compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST retains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see <span>[<a href="#Gueron" class="cite xref">Gueron</a>]</span> and Section 2.4 of <span>[<a href="#GCM-Update" class="cite xref">GCM-Update</a>]</span>.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) <span>[<a href="#AES" class="cite xref">AES</a>]</span> and Rijndael with 256-bit keys and blocks (Rijndael-256) <span>[<a href="#Rijndael" class="cite xref">Rijndael</a>]</span> in counter mode as keystream generators and with tag lengths of 32, 64, 96, and 112 bits, see <a href="#AES-GCM-SST" class="auto internal xref">Section 4</a>. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. 3GPP has standardized the use of Rijndael-256 for authentication and key generation in 3GPP TS 35.234–35.237 <span>[<a href="#WID23" class="cite xref">WID23</a>]</span>. NIST plans to standardize Rijndael-256 <span>[<a href="#Plans" class="cite xref">Plans</a>]</span>, although there might be revisions to the key schedule. Rijndael-256 has very good performance on modern x86-64 platforms equipped with AES-NI and VAES instructions <span>[<a href="#Ducker" class="cite xref">Ducker</a>]</span>. Compared to AEGIS <span>[<a href="#I-D.irtf-cfrg-aegis-aead" class="cite xref">I-D.irtf-cfrg-aegis-aead</a>]</span>, AES-GCM-SST offers significantly higher performance in pure hardware implementations while retaining the advantage of being a mode of operation for AES.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-5">This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) <span>[<a href="#AES" class="cite xref">AES</a>]</span> and Rijndael with 256-bit keys and blocks (Rijndael-256) <span>[<a href="#Rijndael" class="cite xref">Rijndael</a>]</span> in counter mode as keystream generators and with tag lengths of 48, 96, and 112 bits, see <a href="#AES-GCM-SST" class="auto internal xref">Section 4</a>. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. 3GPP has standardized the use of Rijndael-256 for authentication and key generation in 3GPP TS 35.234–35.237 <span>[<a href="#WID23" class="cite xref">WID23</a>]</span>. NIST plans to standardize Rijndael-256 <span>[<a href="#Plans" class="cite xref">Plans</a>]</span>, although there might be revisions to the key schedule. Rijndael-256 has very good performance on modern x86-64 platforms equipped with AES-NI and VAES instructions <span>[<a href="#Ducker" class="cite xref">Ducker</a>]</span>. Compared to AEGIS <span>[<a href="#I-D.irtf-cfrg-aegis-aead" class="cite xref">I-D.irtf-cfrg-aegis-aead</a>]</span>, AES-GCM-SST offers significantly higher performance in pure hardware implementations while retaining the advantage of being a mode of operation for AES.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP, with several years of discussion and refinement contributing to its design <span>[<a href="#SAGE23" class="cite xref">SAGE23</a>]</span><span>[<a href="#SAGE24" class="cite xref">SAGE24</a>]</span>.  Mac5G is constructed similarly to the integrity algorithms used for SNOW 3G <span>[<a href="#UIA2" class="cite xref">UIA2</a>]</span> and ZUC <span>[<a href="#EIA3" class="cite xref">EIA3</a>]</span>. 3GPP has decided to standardize GCM-SST for use with AES-256 <span>[<a href="#AES" class="cite xref">AES</a>]</span>, SNOW 5G <span>[<a href="#SNOW" class="cite xref">SNOW</a>]</span>, and ZUC-256 <span>[<a href="#ZUC" class="cite xref">ZUC</a>]</span> in 3GPP TS 35.240–35.248 <span>[<a href="#WID24" class="cite xref">WID24</a>]</span>.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1589,7 +1589,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-aead-instances-and-constrai">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-aead-instances-and-constrai" class="section-name selfRef">AEAD Instances and Constraints</a>
         </h3>
-<p id="section-4.3-1">We define twelve AEAD instances, in the format of <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, that use AES-GCM-SST and Rijndael-GCM-SST with tag lengths of 32, 64, 96, and 112 bits. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">We define nine AEAD instances, in the format of <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, that use AES-GCM-SST and Rijndael-GCM-SST with tag lengths of 48, 96, and 112 bits. The key length and tag length are related to different security properties, and an application encrypting audio packets with small tags might require 256-bit confidentiality.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <span id="name-aead-algorithms"></span><div id="iana-algs">
 <table class="center" id="table-1">
           <caption>
@@ -1606,16 +1606,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </thead>
           <tbody>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_4</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_6</td>
               <td class="text-right" rowspan="1" colspan="1">16</td>
               <td class="text-right" rowspan="1" colspan="1">2<sup>36</sup> - 48</td>
-              <td class="text-right" rowspan="1" colspan="1">32</td>
-            </tr>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_8</td>
-              <td class="text-right" rowspan="1" colspan="1">16</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>36</sup> - 48</td>
-              <td class="text-right" rowspan="1" colspan="1">64</td>
+              <td class="text-right" rowspan="1" colspan="1">48</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">AEAD_AES_128_GCM_SST_12</td>
@@ -1632,16 +1626,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <td class="text-right" rowspan="1" colspan="1">112</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_256_GCM_SST_4</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_256_GCM_SST_6</td>
               <td class="text-right" rowspan="1" colspan="1">32</td>
               <td class="text-right" rowspan="1" colspan="1">2<sup>36</sup> - 48</td>
-              <td class="text-right" rowspan="1" colspan="1">32</td>
-            </tr>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">AEAD_AES_256_GCM_SST_8</td>
-              <td class="text-right" rowspan="1" colspan="1">32</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>36</sup> - 48</td>
-              <td class="text-right" rowspan="1" colspan="1">64</td>
+              <td class="text-right" rowspan="1" colspan="1">48</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">AEAD_AES_256_GCM_SST_12</td>
@@ -1658,17 +1646,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <td class="text-right" rowspan="1" colspan="1">112</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">AEAD_RIJNDAEL_GCM_SST_4</td>
+              <td class="text-left" rowspan="1" colspan="1">AEAD_RIJNDAEL_GCM_SST_6</td>
               <td class="text-right" rowspan="1" colspan="1">32</td>
               <td class="text-right" rowspan="1" colspan="1">2<sup>68</sup> - 48</td>
-              <td class="text-right" rowspan="1" colspan="1">32</td>
-            </tr>
-            <tr>
-              <td class="text-left" rowspan="1" colspan="1">AEAD_RIJNDAEL_GCM_SST_8</td>
-              <td class="text-right" rowspan="1" colspan="1">32</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>67</sup>
-</td>
-              <td class="text-right" rowspan="1" colspan="1">64</td>
+              <td class="text-right" rowspan="1" colspan="1">48</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">AEAD_RIJNDAEL_GCM_SST_12</td>
