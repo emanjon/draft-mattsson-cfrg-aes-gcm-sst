@@ -1569,9 +1569,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-aes-gcm-sst" class="section-name selfRef">AES-GCM-SST</a>
         </h3>
 <p id="section-4.1-1">When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">Z[i] = ENC(K, zeropad(N) ⊕ BE32(i))<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">Z[i] = ENC(K, N || BE32(i))<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <p id="section-4.1-3">where ENC is the AES Cipher function <span>[<a href="#AES" class="cite xref">AES</a>]</span>. Big-endian counters align with existing implementations of counter mode.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-<p id="section-4.1-4">The standard incrementing function applied to the entire block with big-endian counters align with existing implementations of counter mode.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="rijndael-gcm-sst">
@@ -1580,8 +1579,8 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-rijndael-gcm-sst" class="section-name selfRef">Rijndael-GCM-SST</a>
         </h3>
 <p id="section-4.2-1">When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256 in counter mode<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Z[2i]   = ENC(K, zeropad(N) ⊕ LE64(i))[0]<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.2-3">Z[2i+1] = ENC(K, zeropad(N) ⊕ LE64(i))[1]<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Z[2i]   = ENC(K, N || BE32(i))[0]<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">Z[2i+1] = ENC(K, N || BE32(i))[1]<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 <p id="section-4.2-4">where ENC is the Rijndael-256 Cipher function <span>[<a href="#Rijndael" class="cite xref">Rijndael</a>]</span>.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
