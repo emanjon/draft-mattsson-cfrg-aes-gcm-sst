@@ -1048,11 +1048,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">GCM-SST</td>
-<td class="right">December 2024</td>
+<td class="right">January 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 4 July 2025</td>
+<td class="center">Expires 6 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2024-12-31" class="published">31 December 2024</time>
+<time datetime="2025-01-02" class="published">2 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-04">4 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-07-06">6 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 6 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1137,7 +1137,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2024 IETF Trust and the persons identified as the
+            Copyright (c) 2025 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1660,13 +1660,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <tr>
               <td class="text-left" rowspan="1" colspan="1">AEAD_RIJNDAEL_GCM_SST_4</td>
               <td class="text-right" rowspan="1" colspan="1">32</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>36</sup> - 48</td>
+              <td class="text-right" rowspan="1" colspan="1">2<sup>68</sup> - 48</td>
               <td class="text-right" rowspan="1" colspan="1">32</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">AEAD_RIJNDAEL_GCM_SST_8</td>
               <td class="text-right" rowspan="1" colspan="1">32</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>36</sup> - 48</td>
+              <td class="text-right" rowspan="1" colspan="1">2<sup>67</sup>
+</td>
               <td class="text-right" rowspan="1" colspan="1">64</td>
             </tr>
             <tr>
@@ -1701,7 +1702,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-4.3-4.4.1">V_MAX (maximum number of invocations of the decryption function) is 2<sup>48</sup> for AES-GCM-SST, while for Rijndael-GCM-SST, it is 2<sup>88</sup>.<a href="#section-4.3-4.4.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.3-5">The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48). Security protocols employing GCM-SST <span class="bcp14">MAY</span> impose stricter limits on P_MAX and A_MAX. Just like <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in <a href="#iana-algs" class="auto internal xref">Table 1</a> the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. This is true for all allowed plaintext and associated data lengths.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
+<p id="section-4.3-5">The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48) for AES-GCM-SST, and P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>68</sup> - 48) for Rijndael-GCM-SST. Security protocols employing GCM-SST <span class="bcp14">MAY</span> impose stricter limits on P_MAX and A_MAX. Just like <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits respectively. For the AEAD algorithms in <a href="#iana-algs" class="auto internal xref">Table 1</a> the worst-case forgery probability is bounded by ≈ 2<sup>-tag_length</sup> <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. This is true for all allowed plaintext and associated data lengths.<a href="#section-4.3-5" class="pilcrow">¶</a></p>
 <p id="section-4.3-6">The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ ≈ 2<sup>12</sup>, such as QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to restricting the Bernstein bound factor, the Q_MAX constraint also keeps the attack complexity of distinguishing attacks at an acceptable level. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Security protocols employing GCM-SST <span class="bcp14">MAY</span> impose stricter limits on Q_MAX and V_MAX. Refer to <a href="#Security" class="auto internal xref">Section 5</a> for further details.<a href="#section-4.3-6" class="pilcrow">¶</a></p>
 </section>
 </div>
