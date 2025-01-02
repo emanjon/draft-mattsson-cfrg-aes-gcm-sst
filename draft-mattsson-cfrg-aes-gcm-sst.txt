@@ -462,7 +462,7 @@ Table of Contents
    Z[i] = ENC(K, N || BE32(i))
 
    where ENC is the AES Cipher function [AES].  Big-endian counters
-   align with existing implementations of AES counter mode.
+   align with existing implementations of AES in counter mode.
 
 4.2.  Rijndael-GCM-SST
 
