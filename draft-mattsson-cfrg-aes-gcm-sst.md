@@ -632,7 +632,7 @@ When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream generator is 
 
 Z[i] = ENC(K, N \|\| BE32(i))
 
-where ENC is the AES Cipher function {{AES}}. Big-endian counters align with existing implementations of AES counter mode.
+where ENC is the AES Cipher function {{AES}}. Big-endian counters align with existing implementations of AES in counter mode.
 
 ## Rijndael-GCM-SST
 
