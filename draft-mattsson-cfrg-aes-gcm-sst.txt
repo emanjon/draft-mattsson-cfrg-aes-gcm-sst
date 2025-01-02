@@ -469,9 +469,9 @@ Table of Contents
    When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST),
    the keystream generator is Rijndael-256 in counter mode
 
-   Z[2i] = ENC(K, N || BE32(i))[0]
+   Z[2i] = ENC(K, N || LE64(i))[0]
 
-   Z[2i+1] = ENC(K, N || BE32(i))[1]
+   Z[2i+1] = ENC(K, N || LE64(i))[1]
 
    where ENC is the Rijndael-256 Cipher function [Rijndael].
 
@@ -536,7 +536,7 @@ Table of Contents
    min(2^(131 - tag_length), 2^68 - 48) for Rijndael-GCM-SST.  Security
    protocols employing GCM-SST MAY impose stricter limits on P_MAX and
    A_MAX.  Just like [RFC5116], AES-GCM-SST and Rijndael-GCM-SST only
-   allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 224-bits
+   allow a fixed nonce length (N_MIN = N_MAX) of 96-bit and 192-bits
    respectively.  For the AEAD algorithms in Table 1 the worst-case
    forgery probability is bounded by ≈ 2^(-tag_length) [Nyberg].  This
    is true for all allowed plaintext and associated data lengths.
