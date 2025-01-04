@@ -638,9 +638,9 @@ where ENC is the AES Cipher function {{AES}}. Big-endian counters align with exi
 
 When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256 in counter mode
 
-Z[2i]   = ENC(K, N \|\| LE32(i))[0]
+Z[2i]   = ENC(K, N \|\| BE32(i))[0]
 
-Z[2i+1] = ENC(K, N \|\| LE32(i))[1]
+Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
 
 where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 
