@@ -537,8 +537,8 @@ Table of Contents
    The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1
    for AES-GCM-SST in protocols where ℓ ≈ 2^12, such as QUIC [RFC9000],
    and always δ ≈ 1 for Rijndael-GCM-SST.  In addition to restricting
-   the Bernstein bound factor, the Q_MAX constraint also keeps the
-   attack complexity of distinguishing attacks at an acceptable level.
+   the Bernstein bound factor, the Q_MAX constraint establishes a
+   minimum threshold for the complexity of distinguishing attacks.
    Since encryption and decryption queries play an equivalent role in
    the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Security
    protocols employing GCM-SST MAY impose stricter limits on Q_MAX and
@@ -1195,6 +1195,9 @@ Change Log
 
    *  Added comparison to AEGIS in pure hardware based on Scott
       Fluhrer's analysis
+
+   *  Changed "acceptable level" to "minimum threshold" as it can be
+      discussed if 64 bit security is acceptable.
 
    Changes from -13 to -14:
 
