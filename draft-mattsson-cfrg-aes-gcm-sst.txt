@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 6 July 2025                                   J. Preuß Mattsson
+Expires: 8 July 2025                                   J. Preuß Mattsson
                                                                 Ericsson
-                                                          2 January 2025
+                                                          4 January 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 July 2025.
+   This Internet-Draft will expire on 8 July 2025.
 
 Copyright Notice
 
@@ -469,9 +469,9 @@ Table of Contents
    When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST),
    the keystream generator is Rijndael-256 in counter mode
 
-   Z[2i] = ENC(K, N || LE32(i))[0]
+   Z[2i] = ENC(K, N || BE32(i))[0]
 
-   Z[2i+1] = ENC(K, N || LE32(i))[1]
+   Z[2i+1] = ENC(K, N || BE32(i))[1]
 
    where ENC is the Rijndael-256 Cipher function [Rijndael].
 
