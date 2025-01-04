@@ -1191,8 +1191,7 @@ Change Log
 
    Changes from -14 to -15:
 
-   *  Added 48-bit tags after feedback from media people suggesting that
-      might be a good size.
+   *  Added 48-bit tags after feedback from media people.
 
    *  Added comparison to AEGIS in pure hardware based on Scott
       Fluhrer's analysis
