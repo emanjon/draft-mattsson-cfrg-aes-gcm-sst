@@ -919,6 +919,10 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
+Changes from -14 to -15:
+
+* Added 48-bit tags after feedback from media people suggesting that might be a good size.
+
 Changes from -13 to -14:
 
 * Explained the formatting of L as well as why replay protection after decryption may be used.
