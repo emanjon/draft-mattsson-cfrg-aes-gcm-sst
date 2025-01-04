@@ -1189,6 +1189,11 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
+   Changes from -14 to -15:
+
+   *  Added 48-bit tags after feedback from media people suggesting that
+      might be a good size.
+
    Changes from -13 to -14:
 
    *  Explained the formatting of L as well as why replay protection
