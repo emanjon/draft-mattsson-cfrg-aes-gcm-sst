@@ -816,7 +816,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
          M = { 9e 6c 98 3e e0 6c 1a ab c8 99 b7 8d 57 32 0a f5 }
          L = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
   full_tag = { 45 03 bf b0 96 82 39 b3 67 e9 70 c3 83 c5 10 6f }
-       tag = { 45 03 bf b0 }
+       tag = { 45 03 bf b0 96 82 }
         ct = { b8 65 d5 16 07 83 11 73 21 f5 6c b0 75 45 16 b3
                da 9d b8 09 }
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -840,7 +840,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
          P = { }
          L = { 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
   full_tag = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
-       tag = { b3 35 31 c0 e9 6f 4a 03 }
+       tag = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec }
         ct = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -852,7 +852,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
          P = { }
          L = { 00 00 00 00 00 00 00 00 28 00 00 00 00 00 00 00 }
   full_tag = { 63 ac ca 4d 20 9f b3 90 28 ff c3 17 04 01 67 61 }
-       tag = { 63 ac ca 4d 20 9f b3 90 }
+       tag = { 63 ac ca 4d 20 9f b3 90 28 ff c3 17 }
         ct = { }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -864,7 +864,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
          P = { 60 61 62 63 64 65 66 67 68 69 6a 6b }
          L = { 60 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 }
   full_tag = { e1 de bf fd 5f 3a 85 e3 48 bd 6f cc 6e 62 10 90 }
-       tag = { e1 de bf fd 5f 3a 85 e3 }
+       tag = { e1 de bf fd 5f 3a 85 e3 48 bd 6f cc }
         ct = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -877,7 +877,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
                70 71 72 73 74 75 76 77 78 79 7a 7b 7c 7d 7e }
          L = { f8 00 00 00 00 00 00 00 80 00 00 00 00 00 00 00 }
   full_tag = { c3 5e d7 83 9f 21 f7 bb a5 a8 a2 8e 1f 49 ed 04 }
-       tag = { c3 5e d7 83 9f 21 f7 bb }
+       tag = { c3 5e d7 83 9f 21 f7 bb a5 a8 a2 8e }
         ct = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
                33 11 7e 17 58 b5 ed d0 d6 5d 68 32 06 bb ad }
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -891,7 +891,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
                70 }
          L = { 88 00 00 00 00 00 00 00 78 00 00 00 00 00 00 00 }
   full_tag = { 49 7c 14 77 67 a5 3d 57 64 ce fd 03 26 fe e7 b5 }
-       tag = { 49 7c 14 77 67 a5 3d 57 }
+       tag = { 49 7c 14 77 67 a5 3d 57 64 ce fd 03 }
         ct = { fc 46 2d 34 a7 5b 22 62 4f d7 3b 27 84 de 10 51
                33 }
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -922,6 +922,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 Changes from -14 to -15:
 
 * Added 48-bit tags after feedback from media people suggesting that might be a good size.
+* Added comparison to AEGIS in pure hardware based on Scott Fluhrer's analysis
 
 Changes from -13 to -14:
 
