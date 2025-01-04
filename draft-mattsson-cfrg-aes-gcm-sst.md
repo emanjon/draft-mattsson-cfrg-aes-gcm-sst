@@ -921,7 +921,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 
 Changes from -14 to -15:
 
-* Added 48-bit tags after feedback from media people suggesting that might be a good size.
+* Added 48-bit tags after feedback from media people.
 * Added comparison to AEGIS in pure hardware based on Scott Fluhrer's analysis
 
 Changes from -13 to -14:
