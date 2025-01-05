@@ -581,9 +581,9 @@ Table of Contents
    [Ascon].  By increasing the nonce length from 96 bits to 224 bits,
    Rijndael-GCM-SST can offer significantly greater security against
    precomputation and multi-key attacks compared to AES-256-GCM-SST.
-   GCM-SST SHOULD NOT be used in multicast or broadcast scenarios.
-   While GCM-SST offers better security properties than GCM for a given
-   tag length in such contexts, it does not behave like an ideal MAC.
+   GCM-SST MUST NOT be used in multicast or broadcast scenarios.  While
+   GCM-SST offers better security properties than GCM for a given tag
+   length in such contexts, it does not behave like an ideal MAC.
 
 5.1.  Integrity
 
