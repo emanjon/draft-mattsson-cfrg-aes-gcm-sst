@@ -704,7 +704,7 @@ The details of the replay protection mechanism is determined by the security pro
 
 ## Comparison with ChaCha20-Poly1305 and AES-GCM
 
-{{comp1}} compares the integrity of AES-GCM-SST, ChaCha20-Poly1305 {{RFC7539}}, and AES-GCM {{RFC5116}} in unicast security protocols with replay protection, where v represents the number of decryption queries. In Poly1305 and GCM, the forgery probability depends on ℓ = (P_MAX + A_MAX) / 16 + 1. In AES-based algorithms, the Bernstein bound introduces a factor δ ⪅ 1 + (q + v)<sup>2</sup> ⋅ ℓ<sup>2</sup> / 2<sup>129</sup>. GGCM-SST requires δ ≈ 1, a property not mandated by GCM. Notably, GCM does not provide any reforgeability resistance, which significantly increases the expected number of forgeries. Refer to {{Procter}}, {{Iwata}}, and {{Multiple}} for further details.
+{{comp1}} compares the integrity of AES-GCM-SST, ChaCha20-Poly1305 {{RFC7539}}, and AES-GCM {{RFC5116}} in unicast security protocols with replay protection, where v represents the number of decryption queries. In Poly1305 and GCM, the forgery probability depends on ℓ = (P_MAX + A_MAX) / 16 + 1. In AES-based algorithms, the Bernstein bound introduces a factor δ ⪅ 1 + (q + v)<sup>2</sup> ⋅ ℓ<sup>2</sup> / 2<sup>129</sup>. GCM-SST requires δ ≈ 1, a property not mandated by GCM. Notably, GCM does not provide any reforgeability resistance, which significantly increases the expected number of forgeries. Refer to {{Procter}}, {{Iwata}}, and {{Multiple}} for further details.
 
 | Name | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
 | GCM_SST_14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | v / 2<sup>112</sup> |
