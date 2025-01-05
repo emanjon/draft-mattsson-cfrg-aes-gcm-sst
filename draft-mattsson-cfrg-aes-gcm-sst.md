@@ -924,6 +924,7 @@ Changes from -14 to -15:
 * Added 48-bit tags after feedback from media people.
 * Added comparison to AEGIS in pure hardware based on Scott Fluhrer's analysis
 * Changed "acceptable level" to "minimum threshold" as it can be discussed if 64 bit security is acceptable.
+* Added requirement that security protocols using AES-GCM-SST MUST enforce limits to ensure that δ ≈ 1.
 
 Changes from -13 to -14:
 
