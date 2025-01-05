@@ -1201,6 +1201,9 @@ Change Log
    *  Changed "acceptable level" to "minimum threshold" as it can be
       discussed if 64 bit security is acceptable.
 
+   *  Added requirement that security protocols using AES-GCM-SST MUST
+      enforce limits to ensure that δ ≈ 1.
+
    Changes from -13 to -14:
 
    *  Explained the formatting of L as well as why replay protection
