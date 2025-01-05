@@ -542,7 +542,11 @@ Table of Contents
    Since encryption and decryption queries play an equivalent role in
    the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Security
    protocols employing GCM-SST MAY impose stricter limits on Q_MAX and
-   V_MAX.  Refer to Section 5 for further details.
+   V_MAX.
+
+   Security protocols using AES-GCM-SST MUST enforce limits on P_MAX,
+   A_MAX, Q_MAX, and V_MAX to ensure that δ ≈ 1.  Refer to Section 5 for
+   further details.
 
 5.  Security Considerations
 
@@ -606,17 +610,15 @@ Table of Contents
    2^(tag_length), where the Bernstein bound factor δ_b ⪅ 1 + (q + v)^2
    ⋅ ℓ^2 / 2^(b+1), which is near-ideal.  This far outperforms AES-GCM,
    where the expected number of forgeries is ≈ δ_128 ⋅ v^2 ⋅ ℓ /
-   2^(tag_length+1).  Security protocols using AES-GCM-SST MUST enforce
-   limits on P_MAX, A_MAX, Q_MAX, and V_MAX to ensure that δ_128 ≈ 1.
-   For Rijndael-GCM-SST, the expected number of forgeries is ≈ δ_256 ⋅ v
-   / 2^(tag_length) ≈ v / 2^(tag_length), which is ideal.  For further
-   details on the integrity advantages and expected number of forgeries
-   for GCM and GCM-SST, see [Iwata], [Inoue], [Bernstein], and
-   [Multiple].  BSI states that an ideal MAC with a 96-bit tag length is
-   considered acceptable for most applications [BSI], a requirement that
-   AES-GCM-SST with 96-bit tags satisfies when δ ≈ 1.  Achieving a
-   comparable level of security with GCM, CCM, or Poly1305 is nearly
-   impossible.
+   2^(tag_length+1).  For Rijndael-GCM-SST, the expected number of
+   forgeries is ≈ δ_256 ⋅ v / 2^(tag_length) ≈ v / 2^(tag_length), which
+   is ideal.  For further details on the integrity advantages and
+   expected number of forgeries for GCM and GCM-SST, see [Iwata],
+   [Inoue], [Bernstein], and [Multiple].  BSI states that an ideal MAC
+   with a 96-bit tag length is considered acceptable for most
+   applications [BSI], a requirement that AES-GCM-SST with 96-bit tags
+   satisfies when δ ≈ 1.  Achieving a comparable level of security with
+   GCM, CCM, or Poly1305 is nearly impossible.
 
 5.2.  Confidentiality
 
