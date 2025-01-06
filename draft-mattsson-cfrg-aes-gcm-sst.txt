@@ -1210,6 +1210,8 @@ Change Log
    *  Added MUST NOT be used in multicast or broadcast to simplify
       security considerations.
 
+   *  Editorial changes
+
    Changes from -13 to -14:
 
    *  Explained the formatting of L as well as why replay protection
