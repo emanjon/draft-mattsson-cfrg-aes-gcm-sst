@@ -481,7 +481,7 @@ Table of Contents
    AES-GCM-SST and Rijndael-GCM-SST with tag lengths of 48, 96, and 112
    bits.  The key length and tag length are related to different
    security properties, and an application encrypting audio packets with
-   small tags might require 256-bit confidentiality.
+   short tags might require high confidentiality.
 
     +==========================+=========+===============+============+
     | Name                     |   K_LEN | P_MAX = A_MAX | tag_length |
