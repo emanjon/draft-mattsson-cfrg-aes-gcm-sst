@@ -540,12 +540,12 @@ Table of Contents
    the Bernstein bound factor, the Q_MAX constraint establishes a
    minimum threshold for the complexity of distinguishing attacks.
    Since encryption and decryption queries play an equivalent role in
-   the Bernstein bound, it follows that Q_MAX ≤ V_MAX.
+   the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Security
+   protocols employing GCM-SST MAY impose stricter limits on Q_MAX and
+   V_MAX.  Security protocols using AES-GCM-SST MUST enforce limits to
+   ensure that 1 + (P_MAX + A_MAX)^2(Q_MAX + V_MAX)^2 / 2^129 ≈ 1.
 
-   Security protocols employing GCM-SST MAY impose stricter limits on
-   Q_MAX and V_MAX.  Security protocols using AES-GCM-SST MUST enforce
-   limits to ensure that 1 + (P_MAX + A_MAX)^2(Q_MAX + V_MAX)^2 / 2^129
-   ≈ 1.  Refer to Section 5 for further details.
+   Refer to Section 5 for further details.
 
 5.  Security Considerations
 
