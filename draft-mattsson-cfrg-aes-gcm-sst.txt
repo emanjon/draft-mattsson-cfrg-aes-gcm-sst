@@ -544,7 +544,7 @@ Table of Contents
    employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
    Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX,
    A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅ (Q_MAX +
-   V_MAX) ⪅ 2^62.  This ensures that δ ≈ 1.
+   V_MAX) ⪅ 2^66.  This ensures that δ ≈ 1.
 
    Refer to Sections 5.1, 5.2, and 5.5 for further details.
 
