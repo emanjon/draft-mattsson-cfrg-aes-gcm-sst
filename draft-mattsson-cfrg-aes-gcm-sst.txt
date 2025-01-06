@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 9 July 2025                                   J. Preuß Mattsson
+Expires: 10 July 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                          5 January 2025
+                                                          6 January 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 July 2025.
+   This Internet-Draft will expire on 10 July 2025.
 
 Copyright Notice
 
@@ -540,11 +540,12 @@ Table of Contents
    the Bernstein bound factor, the Q_MAX constraint establishes a
    minimum threshold for the complexity of distinguishing attacks.
    Since encryption and decryption queries play an equivalent role in
-   the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Security
-   protocols employing GCM-SST MAY impose stricter limits on Q_MAX and
-   V_MAX.  Security protocols using AES-GCM-SST MUST enforce limits on
-   P_MAX, A_MAX, Q_MAX, and V_MAX to ensure that δ ≈ 1.  Refer to
-   Section 5 for further details.
+   the Bernstein bound, it follows that Q_MAX ≤ V_MAX.
+
+   Security protocols employing GCM-SST MAY impose stricter limits on
+   Q_MAX and V_MAX.  Security protocols using AES-GCM-SST MUST enforce
+   limits to ensure that 1 + (P_MAX + A_MAX)^2(Q_MAX + V_MAX)^2 / 2^129
+   ≈ 1.  Refer to Section 5 for further details.
 
 5.  Security Considerations
 
