@@ -543,8 +543,8 @@ Table of Contents
    the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Protocols that
    employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
    Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX,
-   A_MAX, Q_MAX, and/or V_MAX to ensure that 1 + (P_MAX + A_MAX)^2 ⋅
-   (Q_MAX + V_MAX)^2 / 2^129 ≈ 1.
+   A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅ (Q_MAX +
+   V_MAX) ⪅ 2^62.  This ensures that δ ≈ 1.
 
    Refer to Sections 5.1, 5.2, and 5.5 for further details.
 
