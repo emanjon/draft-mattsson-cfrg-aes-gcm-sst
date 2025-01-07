@@ -1208,8 +1208,8 @@ Change Log
    *  Added requirement that security protocols using AES-GCM-SST MUST
       enforce limits to ensure that δ ≈ 1.
 
-   *  Added MUST NOT be used in multicast or broadcast to simplify
-      security considerations.
+   *  Added that this specification does not allow use in multicast or
+      broadcast.  This simplify security considerations.
 
    *  Editorial changes
 
