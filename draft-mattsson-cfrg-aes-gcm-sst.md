@@ -261,7 +261,7 @@ informative:
     author:
       -
         ins: 3GPP TS 38.323
-    date: September 2024
+    date: December 2024
 
   Collision:
     target: https://eprint.iacr.org/2021/236
