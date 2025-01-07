@@ -911,7 +911,7 @@ Table of Contents
               Nyberg_Gilbert_and_Robshaw.pdf>.
 
    [PDCP]     3GPP TS 38 323, "NR; Packet Data Convergence Protocol
-              (PDCP) specification", September 2024,
+              (PDCP) specification", December 2024,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3196>.
 
