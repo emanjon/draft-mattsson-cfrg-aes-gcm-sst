@@ -929,7 +929,7 @@ Changes from -14 to -15:
 * Added comparison to AEGIS in pure hardware based on Scott Fluhrer's analysis
 * Changed "acceptable level" to "minimum threshold" as it can be discussed if 64 bit security is acceptable.
 * Added requirement that security protocols using AES-GCM-SST MUST enforce limits to ensure that δ ≈ 1.
-* Added MUST NOT be used in multicast or broadcast to simplify security considerations.
+* Added that this specification does not allow use in multicast or broadcast. This simplify security considerations.
 * Editorial changes
 
 Changes from -13 to -14:
