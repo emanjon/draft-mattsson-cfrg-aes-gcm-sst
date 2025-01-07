@@ -280,8 +280,8 @@ informative:
     date: May 2024
 
   Degabriele:
-    target: https://csrc.nist.gov/csrc/media/Presentations/2024/universal-hash-designs-for-an-accordion-mode/images-media/sess-7-degabriele-acm-workshop-2024.pdf
-    title: "Universal Hash Designs for an Accordion Mode"
+    target: https://doi.org/10.3929/ethz-b-000654260
+    title: "SoK: Efficient Design and Implementation of Polynomial Hash Functions over Prime Fields"
     author:
       -
         ins: J. Degabriele
@@ -291,7 +291,7 @@ informative:
         ins: J. Govinden
       -
         ins: K. Paterson
-    date: June 2024
+    date: May 2024
 
   SMAC:
     target: https://eprint.iacr.org/2024/819
