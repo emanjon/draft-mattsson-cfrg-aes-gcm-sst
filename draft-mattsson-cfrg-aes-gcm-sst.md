@@ -560,7 +560,7 @@ Inputs:
 Outputs:
 
 * Ciphertext ct (variable-length octet string)
-* Tag tag (octet string with length tag_length)
+* tag (octet string with length tag_length)
 
 Steps:
 
@@ -595,7 +595,7 @@ Inputs:
 * Nonce N (variable-length octet string)
 * Associated data A (variable-length octet string)
 * Ciphertext ct (variable-length octet string)
-* Tag tag (octet string with length tag_length)
+* tag (octet string with length tag_length)
 
 Outputs:
 
