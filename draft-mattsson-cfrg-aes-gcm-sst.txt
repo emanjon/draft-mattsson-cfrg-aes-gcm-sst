@@ -94,6 +94,7 @@ Table of Contents
      5.3.  Weak keys
      5.4.  Replay Protection
      5.5.  Comparison with ChaCha20-Poly1305 and AES-GCM
+     5.6.  Multicast and Broadcast
    6.  IANA Considerations
    7.  References
      7.1.  Normative References
@@ -564,7 +565,7 @@ Table of Contents
    encryption mode, with security guaranteed for evaluations under fresh
    nonces, even if some earlier nonces have been reused.
 
-   GCM-SST is designed for use in unicast security protocols with replay
+   GCM-SST is designed for use in security protocols with replay
    protection.  Every key MUST be randomly chosen from a uniform
    distribution.  GCM-SST MUST be used in a nonce-respecting setting:
    for a given key, a nonce MUST only be used once in the encryption
@@ -585,10 +586,8 @@ Table of Contents
    [Ascon].  By increasing the nonce length from 96 bits to 224 bits,
    Rijndael-GCM-SST can offer significantly greater security against
    precomputation and multi-key attacks compared to AES-256-GCM-SST.
-   This specification does not allow the use of GCM-SST in multicast or
-   broadcast scenarios.  While GCM-SST offers better security properties
-   than GCM for a given tag length in such contexts, it does not behave
-   like an ideal MAC.
+   See Section 5.6 for considerations of using GCM-SST in multicast or
+   broadcast scenarios.
 
 5.1.  Integrity
 
@@ -754,6 +753,27 @@ Table of Contents
       Table 3: Comparison between AES-GCM-SST, ChaCha20-Poly1305, and
       AES-GCM in unicast QUIC, where the maximum packet size is 65536
                                    bytes.
+
+5.6.  Multicast and Broadcast
+
+   While GCM-SST offers stronger security properties than GCM for a
+   given tag length in multicast or broadcast contexts, it does not
+   behave exactly like an ideal MAC.  With an ideal MAC, a successful
+   forgery against one recipient allows the attacker to reuse the same
+   forgery against all other recipients.  In contrast, with GCM, a
+   successful forgery against one recipient enables the attacker to
+   generate an unlimited number of new forgeries for all recipients.
+
+   With GCM-SST, a few successful forgeries against a few recipients
+   allow the attacker to create one new forgery per recipient.  While
+   the total number of forgeries in GCM-SST matches that of an ideal
+   MAC, the diversity of these forgeries is higher.  To achieve one
+   distinct forgery per recipient with an ideal MAC, the attacker would
+   need to send 2^(tag_length) forgery attempts to each recipient.  GCM-
+   SST performs equally well or better than an ideal MAC with length
+   tag_length - log2(r), where r is the number of recipients.  Thus, in
+   multicast and broadcast scenarios, the effective tag length of GCM-
+   SST is tag_length - log2(r).
 
 6.  IANA Considerations
 
