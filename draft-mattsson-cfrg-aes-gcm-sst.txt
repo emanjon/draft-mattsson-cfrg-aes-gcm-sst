@@ -24,9 +24,9 @@ Abstract
    POLYVAL function from AES-GCM-SIV.  This enables truncated tags with
    near-ideal forgery probabilities, even against multiple forgery
    attacks, which are significant security improvements over GCM.  GCM-
-   SST is designed for unicast security protocols with replay protection
-   and addresses the strong industry demand for fast encryption with
-   minimal overhead and high security.  This document registers several
+   SST is designed for security protocols with replay protection and
+   addresses the strong industry demand for fast encryption with minimal
+   overhead and high security.  This document registers several
    instances of GCM-SST using Advanced Encryption Standard (AES) and
    Rijndael-256.
 
@@ -167,14 +167,14 @@ Table of Contents
    useful to protect packets whose payloads are secured at higher
    layers, protocols where the security is given by the sum of the tag
    lengths, and in constrained radio networks, where the low bandwidth
-   preclude many repeated trial.  For all applications of short tags it
-   is essential that the MAC behaves like an ideal MAC, i.e., the
-   forgery probability is ≈ 2^(-tag_length) even after many generated
-   MACs, many forgery attempts, and after a successful forgery.  While
-   Counter with CBC-MAC (CCM) [RFC5116] with short tags has forgery
-   probabilities close to ideal, its performance is lower than that of
-   GCM.  For a comprehensive discussion on the use cases and
-   requirements of short tags, see [Comments38B].
+   limits the number of forgery attempts.  For all applications of short
+   tags it is essential that the MAC behaves like an ideal MAC, i.e.,
+   the forgery probability is ≈ 2^(-tag_length) even after many
+   generated MACs, many forgery attempts, and after a successful
+   forgery.  While Counter with CBC-MAC (CCM) [RFC5116] with short tags
+   has forgery probabilities close to ideal, its performance is lower
+   than that of GCM.  For a comprehensive discussion on the use cases
+   and requirements of short tags, see [Comments38B].
 
    This document defines the Galois Counter Mode with Strong Secure Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
@@ -187,19 +187,19 @@ Table of Contents
    AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
    tags with near-ideal forgery probabilities, even against multiple
    forgery attacks, see Section 5.  GCM-SST is designed for use in
-   unicast security protocols with replay protection such as TLS
-   [RFC8446], QUIC [RFC9000], SRTP [RFC3711], and PDCP [PDCP], where its
-   authentication tag behaves like an ideal MAC, including
-   reforgeability resistance.  Users and implementors of cryptography
-   expect algorithms to behave like ideal MACs.  Compared to Poly1305
-   [RFC7539] and GCM [RFC5116], GCM-SST can provide better integrity
-   with less overhead.  Its performance in hardware and software is
-   similar to GCM [GCM].  In software, the two additional AES
-   invocations are compensated by the use of POLYVAL, the ”little-endian
-   version” of GHASH, which is faster on little-endian architectures.
-   GCM-SST retains the additive encryption characteristic of GCM, which
-   enables efficient implementations on modern processor architectures,
-   see [Gueron] and Section 2.4 of [GCM-Update].
+   security protocols with replay protection such as TLS [RFC8446], QUIC
+   [RFC9000], SRTP [RFC3711], and PDCP [PDCP], where its authentication
+   tag behaves like an ideal MAC, including reforgeability resistance.
+   Users and implementers of cryptography expect algorithms to behave
+   like ideal MACs.  Compared to Poly1305 [RFC7539] and GCM [RFC5116],
+   GCM-SST can provide better integrity with less overhead.  Its
+   performance in hardware and software is similar to GCM [GCM].  In
+   software, the two additional AES invocations are compensated by the
+   use of POLYVAL, the ”little-endian version” of GHASH, which is faster
+   on little-endian architectures.  GCM-SST retains the additive
+   encryption characteristic of GCM, which enables efficient
+   implementations on modern processor architectures, see [Gueron] and
+   Section 2.4 of [GCM-Update].
 
    This document also registers several GCM-SST instances using Advanced
    Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
