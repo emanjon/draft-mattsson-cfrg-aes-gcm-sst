@@ -347,7 +347,7 @@ Table of Contents
 
    *  Ciphertext ct (variable-length octet string)
 
-   *  Tag tag (octet string with length tag_length)
+   *  tag (octet string with length tag_length)
 
    Steps:
 
@@ -402,7 +402,7 @@ Table of Contents
 
    *  Ciphertext ct (variable-length octet string)
 
-   *  Tag tag (octet string with length tag_length)
+   *  tag (octet string with length tag_length)
 
    Outputs:
 
