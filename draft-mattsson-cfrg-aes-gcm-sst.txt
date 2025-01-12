@@ -188,9 +188,9 @@ Table of Contents
    AES-GCM-SIV [RFC8452], see Section 3.  These changes enable truncated
    tags with near-ideal forgery probabilities, even against multiple
    forgery attacks, see Section 5.  GCM-SST is designed for use in
-   unicast security protocols with replay protection such as TLS
-   [RFC8446], QUIC [RFC9000], SRTP [RFC3711], and PDCP [PDCP], where its
-   authentication tag behaves like an ideal MAC, including
+   security protocols with replay protection such as TLS [RFC8446], QUIC
+   [RFC9000], SRTP [RFC3711], and PDCP [PDCP].  In unicast scenarios,
+   its authentication tag behaves like an ideal MAC, including
    reforgeability resistance.  Users and implementers of cryptography
    expect algorithms to behave like ideal MACs.  Compared to Poly1305
    [RFC7539] and GCM [RFC5116], GCM-SST can provide better integrity
