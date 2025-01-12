@@ -1024,4 +1024,4 @@ Changes from -00 to -01:
 # Acknowledgments
 {:numbered="false"}
 
-The authors thank {{{Richard Barnes}}}, {{{Thomas Bellebaum}}}, {{{Scott Fluhrer}}}, {{{Eric Lagergren}}}, {{{Yehuda Lindell}}}, {{{Kazuhiko Minematsu}}}, {{{Erik Thormarker}}}, and {{{Magnus Westerlund}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
+The authors thank {{{Richard Barnes}}}, {{{Thomas Bellebaum}}}, {{{Patrik Ekdahl}}}, {{{Scott Fluhrer}}}, {{{Eric Lagergren}}}, {{{Yehuda Lindell}}}, {{{Kazuhiko Minematsu}}}, {{{Santeri Paavolainen}}}, {{{Sini Ruohomaa}}}, {{{Erik Thormarker}}}, and {{{Magnus Westerlund}}} for their valuable comments and feedback. Some of the formatting and text were inspired by and borrowed from {{I-D.irtf-cfrg-aegis-aead}}.
