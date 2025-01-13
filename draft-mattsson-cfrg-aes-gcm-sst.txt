@@ -892,6 +892,12 @@ Table of Contents
               Polynomial Hash Functions over Prime Fields", May 2024,
               <https://doi.org/10.3929/ethz-b-000654260>.
 
+   [Difference]
+              Gaëtan Leurent and Ferdinand Sibleyras, "The Missing
+              Difference Problem, and Its Applications to Counter Mode
+              Encryption", March 2018, <https://link.springer.com/
+              chapter/10.1007/978-3-319-78375-8_24>.
+
    [Ducker]   Nir Drucker and Shay Gueron, "Software Optimization of
               Rijndael for Modern x86-64 Platforms", May 2022,
               <https://rd.springer.com/
@@ -932,6 +938,12 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
               aegis-aead-15>.
 
+   [Impossible]
+              David McGrew, "Impossible plaintext cryptanalysis and
+              probable-plaintext collision attacks of 64-bit block
+              cipher modes", November 2012,
+              <https://eprint.iacr.org/2012/623.pdf>.
+
    [Inoue]    Akiko Inoue, Ashwin Jha, Bart Mennink, and Kazuhiko
               Minematsu, "Generic Security of GCM-SST", November 2024,
               <https://eprint.iacr.org/2024/1928.pdf>.
@@ -952,7 +964,7 @@ Table of Contents
               <https://datatracker.ietf.org/wg/moq/about/>.
 
    [Multiple] David McGrew and Scott Fluhrer, "Multiple Forgery Attacks
-              Against Message Authentication Codes", November 2024,
+              Against Message Authentication Codes", May 2005,
               <https://csrc.nist.gov/csrc/media/projects/block-cipher-
               techniques/documents/bcm/comments/cwc-gcm/multi-forge-
               01.pdf>.
