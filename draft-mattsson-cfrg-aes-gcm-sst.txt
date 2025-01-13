@@ -775,9 +775,10 @@ Table of Contents
    need to send on average 2^(tag_length) forgery attempts to each
    recipient.  GCM-SST performs equally well or better than an ideal MAC
    with length tag_length - log2(r), where r is the number of
-   recipients.  Thus, in one-to-many scenarios, the expected number of
-   distinct forgeries is ≈ v ⋅ r / 2^(tag_length), and the effective tag
-   length of GCM-SST is tag_length - log2(r).
+   recipients.  Thus, in one-to-many scenarios with replay protection,
+   the expected number of distinct forgeries is ≈ v ⋅ r /
+   2^(tag_length), and the effective tag length of GCM-SST is tag_length
+   - log2(r).
 
 6.  IANA Considerations
 
@@ -1223,10 +1224,13 @@ Change Log
 
    Changes from -15 to -16:
 
-   *  Added section on multicast or broadcast.
+   *  Added section on multicast or broadcast allowing use in one-to-
+      many scenarios.  GCM-SST provides good security in such scenarios.
 
-   *  Remaned som Q and q to avoid using the same symbol for different
-      things.
+   *  Remamned Q to H_2 and som q to σ to avoid using the same symbol
+      for different things.
+
+   *  Editorial changes
 
    Changes from -14 to -15:
 
