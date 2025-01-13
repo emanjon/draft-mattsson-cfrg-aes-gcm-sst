@@ -1856,6 +1856,38 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </tbody>
         </table>
 </div>
+<p id="section-5.5-5"><a href="#comp3" class="auto internal xref">Table 4</a> compares the confidentiality of ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, Rijndael-GCM-SST, and AES-256-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> in QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span><span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span> a security protocol where the combined size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes (ℓ ≈ 2<sup>12</sup>).<a href="#section-5.5-5" class="pilcrow">¶</a></p>
+<span id="name-comparison-between-rijndael"></span><div id="comp3">
+<table class="center" id="table-4">
+          <caption>
+<a href="#table-4" class="selfRef">Table 4</a>:
+<a href="#name-comparison-between-rijndael" class="selfRef">Comparison between Rijndael-GCM-SST, ChaCha20-Poly1305, and AES-256-GCM in QUIC, where the maximum packet size is 65536 bytes.</a>
+          </caption>
+<thead>
+            <tr>
+              <th class="text-left" rowspan="1" colspan="1">Name</th>
+              <th class="text-right" rowspan="1" colspan="1">Complexity of distinguishing attacks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">CHACHA20_POLY1305</td>
+              <td class="text-right" rowspan="1" colspan="1">2<sup>256</sup>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">RIJNDAEL_GCM_SST</td>
+              <td class="text-right" rowspan="1" colspan="1">= 2<sup>257</sup> / σ<sub>R</sub>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">AES_256_GCM_SST</td>
+              <td class="text-right" rowspan="1" colspan="1">= 2<sup>129</sup> / σ<sub>A</sub>
+</td>
+            </tr>
+          </tbody>
+        </table>
+</div>
 </section>
 </div>
 <div id="onemany">
