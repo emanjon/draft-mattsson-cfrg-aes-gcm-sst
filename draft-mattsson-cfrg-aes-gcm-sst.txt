@@ -536,8 +536,8 @@ Table of Contents
    stricter limits on P_MAX and A_MAX.  Just like [RFC5116], AES-GCM-SST
    and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX)
    of 96 bits and 224 bits, respectively.  For the AEAD algorithms in
-   Table 1 the worst-case forgery probability is bounded by ≈
-   2^(-tag_length) [Nyberg].  This is true for all allowed plaintext and
+   Table 1 the worst-case forgery probability is bounded by ≈ 1 /
+   2^(tag_length) [Nyberg].  This is true for all allowed plaintext and
    associated data lengths.
 
    The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1
@@ -596,7 +596,7 @@ Table of Contents
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
    be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When
    tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability
-   is bounded by ≈ 2^(-tag_length) [Nyberg].  The tags in the AEAD
+   is bounded by ≈ 1 / 2^(tag_length) [Nyberg].  The tags in the AEAD
    algorithms listed in Section 4.3 therefore have an almost perfect
    security level.  This is significantly better than GCM where the
    security level is only tag_length - log2(ℓ) bits [GCM].  For a graph
