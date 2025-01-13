@@ -633,19 +633,17 @@ Table of Contents
    The confidentiality offered by AES-GCM-SST against passive attackers
    is equal to AES-GCM [GCM] and given by the birthday bound.
    Regardless of key length, an attacker can mount a distinguishing
-   attack with a complexity of approximately 2^129 / σ_A, where σ_A ⪅
-   P_MAX ⋅ Q_MAX / 16 is the number of invocations of the AES encryption
-   function.  In contrast, the confidentiality offered by Rijndael-GCM-
-   SST against passive attackers is significantly higher.  The
-   complexity of distinguishing attacks for Rijndael-GCM-SST is
-   approximately 2^257 / σ_R, where σ_R ⪅ P_MAX ⋅ Q_MAX / 32 is the
-   number of invocations of the Rijndael-256 encryption function.  While
-   Rijndael-256 in counter mode can provide strong confidentiality for
-   plaintexts much larger than 2^36 octets, GHASH and POLYVAL do not
-   offer adequate integrity for long plaintexts.  To ensure robust
-   integrity for long plaintexts, an AEAD mode would need to replace
-   POLYVAL with a MAC that has better security properties, such as a
-   Carter-Wegman MAC in a larger field [Degabriele] or other
+   attack with a complexity of approximately 2^129 / σ, where σ ⪅ P_MAX
+   ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit
+   chunks.  In contrast, the confidentiality offered by Rijndael-GCM-SST
+   against passive attackers is significantly higher.  The complexity of
+   distinguishing attacks for Rijndael-GCM-SST is approximately 2^258 /
+   σ. While Rijndael-256 in counter mode can provide strong
+   confidentiality for plaintexts much larger than 2^36 octets, GHASH
+   and POLYVAL do not offer adequate integrity for long plaintexts.  To
+   ensure robust integrity for long plaintexts, an AEAD mode would need
+   to replace POLYVAL with a MAC that has better security properties,
+   such as a Carter-Wegman MAC in a larger field [Degabriele] or other
    alternatives such as [SMAC].
 
    The confidentiality offered by AES-GCM-SST against active attackers
@@ -714,8 +712,8 @@ Table of Contents
      | GCM        |    ℓ / 2^128 |           1 | δ ⋅ v^2 ⋅ ℓ / 2^129 |
      +------------+--------------+-------------+---------------------+
 
-             Table 2: Comparison of integrity between GCM-SST,
-       ChaCha20-Poly1305, and AES- GCM in unicast security protocols
+              Table 2: Comparison of integrity among GCM-SST,
+        ChaCha20-Poly1305, and AES-GCM in unicast security protocols
            with replay protection. v is the number of decryption
         queries, ℓ is the maximum length of plaintext and associated
           data, measured in 128-bit chunks, and δ is the Bernstein
@@ -756,9 +754,9 @@ Table of Contents
    | GCM        |     16|    1 / 2^116 |           1 | δ ⋅ v^2 / 2^117 |
    +------------+-------+--------------+-------------+-----------------+
 
-             Table 3: Comparison of integrity between GCM-SST,
-         ChaCha20-Poly1305, and AES- GCM in unicast QUIC, where the
-                    maximum packet size is 65536 bytes.
+              Table 3: Comparison of integrity among GCM-SST,
+     ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum
+                        packet size is 65536 bytes.
 
    Table 4 compares the confidentiality of ChaCha20-Poly1305 [RFC7539],
    Rijndael-GCM-SST, and AES-256-GCM [RFC5116].
@@ -769,14 +767,15 @@ Table of Contents
      +===================+=================+========================+
      | CHACHA20_POLY1305 |             256 |                  2^256 |
      +-------------------+-----------------+------------------------+
-     | RIJNDAEL_GCM_SST  |             256 |          ≈ 2^257 / σ_R |
+     | RIJNDAEL_GCM_SST  |             256 |            ≈ 2^258 / σ |
      +-------------------+-----------------+------------------------+
-     | AES_256_GCM_SST   |             256 |          ≈ 2^129 / σ_A |
+     | AES_256_GCM_SST   |             256 |            ≈ 2^129 / σ |
      +-------------------+-----------------+------------------------+
 
           Table 4: Comparison of confidentiality against passive
-        attackers between Rijndael-GCM-SST, ChaCha20-Poly1305, and
-                               AES-256-GCM.
+         attackers among Rijndael-GCM-SST, ChaCha20-Poly1305, and
+       AES-256-GCM. σ is is the total plaintext length measured in
+                             128-bit chunks.
 
 5.6.  Multicast and Broadcast
 
