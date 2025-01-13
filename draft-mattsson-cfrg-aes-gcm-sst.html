@@ -1341,7 +1341,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-2-3.9.1">= is the assignment operator<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.10">
-          <p id="section-2-3.10.1">!= is the inequality operator<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.10.1">≠ is the inequality operator<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.11">
           <p id="section-2-3.11.1">x || y is concatenation of the octet strings x and y<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
@@ -1516,7 +1516,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3.2-8">Steps:<a href="#section-3.2-8" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3.2-9">
 <li id="section-3.2-9.1">
-            <p id="section-3.2-9.1.1">If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort<a href="#section-3.2-9.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-9.1.1">If the lengths of K, N, A, or ct are not supported, or if len(tag) ≠ tag_length return error and abort<a href="#section-3.2-9.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-9.2">
             <p id="section-3.2-9.2.1">Initiate keystream generator with K and N<a href="#section-3.2-9.2.1" class="pilcrow">¶</a></p>
@@ -1540,7 +1540,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-9.8.1">Let expected_tag = truncate(full_tag, tag_length)<a href="#section-3.2-9.8.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-9.9">
-            <p id="section-3.2-9.9.1">If tag != expected_tag, return error and abort<a href="#section-3.2-9.9.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-9.9.1">If tag ≠ expected_tag, return error and abort<a href="#section-3.2-9.9.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-9.10">
             <p id="section-3.2-9.10.1">Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))<a href="#section-3.2-9.10.1" class="pilcrow">¶</a></p>

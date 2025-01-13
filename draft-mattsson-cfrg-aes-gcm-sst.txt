@@ -256,7 +256,7 @@ Table of Contents
 
    *  = is the assignment operator
 
-   *  != is the inequality operator
+   *  ≠ is the inequality operator
 
    *  x || y is concatenation of the octet strings x and y
 
@@ -415,7 +415,7 @@ Table of Contents
    Steps:
 
    1.   If the lengths of K, N, A, or ct are not supported, or if
-        len(tag) != tag_length return error and abort
+        len(tag) ≠ tag_length return error and abort
 
    2.   Initiate keystream generator with K and N
 
@@ -431,7 +431,7 @@ Table of Contents
 
    8.   Let expected_tag = truncate(full_tag, tag_length)
 
-   9.   If tag != expected_tag, return error and abort
+   9.   If tag ≠ expected_tag, return error and abort
 
    10.  Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 
