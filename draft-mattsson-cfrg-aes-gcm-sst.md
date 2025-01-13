@@ -933,14 +933,14 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 Changes from -15 to -16:
 
 * Added section on multicast or broadcast allowing use in one-to-many scenarios. GCM-SST provides good security in such scenarios.
-* Remamned Q to H<sub>2</sub> and som q to σ to avoid using the same symbol for different things.
+* Renamed Q to H<sub>2</sub> and some q to σ to avoid using the same symbol for different things.
 * Editorial changes
 
 Changes from -14 to -15:
 
 * Added 48-bit tags after feedback from media people.
 * Added comparison to AEGIS in pure hardware based on Scott Fluhrer's analysis
-* Changed "acceptable level" to "minimum threshold" as it can be discussed if 64 bit security is acceptable.
+* Changed "acceptable level" to "minimum threshold" as it can be discussed if 64-bit security is acceptable.
 * Added requirement that security protocols using AES-GCM-SST MUST enforce limits to ensure that δ ≈ 1.
 * Added that this specification does not allow use in multicast or broadcast. This simplify security considerations.
 * Editorial changes
