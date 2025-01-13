@@ -111,7 +111,25 @@ informative:
         ins: David McGrew
       -
         ins: Scott Fluhrer
-    date: November 2024
+    date: May 2005
+
+  Difference:
+    target: https://link.springer.com/chapter/10.1007/978-3-319-78375-8_24
+    title: "The Missing Difference Problem, and Its Applications to Counter Mode Encryption"
+    author:
+      -
+        ins: Gaëtan Leurent
+      -
+        ins: Ferdinand Sibleyras
+    date: March 2018
+
+  Impossible:
+    target: https://eprint.iacr.org/2012/623.pdf
+    title: "Impossible plaintext cryptanalysis and probable-plaintext collision attacks of 64-bit block cipher modes"
+    author:
+      -
+        ins: David McGrew
+    date: November 2012
 
   Reforge:
     target: https://eprint.iacr.org/2017/332.pdf
