@@ -591,7 +591,7 @@ Table of Contents
 
    Refer to Section 5.6 for considerations on using GCM-SST in multicast
    or broadcast scenarios.  Unless otherwise specified, formulas for
-   expected number of forgeries apply to unicast.
+   expected number of forgeries apply to unicast scenarios.
 
 5.1.  Integrity
 
