@@ -493,7 +493,7 @@ In a comment to NIST, Nyberg et al. {{Nyberg}} explained how small changes based
 
 Short tags are widely used, 32-bit tags are standard in most radio link layers including 5G {{Sec5G}}, 64-bit tags are very common in transport and application layers of the Internet of Things, and 32-, 64-, and 80-bit tags are common in media-encryption applications. Audio packets are small, numerous, and ephemeral. As such, they are highly sensitive to cryptographic overhead, but as each packet typically encodes only 20 ms of audio, forgery of individual packets is not a big concern and barely noticeable. Due to its weaknesses, GCM is typically not used with short tags. The result is either decreased performance from larger than needed tags {{MoQ}}, or decreased performance from using much slower constructions such as AES-CTR combined with HMAC {{RFC3711}}{{RFC9605}}. Short tags are also useful to protect packets whose payloads are secured at higher layers, protocols where the security is given by the sum of the tag lengths, and in constrained radio networks, where the low bandwidth limits the number of forgery attempts. For all applications of short tags it is essential that the MAC behaves like an ideal MAC, i.e., the forgery probability is ≈ 2<sup>-tag_length</sup> even after many generated MACs, many forgery attempts, and after a successful forgery. While Counter with CBC-MAC (CCM) {{RFC5116}} with short tags has forgery probabilities close to ideal, its performance is lower than that of GCM. For a comprehensive discussion on the use cases and requirements of short tags, see {{Comments38B}}.
 
-This document defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface, allowing it to be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the introduction of an additional subkey Q, the derivation of fresh subkeys H and Q for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. These changes enable truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks, see {{Security}}. GCM-SST is designed for use in security protocols with replay protection such as TLS {{RFC8446}}, QUIC {{RFC9000}}, SRTP {{RFC3711}}, PDCP {{PDCP}}, etc. Security protocols with replay protection are by far the most important use case for GCM. In unicast scenarios, its authentication tag behaves like an ideal MAC, including reforgeability resistance. Users and implementers of cryptography expect algorithms to behave like ideal MACs. Compared to Poly1305 {{RFC7539}} and GCM {{RFC5116}}, GCM-SST can provide better integrity with less overhead. Its performance in hardware and software is similar to GCM {{GCM}}. In software, the two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST retains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}.
+This document defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface, allowing it to be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the introduction of an additional subkey H<sub>2</sub>, the derivation of fresh subkeys H and H<sub>2</sub> for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. These changes enable truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks, see {{Security}}. GCM-SST is designed for use in security protocols with replay protection such as TLS {{RFC8446}}, QUIC {{RFC9000}}, SRTP {{RFC3711}}, PDCP {{PDCP}}, etc. Security protocols with replay protection are by far the most important use case for GCM. In unicast scenarios, its authentication tag behaves like an ideal MAC, including reforgeability resistance. Users and implementers of cryptography expect algorithms to behave like ideal MACs. Compared to Poly1305 {{RFC7539}} and GCM {{RFC5116}}, GCM-SST can provide better integrity with less overhead. Its performance in hardware and software is similar to GCM {{GCM}}. In software, the two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST retains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}.
 
 This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256) {{Rijndael}} in counter mode as keystream generators and with tag lengths of 48, 96, and 112 bits, see {{AES-GCM-SST}}. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM {{GCM}}. 3GPP has standardized the use of Rijndael-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST plans to standardize Rijndael-256 {{Plans}}, although there might be revisions to the key schedule. Rijndael-256 has very good performance on modern x86-64 platforms equipped with AES-NI and VAES instructions {{Ducker}}. Compared to AEGIS {{I-D.irtf-cfrg-aegis-aead}}, AES-GCM-SST offers significantly higher performance in pure hardware implementations while retaining the advantage of being a mode of operation for AES.
 
@@ -532,7 +532,7 @@ The following notation is used in the document:
 
 This section defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, Q, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and Q are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, and {{Inoue}}.
+GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, and {{Inoue}}.
 
 For every computational procedure that is specified in this document, a conforming implementation MAY replace the given set of steps with any mathematically equivalent set of steps. In other words, different procedures that produce the correct output for every input are permitted.
 
@@ -566,12 +566,12 @@ Steps:
 
 1. If the lengths of K, N, A, P are not supported return error and abort
 2. Initiate keystream generator with K and N
-3. Let H = Z[0], Q = Z[1], M = Z[2]
+3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let ct = P ⊕ truncate(Z[3:n + 2], len(P))
 5. Let S = zeropad(A) \|\| zeropad(ct)
 6. Let L = LE64(len(ct)) \|\| LE64(len(A))
 7. Let X = POLYVAL(H, S[0], S[1], ...)
-8. Let full_tag = POLYVAL(Q, X ⊕ L) ⊕ M
+8. Let full_tag = POLYVAL(H<sub>2</sub>, X ⊕ L) ⊕ M
 9. Let tag = truncate(full_tag, tag_length)
 10. Return (ct, tag)
 
@@ -605,11 +605,11 @@ Steps:
 
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
 2. Initiate keystream generator with K and N
-3. Let H = Z[0], Q = Z[1], M = Z[2]
+3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct)
 5. Let L = LE64(len(ct)) \|\| LE64(len(A))
 6. Let X = POLYVAL(H, S[0], S[1], ...)
-7. Let full_tag = POLYVAL(Q, X ⊕ L) ⊕ M
+7. Let full_tag = POLYVAL(H<sub>2</sub>, X ⊕ L) ⊕ M
 8. Let expected_tag = truncate(full_tag, tag_length)
 9. If tag != expected_tag, return error and abort
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
@@ -681,7 +681,7 @@ Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and
 
 # Security Considerations {#Security}
 
-GCM-SST introduces an additional subkey Q, alongside the subkey H. The inclusion of Q enables truncated tags with forgery probabilities close to ideal. Both H and Q are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} prove that GCM-SST is a provably secure authenticated encryption mode, with security guaranteed for evaluations under fresh nonces, even if some earlier nonces have been reused.
+GCM-SST introduces an additional subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} prove that GCM-SST is a provably secure authenticated encryption mode, with security guaranteed for evaluations under fresh nonces, even if some earlier nonces have been reused.
 
 GCM-SST is designed for use in security protocols with replay protection. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and only once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. GCM-SST MUST NOT be used with random nonces [Collision] and MUST be used with replay protection. Reuse of nonces in successful encryption and decryption function calls enable universal forgery {{Lindell}}{{Inoue}}. For a given tag length, GCM-SST has strictly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations SHOULD add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks [Bellare] and is for example implemented in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-256-GCM-SST. See {{onemany}} for considerations on using GCM-SST in multicast or broadcast scenarios.
 
@@ -699,7 +699,7 @@ The confidentiality offered by AES-GCM-SST against active attackers is directly 
 
 ## Weak keys
 
-In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and Q are zero, so called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If Q is zero, the authentication tag does not depend on P and A. Due to the masking with M, there are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and Q are generated with a permutation on different input, so H and Q cannot both be zero.
+In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and H<sub>2</sub> are zero, so called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If H<sub>2</sub> is zero, the authentication tag does not depend on P and A. Due to the masking with M, there are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and H<sub>2</sub> are generated with a permutation on different input, so H and H<sub>2</sub> cannot both be zero.
 
 ## Replay Protection
 
@@ -745,7 +745,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
          K = { 00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f }
          N = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
          H = { 22 ce 92 da cb 50 77 4b ab 0d 18 29 3d 6e ae 7f }
-         Q = { 03 13 63 96 74 be fa 86 4d fa fb 80 36 b7 a0 3c }
+       H_2 = { 03 13 63 96 74 be fa 86 4d fa fb 80 36 b7 a0 3c }
          M = { 9b 1d 49 ea 42 b0 0a ec b0 bc eb 8d d0 ef c2 b9 }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -823,7 +823,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
          P = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
                f6 22 91 9d }
          H = { 2d 6d 7f 1c 52 a7 a0 6b f2 bc bd 23 75 47 03 88 }
-         Q = { 3b fd 00 96 25 84 2a 86 65 71 a4 66 e5 62 05 92 }
+       H_2 = { 3b fd 00 96 25 84 2a 86 65 71 a4 66 e5 62 05 92 }
          M = { 9e 6c 98 3e e0 6c 1a ab c8 99 b7 8d 57 32 0a f5 }
          L = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
   full_tag = { 45 03 bf b0 96 82 39 b3 67 e9 70 c3 83 c5 10 6f }
@@ -839,7 +839,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
                10 11 12 13 14 15 16 17 18 19 1a 1b 1c 1d 1e 1f }
          N = { 30 31 32 33 34 35 36 37 38 39 3a 3b }
          H = { 3b d9 9f 8d 38 f0 2e a1 80 96 a4 b0 b1 d9 3b 1b }
-         Q = { af 7f 54 00 16 aa b8 bc 91 56 d9 d1 83 59 cc e5 }
+       H_2 = { af 7f 54 00 16 aa b8 bc 91 56 d9 d1 83 59 cc e5 }
          M = { b3 35 31 c0 e9 6f 4a 03 2a 33 8e ec 12 99 3e 68 }
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -918,7 +918,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
          P = { ad 4f 14 f2 44 40 66 d0 6b c4 30 b7 32 3b a1 22
                f6 22 91 9d }
          H = { 13 53 4b f7 8a 91 38 fd f5 41 65 7f c2 39 55 23 }
-         Q = { 32 69 75 a3 3a ff ae ac af a8 fb d1 bd 62 66 95 }
+       H_2 = { 32 69 75 a3 3a ff ae ac af a8 fb d1 bd 62 66 95 }
          M = { 59 48 44 80 b6 cd 59 06 69 27 5e 7d 81 4a d1 74 }
          L = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
   full-tag = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c d5 4d }
@@ -933,6 +933,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 Changes from -15 to -16:
 
 * Added section on multicast or broadcast.
+* Remaned som Q and q to avoid using the same symbol for different things.
 
 Changes from -14 to -15:
 
