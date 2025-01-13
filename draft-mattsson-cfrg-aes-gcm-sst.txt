@@ -1227,7 +1227,7 @@ Change Log
    *  Added section on multicast or broadcast allowing use in one-to-
       many scenarios.  GCM-SST provides good security in such scenarios.
 
-   *  Remamned Q to H_2 and som q to σ to avoid using the same symbol
+   *  Renamed Q to H_2 and some q to σ to avoid using the same symbol
       for different things.
 
    *  Editorial changes
@@ -1240,7 +1240,7 @@ Change Log
       Fluhrer's analysis
 
    *  Changed "acceptable level" to "minimum threshold" as it can be
-      discussed if 64 bit security is acceptable.
+      discussed if 64-bit security is acceptable.
 
    *  Added requirement that security protocols using AES-GCM-SST MUST
       enforce limits to ensure that δ ≈ 1.
