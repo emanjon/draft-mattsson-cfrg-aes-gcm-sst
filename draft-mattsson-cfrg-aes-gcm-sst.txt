@@ -588,8 +588,10 @@ Table of Contents
    [Ascon].  By increasing the nonce length from 96 bits to 224 bits,
    Rijndael-GCM-SST can offer significantly greater security against
    precomputation and multi-key attacks compared to AES-256-GCM-SST.
-   See Section 5.6 for considerations on using GCM-SST in multicast or
-   broadcast scenarios.
+
+   Refer to Section 5.6 for considerations on using GCM-SST in multicast
+   or broadcast scenarios.  Unless otherwise specified, formulas for
+   expected number of forgeries apply to unicast.
 
 5.1.  Integrity
 
