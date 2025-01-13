@@ -729,7 +729,7 @@ The details of the replay protection mechanism is determined by the security pro
 
 While GCM-SST offers stronger security properties than GCM for a given tag length in multicast or broadcast contexts, it does not behave exactly like an ideal MAC. With an ideal MAC, a successful forgery against one recipient allows the attacker to reuse the same forgery against all other recipients. In contrast, with GCM, a successful forgery against one recipient enables the attacker to generate an unlimited number of new forgeries for all recipients.
 
-With GCM-SST, a few successful forgeries against a few recipients allow the attacker to create one new forgery per recipient. While the total number of forgeries in GCM-SST matches that of an ideal MAC, the diversity of these forgeries is higher. To achieve one distinct forgery per recipient with an ideal MAC, the attacker would need to send on average 2<sup>tag_length</sup> forgery attempts to each recipient. GCM-SST performs equally well or better than an ideal MAC with length tag_length - log2(r), where r is the number of recipients. Thus, in one-to-many scenarios, the expected number of distinct forgeries is ≈ v ⋅ r / 2<sup>tag_length</sup>, and the effective tag length of GCM-SST is tag_length - log2(r).
+With GCM-SST, a few successful forgeries against a few recipients allow the attacker to create one new forgery per recipient. While the total number of forgeries in GCM-SST matches that of an ideal MAC, the diversity of these forgeries is higher. To achieve one distinct forgery per recipient with an ideal MAC, the attacker would need to send on average 2<sup>tag_length</sup> forgery attempts to each recipient. GCM-SST performs equally well or better than an ideal MAC with length tag_length - log2(r), where r is the number of recipients. Thus, in one-to-many scenarios with replay protection, the expected number of distinct forgeries is ≈ v ⋅ r / 2<sup>tag_length</sup>, and the effective tag length of GCM-SST is tag_length - log2(r).
 
 # IANA Considerations
 
@@ -932,8 +932,9 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 
 Changes from -15 to -16:
 
-* Added section on multicast or broadcast.
-* Remaned som Q and q to avoid using the same symbol for different things.
+* Added section on multicast or broadcast allowing use in one-to-many scenarios. GCM-SST provides good security in such scenarios.
+* Remamned Q to H<sub>2</sub> and som q to σ to avoid using the same symbol for different things.
+* Editorial changes
 
 Changes from -14 to -15:
 
