@@ -725,6 +725,14 @@ The details of the replay protection mechanism is determined by the security pro
 | GCM | 16 | 1 / 2<sup>116</sup> | 1 | δ&nbsp;⋅&nbsp;v<sup>2</sup>&nbsp;/&nbsp;2<sup>117</sup> |
 {: #comp2 title="Comparison between GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes." cols="l r r r r"}
 
+{{comp3}} compares the confidentiality of ChaCha20-Poly1305 {{RFC7539}}, Rijndael-GCM-SST, and AES-256-GCM {{RFC5116}} in QUIC {{RFC9000}}{{RFC9001}} a security protocol where the combined size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes (ℓ ≈ 2<sup>12</sup>).
+
+| Name | Complexity of distinguishing attacks |
+| CHACHA20_POLY1305 | 2<sup>256</sup> |
+| RIJNDAEL_GCM_SST | = 2<sup>257</sup> / σ<sub>R</sub> |
+| AES_256_GCM_SST | = 2<sup>129</sup> / σ<sub>A</sub> |
+{: #comp3 title="Comparison between Rijndael-GCM-SST, ChaCha20-Poly1305, and AES-256-GCM in QUIC, where the maximum packet size is 65536 bytes." cols="l r"}
+
 ## Multicast and Broadcast {#onemany}
 
 While GCM-SST offers stronger security properties than GCM for a given tag length in multicast or broadcast contexts, it does not behave exactly like an ideal MAC. With an ideal MAC, a successful forgery against one recipient allows the attacker to reuse the same forgery against all other recipients. In contrast, with GCM, a successful forgery against one recipient enables the attacker to generate an unlimited number of new forgeries for all recipients.
