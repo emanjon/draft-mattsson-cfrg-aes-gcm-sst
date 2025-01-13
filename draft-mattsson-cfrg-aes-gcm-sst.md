@@ -514,7 +514,7 @@ The following notation is used in the document:
 * tag is the authentication tag
 * tag_length is the length of tag in bits
 * = is the assignment operator
-* != is the inequality operator
+* ≠ is the inequality operator
 * x \|\| y is concatenation of the octet strings x and y
 * ⊕ is the bitwise exclusive or operator XOR
 * len(x) is the length of x in bits
@@ -603,7 +603,7 @@ Outputs:
 
 Steps:
 
-1. If the lengths of K, N, A, or ct are not supported, or if len(tag) != tag_length return error and abort
+1. If the lengths of K, N, A, or ct are not supported, or if len(tag) ≠ tag_length return error and abort
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct)
@@ -611,7 +611,7 @@ Steps:
 6. Let X = POLYVAL(H, S[0], S[1], ...)
 7. Let full_tag = POLYVAL(H<sub>2</sub>, X ⊕ L) ⊕ M
 8. Let expected_tag = truncate(full_tag, tag_length)
-9. If tag != expected_tag, return error and abort
+9. If tag ≠ expected_tag, return error and abort
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protection, return P
 
