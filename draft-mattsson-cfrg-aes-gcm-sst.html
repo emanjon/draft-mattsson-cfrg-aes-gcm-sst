@@ -1857,7 +1857,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </tbody>
         </table>
 </div>
-<p id="section-5.5-5"><a href="#comp3" class="auto internal xref">Table 4</a> compares the confidentiality of ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, Rijndael-GCM-SST, and AES-256-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
+<p id="section-5.5-5"><a href="#comp3" class="auto internal xref">Table 4</a> compares the confidentiality of Rijndael-GCM-SST, ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, and AES-256-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>. The most common measure of confidentiality against passive attackers is indistinguishability under chosen plaintext attacks (IND-CPA). The confidentiality of AES-based ciphers is significantly constrained by their narrow 128-bit block size. Even with the strict limitations imposed in QUIC <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span> (P_MAX = 2<sup>16</sup> and Q_MAX = 2<sup>23</sup>), AES-256-GCM-SST provides only 94-bit security against distinguishing attacks.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
 <span id="name-comparison-of-confidentiali"></span><div id="comp3">
 <table class="center" id="table-4">
           <caption>
@@ -1884,7 +1884,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
               <td class="text-right" rowspan="1" colspan="1">≈ 2<sup>258</sup> / σ</td>
             </tr>
             <tr>
-              <td class="text-left" rowspan="1" colspan="1">AES_256_GCM_SST</td>
+              <td class="text-left" rowspan="1" colspan="1">AES_256_GCM</td>
               <td class="text-right" rowspan="1" colspan="1">256</td>
               <td class="text-right" rowspan="1" colspan="1">≈ 2<sup>129</sup> / σ</td>
             </tr>

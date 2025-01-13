@@ -758,8 +758,14 @@ Table of Contents
      ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum
                         packet size is 65536 bytes.
 
-   Table 4 compares the confidentiality of ChaCha20-Poly1305 [RFC7539],
-   Rijndael-GCM-SST, and AES-256-GCM [RFC5116].
+   Table 4 compares the confidentiality of Rijndael-GCM-SST,
+   ChaCha20-Poly1305 [RFC7539], and AES-256-GCM [RFC5116].  The most
+   common measure of confidentiality against passive attackers is
+   indistinguishability under chosen plaintext attacks (IND-CPA).  The
+   confidentiality of AES-based ciphers is significantly constrained by
+   their narrow 128-bit block size.  Even with the strict limitations
+   imposed in QUIC [RFC9001] (P_MAX = 2^16 and Q_MAX = 2^23), AES-256-
+   GCM-SST provides only 94-bit security against distinguishing attacks.
 
      +===================+=================+========================+
      | Name              | Key size (bits) |          Complexity of |
@@ -769,7 +775,7 @@ Table of Contents
      +-------------------+-----------------+------------------------+
      | RIJNDAEL_GCM_SST  |             256 |            ≈ 2^258 / σ |
      +-------------------+-----------------+------------------------+
-     | AES_256_GCM_SST   |             256 |            ≈ 2^129 / σ |
+     | AES_256_GCM       |             256 |            ≈ 2^129 / σ |
      +-------------------+-----------------+------------------------+
 
           Table 4: Comparison of confidentiality against passive
