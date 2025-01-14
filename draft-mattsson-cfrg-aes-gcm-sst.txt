@@ -762,9 +762,9 @@ Table of Contents
      ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum
                         packet size is 65536 bytes.
 
-   Table 4 compares the confidentiality of Rijndael-GCM-SST, SNOW 5G-
-   GCM-SST, ChaCha20-Poly1305 [RFC7539], and AES-256-GCM [RFC5116], all
-   of which use 256-bit keys, against passive attackers.  The
+   Table 4 compares the confidentiality of Rijndael-GCM-SST, AES-256-
+   GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 [RFC7539], all of
+   which use 256-bit keys, against passive attackers.  The
    confidentiality of block ciphers in counter mode is determined by the
    birthday bound, with AES-based ciphers particularly constrained by
    their narrow 128-bit block size.  Even under the strict usage limits
@@ -786,7 +786,7 @@ Table of Contents
      +-------------------+-----------------+------------------------+
      | RIJNDAEL_GCM_SST  |             256 |            ≈ 2^258 / σ |
      +-------------------+-----------------+------------------------+
-     | AES_256_GCM       |             256 |            ≈ 2^129 / σ |
+     | AES_256_GCM_SST   |             256 |            ≈ 2^129 / σ |
      +-------------------+-----------------+------------------------+
 
           Table 4: Comparison of confidentiality against passive
