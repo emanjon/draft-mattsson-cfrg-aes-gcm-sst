@@ -745,7 +745,7 @@ The details of the replay protection mechanism is determined by the security pro
 | GCM | 16 | 1 / 2<sup>116</sup> | 1 | δ&nbsp;⋅&nbsp;v<sup>2</sup>&nbsp;/&nbsp;2<sup>117</sup> |
 {: #comp2 title="Comparison of integrity among GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes." cols="l r r r r"}
 
-{{comp3}} compares the confidentiality of Rijndael-GCM-SST, ChaCha20-Poly1305 {{RFC7539}}, and AES-256-GCM {{RFC5116}}. The most common measure of confidentiality against passive attackers is indistinguishability under chosen plaintext attacks (IND-CPA). The confidentiality of AES-based ciphers is significantly constrained by their narrow 128-bit block size. Even with the strict limitations imposed in QUIC {{RFC9001}} (P_MAX = 2<sup>16</sup> and Q_MAX = 2<sup>23</sup>), AES-256-GCM-SST provides only 94-bit security against distinguishing attacks.
+{{comp3}} compares the confidentiality of Rijndael-GCM-SST, ChaCha20-Poly1305 {{RFC7539}}, and AES-256-GCM {{RFC5116}} against passive attackers. The confidentiality of block ciphers in counter mode is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Even under the strict usage limits defined by QUIC {{RFC9001}} (P_MAX = 2<sup>16</sup> and Q_MAX = 2<sup>23</sup>), AES-256-GCM-SST provides only 94 bits of security against distinguishing attacks. Research by McGrew, Leurent, and Sibleyras {{Impossible}}{{Difference}} demonstrates that plaintext-recovery attacks on counter mode have complexity similar to that of distinguishing attacks.
 
 | Name | Key size (bits) | Complexity of distinguishing attacks |
 | CHACHA20_POLY1305 | 256 | 2<sup>256</sup> |
