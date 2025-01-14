@@ -1719,8 +1719,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-confidentiality">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-confidentiality" class="section-name selfRef">Confidentiality</a>
         </h3>
-<p id="section-5.2-1">The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. McGrew, Leurent, and Sibleyras <span>[<a href="#Impossible" class="cite xref">Impossible</a>]</span><span>[<a href="#Difference" class="cite xref">Difference</a>]</span> demonstrate that an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logaritmic factors) as distinguishing attacks. While Rijndael-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field <span>[<a href="#Degabriele" class="cite xref">Degabriele</a>]</span> or other alternatives such as <span>[<a href="#SMAC" class="cite xref">SMAC</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">The confidentiality offered by AES-GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries can significantly compromise privacy, in addition to affecting integrity and authenticity. It <span class="bcp14">MUST</span> be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality <span class="bcp14">MUST</span> all be carefully evaluated when selecting an appropriate tag length.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">The confidentiality offered by GCM-SST against passive attackers depends on the keystream generator. For block ciphers in counter mode it is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. For AES-GCM-SST, the confidentiality is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. McGrew, Leurent, and Sibleyras <span>[<a href="#Impossible" class="cite xref">Impossible</a>]</span><span>[<a href="#Difference" class="cite xref">Difference</a>]</span> demonstrate that for block ciphers in counter mode, an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logaritmic factors) as distinguishing attacks. This is not the case for stream ciphers, where many distinguishing attacks do not facilitate plaintext recovery <span>[<a href="#Rose" class="cite xref">Rose</a>]</span>. While Rijndael-256 in counter mode can provide 128-bit confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field <span>[<a href="#Degabriele" class="cite xref">Degabriele</a>]</span> or other alternatives such as <span>[<a href="#SMAC" class="cite xref">SMAC</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">AES-GCM-SST, it is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. McGrew, Leurent, and Sibleyras <span>[<a href="#Impossible" class="cite xref">Impossible</a>]</span><span>[<a href="#Difference" class="cite xref">Difference</a>]</span> demonstrate that an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logaritmic factors) as distinguishing attacks. While Rijndael-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field <span>[<a href="#Degabriele" class="cite xref">Degabriele</a>]</span> or other alternatives such as <span>[<a href="#SMAC" class="cite xref">SMAC</a>]</span>.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">The confidentiality offered by AES-GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries can significantly compromise privacy, in addition to affecting integrity and authenticity. It <span class="bcp14">MUST</span> be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality <span class="bcp14">MUST</span> all be carefully evaluated when selecting an appropriate tag length.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="weak-keys">
@@ -1857,7 +1858,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </tbody>
         </table>
 </div>
-<p id="section-5.5-5"><a href="#comp3" class="auto internal xref">Table 4</a> compares the confidentiality of Rijndael-GCM-SST, AES-256-GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, all of which use 256-bit keys, against passive attackers. The confidentiality of block ciphers in counter mode is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Even under the strict usage limits defined by QUIC <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span> (P_MAX = 2<sup>16</sup> and Q_MAX = 2<sup>23</sup>), AES-256-GCM-SST provides only 94 bits of security against distinguishing attacks. Plaintext-recovery attacks on block ciphers in counter mode have a complexity similar to distinguishing attacks, see <span>[<a href="#Impossible" class="cite xref">Impossible</a>]</span> and <span>[<a href="#Difference" class="cite xref">Difference</a>]</span>. This is not the case for stream ciphers, where many distinguishing attacks do not facilitate plaintext recovery <span>[<a href="#Rose" class="cite xref">Rose</a>]</span>.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
+<p id="section-5.5-5"><a href="#comp3" class="auto internal xref">Table 4</a> compares the confidentiality of Rijndael-GCM-SST, AES-256-GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, all of which use 256-bit keys, against passive attackers. The confidentiality of block ciphers in counter mode is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Even under the strict usage limits defined by QUIC <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span> (P_MAX = 2<sup>16</sup> and Q_MAX = 2<sup>23</sup>), AES-256-GCM-SST provides only 94 bits of security against distinguishing attacks. Plaintext-recovery attacks on block ciphers in counter mode have a complexity similar to distinguishing attacks, see <span>[<a href="#Impossible" class="cite xref">Impossible</a>]</span> and <span>[<a href="#Difference" class="cite xref">Difference</a>]</span>.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
 <span id="name-comparison-of-confidentiali"></span><div id="comp3">
 <table class="center" id="table-4">
           <caption>
@@ -1868,31 +1869,31 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <tr>
               <th class="text-left" rowspan="1" colspan="1">Name</th>
               <th class="text-right" rowspan="1" colspan="1">Key size (bits)</th>
-              <th class="text-right" rowspan="1" colspan="1">Complexity of distinguishing attacks</th>
+              <th class="text-center" rowspan="1" colspan="1">Complexity of distinguishing attacks</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">CHACHA20_POLY1305</td>
               <td class="text-right" rowspan="1" colspan="1">256</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>256</sup>
+              <td class="text-center" rowspan="1" colspan="1">2<sup>256</sup>
 </td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">SNOW_5G_GCM_SST</td>
               <td class="text-right" rowspan="1" colspan="1">256</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>256</sup>
+              <td class="text-center" rowspan="1" colspan="1">2<sup>256</sup>
 </td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">RIJNDAEL_GCM_SST</td>
               <td class="text-right" rowspan="1" colspan="1">256</td>
-              <td class="text-right" rowspan="1" colspan="1">≈ 2<sup>258</sup> / σ</td>
+              <td class="text-center" rowspan="1" colspan="1">≈ 2<sup>258</sup> / σ</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">AES_256_GCM_SST</td>
               <td class="text-right" rowspan="1" colspan="1">256</td>
-              <td class="text-right" rowspan="1" colspan="1">≈ 2<sup>129</sup> / σ</td>
+              <td class="text-center" rowspan="1" colspan="1">≈ 2<sup>129</sup> / σ</td>
             </tr>
           </tbody>
         </table>
