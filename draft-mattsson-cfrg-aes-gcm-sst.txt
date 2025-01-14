@@ -1283,6 +1283,10 @@ Change Log
    *  Renamed Q to H_2 and some q to σ to avoid using the same symbol
       for different things.
 
+   *  Updated information on confidentiality against passive attackers
+      including comparison and links to papers showing that plaintext-
+      recovery have similar complexity as distinguishing attacks.
+
    *  Editorial changes
 
    Changes from -14 to -15:
