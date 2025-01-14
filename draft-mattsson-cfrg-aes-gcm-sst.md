@@ -973,6 +973,7 @@ Changes from -15 to -16:
 
 * Added section on multicast or broadcast allowing use in one-to-many scenarios. GCM-SST provides good security in such scenarios.
 * Renamed Q to H<sub>2</sub> and some q to σ to avoid using the same symbol for different things.
+* Updated information on confidentiality against passive attackers including comparison and links to papers showing that plaintext-recovery have similar complexity as distinguishing attacks.
 * Editorial changes
 
 Changes from -14 to -15:
