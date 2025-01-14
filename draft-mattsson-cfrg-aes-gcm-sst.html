@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 17 July 2025</td>
+<td class="center">Expires 18 July 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-13" class="published">13 January 2025</time>
+<time datetime="2025-01-14" class="published">14 January 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-17">17 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-07-18">18 July 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 17 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 18 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1719,7 +1719,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
         <h3 id="name-confidentiality">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-confidentiality" class="section-name selfRef">Confidentiality</a>
         </h3>
-<p id="section-5.2-1">The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. While Rijndael-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field <span>[<a href="#Degabriele" class="cite xref">Degabriele</a>]</span> or other alternatives such as <span>[<a href="#SMAC" class="cite xref">SMAC</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">The confidentiality offered by AES-GCM-SST against passive attackers is equal to AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span> and given by the birthday bound. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. McGrew, Leurent, and Sibleyras <span>[<a href="#Impossible" class="cite xref">Impossible</a>]</span><span>[<a href="#Difference" class="cite xref">Difference</a>]</span> demonstrate that an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logaritmic factors) as distinguishing attacks. While Rijndael-256 in counter mode can provide strong confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field <span>[<a href="#Degabriele" class="cite xref">Degabriele</a>]</span> or other alternatives such as <span>[<a href="#SMAC" class="cite xref">SMAC</a>]</span>.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
 <p id="section-5.2-2">The confidentiality offered by AES-GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries can significantly compromise privacy, in addition to affecting integrity and authenticity. It <span class="bcp14">MUST</span> be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality <span class="bcp14">MUST</span> all be carefully evaluated when selecting an appropriate tag length.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1857,12 +1857,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           </tbody>
         </table>
 </div>
-<p id="section-5.5-5"><a href="#comp3" class="auto internal xref">Table 4</a> compares the confidentiality of Rijndael-GCM-SST, ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, and AES-256-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>. The most common measure of confidentiality against passive attackers is indistinguishability under chosen plaintext attacks (IND-CPA). The confidentiality of AES-based ciphers is significantly constrained by their narrow 128-bit block size. Even with the strict limitations imposed in QUIC <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span> (P_MAX = 2<sup>16</sup> and Q_MAX = 2<sup>23</sup>), AES-256-GCM-SST provides only 94-bit security against distinguishing attacks.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
+<p id="section-5.5-5"><a href="#comp3" class="auto internal xref">Table 4</a> compares the confidentiality of Rijndael-GCM-SST, SNOW 5G-GCM-SST, ChaCha20-Poly1305 <span>[<a href="#RFC7539" class="cite xref">RFC7539</a>]</span>, and AES-256-GCM <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>, all of which use 256-bit keys, against passive attackers. The confidentiality of block ciphers in counter mode is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Even under the strict usage limits defined by QUIC <span>[<a href="#RFC9001" class="cite xref">RFC9001</a>]</span> (P_MAX = 2<sup>16</sup> and Q_MAX = 2<sup>23</sup>), AES-256-GCM-SST provides only 94 bits of security against distinguishing attacks. Plaintext-recovery attacks on block ciphers in counter mode have a complexity similar to distinguishing attacks, see <span>[<a href="#Impossible" class="cite xref">Impossible</a>]</span> and <span>[<a href="#Difference" class="cite xref">Difference</a>]</span>. This is not the case for stream ciphers, where many distinguishing attacks do not facilitate plaintext recovery <span>[<a href="#Rose" class="cite xref">Rose</a>]</span>.<a href="#section-5.5-5" class="pilcrow">¶</a></p>
 <span id="name-comparison-of-confidentiali"></span><div id="comp3">
 <table class="center" id="table-4">
           <caption>
 <a href="#table-4" class="selfRef">Table 4</a>:
-<a href="#name-comparison-of-confidentiali" class="selfRef">Comparison of confidentiality against passive attackers among Rijndael-GCM-SST, ChaCha20-Poly1305, and AES-256-GCM. σ is is the total plaintext length measured in 128-bit chunks.</a>
+<a href="#name-comparison-of-confidentiali" class="selfRef">Comparison of confidentiality against passive attackers among Rijndael-GCM-SST, SNOW 5G-GCM-SST, ChaCha20-Poly1305, and AES-256-GCM. σ is is the total plaintext length measured in 128-bit chunks.</a>
           </caption>
 <thead>
             <tr>
@@ -1874,6 +1874,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <tbody>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">CHACHA20_POLY1305</td>
+              <td class="text-right" rowspan="1" colspan="1">256</td>
+              <td class="text-right" rowspan="1" colspan="1">2<sup>256</sup>
+</td>
+            </tr>
+            <tr>
+              <td class="text-left" rowspan="1" colspan="1">SNOW_5G_GCM_SST</td>
               <td class="text-right" rowspan="1" colspan="1">256</td>
               <td class="text-right" rowspan="1" colspan="1">2<sup>256</sup>
 </td>
@@ -2115,6 +2121,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <dt id="Rogaway">[Rogaway]</dt>
         <dd>
 <span class="refAuthor">Rogaway, P.</span>, <span class="refTitle">"Evaluation of Some Blockcipher Modes of Operation"</span>, <time datetime="2011-02" class="refDate">February 2011</time>, <span>&lt;<a href="https://www.cryptrec.go.jp/exreport/cryptrec-ex-2012-2010r1.pdf">https://www.cryptrec.go.jp/exreport/cryptrec-ex-2012-2010r1.pdf</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Rose">[Rose]</dt>
+        <dd>
+<span class="refAuthor">Greg Rose</span> and <span class="refAuthor">Philip Hawkes</span>, <span class="refTitle">"On the Applicability of Distinguishing Attacks Against Stream Ciphers"</span>, <time datetime="2002-09" class="refDate">September 2002</time>, <span>&lt;<a href="https://eprint.iacr.org/2002/142.pdf">https://eprint.iacr.org/2002/142.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SAGE23">[SAGE23]</dt>
         <dd>

@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 17 July 2025                                  J. Preuß Mattsson
+Expires: 18 July 2025                                  J. Preuß Mattsson
                                                                 Ericsson
-                                                         13 January 2025
+                                                         14 January 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 July 2025.
+   This Internet-Draft will expire on 18 July 2025.
 
 Copyright Notice
 
@@ -638,13 +638,17 @@ Table of Contents
    chunks.  In contrast, the confidentiality offered by Rijndael-GCM-SST
    against passive attackers is significantly higher.  The complexity of
    distinguishing attacks for Rijndael-GCM-SST is approximately 2^258 /
-   σ. While Rijndael-256 in counter mode can provide strong
-   confidentiality for plaintexts much larger than 2^36 octets, GHASH
-   and POLYVAL do not offer adequate integrity for long plaintexts.  To
-   ensure robust integrity for long plaintexts, an AEAD mode would need
-   to replace POLYVAL with a MAC that has better security properties,
-   such as a Carter-Wegman MAC in a larger field [Degabriele] or other
-   alternatives such as [SMAC].
+   σ. McGrew, Leurent, and Sibleyras [Impossible][Difference]
+   demonstrate that an attacker with partial knowledge of the plaintext
+   can execute plaintext-recovery attacks against counter mode with
+   roughly the same complexity (up to logaritmic factors) as
+   distinguishing attacks.  While Rijndael-256 in counter mode can
+   provide strong confidentiality for plaintexts much larger than 2^36
+   octets, GHASH and POLYVAL do not offer adequate integrity for long
+   plaintexts.  To ensure robust integrity for long plaintexts, an AEAD
+   mode would need to replace POLYVAL with a MAC that has better
+   security properties, such as a Carter-Wegman MAC in a larger field
+   [Degabriele] or other alternatives such as [SMAC].
 
    The confidentiality offered by AES-GCM-SST against active attackers
    is directly linked to the forgery probability.  Depending on the
@@ -758,14 +762,19 @@ Table of Contents
      ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum
                         packet size is 65536 bytes.
 
-   Table 4 compares the confidentiality of Rijndael-GCM-SST,
-   ChaCha20-Poly1305 [RFC7539], and AES-256-GCM [RFC5116].  The most
-   common measure of confidentiality against passive attackers is
-   indistinguishability under chosen plaintext attacks (IND-CPA).  The
-   confidentiality of AES-based ciphers is significantly constrained by
-   their narrow 128-bit block size.  Even with the strict limitations
-   imposed in QUIC [RFC9001] (P_MAX = 2^16 and Q_MAX = 2^23), AES-256-
-   GCM-SST provides only 94-bit security against distinguishing attacks.
+   Table 4 compares the confidentiality of Rijndael-GCM-SST, SNOW 5G-
+   GCM-SST, ChaCha20-Poly1305 [RFC7539], and AES-256-GCM [RFC5116], all
+   of which use 256-bit keys, against passive attackers.  The
+   confidentiality of block ciphers in counter mode is determined by the
+   birthday bound, with AES-based ciphers particularly constrained by
+   their narrow 128-bit block size.  Even under the strict usage limits
+   defined by QUIC [RFC9001] (P_MAX = 2^16 and Q_MAX = 2^23), AES-256-
+   GCM-SST provides only 94 bits of security against distinguishing
+   attacks.  Plaintext-recovery attacks on block ciphers in counter mode
+   have a complexity similar to distinguishing attacks, see [Impossible]
+   and [Difference].  This is not the case for stream ciphers, where
+   many distinguishing attacks do not facilitate plaintext recovery
+   [Rose].
 
      +===================+=================+========================+
      | Name              | Key size (bits) |          Complexity of |
@@ -773,15 +782,17 @@ Table of Contents
      +===================+=================+========================+
      | CHACHA20_POLY1305 |             256 |                  2^256 |
      +-------------------+-----------------+------------------------+
+     | SNOW_5G_GCM_SST   |             256 |                  2^256 |
+     +-------------------+-----------------+------------------------+
      | RIJNDAEL_GCM_SST  |             256 |            ≈ 2^258 / σ |
      +-------------------+-----------------+------------------------+
      | AES_256_GCM       |             256 |            ≈ 2^129 / σ |
      +-------------------+-----------------+------------------------+
 
           Table 4: Comparison of confidentiality against passive
-         attackers among Rijndael-GCM-SST, ChaCha20-Poly1305, and
-       AES-256-GCM. σ is is the total plaintext length measured in
-                             128-bit chunks.
+            attackers among Rijndael-GCM-SST, SNOW 5G-GCM-SST,
+          ChaCha20-Poly1305, and AES- 256-GCM. σ is is the total
+               plaintext length measured in 128-bit chunks.
 
 5.6.  Multicast and Broadcast
 
@@ -1047,6 +1058,10 @@ Table of Contents
               Operation", February 2011,
               <https://www.cryptrec.go.jp/exreport/cryptrec-ex-
               2012-2010r1.pdf>.
+
+   [Rose]     Greg Rose and Philip Hawkes, "On the Applicability of
+              Distinguishing Attacks Against Stream Ciphers", September
+              2002, <https://eprint.iacr.org/2002/142.pdf>.
 
    [SAGE23]   ETSI SAGE, "Specification of the 256-bit air interface
               algorithms", February 2023,
