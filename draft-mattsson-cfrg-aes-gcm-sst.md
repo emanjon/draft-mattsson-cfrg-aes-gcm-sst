@@ -764,7 +764,7 @@ The details of the replay protection mechanism is determined by the security pro
 | SNOW_5G_GCM_SST | 256 | 2<sup>256</sup> |
 | RIJNDAEL_GCM_SST | 256 | ≈ 2<sup>258</sup> / σ |
 | AES_256_GCM_SST | 256 | ≈ 2<sup>129</sup> / σ |
-{: #comp3 title="Comparison of confidentiality against passive attackers among Rijndael-GCM-SST, SNOW 5G-GCM-SST, ChaCha20-Poly1305, and AES-256-GCM. σ is is the total plaintext length measured in 128-bit chunks." cols="l r c"}
+{: #comp3 title="Comparison of confidentiality against passive attackers among Rijndael-GCM-SST, SNOW 5G-GCM-SST, ChaCha20-Poly1305, and AES-256-GCM. σ is is the total plaintext length measured in 128-bit chunks." cols="l c c"}
 
 ## Multicast and Broadcast {#onemany}
 
