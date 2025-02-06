@@ -298,13 +298,13 @@ informative:
         ins: 3GPP TS 38.323
     date: December 2024
 
-  Collision:
-    target: https://eprint.iacr.org/2021/236
+  Entropy:
+    target: https://eprint.iacr.org/2024/1111.pdf
     title: "Collision Attacks on Galois/Counter Mode (GCM)"
     author:
       -
         ins: J. Preuß Mattsson
-    date: September 2024
+    date: February 2025
 
   Lindell:
     target: https://mailarchive.ietf.org/arch/browse/cfrg/?gbt=1&index=cWpv0QgX2ltkWhtd3R9pEW7E1CA
@@ -708,9 +708,11 @@ Common parameters for the six AEAD instances:
 
 The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}}. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48). Protocols that employ GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96 bits and 224 bits, respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
 
-The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ ≈ 2<sup>12</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to restricting the Bernstein bound factor, the Q_MAX constraint establishes a minimum threshold for the complexity of distinguishing attacks. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Protocols that employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
+The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ ≈ 2<sup>12</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to limiting the Bernstein bound factor, the Q_MAX constraint sets a minimum threshold for the complexity of distinguishing attacks and a maximum threshold for the fraction of a plaintext bit that an attacker can recover. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Protocols that employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
 
 Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX, A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅ (Q_MAX + V_MAX) ⪅ 2<sup>66</sup>. This ensures that δ ≈ 1.
+
+Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX and/or Q_MAX to ensure that Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>. This aligns with {{ANSSI}} requirements and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits of the plaintext {{Entropy}}.
 
 Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and {{Comp}}{: format="counter"} for further details.
 
@@ -718,7 +720,7 @@ Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and
 
 GCM-SST introduces an additional subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} prove that GCM-SST is a provably secure authenticated encryption mode, with security guaranteed for evaluations under fresh nonces, even if some earlier nonces have been reused.
 
-GCM-SST is designed for use in security protocols with replay protection. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and only once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. GCM-SST MUST NOT be used with random nonces [Collision] and MUST be used with replay protection. Reuse of nonces in successful encryption and decryption function calls enable universal forgery {{Lindell}}{{Inoue}}. For a given tag length, GCM-SST has strictly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations SHOULD add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks [Bellare] and is for example implemented in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-256-GCM-SST.
+GCM-SST is designed for use in security protocols with replay protection. Every key MUST be randomly chosen from a uniform distribution. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST only be used once in the encryption function and only once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. GCM-SST MUST NOT be used with random nonces and MUST be used with replay protection. Reuse of nonces in successful encryption and decryption function calls enable universal forgery {{Lindell}}{{Inoue}}. For a given tag length, GCM-SST has strictly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations SHOULD add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks [Bellare] and is for example implemented in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-256-GCM-SST.
 
 Refer to {{onemany}} for considerations on using GCM-SST in multicast or broadcast scenarios. Unless otherwise specified, formulas for expected number of forgeries apply to unicast scenarios.
 
