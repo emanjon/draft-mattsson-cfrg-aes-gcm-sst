@@ -103,6 +103,13 @@ informative:
       "BSI": "Technical Guideline TR-02102-1"
     date: February 2024
 
+  ANSSI:
+    target: https://cyber.gouv.fr/sites/default/files/2021/03/anssi-guide-mecanismes_crypto-2.04.pdf
+    title: "Guide des mécanismes cryptographiques"
+    seriesinfo:
+      "ANSSI": "PG-083"
+    date: January 2020
+
   Multiple:
     target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/multi-forge-01.pdf
     title: "Multiple Forgery Attacks Against Message Authentication Codes"
