@@ -543,9 +543,10 @@ Table of Contents
 
    The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1
    for AES-GCM-SST in protocols where ℓ ≈ 2^12, such as QUIC [RFC9000],
-   and always δ ≈ 1 for Rijndael-GCM-SST.  In addition to restricting
-   the Bernstein bound factor, the Q_MAX constraint establishes a
-   minimum threshold for the complexity of distinguishing attacks.
+   and always δ ≈ 1 for Rijndael-GCM-SST.  In addition to limiting the
+   Bernstein bound factor, the Q_MAX constraint sets a minimum threshold
+   for the complexity of distinguishing attacks and a maximum threshold
+   for the fraction of a plaintext bit that an attacker can recover.
    Since encryption and decryption queries play an equivalent role in
    the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Protocols that
    employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
@@ -553,6 +554,11 @@ Table of Contents
    Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX,
    A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅ (Q_MAX +
    V_MAX) ⪅ 2^66.  This ensures that δ ≈ 1.
+
+   Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX
+   and/or Q_MAX to ensure that Q_MAX ⋅ P_MAX ⪅ 2^63.  This aligns with
+   [ANSSI] requirements and ensures that an attacker cannot recover more
+   than ≈ 1 / 2^10.47 ≈ 0.0007 bits of the plaintext [Entropy].
 
    Refer to Sections 5.1, 5.2, and 5.5 for further details.
 
@@ -575,20 +581,20 @@ Table of Contents
    function and only once in a successful decryption function call.  The
    nonce MAY be public or predictable.  It can be a counter, the output
    of a permutation, or a generator with a long period.  GCM-SST MUST
-   NOT be used with random nonces [Collision] and MUST be used with
-   replay protection.  Reuse of nonces in successful encryption and
-   decryption function calls enable universal forgery [Lindell][Inoue].
-   For a given tag length, GCM-SST has strictly better security
-   properties than GCM.  GCM allows universal forgery with lower
-   complexity than GCM-SST, even when nonces are not reused.
-   Implementations SHOULD add randomness to the nonce by XORing a unique
-   number like a sequence number with a per-key random secret salt of
-   the same length as the nonce.  This significantly improves security
-   against precomputation attacks and multi-key attacks [Bellare] and is
-   for example implemented in TLS 1.3 [RFC8446], OSCORE [RFC8613], and
-   [Ascon].  By increasing the nonce length from 96 bits to 224 bits,
-   Rijndael-GCM-SST can offer significantly greater security against
-   precomputation and multi-key attacks compared to AES-256-GCM-SST.
+   NOT be used with random nonces and MUST be used with replay
+   protection.  Reuse of nonces in successful encryption and decryption
+   function calls enable universal forgery [Lindell][Inoue].  For a
+   given tag length, GCM-SST has strictly better security properties
+   than GCM.  GCM allows universal forgery with lower complexity than
+   GCM-SST, even when nonces are not reused.  Implementations SHOULD add
+   randomness to the nonce by XORing a unique number like a sequence
+   number with a per-key random secret salt of the same length as the
+   nonce.  This significantly improves security against precomputation
+   attacks and multi-key attacks [Bellare] and is for example
+   implemented in TLS 1.3 [RFC8446], OSCORE [RFC8613], and [Ascon].  By
+   increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-
+   SST can offer significantly greater security against precomputation
+   and multi-key attacks compared to AES-256-GCM-SST.
 
    Refer to Section 5.6 for considerations on using GCM-SST in multicast
    or broadcast scenarios.  Unless otherwise specified, formulas for
@@ -895,11 +901,6 @@ Table of Contents
               2024, <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI
               /Publications/TechGuidelines/TG02102/BSI-TR-02102-1.html>.
 
-   [Collision]
-              Preuß Mattsson, J., "Collision Attacks on Galois/Counter
-              Mode (GCM)", September 2024,
-              <https://eprint.iacr.org/2021/236>.
-
    [Comments38B]
               NIST, "Public Comments on SP 800-38B", September 2024,
               <https://csrc.nist.gov/csrc/media/Projects/crypto-
@@ -927,6 +928,10 @@ Table of Contents
               2019, <https://www.gsma.com/solutions-and-
               impact/technologies/security/wp-content/uploads/2019/05/
               EEA3_EIA3_specification_v1_8.pdf>.
+
+   [Entropy]  Preuß Mattsson, J., "Collision Attacks on Galois/Counter
+              Mode (GCM)", February 2025,
+              <https://eprint.iacr.org/2024/1111.pdf>.
 
    [Ferguson] Ferguson, N., "Authentication weaknesses in GCM", May
               2005, <https://csrc.nist.gov/CSRC/media/Projects/Block-
