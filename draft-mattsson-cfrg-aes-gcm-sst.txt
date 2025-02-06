@@ -784,13 +784,10 @@ Table of Contents
    which use 256-bit keys, against passive attackers.  The
    confidentiality of block ciphers in counter mode is determined by the
    birthday bound, with AES-based ciphers particularly constrained by
-   their narrow 128-bit block size.  Even under the strict usage limits
-   defined by QUIC [RFC9001] (P_MAX = 2^16 and Q_MAX = 2^23), AES-256-
-   GCM-SST provides only 94 bits of security against distinguishing
-   attacks.  While plaintext-recovery attacks on block ciphers in
-   counter mode have a complexity similar to distinguishing attacks, the
-   attacker cannot recover more than ≈ σ^2 / 2^b bits of the plaintexts
-   [Entropy].
+   their narrow 128-bit block size.  While plaintext-recovery attacks on
+   block ciphers in counter mode have a complexity similar to
+   distinguishing attacks, the attacker cannot recover more than ≈ σ^2 /
+   2^b bits of the plaintexts [Entropy].
 
      +===================+=================+========================+
      | Name              | Key size (bits) |     Complexity of      |
