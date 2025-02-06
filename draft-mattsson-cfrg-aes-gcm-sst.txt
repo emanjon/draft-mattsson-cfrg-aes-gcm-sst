@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 18 July 2025                                  J. Preuß Mattsson
+Expires: 10 August 2025                                J. Preuß Mattsson
                                                                 Ericsson
-                                                         14 January 2025
+                                                         6 February 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 July 2025.
+   This Internet-Draft will expire on 10 August 2025.
 
 Copyright Notice
 
@@ -151,7 +151,8 @@ Table of Contents
    reforgeability resistance [Reforge].  When AES-GCM is used in QUIC
    [RFC9001], the expected number of forgeries can be equivalent to that
    of an ideal MAC with a length of 64.4 bits.  Reforgeability
-   resistance is a key design criterion in modern AEAD algorithms [AEZ].
+   resistance is a key design criterion in modern AEAD algorithms such
+   as [AEZ].
 
    Short tags are widely used, 32-bit tags are standard in most radio
    link layers including 5G [Sec5G], 64-bit tags are very common in
@@ -808,15 +809,15 @@ Table of Contents
    generate an unlimited number of new forgeries for all recipients.
 
    With GCM-SST, a few successful forgeries against a few recipients
-   allow the attacker to create one new forgery per recipient.  While
-   the total number of forgeries in GCM-SST matches that of an ideal
-   MAC, the diversity of these forgeries is higher.  To achieve one
-   distinct forgery per recipient with an ideal MAC, the attacker would
-   need to send on average 2^(tag_length) forgery attempts to each
-   recipient.  GCM-SST performs equally well or better than an ideal MAC
-   with length tag_length - log2(r), where r is the number of
-   recipients.  Thus, in one-to-many scenarios with replay protection,
-   the expected number of distinct forgeries is ≈ v ⋅ r /
+   allow the attacker to create one new forgery for all other
+   recipients.  While the total number of forgeries in GCM-SST matches
+   that of an ideal MAC, the diversity of these forgeries is higher.  To
+   achieve one distinct forgery per recipient with an ideal MAC, the
+   attacker would need to send on average 2^(tag_length) forgery
+   attempts to each recipient.  GCM-SST performs equally well or better
+   than an ideal MAC with length tag_length - log2(r), where r is the
+   number of recipients.  Thus, in one-to-many scenarios with replay
+   protection, the expected number of distinct forgeries is ≈ v ⋅ r /
    2^(tag_length), and the effective tag length of GCM-SST is tag_length
    - log2(r).
 
