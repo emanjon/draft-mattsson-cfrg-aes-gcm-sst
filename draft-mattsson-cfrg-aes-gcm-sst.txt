@@ -655,9 +655,8 @@ Table of Contents
    logaritmic factors) as distinguishing attacks.  However, Preuß
    Mattsson [Entropy] demonstrated that an attacker cannot recover more
    than ≈ σ^2 / 2^b bits of the plaintext, where b is the block size.
-   Given the constraints outlined in Section 4.3, which align with
-   [ANSSI] requirements, an attacker cannot recover more than 0.0007
-   bits.
+   Given the constraints outlined in Section 4.3, an attacker cannot
+   recover more than 0.0007 bits.
 
    While Rijndael-256 in counter mode can provide 128-bit
    confidentiality for plaintexts much larger than 2^36 octets, GHASH
