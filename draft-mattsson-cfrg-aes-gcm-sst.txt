@@ -868,6 +868,11 @@ Table of Contents
               Solves", March 2017,
               <https://eprint.iacr.org/2014/793.pdf>.
 
+   [ANSSI]    "Guide des mécanismes cryptographiques", ANSSI PG-083,
+              January 2020,
+              <https://cyber.gouv.fr/sites/default/files/2021/03/anssi-
+              guide-mecanismes_crypto-2.04.pdf>.
+
    [Ascon]    Meltem Sönmez Turan, Kerry A McKay, Donghoon Chang,
               Jinkeon Kang, and John Kelsey, "Ascon-Based Lightweight
               Cryptography Standards for Constrained Devices",
