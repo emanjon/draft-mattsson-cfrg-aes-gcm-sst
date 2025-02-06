@@ -710,9 +710,9 @@ The maximum size of the plaintext (P_MAX) and the maximum size of the associated
 
 The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where ℓ ≈ 2<sup>12</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to limiting the Bernstein bound factor, the Q_MAX constraint sets a minimum threshold for the complexity of distinguishing attacks and a maximum threshold for the fraction of a plaintext bit that an attacker can recover. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Protocols that employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
 
-Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX, A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅ (Q_MAX + V_MAX) ⪅ 2<sup>66</sup>. This ensures that δ ≈ 1.
+Protocols utilizing AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅ (Q_MAX + V_MAX) ⪅ 2<sup>66</sup>. This ensures that δ ≈ 1.
 
-Protocols utilizing AES-GCM-SST MUST enforce stricter limits P_MAX and/or Q_MAX to ensure that Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>. This aligns with {{ANSSI}} requirements and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits of the plaintext {{Entropy}}.
+Protocols utilizing AES-GCM-SST MUST enforce stricter limits on P_MAX and/or Q_MAX to ensure that Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>. This aligns with {{ANSSI}} requirements and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits of the plaintext {{Entropy}}.
 
 Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and {{Comp}}{: format="counter"} for further details.
 
