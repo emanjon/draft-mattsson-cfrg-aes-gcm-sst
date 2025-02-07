@@ -980,6 +980,12 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
+Changes from -16 to -17:
+
+* Align with ANSSI requirement on the maximum number of plaintext blocks.
+* Added informaion of how small fraction of a bit an attcker can theoretically recover.
+* Editorial changes
+
 Changes from -15 to -16:
 
 * Added section on multicast or broadcast allowing use in one-to-many scenarios. GCM-SST provides good security in such scenarios.
