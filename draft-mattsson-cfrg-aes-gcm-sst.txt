@@ -1292,6 +1292,16 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
+   Changes from -16 to -17:
+
+   *  Align with ANSSI requirement on the maximum number of plaintext
+      blocks.
+
+   *  Added informaion of how small fraction of a bit an attcker can
+      theoretically recover.
+
+   *  Editorial changes
+
    Changes from -15 to -16:
 
    *  Added section on multicast or broadcast allowing use in one-to-
