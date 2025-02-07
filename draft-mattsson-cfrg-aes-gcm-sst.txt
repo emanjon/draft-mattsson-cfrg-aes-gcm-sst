@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 10 August 2025                                J. Preuß Mattsson
+Expires: 11 August 2025                                J. Preuß Mattsson
                                                                 Ericsson
-                                                         6 February 2025
+                                                         7 February 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 August 2025.
+   This Internet-Draft will expire on 11 August 2025.
 
 Copyright Notice
 
@@ -543,13 +543,14 @@ Table of Contents
 
    The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1
    for AES-GCM-SST in protocols where ℓ ≈ 2^12, such as QUIC [RFC9000],
-   and always δ ≈ 1 for Rijndael-GCM-SST.  In addition to limiting the
-   Bernstein bound factor, the Q_MAX constraint sets a minimum threshold
-   for the complexity of distinguishing attacks and a maximum threshold
-   for the fraction of a plaintext bit that an attacker can recover.
-   Since encryption and decryption queries play an equivalent role in
-   the Bernstein bound, it follows that Q_MAX ≤ V_MAX.  Protocols that
-   employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
+   and always δ ≈ 1 for Rijndael-GCM-SST.  In addition to restricting
+   the Bernstein bound factor, the Q_MAX constraint establishes a
+   minimum threshold for the complexity of distinguishing attacks and a
+   maximum threshold for the fraction of a plaintext bit that an
+   attacker can recover.  Since encryption and decryption queries play
+   an equivalent role in the Bernstein bound, it follows that Q_MAX ≤
+   V_MAX.  Protocols that employ GCM-SST MAY impose stricter limits on
+   Q_MAX and V_MAX.
 
    Protocols utilizing AES-GCM-SST MUST enforce stricter limits on
    P_MAX, A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅
