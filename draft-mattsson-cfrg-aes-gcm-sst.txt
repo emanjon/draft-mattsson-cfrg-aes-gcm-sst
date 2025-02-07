@@ -1076,10 +1076,6 @@ Table of Contents
               <https://www.cryptrec.go.jp/exreport/cryptrec-ex-
               2012-2010r1.pdf>.
 
-   [Rose]     Greg Rose and Philip Hawkes, "On the Applicability of
-              Distinguishing Attacks Against Stream Ciphers", September
-              2002, <https://eprint.iacr.org/2002/142.pdf>.
-
    [SAGE23]   ETSI SAGE, "Specification of the 256-bit air interface
               algorithms", February 2023,
               <https://www.3gpp.org/ftp/TSG_SA/WG3_Security/
