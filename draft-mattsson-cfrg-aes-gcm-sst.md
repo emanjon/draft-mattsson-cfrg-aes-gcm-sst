@@ -138,16 +138,6 @@ informative:
         ins: David McGrew
     date: November 2012
 
-  Rose:
-    target: https://eprint.iacr.org/2002/142.pdf
-    title: "On the Applicability of Distinguishing Attacks Against Stream Ciphers"
-    author:
-      -
-        ins: Greg Rose
-      -
-        ins: Philip Hawkes
-    date: September 2002
-
   Reforge:
     target: https://eprint.iacr.org/2017/332.pdf
     title: "Reforgeability of Authenticated Encryption Schemes"
