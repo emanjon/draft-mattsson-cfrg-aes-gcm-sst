@@ -163,20 +163,21 @@ Table of Contents
    typically encodes only 20 ms of audio, forgery of individual packets
    is not a big concern and barely noticeable.  Due to its weaknesses,
    GCM is typically not used with short tags.  The result is either
-   decreased performance from larger than needed tags [MoQ], or
-   decreased performance from using much slower constructions such as
-   AES-CTR combined with HMAC [RFC3711][RFC9605].  Short tags are also
-   useful to protect packets whose payloads are secured at higher
-   layers, protocols where the security is given by the sum of the tag
-   lengths, and in constrained radio networks, where the low bandwidth
-   limits the number of forgery attempts.  For all applications of short
-   tags it is essential that the MAC behaves like an ideal MAC, i.e.,
-   the forgery probability is ≈ 1 / 2^(tag_length) even after many
-   generated MACs, many forgery attempts, and after a successful
-   forgery.  While Counter with CBC-MAC (CCM) [RFC5116] with short tags
-   has forgery probabilities close to ideal, its performance is lower
-   than that of GCM.  For a comprehensive discussion on the use cases
-   and requirements of short tags, see [Comments38B].
+   decreased performance from larger than needed tags
+   [I-D.ietf-moq-transport], or decreased performance from using much
+   slower constructions such as AES-CTR combined with HMAC
+   [RFC3711][RFC9605].  Short tags are also useful to protect packets
+   whose payloads are secured at higher layers, protocols where the
+   security is given by the sum of the tag lengths, and in constrained
+   radio networks, where the low bandwidth limits the number of forgery
+   attempts.  For all applications of short tags it is essential that
+   the MAC behaves like an ideal MAC, i.e., the forgery probability is ≈
+   1 / 2^(tag_length) even after many generated MACs, many forgery
+   attempts, and after a successful forgery.  While Counter with CBC-MAC
+   (CCM) [RFC5116] with short tags has forgery probabilities close to
+   ideal, its performance is lower than that of GCM.  For a
+   comprehensive discussion on the use cases and requirements of short
+   tags, see [Comments38B].
 
    This document defines the Galois Counter Mode with Strong Secure Tags
    (GCM-SST) Authenticated Encryption with Associated Data (AEAD)
@@ -958,6 +959,13 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/Presentations/2023/
               constructions-based-on-the-aes-round/images-media/sess-5-
               gueron-bcm-workshop-2023.pdf>.
+
+   [I-D.ietf-moq-transport]
+              Curley, L., Pugin, K., Nandakumar, S., Vasiliev, V., and
+              I. Swett, "Media over QUIC Transport", Work in Progress,
+              Internet-Draft, draft-ietf-moq-transport-07, 21 October
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              moq-transport-07>.
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
