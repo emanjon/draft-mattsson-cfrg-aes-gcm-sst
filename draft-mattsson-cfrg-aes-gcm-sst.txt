@@ -996,9 +996,6 @@ Table of Contents
               Recovery on Galois/Counter Mode (GCM)", May 2015,
               <https://eprint.iacr.org/2015/477.pdf>.
 
-   [MoQ]      IETF, "Media Over QUIC", September 2022,
-              <https://datatracker.ietf.org/wg/moq/about/>.
-
    [Multiple] David McGrew and Scott Fluhrer, "Multiple Forgery Attacks
               Against Message Authentication Codes", May 2005,
               <https://csrc.nist.gov/csrc/media/projects/block-cipher-
