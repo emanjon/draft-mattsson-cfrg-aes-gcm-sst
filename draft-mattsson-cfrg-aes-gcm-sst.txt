@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 11 August 2025                                J. Preuß Mattsson
+Expires: 12 August 2025                                J. Preuß Mattsson
                                                                 Ericsson
-                                                         7 February 2025
+                                                         8 February 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 August 2025.
+   This Internet-Draft will expire on 12 August 2025.
 
 Copyright Notice
 
@@ -284,7 +284,7 @@ Table of Contents
    *  V[y] is the 128-bit chunk with index y in the array V; the first
       chunk has index 0
 
-   *  V[x:y] are the range of chunks x to y in the array V
+   *  V[x:y] are the range of 128-bit chunks x to y in the array V
 
 3.  Galois Counter Mode with Strong Secure Tags (GCM-SST)
 
@@ -1287,6 +1287,10 @@ A.4.  AES-GCM-SST Test #4 (256-bit key)
 Change Log
 
    This section is to be removed before publishing as an RFC.
+
+   Changes from -17 to -18:
+
+   *  Editorial changes
 
    Changes from -16 to -17:
 
