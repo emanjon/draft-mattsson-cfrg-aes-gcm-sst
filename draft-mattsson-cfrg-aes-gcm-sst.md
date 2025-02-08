@@ -357,14 +357,6 @@ informative:
         ins: C. Janson
     date: January 2024
 
-  MoQ:
-    target: https://datatracker.ietf.org/wg/moq/about/
-    title: "Media Over QUIC"
-    author:
-      -
-        ins: IETF
-    date: September 2022
-
   Revise:
     target: https://csrc.nist.gov/news/2023/proposal-to-revise-sp-800-38d
     title: "Announcement of Proposal to Revise SP 800-38D"
