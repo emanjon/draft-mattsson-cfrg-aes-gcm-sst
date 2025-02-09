@@ -457,6 +457,14 @@ informative:
         ins: N. Ferguson
     date: May 2005
 
+  Joux:
+    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf
+    title: "Authentication Failures in NIST version of GCM"
+    author:
+      -
+        ins: A. Joux
+    date: April 2006
+
   Nyberg:
     target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf
     title: "Galois MAC with forgery probability close to ideal"
