@@ -989,6 +989,12 @@ Table of Contents
               "Breaking and Repairing GCM Security Proofs", August 2012,
               <https://eprint.iacr.org/2012/438.pdf>.
 
+   [Joux]     Joux, A., "Authentication Failures in NIST version of
+              GCM", April 2006,
+              <https://csrc.nist.gov/csrc/media/projects/block-cipher-
+              techniques/documents/bcm/comments/800-38-series-
+              drafts/gcm/joux_comments.pdf>.
+
    [Lindell]  Lindell, Y., "Comment on AES-GCM-SST", May 2024,
               <https://mailarchive.ietf.org/arch/browse/
               cfrg/?gbt=1&index=cWpv0QgX2ltkWhtd3R9pEW7E1CA>.
