@@ -291,7 +291,7 @@ informative:
 
   Entropy:
     target: https://eprint.iacr.org/2024/1111.pdf
-    title: "Collision Attacks on Galois/Counter Mode (GCM)"
+    title: "Collision-Based Attacks on Block Cipher Modes - Exploiting Collisions and Their Absence"
     author:
       -
         ins: J. Preuß Mattsson
