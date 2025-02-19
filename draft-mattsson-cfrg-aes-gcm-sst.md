@@ -972,7 +972,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 
 The integrity part of GCM-SST was originally developed by ETSI SAGE under the name Mac5G, following a request from 3GPP. Its design evolved over several years of discussion and refinement {{SAGE23}}{{SAGE24}}. Mac5G shares structural similarities with the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}.
 
-3GPP has decided to standardize GCM-SST for use with SNOW 5G {{SNOW}}, AES-256 {{AES}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}. These AEAD algorithms are designated as NCA4, NCA5, and NCA6, respectively. GCM-SST, as specified in this document, is fully compatible with the SNOW 5G-based NCA4 and the ZUC-256-based NCA6. The AES-based NCA5 differs only in its subkey generation but is otherwise identical. SNOW 5G is functionally equivalent to SNOW-Vi {{SNOW}}, except that its FSM adders have been changed from 32-bit to 16-bit. Additionally, the NCA algorithms introduce more detailed specifications for nonce construction.
+3GPP has decided to standardize GCM-SST for use with SNOW 5G {{SNOW}}, AES-256 {{AES}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}. These AEAD algorithms are designated as NCA4, NCA5, and NCA6, respectively. GCM-SST, as specified in this document, is fully compatible with the SNOW 5G-based NCA4 and the ZUC-256-based NCA6. The AES-based NCA5 differs only in its subkey generation but is otherwise identical. SNOW 5G is functionally equivalent to SNOW-Vi {{SNOW}}, except that its FSM adders have been changed from 32-bit to 16-bit. Additionally, the NCA algorithms introduce more detailed specifications for nonce construction based on 3GPP protocols.
 
 The version of GCM-SST specified in this document imposes stricter security considerations and constraints than the 3GPP and ETSI SAGE specifications for the NCA algorithms. We recommend 3GPP to follow the additional security measures outlined in this document.
 
@@ -981,12 +981,14 @@ The version of GCM-SST specified in this document imposes stricter security cons
 
 Changes from -17 to -18:
 
+* Improved explanation why replay protection is required and random nonces forbidden.
+* New appendix discussing compatibility with 3GPP algorithms.
 * Editorial changes
 
 Changes from -16 to -17:
 
 * Align with ANSSI requirement on the maximum number of plaintext blocks.
-* Added informaion of how small fraction of a bit an attcker can theoretically recover.
+* Added information of how small fraction of a bit an attacker can theoretically recover.
 * Editorial changes
 
 Changes from -15 to -16:
