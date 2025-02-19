@@ -24,24 +24,16 @@ venue:
   latest: "https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/draft-mattsson-cfrg-aes-gcm-sst.html"
 
 author:
-- initials: M.
-  surname: Campagna
-  name: Matthew Campagna
-  org: Amazon Web Services
+- name: Matthew Campagna
+  organization: Amazon Web Services
   country: Canada
   email: campagna@amazon.com
-- initials: A.
-  surname: Maximov
-  name: Alexander Maximov
-  org: Ericsson
-  abbrev: Ericsson
+- name: Alexander Maximov
+  organization: Ericsson
   country: Sweden
   email: alexander.maximov@ericsson.com
-- initials: J.
-  surname: Preuß Mattsson
-  name: John Preuß Mattsson
-  org: Ericsson
-  abbrev: Ericsson
+- name: John | Preuß Mattsson
+  organization: Ericsson
   country: Sweden
   email: john.mattsson@ericsson.com
 
