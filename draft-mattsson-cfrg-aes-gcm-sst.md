@@ -53,7 +53,6 @@ normative:
   AES:
     target: https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197-upd1.pdf
     title: "Advanced Encryption Standard (AES)"
-    doi: 10.6028/NIST.FIPS.197-upd1
     seriesinfo:
       "NIST": "Federal Information Processing Standards Publication 197"
     date: May 2023
