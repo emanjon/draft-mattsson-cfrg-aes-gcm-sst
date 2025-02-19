@@ -114,6 +114,7 @@ Table of Contents
        Case #3d
        Case #3e
      A.4.  AES-GCM-SST Test #4 (256-bit key)
+   Appendix B.  Compatibility with 3GPP Algorithms
    Change Log
    Acknowledgments
    Authors' Addresses
@@ -222,13 +223,13 @@ Table of Contents
    implementations while retaining the advantage of being a mode of
    operation for AES.
 
-   GCM-SST was originally developed by ETSI SAGE, under the name Mac5G,
-   following a request from 3GPP, with several years of discussion and
-   refinement contributing to its design [SAGE23][SAGE24].  Mac5G is
-   constructed similarly to the integrity algorithms used for SNOW 3G
-   [UIA2] and ZUC [EIA3]. 3GPP has decided to standardize GCM-SST for
-   use with AES-256 [AES], SNOW 5G [SNOW], and ZUC-256 [ZUC] in 3GPP TS
-   35.240–35.248 [WID24].
+   The integrity part of GCM-SST was originally developed by ETSI SAGE,
+   under the name Mac5G, following a request from 3GPP, with several
+   years of discussion and refinement contributing to its design
+   [SAGE23][SAGE24].  Mac5G is constructed similarly to the integrity
+   algorithms used for SNOW 3G [UIA2] and ZUC [EIA3]. 3GPP has decided
+   to standardize GCM-SST for use with SNOW 5G [SNOW], AES-256 [AES],
+   and ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].
 
 2.  Conventions and Definitions
 
@@ -1296,6 +1297,30 @@ A.4.  AES-GCM-SST Test #4 (256-bit key)
           tag = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c }
            ct = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
                   eb 8f f7 cc }
+
+Appendix B.  Compatibility with 3GPP Algorithms
+
+   The integrity part of GCM-SST was originally developed by ETSI SAGE
+   under the name Mac5G, following a request from 3GPP.  Its design
+   evolved over several years of discussion and refinement
+   [SAGE23][SAGE24].  Mac5G shares structural similarities with the
+   integrity algorithms used for SNOW 3G [UIA2] and ZUC [EIA3].
+
+   3GPP has decided to standardize GCM-SST for use with SNOW 5G [SNOW],
+   AES-256 [AES], and ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].
+   These AEAD algorithms are designated as NCA4, NCA5, and NCA6,
+   respectively.  GCM-SST, as specified in this document, is fully
+   compatible with the SNOW 5G-based NCA4 and the ZUC-256-based NCA6.
+   The AES-based NCA5 differs only in its subkey generation but is
+   otherwise identical.  SNOW 5G is functionally equivalent to SNOW-Vi
+   [SNOW], except that its FSM adders have been changed from 32-bit to
+   16-bit.  Additionally, the NCA algorithms introduce more detailed
+   specifications for nonce construction.
+
+   The version of GCM-SST specified in this document imposes stricter
+   security considerations and constraints than the 3GPP and ETSI SAGE
+   specifications for the NCA algorithms.  We recommend 3GPP to follow
+   the additional security measures outlined in this document.
 
 Change Log
 
