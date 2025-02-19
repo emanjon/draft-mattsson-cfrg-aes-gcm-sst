@@ -1318,7 +1318,7 @@ Appendix B.  Compatibility with 3GPP Algorithms
    specifications for nonce construction based on 3GPP protocols.
 
    The version of GCM-SST specified in this document imposes stricter
-   security considerations and constraints than the 3GPP and ETSI SAGE
+   security considerations and constraints than the ETSI SAGE
    specifications for the NCA algorithms.  We recommend 3GPP to follow
    the additional security measures outlined in this document.
 
