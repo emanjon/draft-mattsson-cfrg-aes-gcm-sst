@@ -1315,7 +1315,7 @@ Appendix B.  Compatibility with 3GPP Algorithms
    otherwise identical.  SNOW 5G is functionally equivalent to SNOW-Vi
    [SNOW], except that its FSM adders have been changed from 32-bit to
    16-bit.  Additionally, the NCA algorithms introduce more detailed
-   specifications for nonce construction.
+   specifications for nonce construction based on 3GPP protocols.
 
    The version of GCM-SST specified in this document imposes stricter
    security considerations and constraints than the 3GPP and ETSI SAGE
@@ -1328,6 +1328,11 @@ Change Log
 
    Changes from -17 to -18:
 
+   *  Improved explanation why replay protection is required and random
+      nonces forbidden.
+
+   *  New appendix discussing compatibility with 3GPP algorithms.
+
    *  Editorial changes
 
    Changes from -16 to -17:
@@ -1335,7 +1340,7 @@ Change Log
    *  Align with ANSSI requirement on the maximum number of plaintext
       blocks.
 
-   *  Added informaion of how small fraction of a bit an attcker can
+   *  Added information of how small fraction of a bit an attacker can
       theoretically recover.
 
    *  Editorial changes

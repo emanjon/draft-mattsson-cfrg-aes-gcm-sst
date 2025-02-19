@@ -2459,7 +2459,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-compatibility-with-3gpp-alg" class="section-name selfRef">Compatibility with 3GPP Algorithms</a>
       </h2>
 <p id="appendix-B-1">The integrity part of GCM-SST was originally developed by ETSI SAGE under the name Mac5G, following a request from 3GPP. Its design evolved over several years of discussion and refinement <span>[<a href="#SAGE23" class="cite xref">SAGE23</a>]</span><span>[<a href="#SAGE24" class="cite xref">SAGE24</a>]</span>. Mac5G shares structural similarities with the integrity algorithms used for SNOW 3G <span>[<a href="#UIA2" class="cite xref">UIA2</a>]</span> and ZUC <span>[<a href="#EIA3" class="cite xref">EIA3</a>]</span>.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
-<p id="appendix-B-2">3GPP has decided to standardize GCM-SST for use with SNOW 5G <span>[<a href="#SNOW" class="cite xref">SNOW</a>]</span>, AES-256 <span>[<a href="#AES" class="cite xref">AES</a>]</span>, and ZUC-256 <span>[<a href="#ZUC" class="cite xref">ZUC</a>]</span> in 3GPP TS 35.240–35.248 <span>[<a href="#WID24" class="cite xref">WID24</a>]</span>. These AEAD algorithms are designated as NCA4, NCA5, and NCA6, respectively. GCM-SST, as specified in this document, is fully compatible with the SNOW 5G-based NCA4 and the ZUC-256-based NCA6. The AES-based NCA5 differs only in its subkey generation but is otherwise identical. SNOW 5G is functionally equivalent to SNOW-Vi <span>[<a href="#SNOW" class="cite xref">SNOW</a>]</span>, except that its FSM adders have been changed from 32-bit to 16-bit. Additionally, the NCA algorithms introduce more detailed specifications for nonce construction.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">3GPP has decided to standardize GCM-SST for use with SNOW 5G <span>[<a href="#SNOW" class="cite xref">SNOW</a>]</span>, AES-256 <span>[<a href="#AES" class="cite xref">AES</a>]</span>, and ZUC-256 <span>[<a href="#ZUC" class="cite xref">ZUC</a>]</span> in 3GPP TS 35.240–35.248 <span>[<a href="#WID24" class="cite xref">WID24</a>]</span>. These AEAD algorithms are designated as NCA4, NCA5, and NCA6, respectively. GCM-SST, as specified in this document, is fully compatible with the SNOW 5G-based NCA4 and the ZUC-256-based NCA6. The AES-based NCA5 differs only in its subkey generation but is otherwise identical. SNOW 5G is functionally equivalent to SNOW-Vi <span>[<a href="#SNOW" class="cite xref">SNOW</a>]</span>, except that its FSM adders have been changed from 32-bit to 16-bit. Additionally, the NCA algorithms introduce more detailed specifications for nonce construction based on 3GPP protocols.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
 <p id="appendix-B-3">The version of GCM-SST specified in this document imposes stricter security considerations and constraints than the 3GPP and ETSI SAGE specifications for the NCA algorithms. We recommend 3GPP to follow the additional security measures outlined in this document.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2472,7 +2472,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="appendix-C-2">Changes from -17 to -18:<a href="#appendix-C-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="appendix-C-3.1">
-          <p id="appendix-C-3.1.1">Editorial changes<a href="#appendix-C-3.1.1" class="pilcrow">¶</a></p>
+          <p id="appendix-C-3.1.1">Improved explanation why replay protection is required and random nonces forbidden.<a href="#appendix-C-3.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-C-3.2">
+          <p id="appendix-C-3.2.1">New appendix discussing compatibility with 3GPP algorithms.<a href="#appendix-C-3.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="appendix-C-3.3">
+          <p id="appendix-C-3.3.1">Editorial changes<a href="#appendix-C-3.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="appendix-C-4">Changes from -16 to -17:<a href="#appendix-C-4" class="pilcrow">¶</a></p>
@@ -2481,7 +2487,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="appendix-C-5.1.1">Align with ANSSI requirement on the maximum number of plaintext blocks.<a href="#appendix-C-5.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-C-5.2">
-          <p id="appendix-C-5.2.1">Added informaion of how small fraction of a bit an attcker can theoretically recover.<a href="#appendix-C-5.2.1" class="pilcrow">¶</a></p>
+          <p id="appendix-C-5.2.1">Added information of how small fraction of a bit an attacker can theoretically recover.<a href="#appendix-C-5.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="appendix-C-5.3">
           <p id="appendix-C-5.3.1">Editorial changes<a href="#appendix-C-5.3.1" class="pilcrow">¶</a></p>
