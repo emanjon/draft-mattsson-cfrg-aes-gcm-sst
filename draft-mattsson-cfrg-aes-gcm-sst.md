@@ -15,6 +15,7 @@ keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
+ - quantum magic
 venue:
   group: "Crypto Forum"
   type: "Research Group"
