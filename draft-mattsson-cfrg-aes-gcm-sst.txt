@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 24 August 2025                                J. Preuß Mattsson
+Expires: 13 September 2025                             J. Preuß Mattsson
                                                                 Ericsson
-                                                        20 February 2025
+                                                           12 March 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 August 2025.
+   This Internet-Draft will expire on 13 September 2025.
 
 Copyright Notice
 
@@ -904,9 +904,9 @@ Table of Contents
               <https://cr.yp.to/antiforgery/permutations-20050323.pdf>.
 
    [BSI]      "Cryptographic Mechanisms Recommendations and Key
-              Lengths", BSI Technical Guideline TR-02102-1, February
-              2024, <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI
-              /Publications/TechGuidelines/TG02102/BSI-TR-02102-1.html>.
+              Lengths", BSI Technical Guideline TR-02102-1, March 2025, 
+              <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publi
+              cations/TechGuidelines/TG02102/BSI-TR-02102-1.html>.
 
    [Comments38B]
               NIST, "Public Comments on SP 800-38B", September 2024,
@@ -966,9 +966,9 @@ Table of Contents
    [I-D.ietf-moq-transport]
               Curley, L., Pugin, K., Nandakumar, S., Vasiliev, V., and
               I. Swett, "Media over QUIC Transport", Work in Progress,
-              Internet-Draft, draft-ietf-moq-transport-08, 12 February
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              moq-transport-08>.
+              Internet-Draft, draft-ietf-moq-transport-10, 3 March 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
+              transport-10>.
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
