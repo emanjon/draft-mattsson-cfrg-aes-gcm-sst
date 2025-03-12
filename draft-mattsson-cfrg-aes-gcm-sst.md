@@ -95,7 +95,7 @@ informative:
     title: "Cryptographic Mechanisms Recommendations and Key Lengths"
     seriesinfo:
       "BSI": "Technical Guideline TR-02102-1"
-    date: February 2024
+    date: March 2025
 
   ANSSI:
     target: https://cyber.gouv.fr/sites/default/files/2021/03/anssi-guide-mecanismes_crypto-2.04.pdf
