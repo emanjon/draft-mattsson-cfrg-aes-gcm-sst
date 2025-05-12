@@ -972,6 +972,10 @@ The version of GCM-SST specified in this document imposes stricter security cons
 # Change Log
 {:removeInRFC="true" numbered="false"}
 
+Changes from -18 to -19:
+
+* Editorial changes
+
 Changes from -17 to -18:
 
 * Improved explanation why replay protection is required and random nonces forbidden.
