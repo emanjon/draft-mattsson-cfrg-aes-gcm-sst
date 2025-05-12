@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 13 September 2025                             J. Preuß Mattsson
+Expires: 13 November 2025                              J. Preuß Mattsson
                                                                 Ericsson
-                                                           12 March 2025
+                                                             12 May 2025
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,7 +63,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2025.
+   This Internet-Draft will expire on 13 November 2025.
 
 Copyright Notice
 
@@ -964,11 +964,11 @@ Table of Contents
               gueron-bcm-workshop-2023.pdf>.
 
    [I-D.ietf-moq-transport]
-              Curley, L., Pugin, K., Nandakumar, S., Vasiliev, V., and
-              I. Swett, "Media over QUIC Transport", Work in Progress,
-              Internet-Draft, draft-ietf-moq-transport-10, 3 March 2025,
+              Nandakumar, S., Vasiliev, V., Swett, I., and A. Frindell,
+              "Media over QUIC Transport", Work in Progress, Internet-
+              Draft, draft-ietf-moq-transport-11, 28 April 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
-              transport-10>.
+              transport-11>.
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
@@ -1101,7 +1101,7 @@ Table of Contents
               TSGS3_117_Maastricht/docs/S3-243394.zip>.
 
    [Sec5G]    3GPP TS 33 501, "Security architecture and procedures for
-              5G System", September 2024,
+              5G System", March 2025,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3169>.
 
