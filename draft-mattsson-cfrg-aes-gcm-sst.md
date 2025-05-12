@@ -272,7 +272,7 @@ informative:
     author:
       -
         ins: 3GPP TS 33.501
-    date: September 2024
+    date: March 2025
 
   PDCP:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3196
