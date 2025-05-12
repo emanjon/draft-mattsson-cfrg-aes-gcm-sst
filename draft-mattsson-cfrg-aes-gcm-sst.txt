@@ -1326,6 +1326,10 @@ Change Log
 
    This section is to be removed before publishing as an RFC.
 
+   Changes from -18 to -19:
+
+   *  Editorial changes
+
    Changes from -17 to -18:
 
    *  Improved explanation why replay protection is required and random
