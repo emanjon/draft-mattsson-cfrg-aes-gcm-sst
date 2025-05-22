@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-30T01:58:27.073523+00:00",
+  "timestamp": "2025-05-22T01:59:36.471725+00:00",
   "repo": "emanjon/draft-mattsson-cfrg-aes-gcm-sst",
   "labels": [
     {
@@ -599,6 +599,22 @@
           "updatedAt": "2025-01-13T11:23:11Z"
         }
       ]
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOJat8lM63nMlI",
+      "title": "Refer to EUCC Guidelines on Cryptography",
+      "url": "https://github.com/emanjon/draft-mattsson-cfrg-aes-gcm-sst/issues/28",
+      "state": "OPEN",
+      "author": "emanjon",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "https://certification.enisa.europa.eu/publications/eucc-guidelines-cryptography_en\n\n",
+      "createdAt": "2025-05-21T14:50:12Z",
+      "updatedAt": "2025-05-21T14:50:12Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
