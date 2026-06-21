@@ -214,21 +214,21 @@ Table of Contents
    Section 4.  The authentication tags in all registered GCM-SST
    instances behave like ideal MACs, which is not the case at all for
    GCM [GCM]. 3GPP has standardized the use of Rijndael-256 for
-   authentication and key generation in 3GPP TS 35.234–35.237 [WID23].
-   NIST plans to standardize Rijndael-256 [Plans], although there might
-   be revisions to the key schedule.  Rijndael-256 has very good
-   performance on modern x86-64 platforms equipped with AES-NI and VAES
-   instructions [Ducker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead],
-   AES-GCM-SST offers significantly higher performance in pure hardware
-   implementations while retaining the advantage of being a mode of
-   operation for AES.
+   authentication and key generation in 3GPP TS 35.234–35.236
+   [Milenage-256].  NIST plans to standardize Rijndael-256 [Plans],
+   although there might be revisions to the key schedule.  Rijndael-256
+   has very good performance on modern x86-64 platforms equipped with
+   AES-NI and VAES instructions [Ducker].  Compared to AEGIS
+   [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST offers significantly higher
+   performance in pure hardware implementations while retaining the
+   advantage of being a mode of operation for AES.
 
    The integrity part of GCM-SST was originally developed by ETSI SAGE,
    under the name Mac5G, following a request from 3GPP.  Mac5G is
    constructed similarly to the integrity algorithms used for SNOW 3G
    [UIA2] and ZUC [EIA3]. 3GPP has standardized GCM-SST for use with
-   SNOW 5G [SNOW], AES-256 [AES], and ZUC-256 [ZUC] in 3GPP TS
-   35.240–35.248 [WID24].
+   SNOW 5G [NCA4], AES-256 [NCA5], and ZUC-256 [NCA6] in 3GPP TS
+   35.240–35.248.
 
 2.  Conventions and Definitions
 
@@ -1004,6 +1004,12 @@ Table of Contents
               Recovery on Galois/Counter Mode (GCM)", May 2015,
               <https://eprint.iacr.org/2015/477.pdf>.
 
+   [Milenage-256]
+              3GPP, "Specification of the MILENAGE-256 algorithm set",
+              January 2025,
+              <https://portal.3gpp.org/desktopmodules/Specifications/
+              SpecificationDetails.aspx?specificationId=4244>.
+
    [Multiple] David McGrew and Scott Fluhrer, "Multiple Forgery Attacks
               Against Message Authentication Codes", May 2005,
               <https://csrc.nist.gov/csrc/media/projects/block-cipher-
@@ -1141,15 +1147,6 @@ Table of Contents
               <https://www.gsma.com/solutions-and-
               impact/technologies/security/wp-content/uploads/2019/05/
               uea2uia2d1v21.pdf>.
-
-   [WID23]    3GPP, "New WID on Milenage-256 algorithm", November 2023,
-              <https://www.3gpp.org/ftp/tsg_sa/WG3_Security/
-              TSGS3_113_Chicago/Docs/S3-235072.zip>.
-
-   [WID24]    3GPP, "New WID on Addition of 256-bit security
-              Algorithms", March 2024,
-              <https://www.3gpp.org/ftp/tsg_sa/TSG_SA/
-              TSGS_103_Maastricht_2024-03/Docs/SP-240476.zip>.
 
    [ZUC]      ZUC Design Team, "An Addendum to the ZUC-256 Stream
               Cipher", September 2024,
