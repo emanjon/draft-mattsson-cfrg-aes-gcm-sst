@@ -246,21 +246,13 @@ informative:
         ins: 3GPP
     date: March 2026
 
-  WID23:
-    target: https://www.3gpp.org/ftp/tsg_sa/WG3_Security/TSGS3_113_Chicago/Docs/S3-235072.zip
-    title: "New WID on Milenage-256 algorithm"
+  Milenage-256:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4244
+    title: "Specification of the MILENAGE-256 algorithm set"
     author:
       -
         ins: 3GPP
-    date: November 2023
-
-  WID24:
-    target: https://www.3gpp.org/ftp/tsg_sa/TSG_SA/TSGS_103_Maastricht_2024-03/Docs/SP-240476.zip
-    title: "New WID on Addition of 256-bit security Algorithms"
-    author:
-      -
-        ins: 3GPP
-    date: March 2024
+    date: January 2025
 
   ZUC:
     target: https://eprint.iacr.org/2021/1439
@@ -534,9 +526,9 @@ Short tags are widely used, 32-bit tags are standard in most radio link layers i
 
 This document defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) Authenticated Encryption with Associated Data (AEAD) algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface, allowing it to be used with any keystream generator, not just 128-bit block ciphers. The main differences from GCM {{GCM}} are the introduction of an additional subkey H<sub>2</sub>, the derivation of fresh subkeys H and H<sub>2</sub> for each nonce, and the replacement of the GHASH function with the POLYVAL function from AES-GCM-SIV {{RFC8452}}, see {{GCM-SST}}. These changes enable truncated tags with near-ideal forgery probabilities, even against multiple forgery attacks, see {{Security}}. GCM-SST is designed for use in security protocols with replay protection such as TLS {{RFC8446}}, QUIC {{RFC9000}}, SRTP {{RFC3711}}, PDCP {{PDCP}}, etc. Security protocols with replay protection are by far the most important use case for GCM. In unicast scenarios, its authentication tag behaves like an ideal MAC, including reforgeability resistance. Users and implementers of cryptography expect algorithms to behave like ideal MACs. Compared to Poly1305 {{RFC7539}} and GCM {{RFC5116}}, GCM-SST can provide better integrity with less overhead. Its performance in hardware and software is similar to GCM {{GCM}}. In software, the two additional AES invocations are compensated by the use of POLYVAL, the ”little-endian version” of GHASH, which is faster on little-endian architectures. GCM-SST retains the additive encryption characteristic of GCM, which enables efficient implementations on modern processor architectures, see {{Gueron}} and Section 2.4 of {{GCM-Update}}.
 
-This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256) {{Rijndael}} in counter mode as keystream generators and with tag lengths of 48, 96, and 112 bits, see {{AES-GCM-SST}}. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM {{GCM}}. 3GPP has standardized the use of Rijndael-256 for authentication and key generation in 3GPP TS 35.234–35.237 {{WID23}}. NIST plans to standardize Rijndael-256 {{Plans}}, although there might be revisions to the key schedule. Rijndael-256 has very good performance on modern x86-64 platforms equipped with AES-NI and VAES instructions {{Ducker}}. Compared to AEGIS {{I-D.irtf-cfrg-aegis-aead}}, AES-GCM-SST offers significantly higher performance in pure hardware implementations while retaining the advantage of being a mode of operation for AES.
+This document also registers several GCM-SST instances using Advanced Encryption Standard (AES) {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256) {{Rijndael}} in counter mode as keystream generators and with tag lengths of 48, 96, and 112 bits, see {{AES-GCM-SST}}. The authentication tags in all registered GCM-SST instances behave like ideal MACs, which is not the case at all for GCM {{GCM}}. 3GPP has standardized the use of Rijndael-256 for authentication and key generation in 3GPP TS 35.234–35.236 {{Milenage-256}}. NIST plans to standardize Rijndael-256 {{Plans}}, although there might be revisions to the key schedule. Rijndael-256 has very good performance on modern x86-64 platforms equipped with AES-NI and VAES instructions {{Ducker}}. Compared to AEGIS {{I-D.irtf-cfrg-aegis-aead}}, AES-GCM-SST offers significantly higher performance in pure hardware implementations while retaining the advantage of being a mode of operation for AES.
 
-The integrity part of GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP. Mac5G is constructed similarly to the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}. 3GPP has standardized GCM-SST for use with SNOW 5G {{SNOW}}, AES-256 {{AES}}, and ZUC-256 {{ZUC}} in 3GPP TS 35.240–35.248 {{WID24}}.
+The integrity part of GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP. Mac5G is constructed similarly to the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}. 3GPP has standardized GCM-SST for use with SNOW 5G {{NCA4}}, AES-256 {{NCA5}}, and ZUC-256 {{NCA6}} in 3GPP TS 35.240–35.248.
 
 # Conventions and Definitions
 
