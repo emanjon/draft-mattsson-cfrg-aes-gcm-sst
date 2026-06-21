@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 13 November 2025                              J. Preuß Mattsson
+Expires: 23 December 2026                              J. Preuß Mattsson
                                                                 Ericsson
-                                                             12 May 2025
+                                                            21 June 2026
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -63,11 +63,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 November 2025.
+   This Internet-Draft will expire on 23 December 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -904,9 +904,9 @@ Table of Contents
               <https://cr.yp.to/antiforgery/permutations-20050323.pdf>.
 
    [BSI]      "Cryptographic Mechanisms Recommendations and Key
-              Lengths", BSI Technical Guideline TR-02102-1, March 2025, 
-              <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publi
-              cations/TechGuidelines/TG02102/BSI-TR-02102-1.html>.
+              Lengths", BSI Technical Guideline TR-02102-1, March 2025,
+              <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/
+              TechGuidelines/TG02102/BSI-TR-02102-1.html>.
 
    [Comments38B]
               NIST, "Public Comments on SP 800-38B", September 2024,
@@ -966,16 +966,16 @@ Table of Contents
    [I-D.ietf-moq-transport]
               Nandakumar, S., Vasiliev, V., Swett, I., and A. Frindell,
               "Media over QUIC Transport", Work in Progress, Internet-
-              Draft, draft-ietf-moq-transport-11, 28 April 2025,
+              Draft, draft-ietf-moq-transport-18, 12 May 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
-              transport-11>.
+              transport-18>.
 
    [I-D.irtf-cfrg-aegis-aead]
               Denis, F. and S. Lucas, "The AEGIS Family of Authenticated
               Encryption Algorithms", Work in Progress, Internet-Draft,
-              draft-irtf-cfrg-aegis-aead-16, 17 February 2025,
+              draft-irtf-cfrg-aegis-aead-18, 5 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-irtf-cfrg-
-              aegis-aead-16>.
+              aegis-aead-18>.
 
    [Impossible]
               David McGrew, "Impossible plaintext cryptanalysis and
@@ -1010,6 +1010,11 @@ Table of Contents
               <https://csrc.nist.gov/csrc/media/projects/block-cipher-
               techniques/documents/bcm/comments/cwc-gcm/multi-forge-
               01.pdf>.
+
+   [Naito]    Yusuke Naito, Yu Sasaki, and Takeshi Sugawara, "The Multi-
+              user Security of GCM-SST and Further Enhancements",
+              October 2025,
+              <https://doi.org/10.1007/978-3-032-08124-7_3>.
 
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
@@ -1118,8 +1123,8 @@ Table of Contents
               Counter Mode with Strong Secure Tags (GCM-SST)", October
               2023, <https://csrc.nist.gov/csrc/media/Events/2023/third-
               workshop-on-block-cipher-modes-of-operation/documents/
-              accepted-papers/Galois%20Counter%20Mode%20with%20Secure%20
-              Short%20Tags.pdf>.
+              accepted-papers/
+              Galois%20Counter%20Mode%20with%20Secure%20Short%20Tags.pdf>.
 
    [SST2]     Campagna, M., Maximov, A., and J. Preuß Mattsson, "Galois
               Counter Mode with Strong Secure Tags (GCM-SST)", October
