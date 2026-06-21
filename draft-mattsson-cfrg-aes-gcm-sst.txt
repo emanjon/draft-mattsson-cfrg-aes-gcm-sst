@@ -314,7 +314,7 @@ Table of Contents
    masking of the tag.  Both encryption and decryption are only defined
    on inputs that are a whole number of octets.  Figures illustrating
    the GCM-SST encryption and decryption functions can be found in
-   [SST1], [SST2], and [Inoue].
+   [SST1], [SST2], [Inoue], and [Naito].
 
    For every computational procedure that is specified in this document,
    a conforming implementation MAY replace the given set of steps with
