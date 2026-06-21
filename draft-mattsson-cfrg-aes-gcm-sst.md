@@ -160,6 +160,18 @@ informative:
         ins: Kazuhiko Minematsu
     date: November 2024
 
+  Naito:
+    target: https://doi.org/10.1007/978-3-032-08124-7_3
+    title: "The Multi-user Security of GCM-SST and Further Enhancements"
+    author:
+      -
+        ins: Yusuke Naito
+      -
+        ins: Yu Sasaki
+      -
+        ins: Takeshi Sugawara
+    date: October 2025
+
   Iwata:
     target: https://eprint.iacr.org/2012/438.pdf
     title: "Breaking and Repairing GCM Security Proofs"
