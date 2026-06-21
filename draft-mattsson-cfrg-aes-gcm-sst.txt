@@ -447,6 +447,9 @@ Table of Contents
    either before step 1 or during step 11.  Protocols with nonce-hiding
    mechanisms [Bellare], such as QUIC [RFC9001], implement replay
    protection after decryption to mitigate timing side-channel attacks.
+   A simple replay-protection mechanism is to include a sequence number
+   in the nonce construction and accept a message only if its sequence
+   number is the next expected value.
 
 3.3.  Encoding (ct, tag) Tuples
 
