@@ -986,6 +986,7 @@ The version of GCM-SST specified in this document imposes stricter security cons
 
 Changes from -18 to -19:
 
+* Reference to Naito et al. proving mu-security of GCM-SST
 * Editorial changes
 
 Changes from -17 to -18:
