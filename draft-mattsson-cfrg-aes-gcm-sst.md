@@ -222,6 +222,30 @@ informative:
         ins: Gordon Procter
     date: August 2014
 
+  NCA4:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4220
+    title: "Specification of the Snow 5G based 256-bits algorithm set"
+    author:
+      -
+        ins: 3GPP
+    date: March 2026
+
+  NCA5:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4221
+    title: "Specification of the AES based 256-bits algorithm set"
+    author:
+      -
+        ins: 3GPP
+    date: March 2026
+
+  NCA6:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4224
+    title: "Specification of the ZUC based 256-bits algorithm set"
+    author:
+      -
+        ins: 3GPP
+    date: March 2026
+
   WID23:
     target: https://www.3gpp.org/ftp/tsg_sa/WG3_Security/TSGS3_113_Chicago/Docs/S3-235072.zip
     title: "New WID on Milenage-256 algorithm"
