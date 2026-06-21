@@ -1,6 +1,6 @@
-# GCM-SST: Galois Counter Mode (GCM) with Secure Short Tags
+# GCM-SST: Galois Counter Mode (GCM) with Strong Secure Tags
 
-This is the working area for the individual Internet-Draft, "GCM-SST: Galois Counter Mode (GCM) with Secure Short Tags".
+This is the working area for the individual Internet-Draft,"GCM-SST: Galois Counter Mode (GCM) with Strong Secure Tags".
 
 * [Editor's Copy HTML](https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/#go.draft-mattsson-cfrg-aes-gcm-sst.html)
 * [Editor's Copy Text](https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/#go.draft-mattsson-cfrg-aes-gcm-sst.txt)
