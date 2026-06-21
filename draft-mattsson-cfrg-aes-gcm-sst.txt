@@ -1015,6 +1015,21 @@ Table of Contents
               October 2025,
               <https://doi.org/10.1007/978-3-032-08124-7_3>.
 
+   [NCA4]     3GPP, "Specification of the Snow 5G based 256-bits
+              algorithm set", March 2026,
+              <https://portal.3gpp.org/desktopmodules/Specifications/
+              SpecificationDetails.aspx?specificationId=4220>.
+
+   [NCA5]     3GPP, "Specification of the AES based 256-bits algorithm
+              set", March 2026,
+              <https://portal.3gpp.org/desktopmodules/Specifications/
+              SpecificationDetails.aspx?specificationId=4221>.
+
+   [NCA6]     3GPP, "Specification of the ZUC based 256-bits algorithm
+              set", March 2026,
+              <https://portal.3gpp.org/desktopmodules/Specifications/
+              SpecificationDetails.aspx?specificationId=4224>.
+
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
               <https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-
