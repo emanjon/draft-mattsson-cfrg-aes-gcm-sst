@@ -1314,9 +1314,9 @@ Appendix B.  Compatibility with 3GPP Algorithms
    constructed similarly to the integrity algorithms used for SNOW 3G
    [UIA2] and ZUC [EIA3].
 
-   3GPP has standardized GCM-SST for use with SNOW 5G [SNOW], AES-256
-   [AES], and ZUC-256 [ZUC] in 3GPP TS 35.240–35.248 [WID24].  These
-   AEAD algorithms are designated as NCA4, NCA5, and NCA6, respectively.
+   3GPP has standardized GCM-SST for use with SNOW 5G [NCA4], AES-256
+   [NCA5], and ZUC-256 [NCA6] in 3GPP TS 35.240–35.248.  These AEAD
+   algorithms are designated as NCA4, NCA5, and NCA6, respectively.
    GCM-SST, as specified in this document, is fully compatible with the
    SNOW 5G-based NCA4 and the ZUC-256-based NCA6.  The AES-based NCA5
    differs only in its subkey generation but is otherwise identical.
