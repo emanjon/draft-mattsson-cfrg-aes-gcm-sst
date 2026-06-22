@@ -315,10 +315,10 @@ Table of Contents
    subkeys H and H_2 are field elements used as POLYVAL inputs, while
    the subkey M is used for the final masking of the tag.
 
-   Both the encryption and decryption functions operate exclusively on
-   inputs consisting of a whole number of bytes.  Figures illustrating
-   the GCM-SST encryption and decryption functions can be found in
-   [SST1], [SST2], [Inoue], and [Naito].
+   Both the encryption and decryption functions are defined only on
+   inputs comprising a whole number of bytes.  Figures illustrating the
+   GCM-SST encryption and decryption functions can be found in [SST1],
+   [SST2], [Inoue], and [Naito].
 
    For every computational procedure specified in this document, a
    conforming implementation MAY replace the given steps with any
