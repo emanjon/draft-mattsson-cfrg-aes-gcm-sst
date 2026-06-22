@@ -557,7 +557,9 @@ GCM-SST adheres to the AEAD interface defined in {{RFC5116}}. The encryption fun
 
 The keystream generator produces a keystream Z consisting of 128-bit chunks. The first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M, respectively. The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
 
-In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag. Both encryption and decryption are defined only on inputs that comprise a whole number of bytes. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
+In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag.
+
+Both the encryption and decryption functions operate exclusively on inputs consisting of a whole number of bytes. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
 
 For every computational procedure specified in this document, a conforming implementation MAY replace the given steps with any mathematically equivalent steps, provided the output is correct for every valid input.
 
@@ -675,7 +677,7 @@ where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 ## AEAD Instances and Constraints {#instances}
 
 Nine AEAD algorithm instances are defined below, following the format of {{RFC5116}}. These instances use AES-GCM-SST or Rijndael-GCM-SST with tag lengths of 48, 96, or 112 bits.
-The key length and tag length govern different security properties; an application encrypting audio packets with short tags might require high confidentiality.
+The key length and tag length govern different security properties. For example, an application encrypting audio packets with short tags might require high confidentiality.
 
 | Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | tag_length (bits) |
 | AEAD_AES_128_GCM_SST_6 | 16 | 2<sup>36</sup> - 48 | 48 |
