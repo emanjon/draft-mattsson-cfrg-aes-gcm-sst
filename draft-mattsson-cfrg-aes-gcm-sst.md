@@ -740,7 +740,7 @@ The confidentiality offered by GCM-SST against active attackers is directly link
 
 ## Weak keys
 
-In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and H<sub>2</sub> are zero, so called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If H<sub>2</sub> is zero, the authentication tag does not depend on P and A. Due to the masking with M, there are no obvious ways to detect this condition for an attacker, and the specification admits this possibility in favor of complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and H<sub>2</sub> are generated with a permutation on different input, so H and H<sub>2</sub> cannot both be zero.
+In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and H<sub>2</sub> are zero, so called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If H<sub>2</sub> is zero, the authentication tag does not depend on P and A. Due to the masking with M, there are no obvious ways to detect this condition for an attacker, and the specification admits this possibility rather than complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and H<sub>2</sub> are generated with a permutation on different input, so H and H<sub>2</sub> cannot both be zero.
 
 ## Replay Protection
 
