@@ -684,7 +684,7 @@ where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 
 ## AEAD Instances and Constraints {#instances}
 
-We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SST and Rijndael-GCM-SST with tag lengths of 48, 96, and 112 bits. The key length and tag length are related to different security properties, and an application encrypting audio packets with short tags might require high confidentiality.
+Nine AEAD algorithm instances are defined below, following the format of {{RFC5116}}. These instances use AES-GCM-SST or Rijndael-GCM-SST with tag lengths of 48, 96, or 112 bits. The key length and tag length govern different security properties, and an application encrypting audio packets with short tags might require high confidentiality.
 
 | Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | tag_length (bits) |
 | AEAD_AES_128_GCM_SST_6 | 16 | 2<sup>36</sup> - 48 | 48 |
@@ -698,17 +698,21 @@ We define nine AEAD instances, in the format of {{RFC5116}}, that use AES-GCM-SS
 | AEAD_RIJNDAEL_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
 {: #iana-algs title="AEAD Algorithms" cols="l r r r"}
 
-Common parameters for the six AEAD instances:
+The following parameters apply to all the instances:
 
-* N_MIN = N_MAX (minimum and maximum size of the nonce) is 12 octets for AES, while for Rijndael-256, it is 28 bytes.
+* N_MIN = N_MAX (minimum and maximum nonce length) is 12 octets for AES-GCM-SST and 28 octets for Rijndael-GCM-SST.
 
-* C_MAX (maximum size of the ciphertext and tag) is P_MAX + tag_length (in bytes)
+* C_MAX (maximum ciphertext length, including the tag) is P_MAX + tag_length / 8 octets.
 
-* Q_MAX (maximum number of invocations of the encryption function) is 2<sup>32</sup> for AES-GCM-SST, while for Rijndael-GCM-SST, it is 2<sup>88</sup>.
+* Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>88</sup> for Rijndael-GCM-SST.
 
-* V_MAX (maximum number of invocations of the decryption function) is 2<sup>48</sup> for AES-GCM-SST, while for Rijndael-GCM-SST, it is 2<sup>88</sup>.
+* V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>88</sup> for Rijndael-GCM-SST.
 
-The maximum size of the plaintext (P_MAX) and the maximum size of the associated data (A_MAX) have been lowered from GCM {{RFC5116}}. To enable forgery probability close to ideal, even with maximum size plaintexts and associated data, we set P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48). Protocols that employ GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96 bits and 224 bits, respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
+The values of P_MAX and A_MAX are lower than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
+
+P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
+
+Protocols that employ GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96 bits and 224 bits, respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
 
 The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to restricting the Bernstein bound factor, the Q_MAX constraint establishes a minimum threshold for the complexity of distinguishing attacks and a maximum threshold for the fraction of a plaintext bit that an attacker can recover. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Protocols that employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
 
