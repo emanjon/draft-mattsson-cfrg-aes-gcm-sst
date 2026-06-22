@@ -847,10 +847,10 @@ Table of Contents
 
 6.  IANA Considerations
 
-   IANA is requested to assign the entries in the first column of
-   Table 1 to the "AEAD Algorithms" registry under the "Authenticated
-   Encryption with Associated Data (AEAD) Parameters" heading with this
-   document as reference.
+   IANA is requested to assign the algorithm names listed in the first
+   column of Table 1 to the "AEAD Algorithms" registry under the
+   "Authenticated Encryption with Associated Data (AEAD) Parameters"
+   heading, with this document as the reference.
 
 7.  References
 
