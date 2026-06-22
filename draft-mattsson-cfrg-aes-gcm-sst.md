@@ -711,9 +711,11 @@ The values of P_MAX and A_MAX are lower than the corresponding limits in {{RFC51
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
 
-Protocols that employ GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96 bits and 224 bits, respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
+This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}. This bound holds for all permitted plaintext and associated data lengths. Protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX. 
 
-The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to restricting the Bernstein bound factor, the Q_MAX constraint establishes a minimum threshold for the complexity of distinguishing attacks and a maximum threshold for the fraction of a plaintext bit that an attacker can recover. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Protocols that employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
+Like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST require a fixed nonce length (N_MIN = N_MAX): 96 bits for AES-GCM-SST and 224 bits for Rijndael-GCM-SST.
+
+The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}), and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker. Since encryption and decryption queries play equivalent roles in the Bernstein bound δ, it follows that Q_MAX ≤ V_MAX. Protocols employing GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
 
 Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
 
