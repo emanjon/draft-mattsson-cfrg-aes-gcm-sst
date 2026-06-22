@@ -536,10 +536,10 @@ The integrity part of GCM-SST was originally developed by ETSI SAGE, under the n
 
 The following notation is used in the document:
 
-* K is the key as defined in {{RFC5116}}
-* N is the nonce as defined in {{RFC5116}}
-* A is the associated data as defined in {{RFC5116}}
-* P is the plaintext as defined in {{RFC5116}}
+* K is the key, as defined in {{RFC5116}}
+* N is the nonce, as defined in {{RFC5116}}
+* A is the associated data, as defined in {{RFC5116}}
+* P is the plaintext, as defined in {{RFC5116}}
 * Z is the keystream
 * ct is the ciphertext
 * tag is the authentication tag
@@ -547,39 +547,43 @@ The following notation is used in the document:
 * = is the assignment operator
 * ≠ is the inequality operator
 * x \|\| y is concatenation of the octet strings x and y
-* ⊕ is the bitwise exclusive or operator XOR
+* ⊕ is the bitwise exclusive-OR (XOR) operator
 * len(x) is the length of x in bits
-* zeropad(x) right pads an octet string x with zeroes to a multiple of 128 bits
-* truncate(x, t) is the truncation operation.  The first t bits of x are kept
+* zeropad(x) right-pads an octet string x with zeroes to a multiple of 128 bits
+* truncate(x, t) retains the first t bits of x and discards the remainder
 * n is the number of 128-bit chunks in zeropad(P)
 * m is the number of 128-bit chunks in zeropad(A)
 * POLYVAL is defined in {{RFC8452}}
 * BE32(x) is the big-endian encoding of 32-bit integer x
 * LE64(x) is the little-endian encoding of 64-bit integer x
-* V[y] is the 128-bit chunk with index y in the array V; the first chunk has index 0
-* V[x:y] are the range of 128-bit chunks x to y in the array V
+* V[x] is the 128-bit chunk at index x in array V; the first chunk has index 0
+* V[x:y] are the range of 128-bit chunks at indices x through y in array V
 
 # Galois Counter Mode with Strong Secure Tags (GCM-SST) {#GCM-SST}
 
-This section defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not just a 128-bit block cipher.
+This section defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not only a 128-bit block cipher.
 
-GCM-SST adheres to an AEAD interface {{RFC5116}} and the encryption function takes four variable-length octet string parameters. A secret key K, a nonce N, the associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator. The keystream generator produces a keystream Z consisting of 128-bit chunks where the first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M. The following keystream chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext. Instead of GHASH {{GCM}}, GCM-SST makes use of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which results in more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used in POLYVAL while the subkey M is used for the final masking of the tag. Both encryption and decryption are only defined on inputs that are a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
+GCM-SST adheres to the AEAD interface defined in {{RFC5116}}. The encryption function takes four variable-length octet string parameters: a secret key K, a nonce N, associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator.
 
-For every computational procedure that is specified in this document, a conforming implementation MAY replace the given set of steps with any mathematically equivalent set of steps. In other words, different procedures that produce the correct output for every input are permitted.
+The keystream generator produces a keystream Z consisting of 128-bit chunks. The first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M, respectively. The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
+
+In place of GHASH {{GCM}}, GCM-SST uses of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag. Both encryption and decryption are defined only on inputs that comprise a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
+
+For every computational procedure specified in this document, a conforming implementation MAY replace the given steps with any mathematically equivalent steps, provided the output is correct for every valid input.
 
 ## Authenticated Encryption Function
 
-The encryption function Encrypt(K, N, A, P) encrypts a plaintext and returns the ciphertext along with an authentication tag that verifies the authenticity of the plaintext and associated data, if provided.
+The encryption function Encrypt(K, N, A, P) encrypts a plaintext and returns the ciphertext together with an authentication tag that verifies the authenticity of both the plaintext and associated data, if provided.
 
-Prerequisites and security:
+Prerequisites and security requirements:
 
-* The key MUST be randomly chosen from a uniform distribution.
+* The key MUST be randomly chosen uniformly at random.
 
 * For a given key, a nonce MUST NOT be reused under any circumstances.
 
 * Each key MUST be restricted to a single tag_length.
 
-* Definitions of supported input-output lengths.
+* Supported input and output lengths MUST be defined.
 
 Inputs:
 
@@ -591,11 +595,11 @@ Inputs:
 Outputs:
 
 * Ciphertext ct (variable-length octet string)
-* tag (octet string with length tag_length)
+* tag (octet string of length tag_length bits)
 
 Steps:
 
-1. If the lengths of K, N, A, P are not supported return error and abort
+1. If the lengths of K, N, A, P are not supported, return an error and abort
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let ct = P ⊕ truncate(Z[3:n + 2], len(P))
@@ -610,15 +614,15 @@ The encoding of L aligns with existing implementations of GCM.
 
 ## Authenticated Decryption Function
 
-The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error if the tag verification failed.
+The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success, or an error if the tag verification fails.
 
-Prerequisites and security:
+Prerequisites and security requirements:
 
-* The calculation of the plaintext P (step 10) MAY be done in parallel with the tag verification (step 3-9). If the tag verification fails, the plaintext P and the expected_tag MUST NOT be given as output.
+* The calculation of the plaintext P (step 10) MAY be done in parallel with tag verification (step 3-9). If tag verification fails, the plaintext P MUST NOT be given as output.
 
 * Each key MUST be restricted to a single tag_length.
 
-* Definitions of supported input-output lengths.
+* Supported input and output lengths MUST be defined.
 
 Inputs:
 
@@ -626,15 +630,15 @@ Inputs:
 * Nonce N (variable-length octet string)
 * Associated data A (variable-length octet string)
 * Ciphertext ct (variable-length octet string)
-* tag (octet string with length tag_length)
+* tag (octet string of length tag_length bits)
 
 Outputs:
 
-* Plaintext P (variable-length octet string) or an error indicating that the authentication tag is invalid for the given inputs.
+* Plaintext P (variable-length octet string), or an error indicating that the authentication tag is invalid for the given inputs.
 
 Steps:
 
-1. If the lengths of K, N, A, or ct are not supported, or if len(tag) ≠ tag_length return error and abort
+1. If the lengths of K, N, A, or ct are not supported, or if len(tag) ≠ tag_length, return an error and abort
 2. Initiate keystream generator with K and N
 3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct)
@@ -642,29 +646,31 @@ Steps:
 6. Let X = POLYVAL(H, S[0], S[1], ...)
 7. Let full_tag = POLYVAL(H<sub>2</sub>, X ⊕ L) ⊕ M
 8. Let expected_tag = truncate(full_tag, tag_length)
-9. If tag ≠ expected_tag, return error and abort
+9. If tag ≠ expected_tag, return an error and abort
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent any information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection can be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks. A simple replay-protection mechanism is to include a sequence number in the nonce construction and accept a message only if its sequence number is the next expected value.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce.
+
+Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks.
 
 ## Encoding (ct, tag) Tuples
 
-Applications MAY keep the ciphertext and the authentication tag in distinct structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
+Applications MAY store the ciphertext and the authentication tag in separate structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext:
 
 C = ct \|\| tag
 
 # AES and Rijndael-256 in GCM-SST {#AES-GCM-SST}
 
-This section defines Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and blocks (Rijndael-256) {{Rijndael}} in Galois Counter Mode with Strong Secure Tags.
+This section defines instantiations of GCM-SST using the Advanced Encryption Standard (AES) and Rijndael with 256-bit keys and 256-bit blocks (Rijndael-256).
 
 ## AES-GCM-SST
 
-When GCM-SSM is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode
+When GCM-SST is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode
 
 Z[i] = ENC(K, N \|\| BE32(i))
 
-where ENC is the AES Cipher function {{AES}}. Big-endian counters align with existing implementations of AES in counter mode.
+where ENC is the AES Cipher function {{AES}}. The use of big-endian counters aligns with existing AES counter mode implementations.
 
 ## Rijndael-GCM-SST
 
