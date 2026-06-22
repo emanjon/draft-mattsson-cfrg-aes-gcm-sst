@@ -683,7 +683,7 @@ Table of Contents
    and not on their content.  If H_2 is zero, the authentication tag
    does not depend on P and A.  Due to the masking with M, there are no
    obvious ways to detect this condition for an attacker, and the
-   specification admits this possibility in favor of complicating the
+   specification admits this possibility rather than complicating the
    flow with additional checks and regeneration of values.  In AES-GCM-
    SST, H and H_2 are generated with a permutation on different input,
    so H and H_2 cannot both be zero.
