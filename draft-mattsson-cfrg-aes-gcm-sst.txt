@@ -914,7 +914,8 @@ Table of Contents
               <https://cr.yp.to/antiforgery/permutations-20050323.pdf>.
 
    [BSI]      "Cryptographic Mechanisms Recommendations and Key
-              Lengths", BSI Technical Guideline TR-02102-1, March 2025,
+              Lengths", BSI Technical Guideline TR-02102-1, January
+              2026,
               <https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/
               TechGuidelines/TG02102/BSI-TR-02102-1.html>.
 
@@ -1054,7 +1055,7 @@ Table of Contents
               Nyberg_Gilbert_and_Robshaw.pdf>.
 
    [PDCP]     3GPP TS 38 323, "NR; Packet Data Convergence Protocol
-              (PDCP) specification", December 2024,
+              (PDCP) specification", January 2026,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3196>.
 
@@ -1127,7 +1128,7 @@ Table of Contents
               2012-2010r1.pdf>.
 
    [Sec5G]    3GPP TS 33 501, "Security architecture and procedures for
-              5G System", March 2025,
+              5G System", March 2026,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3169>.
 
