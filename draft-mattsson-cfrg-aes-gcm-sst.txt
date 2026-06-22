@@ -541,7 +541,7 @@ Table of Contents
    even for maximum-length plaintexts and associated data, this document
    sets:
 
-      (P_MAX = A_MAX = min(2^(131 - tag_length), 2^36 - 48)
+      P_MAX = A_MAX = min(2^(131 - tag_length), 2^36 - 48)
 
    Protocols that employ GCM-SST MAY impose stricter limits on P_MAX and
    A_MAX.  Just like [RFC5116], AES-GCM-SST and Rijndael-GCM-SST only
