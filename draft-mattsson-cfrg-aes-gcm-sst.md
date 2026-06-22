@@ -95,7 +95,7 @@ informative:
     title: "Cryptographic Mechanisms Recommendations and Key Lengths"
     seriesinfo:
       "BSI": "Technical Guideline TR-02102-1"
-    date: March 2025
+    date: January 2026
 
   ACM:
     target: https://certification.enisa.europa.eu/document/download/a845662b-aee0-484e-9191-890c4cfa7aaa_en
@@ -274,7 +274,7 @@ informative:
     author:
       -
         ins: 3GPP TS 33.501
-    date: March 2025
+    date: March 2026
 
   PDCP:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3196
@@ -282,7 +282,7 @@ informative:
     author:
       -
         ins: 3GPP TS 38.323
-    date: December 2024
+    date: January 2026
 
   Entropy:
     target: https://eprint.iacr.org/2024/1111.pdf
