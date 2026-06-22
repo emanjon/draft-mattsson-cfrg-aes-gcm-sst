@@ -559,7 +559,7 @@ The following notation is used in the document:
 
 # Galois Counter Mode with Strong Secure Tags (GCM-SST) {#GCM-SST}
 
-This section defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not only a 128-bit block cipher.
+This section defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) AEAD algorithm following the recommendations of Nyberg et al. {{Nyberg}}. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not only a 128-bit block cipher.
 
 GCM-SST adheres to the AEAD interface defined in {{RFC5116}}. The encryption function takes four variable-length octet string parameters: a secret key K, a nonce N, associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator.
 
@@ -598,7 +598,7 @@ Outputs:
 Steps:
 
 1. If the lengths of K, N, A, P are not supported, return an error and abort
-2. Initiate the keystream generator with K and N
+2. Instantiate the keystream generator with K and N
 3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let ct = P ⊕ truncate(Z[3:n + 2], len(P))
 5. Let S = zeropad(A) \|\| zeropad(ct)
@@ -616,7 +616,7 @@ The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifie
 
 Prerequisites and security requirements:
 
-* The calculation of the plaintext P (step 10) MAY be done in parallel with tag verification (step 3-9). If tag verification fails, the plaintext P MUST NOT be given as output.
+* The calculation of the plaintext P (step 10) MAY be done in parallel with tag verification (steps 3–9). If tag verification fails, the plaintext P MUST NOT be given as output.
 
 * Each key MUST be restricted to a single tag_length.
 
@@ -637,7 +637,7 @@ Outputs:
 Steps:
 
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) ≠ tag_length, return an error and abort
-2. Initiate the keystream generator with K and N
+2. Instantiate the keystream generator with K and N
 3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct)
 5. Let L = LE64(len(ct)) \|\| LE64(len(A))
