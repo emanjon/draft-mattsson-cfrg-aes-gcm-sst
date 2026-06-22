@@ -494,7 +494,7 @@ informative:
 
 --- abstract
 
-This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that addresses well-known weaknesses in AES-GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H<sub>2</sub>, per-nonce derivation of both H and HH<sub>2</sub>, and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2<sup>tag_length</sub>, a property GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and has hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256.
+This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that corrects known weaknesses in AES-GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H<sub>2</sub>, per-nonce derivation of both H and HH<sub>2</sub>, and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2<sup>tag_length</sub>, a property GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and has hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256.
 
 --- middle
 
@@ -700,13 +700,13 @@ The values of P_MAX and A_MAX are lower than the corresponding limits in {{RFC51
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
 
-This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}. Protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX.
+This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}.
 
 Like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST require a fixed nonce length (N_MIN = N_MAX): 96 bits for AES-GCM-SST and 224 bits for Rijndael-GCM-SST.
 
-The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker. Since encryption and decryption queries play equivalent roles in the Bernstein bound factor δ, it follows that Q_MAX ≤ V_MAX. Protocols employing GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
+The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker. Since encryption and decryption queries play equivalent roles in the Bernstein bound factor δ, it follows that Q_MAX ≤ V_MAX.
 
-Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
+All protocols employing GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here. Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
 * Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
