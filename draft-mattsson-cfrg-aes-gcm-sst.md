@@ -718,7 +718,7 @@ The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES
 Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
 
 {: style=""}
-* (Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
+* Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
 * (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>66</sup>
 
 The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1.
