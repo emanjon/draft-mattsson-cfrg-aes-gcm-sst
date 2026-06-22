@@ -791,7 +791,7 @@ With GCM-SST, a few successful forgeries against a few recipients allow the atta
 
 # IANA Considerations
 
-IANA is requested to assign the entries in the first column of {{iana-algs}} to the "AEAD Algorithms" registry under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading with this document as reference.
+IANA is requested to assign the algorithm names listed in the first column of {{iana-algs}} to the "AEAD Algorithms" registry under the "Authenticated Encryption with Associated Data (AEAD) Parameters" heading, with this document as the reference.
 
 --- back
 
