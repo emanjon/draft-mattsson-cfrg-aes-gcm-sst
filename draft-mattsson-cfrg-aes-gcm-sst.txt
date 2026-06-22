@@ -224,10 +224,10 @@ Table of Contents
    advantage of being a mode of operation for AES.
 
    The integrity part of GCM-SST was originally developed by ETSI SAGE,
-   under the name Mac5G, following a request from 3GPP.  Mac5G is
-   constructed similarly to the integrity algorithms used for SNOW 3G
-   [UIA2] and ZUC [EIA3]. 3GPP has standardized GCM-SST for use with
-   SNOW 5G [NCA4], AES-256 [NCA5], and ZUC-256 [NCA6] in 3GPP TS
+   under the name Mac5G, following a request from 3GPP.  Mac5G follows
+   the same structural approach as the integrity algorithms used for
+   SNOW 3G [UIA2] and ZUC [EIA3]. 3GPP has standardized GCM-SST for use
+   with SNOW 5G [NCA4], AES-256 [NCA5], and ZUC-256 [NCA6] in 3GPP TS
    35.240–35.248.
 
 2.  Conventions and Definitions
