@@ -720,7 +720,7 @@ Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
 
 (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>66</sup>
 
-The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. 
+The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1.
 
 Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and {{Comp}}{: format="counter"} for additional details.
 
