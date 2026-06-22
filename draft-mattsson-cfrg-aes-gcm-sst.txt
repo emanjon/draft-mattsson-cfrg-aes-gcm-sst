@@ -561,16 +561,25 @@ Table of Contents
    that Q_MAX ≤ V_MAX.  Protocols that employ GCM-SST MAY impose
    stricter limits on Q_MAX and V_MAX.
 
-   Protocols utilizing AES-GCM-SST MUST enforce stricter limits on
-   P_MAX, A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅
-   (Q_MAX + V_MAX) ⪅ 2^66.  This ensures that δ ≈ 1.
+   Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX,
+   A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
 
-   Protocols utilizing AES-GCM-SST MUST enforce stricter limits on P_MAX
-   and/or Q_MAX to ensure that Q_MAX ⋅ P_MAX ⪅ 2^63.  This aligns with
-   [ANSSI] requirements and ensures that an attacker cannot recover more
-   than ≈ 1 / 2^10.47 ≈ 0.0007 bits of the plaintexts [Entropy].
+   (P_MAX + A_MAX) ⋅ (Q_MAX + V_MAX) ⪅ 2^66
 
-   Refer to Sections 5.1, 5.2, and 5.5 for further details.
+   This ensures that δ ≈ 1.  Protocols using AES-GCM-SST MUST
+   additionally enforce limits on P_MAX and/or Q_MAX sufficient to
+   ensure:
+
+   Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX,
+   A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
+
+   Q_MAX ⋅ P_MAX ⪅ 2^63
+
+   This requirement aligns with [ACM] and ensures that an attacker
+   cannot recover more than ≈ 1 / 2^10.47 ≈ 0.0007 bits of the
+   plaintexts [Entropy].
+
+   Refer to Sections 5.1, 5.2, and 5.5 for additional details.
 
 5.  Security Considerations
 
@@ -883,15 +892,14 @@ Table of Contents
 
 7.2.  Informative References
 
+   [ACM]      "Agreed Cryptographic Mechanisms", April 2025,
+              <https://certification.enisa.europa.eu/document/download/
+              a845662b-aee0-484e-9191-890c4cfa7aaa_en>.
+
    [AEZ]      Viet Tung Hoang, Ted Krovetz, and Phillip Rogaway, "Robust
               Authenticated-Encryption: AEZ and the Problem that it
               Solves", March 2017,
               <https://eprint.iacr.org/2014/793.pdf>.
-
-   [ANSSI]    "Guide des mécanismes cryptographiques", ANSSI PG-083,
-              January 2020,
-              <https://cyber.gouv.fr/sites/default/files/2021/03/anssi-
-              guide-mecanismes_crypto-2.04.pdf>.
 
    [Ascon]    Meltem Sönmez Turan, Kerry A McKay, Donghoon Chang,
               Jinkeon Kang, and John Kelsey, "Ascon-Based Lightweight
