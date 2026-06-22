@@ -494,8 +494,8 @@ Table of Contents
    of [RFC5116].  These instances use AES-GCM-SST or Rijndael-GCM-SST
    with tag lengths of 48, 96, or 112 bits.  The key length and tag
    length govern different security properties; an application
-   encrypting audio packets may use a 256-bit key for strong
-   confidentiality while accepting a shorter tag for efficiency.
+   encrypting audio packets with short tags might require high
+   confidentiality.
 
     +==========================+=========+===============+============+
     | Name                     |   K_LEN | P_MAX = A_MAX | tag_length |
