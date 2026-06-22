@@ -711,7 +711,7 @@ The values of P_MAX and A_MAX are lower than the corresponding limits in {{RFC51
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
 
-This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}. This bound holds for all permitted plaintext and associated data lengths. Protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX. 
+This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}. This bound holds for all permitted plaintext and associated data lengths. Protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX.
 
 Like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST require a fixed nonce length (N_MIN = N_MAX): 96 bits for AES-GCM-SST and 224 bits for Rijndael-GCM-SST.
 
