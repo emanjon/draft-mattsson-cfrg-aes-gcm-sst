@@ -555,7 +555,7 @@ The following notation is used in the document:
 * BE32(x) is the big-endian encoding of 32-bit integer x
 * LE64(x) is the little-endian encoding of 64-bit integer x
 * V[x] is the 128-bit chunk at index x in array V; the first chunk has index 0
-* V[x:y] are the range of 128-bit chunks at indices x through y in array V
+* V[x:y] is the range of 128-bit chunks at indices x through y in array V
 
 # Galois Counter Mode with Strong Secure Tags (GCM-SST) {#GCM-SST}
 
@@ -565,7 +565,7 @@ GCM-SST adheres to the AEAD interface defined in {{RFC5116}}. The encryption fun
 
 The keystream generator produces a keystream Z consisting of 128-bit chunks. The first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M, respectively. The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
 
-In place of GHASH {{GCM}}, GCM-SST uses of the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag. Both encryption and decryption are defined only on inputs that comprise a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
+In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag. Both encryption and decryption are defined only on inputs that comprise a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
 
 For every computational procedure specified in this document, a conforming implementation MAY replace the given steps with any mathematically equivalent steps, provided the output is correct for every valid input.
 
@@ -575,7 +575,7 @@ The encryption function Encrypt(K, N, A, P) encrypts a plaintext and returns the
 
 Prerequisites and security requirements:
 
-* The key MUST be randomly chosen uniformly at random.
+* The key MUST be chosen uniformly at random.
 
 * For a given key, a nonce MUST NOT be reused under any circumstances.
 
@@ -598,7 +598,7 @@ Outputs:
 Steps:
 
 1. If the lengths of K, N, A, P are not supported, return an error and abort
-2. Initiate keystream generator with K and N
+2. Initiate the keystream generator with K and N
 3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let ct = P ⊕ truncate(Z[3:n + 2], len(P))
 5. Let S = zeropad(A) \|\| zeropad(ct)
@@ -637,7 +637,7 @@ Outputs:
 Steps:
 
 1. If the lengths of K, N, A, or ct are not supported, or if len(tag) ≠ tag_length, return an error and abort
-2. Initiate keystream generator with K and N
+2. Initiate the keystream generator with K and N
 3. Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]
 4. Let S = zeropad(A) \|\| zeropad(ct)
 5. Let L = LE64(len(ct)) \|\| LE64(len(A))
@@ -711,11 +711,11 @@ The values of P_MAX and A_MAX are lower than the corresponding limits in {{RFC51
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
 
-This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}. This bound holds for all permitted plaintext and associated data lengths. Protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX.
+This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}. Protocols employing GCM-SST MAY impose stricter limits on P_MAX and A_MAX.
 
 Like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST require a fixed nonce length (N_MIN = N_MAX): 96 bits for AES-GCM-SST and 224 bits for Rijndael-GCM-SST.
 
-The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}), and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker. Since encryption and decryption queries play equivalent roles in the Bernstein bound δ, it follows that Q_MAX ≤ V_MAX. Protocols employing GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
+The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker. Since encryption and decryption queries play equivalent roles in the Bernstein bound factor δ, it follows that Q_MAX ≤ V_MAX. Protocols employing GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
 
 Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
 
