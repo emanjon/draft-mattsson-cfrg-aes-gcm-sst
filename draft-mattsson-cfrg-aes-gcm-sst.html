@@ -1391,7 +1391,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
       <h2 id="name-galois-counter-mode-with-st">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-galois-counter-mode-with-st" class="section-name selfRef">Galois Counter Mode with Strong Secure Tags (GCM-SST)</a>
       </h2>
-<p id="section-3-1">This section defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) AEAD algorithm following the recommendations from Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not only a 128-bit block cipher.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-1">This section defines the Galois Counter Mode with Strong Secure Tags (GCM-SST) AEAD algorithm following the recommendations of Nyberg et al. <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. GCM-SST is defined with a general interface so that it can be used with any keystream generator, not only a 128-bit block cipher.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <p id="section-3-2">GCM-SST adheres to the AEAD interface defined in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span>. The encryption function takes four variable-length octet string parameters: a secret key K, a nonce N, associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream <span class="bcp14">MAY</span> depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator.<a href="#section-3-2" class="pilcrow">¶</a></p>
 <p id="section-3-3">The keystream generator produces a keystream Z consisting of 128-bit chunks. The first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M, respectively. The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.<a href="#section-3-3" class="pilcrow">¶</a></p>
 <p id="section-3-4">In place of GHASH <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, GCM-SST uses the POLYVAL function from AES-GCM-SIV <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span>. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag. Both encryption and decryption are defined only on inputs that comprise a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in <span>[<a href="#SST1" class="cite xref">SST1</a>]</span>, <span>[<a href="#SST2" class="cite xref">SST2</a>]</span>, <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span>, and <span>[<a href="#Naito" class="cite xref">Naito</a>]</span>.<a href="#section-3-4" class="pilcrow">¶</a></p>
@@ -1447,7 +1447,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.1-9.1.1">If the lengths of K, N, A, P are not supported, return an error and abort<a href="#section-3.1-9.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.1-9.2">
-            <p id="section-3.1-9.2.1">Initiate the keystream generator with K and N<a href="#section-3.1-9.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-9.2.1">Instantiate the keystream generator with K and N<a href="#section-3.1-9.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.1-9.3">
             <p id="section-3.1-9.3.1">Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]<a href="#section-3.1-9.3.1" class="pilcrow">¶</a></p>
@@ -1486,7 +1486,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3.2-2">Prerequisites and security requirements:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-3.2-3.1">
-            <p id="section-3.2-3.1.1">The calculation of the plaintext P (step 10) <span class="bcp14">MAY</span> be done in parallel with tag verification (step 3-9). If tag verification fails, the plaintext P <span class="bcp14">MUST NOT</span> be given as output.<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-3.1.1">The calculation of the plaintext P (step 10) <span class="bcp14">MAY</span> be done in parallel with tag verification (steps 3–9). If tag verification fails, the plaintext P <span class="bcp14">MUST NOT</span> be given as output.<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-3.2">
             <p id="section-3.2-3.2.1">Each key <span class="bcp14">MUST</span> be restricted to a single tag_length.<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
@@ -1525,7 +1525,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-9.1.1">If the lengths of K, N, A, or ct are not supported, or if len(tag) ≠ tag_length, return an error and abort<a href="#section-3.2-9.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-9.2">
-            <p id="section-3.2-9.2.1">Initiate the keystream generator with K and N<a href="#section-3.2-9.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-9.2.1">Instantiate the keystream generator with K and N<a href="#section-3.2-9.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-3.2-9.3">
             <p id="section-3.2-9.3.1">Let H = Z[0], H<sub>2</sub> = Z[1], M = Z[2]<a href="#section-3.2-9.3.1" class="pilcrow">¶</a></p>

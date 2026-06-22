@@ -291,7 +291,7 @@ Table of Contents
 3.  Galois Counter Mode with Strong Secure Tags (GCM-SST)
 
    This section defines the Galois Counter Mode with Strong Secure Tags
-   (GCM-SST) AEAD algorithm following the recommendations from Nyberg et
+   (GCM-SST) AEAD algorithm following the recommendations of Nyberg et
    al.  [Nyberg].  GCM-SST is defined with a general interface so that
    it can be used with any keystream generator, not only a 128-bit block
    cipher.
@@ -363,7 +363,7 @@ Table of Contents
    1.   If the lengths of K, N, A, P are not supported, return an error
         and abort
 
-   2.   Initiate the keystream generator with K and N
+   2.   Instantiate the keystream generator with K and N
 
    3.   Let H = Z[0], H_2 = Z[1], M = Z[2]
 
@@ -393,7 +393,7 @@ Table of Contents
    Prerequisites and security requirements:
 
    *  The calculation of the plaintext P (step 10) MAY be done in
-      parallel with tag verification (step 3-9).  If tag verification
+      parallel with tag verification (steps 3–9).  If tag verification
       fails, the plaintext P MUST NOT be given as output.
 
    *  Each key MUST be restricted to a single tag_length.
@@ -422,7 +422,7 @@ Table of Contents
    1.   If the lengths of K, N, A, or ct are not supported, or if
         len(tag) ≠ tag_length, return an error and abort
 
-   2.   Initiate the keystream generator with K and N
+   2.   Instantiate the keystream generator with K and N
 
    3.   Let H = Z[0], H_2 = Z[1], M = Z[2]
 
