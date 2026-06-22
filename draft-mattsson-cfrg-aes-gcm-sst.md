@@ -252,14 +252,6 @@ informative:
         ins: 3GPP
     date: January 2025
 
-  ZUC:
-    target: https://eprint.iacr.org/2021/1439
-    title: "An Addendum to the ZUC-256 Stream Cipher"
-    author:
-      -
-        ins: ZUC Design Team
-    date: September 2024
-
   Plans:
     target: https://csrc.nist.gov/pubs/sp/800/197/iprd
     title: "NIST Proposes to Standardize a Wider Variant of AES"
