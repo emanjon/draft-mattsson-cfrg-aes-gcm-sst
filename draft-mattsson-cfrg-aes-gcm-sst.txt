@@ -191,21 +191,19 @@ Table of Contents
    additive encryption structure, enabling efficient pipelining on
    modern processors [Gueron] (see also Section 2.4 of [GCM-Update]).
 
-   This document also registers several GCM-SST instances using Advanced
-   Encryption Standard (AES) [AES] and Rijndael with 256-bit keys and
-   blocks (Rijndael-256) [Rijndael] in counter mode as keystream
-   generators and with tag lengths of 48, 96, and 112 bits, see
-   Section 4.  The authentication tags in all registered GCM-SST
-   instances behave like ideal MACs, which is not the case at all for
-   GCM [GCM]. 3GPP has standardized the use of Rijndael-256 for
-   authentication and key generation in 3GPP TS 35.234–35.236
-   [Milenage-256].  NIST plans to standardize Rijndael-256 [Plans],
-   although there might be revisions to the key schedule.  Rijndael-256
-   has very good performance on modern x86-64 platforms equipped with
-   AES-NI and VAES instructions [Ducker].  Compared to AEGIS
-   [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST offers significantly higher
-   performance in pure hardware implementations while retaining the
-   advantage of being a mode of operation for AES.
+   This document also registers AES-GCM-SST instances using AES [AES]
+   and Rijndael with 256-bit keys and blocks (Rijndael-256) [Rijndael]
+   in counter mode, with tag lengths of 48, 96, and 112 bits (see
+   Section 4).  All registered instances produce authentication tags
+   that behave as ideal MACs, with an expected number of forgeries E(F)
+   ≈ v / 2^(tag_length), a property expected of a modern AEAD, and one
+   GCM is far from providing.  Rijndael-256 is already standardized by
+   3GPP for authentication and key generation [Milenage-256] and is
+   planned for NIST standardization [Plans].  Rijndael-256 performs well
+   on modern x86-64 platforms with AES-NI and VAES instructions
+   [Ducker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST
+   offers substantially higher throughput in pure hardware while
+   retaining the advantage of being a mode of operation for AES.
 
    The integrity part of GCM-SST was originally developed by ETSI SAGE,
    under the name Mac5G, following a request from 3GPP.  Mac5G follows
