@@ -675,7 +675,7 @@ where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 ## AEAD Instances and Constraints {#instances}
 
 Nine AEAD algorithm instances are defined below, following the format of {{RFC5116}}. These instances use AES-GCM-SST or Rijndael-GCM-SST with tag lengths of 48, 96, or 112 bits.
-The key length and tag length govern different security properties; an application encrypting audio packets may use a 256-bit key for strong confidentiality while accepting a shorter tag for efficiency.
+The key length and tag length govern different security properties; an application encrypting audio packets with short tags might require high confidentiality.
 
 | Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | tag_length (bits) |
 | AEAD_AES_128_GCM_SST_6 | 16 | 2<sup>36</sup> - 48 | 48 |
