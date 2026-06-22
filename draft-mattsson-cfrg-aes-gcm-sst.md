@@ -557,7 +557,7 @@ GCM-SST adheres to the AEAD interface defined in {{RFC5116}}. The encryption fun
 
 The keystream generator produces a keystream Z consisting of 128-bit chunks. The first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M, respectively. The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
 
-In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag. Both encryption and decryption are defined only on inputs that comprise a whole number of octets. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
+In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag. Both encryption and decryption are defined only on inputs that comprise a whole number of bytes. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{SST1}}, {{SST2}}, {{Inoue}}, and {{Naito}}.
 
 For every computational procedure specified in this document, a conforming implementation MAY replace the given steps with any mathematically equivalent steps, provided the output is correct for every valid input.
 
@@ -691,9 +691,9 @@ The key length and tag length govern different security properties; an applicati
 
 The following parameters apply to all the instances:
 
-* N_MIN = N_MAX (minimum and maximum nonce length) is 12 octets for AES-GCM-SST and 28 octets for Rijndael-GCM-SST.
+* N_MIN = N_MAX (minimum and maximum nonce length) is 12 bytes for AES-GCM-SST and 28 bytes for Rijndael-GCM-SST.
 
-* C_MAX (maximum ciphertext length, including the tag) is P_MAX + tag_length / 8 octets.
+* C_MAX (maximum ciphertext length, including the tag) is P_MAX + tag_length / 8 bytes.
 
 * Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>88</sup> for Rijndael-GCM-SST.
 
@@ -738,7 +738,7 @@ The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depend
 
 The confidentiality offered by GCM-SST against passive attackers depends on the keystream generator. For block ciphers in counter mode it is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. For AES-GCM-SST, the confidentiality is equal to AES-GCM {{GCM}}. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. McGrew, Leurent, and Sibleyras {{Impossible}}{{Difference}} demonstrate that for block ciphers in counter mode, an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logaritmic factors) as distinguishing attacks. However, Preuß Mattsson {{Entropy}} demonstrated that an attacker cannot recover more than ≈ σ<sup>2</sup> / 2<sup>b</sup> bits of the plaintext, where b is the block size. Given the constraints outlined in {{instances}}, an attacker cannot recover more than 0.0007 bits of AES-GCM-SST plaintexts.
 
-While Rijndael-256 in counter mode can provide 128-bit confidentiality for plaintexts much larger than 2<sup>36</sup> octets, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
+While Rijndael-256 in counter mode can provide 128-bit confidentiality for plaintexts much larger than 2<sup>36</sup> bytes, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
 
 The confidentiality offered by GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries can significantly compromise privacy, in addition to affecting integrity and authenticity. It MUST be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality MUST all be carefully evaluated when selecting an appropriate tag length.
 
