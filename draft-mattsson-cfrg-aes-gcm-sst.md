@@ -650,7 +650,8 @@ Replay protection MAY be performed either before step 1 or during step 11. Proto
 
 Applications MAY store the ciphertext and the authentication tag in separate structures or encode both as a single octet string C. In the latter case, the tag MUST immediately follow the ciphertext:
 
-C = ct \|\| tag
+{: style=""}
+* C = ct \|\| tag
 
 # AES and Rijndael-256 in GCM-SST {#AES-GCM-SST}
 
@@ -660,7 +661,8 @@ This section defines instantiations of GCM-SST using the Advanced Encryption Sta
 
 When GCM-SST is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode
 
-Z[i] = ENC(K, N \|\| BE32(i))
+{: style=""}
+* Z[i] = ENC(K, N \|\| BE32(i))
 
 where ENC is the AES Cipher function {{AES}}. The use of big-endian counters aligns with existing AES counter mode implementations.
 
@@ -668,9 +670,9 @@ where ENC is the AES Cipher function {{AES}}. The use of big-endian counters ali
 
 When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256 in counter mode
 
-Z[2i]   = ENC(K, N \|\| BE32(i))[0]
-
-Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
+{: style=""}
+* Z[2i]   = ENC(K, N \|\| BE32(i))[0]
+* Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
 
 where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 
