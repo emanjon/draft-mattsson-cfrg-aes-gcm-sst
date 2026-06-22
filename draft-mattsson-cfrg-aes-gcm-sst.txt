@@ -204,7 +204,7 @@ Table of Contents
    3GPP for authentication and key generation [Milenage-256] and is
    planned for NIST standardization [Plans].  Rijndael-256 performs well
    on modern x86-64 platforms with AES-NI and VAES instructions
-   [Ducker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST
+   [Drucker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST
    offers substantially higher throughput in pure hardware while
    retaining the advantage of being a mode of operation for AES.
 
@@ -644,7 +644,7 @@ Table of Contents
    AES-GCM-SST, the confidentiality is equal to AES-GCM [GCM].
    Regardless of key length, an attacker can mount a distinguishing
    attack with a complexity of approximately 2^129 / σ, where σ ⪅ P_MAX
-   ⋅ Q_MAX / 16 is is the total plaintext length measured in 128-bit
+   ⋅ Q_MAX / 16 is the total plaintext length measured in 128-bit
    chunks.  In contrast, the confidentiality offered by Rijndael-GCM-SST
    against passive attackers is significantly higher.  The complexity of
    distinguishing attacks for Rijndael-GCM-SST is approximately 2^258 /
@@ -652,7 +652,7 @@ Table of Contents
    demonstrate that for block ciphers in counter mode, an attacker with
    partial knowledge of the plaintext can execute plaintext-recovery
    attacks against counter mode with roughly the same complexity (up to
-   logaritmic factors) as distinguishing attacks.  However, Preuß
+   logarithmic factors) as distinguishing attacks.  However, Preuß
    Mattsson [Entropy] demonstrated that an attacker cannot recover more
    than ≈ σ^2 / 2^b bits of the plaintext, where b is the block size.
    Given the constraints outlined in Section 4.3, an attacker cannot
@@ -921,7 +921,7 @@ Table of Contents
               Encryption", March 2018, <https://link.springer.com/
               chapter/10.1007/978-3-319-78375-8_24>.
 
-   [Ducker]   Nir Drucker and Shay Gueron, "Software Optimization of
+   [Drucker]  Nir Drucker and Shay Gueron, "Software Optimization of
               Rijndael for Modern x86-64 Platforms", May 2022,
               <https://rd.springer.com/
               chapter/10.1007/978-3-030-97652-1_18>.
@@ -1051,9 +1051,10 @@ Table of Contents
               ChaCha20 and Poly1305", August 2014,
               <https://eprint.iacr.org/2014/613.pdf>.
 
-   [Reforge]  Christian Forler, Eik List, Stefan Lucks, and akob Wenzel,
-              "Reforgeability of Authenticated Encryption Schemes",
-              April 2017, <https://eprint.iacr.org/2017/332.pdf>.
+   [Reforge]  Christian Forler, Eik List, Stefan Lucks, and Jakob
+              Wenzel, "Reforgeability of Authenticated Encryption
+              Schemes", April 2017,
+              <https://eprint.iacr.org/2017/332.pdf>.
 
    [Revise]   NIST, "Announcement of Proposal to Revise SP 800-38D",
               August 2023, <https://csrc.nist.gov/news/2023/proposal-to-
