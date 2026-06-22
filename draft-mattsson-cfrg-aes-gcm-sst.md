@@ -709,7 +709,7 @@ The following parameters apply to all the instances:
 The values of P_MAX and A_MAX are lower than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
 
 {: style=""}
-* (P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
+* P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
 
 Protocols that employ GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Just like {{RFC5116}}, AES-GCM-SST and Rijndael-GCM-SST only allow a fixed nonce length (N_MIN = N_MAX) of 96 bits and 224 bits, respectively. For the AEAD algorithms in {{iana-algs}} the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. This is true for all allowed plaintext and associated data lengths.
 
