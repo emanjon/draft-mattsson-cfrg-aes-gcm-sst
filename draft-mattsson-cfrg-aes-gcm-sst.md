@@ -979,7 +979,7 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
        H_2 = { 32 69 75 a3 3a ff ae ac af a8 fb d1 bd 62 66 95 }
          M = { 59 48 44 80 b6 cd 59 06 69 27 5e 7d 81 4a d1 74 }
          L = { a0 00 00 00 00 00 00 00 90 00 00 00 00 00 00 00 }
-  full-tag = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c d5 4d }
+  full_tag = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c d5 4d }
        tag = { c4 a1 ca 9a 38 c6 73 af bf 9c 73 49 bf 3c }
         ct = { b5 c2 a4 07 f3 3e 99 88 de c1 2f 10 64 7b 3d 4f
                eb 8f f7 cc }
@@ -987,11 +987,11 @@ IANA is requested to assign the entries in the first column of {{iana-algs}} to 
 
 # Compatibility with 3GPP Algorithms
 
-The integrity part of GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP. Mac5G is constructed similarly to the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}.
+The integrity part of GCM-SST was originally developed by ETSI SAGE, under the name Mac5G, following a request from 3GPP. Mac5G follows the same structural approach as the integrity algorithms used for SNOW 3G {{UIA2}} and ZUC {{EIA3}}.
 
-3GPP has standardized GCM-SST for use with SNOW 5G {{NCA4}}, AES-256 {{NCA5}}, and ZUC-256 {{NCA6}} in 3GPP TS 35.240–35.248. These AEAD algorithms are designated as NCA4, NCA5, and NCA6, respectively. GCM-SST, as specified in this document, is fully compatible with the SNOW 5G-based NCA4 and the ZUC-256-based NCA6. The AES-based NCA5 differs only in its subkey generation but is otherwise identical. The NCA algorithms support bit-aligned associated data and plaintext inputs, whereas this specification is restricted to octet-aligned inputs. They also provide more detailed specifications for nonce construction based on 3GPP protocol requirements. SNOW 5G is functionally equivalent to SNOW-Vi {{SNOW}}, except that the finite-state machine (FSM) adders have been reduced from 32-bit to 16-bit operations to increase the complexity of correlation attacks.
+3GPP has standardized GCM-SST for use with SNOW 5G {{NCA4}}, AES-256 {{NCA5}}, and ZUC-256 {{NCA6}} in 3GPP TS 35.240–35.248. These AEAD algorithms are designated as NCA4, NCA5, and NCA6, respectively. GCM-SST, as specified in this document, is fully compatible with the SNOW 5G-based NCA4 and the ZUC-256-based NCA6. The AES-based NCA5 differs only in its subkey generation but is otherwise identical. The NCA algorithms support bit-aligned associated data and plaintext inputs, whereas this specification is restricted to octet-aligned inputs. They also provide more detailed specifications for nonce construction based on 3GPP protocol requirements. SNOW 5G is functionally equivalent to SNOW-Vi {{SNOW}}, except that the finite-state machine (FSM) adders have been changed from 32-bit to 16-bit operations to increase the complexity of correlation attacks.
 
-The version of GCM-SST specified in this document imposes stricter security considerations and constraints than the ETSI SAGE specifications for the NCA algorithms. We recommend 3GPP to follow the additional security measures outlined in this document.
+The version of GCM-SST specified in this document imposes stricter security considerations and constraints than the ETSI SAGE specifications for the NCA algorithms. This document recommends that 3GPP adopt the additional security measures described herein.
 
 # Change Log
 {:removeInRFC="true" numbered="false"}
