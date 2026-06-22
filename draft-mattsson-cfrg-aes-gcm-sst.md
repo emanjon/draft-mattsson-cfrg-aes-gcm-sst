@@ -97,12 +97,10 @@ informative:
       "BSI": "Technical Guideline TR-02102-1"
     date: March 2025
 
-  ANSSI:
-    target: https://cyber.gouv.fr/sites/default/files/2021/03/anssi-guide-mecanismes_crypto-2.04.pdf
-    title: "Guide des mécanismes cryptographiques"
-    seriesinfo:
-      "ANSSI": "PG-083"
-    date: January 2020
+  ACM:
+    target: https://certification.enisa.europa.eu/document/download/a845662b-aee0-484e-9191-890c4cfa7aaa_en
+    title: "Agreed Cryptographic Mechanisms"
+    date: April 2025
 
   Multiple:
     target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/multi-forge-01.pdf
@@ -716,11 +714,19 @@ Protocols that employ GCM-SST MAY impose stricter limits on P_MAX and A_MAX. Jus
 
 The V_MAX constraint ensures that the Bernstein bound factor is δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to restricting the Bernstein bound factor, the Q_MAX constraint establishes a minimum threshold for the complexity of distinguishing attacks and a maximum threshold for the fraction of a plaintext bit that an attacker can recover. Since encryption and decryption queries play an equivalent role in the Bernstein bound, it follows that Q_MAX ≤ V_MAX. Protocols that employ GCM-SST MAY impose stricter limits on Q_MAX and V_MAX.
 
-Protocols utilizing AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX to ensure that (P_MAX + A_MAX) ⋅ (Q_MAX + V_MAX) ⪅ 2<sup>66</sup>. This ensures that δ ≈ 1.
+Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
 
-Protocols utilizing AES-GCM-SST MUST enforce stricter limits on P_MAX and/or Q_MAX to ensure that Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>. This aligns with {{ANSSI}} requirements and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits of the plaintexts {{Entropy}}.
+(P_MAX + A_MAX) ⋅ (Q_MAX + V_MAX) ⪅ 2<sup>66</sup>
 
-Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and {{Comp}}{: format="counter"} for further details.
+This ensures that δ ≈ 1. Protocols using AES-GCM-SST MUST additionally enforce limits on P_MAX and/or Q_MAX sufficient to ensure:
+
+Protocols using AES-GCM-SST MUST enforce stricter limits on P_MAX, A_MAX, Q_MAX, and/or V_MAX sufficient to ensure:
+
+Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
+
+This requirement aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits of the plaintexts {{Entropy}}.
+
+Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and {{Comp}}{: format="counter"} for additional details.
 
 # Security Considerations {#Security}
 
