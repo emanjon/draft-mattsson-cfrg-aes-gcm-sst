@@ -91,7 +91,9 @@ informative:
     date: January 2019
 
   BSI:
-    target: https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/TechGuidelines/TG02102/BSI-TR-02102-1.html
+    target: >-
+      https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/
+      Publications/TechGuidelines/TG02102/BSI-TR-02102-1.html
     title: "Cryptographic Mechanisms Recommendations and Key Lengths"
     seriesinfo:
       "BSI": "Technical Guideline TR-02102-1"
