@@ -1053,7 +1053,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 24 December 2026</td>
+<td class="center">Expires 25 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-22" class="published">22 June 2026</time>
+<time datetime="2026-06-23" class="published">23 June 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-24">24 December 2026</time></dd>
+<dd class="expires"><time datetime="2026-12-25">25 December 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1129,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 25 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1741,9 +1741,9 @@ The key length and tag length govern different security properties. For example,
       <h2 id="name-security-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-5-1">GCM-SST introduces an additional subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follows the recommendations in <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. Inoue et al. <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span> prove that GCM-SST is a provably secure authenticated encryption mode, with security guaranteed for evaluations under fresh nonces, even if some earlier nonces have been reused.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">GCM-SST is designed for use in security protocols with replay protection. Every key <span class="bcp14">MUST</span> be randomly chosen from a uniform distribution. GCM-SST <span class="bcp14">MUST</span> be used in a nonce-respecting setting: for a given key, a nonce <span class="bcp14">MUST</span> only be used once in the encryption function and only once in a successful decryption function call. The nonce <span class="bcp14">MAY</span> be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. The reuse of nonces in successful encryption and decryption function calls enables universal forgery, as demonstrated by <span>[<a href="#Joux" class="cite xref">Joux</a>]</span>, <span>[<a href="#Lindell" class="cite xref">Lindell</a>]</span>, and <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span>. Therefore, GCM-SST <span class="bcp14">MUST</span> be used with replay protection. Additionally, GCM-SST <span class="bcp14">MUST NOT</span> be used with random nonces, as this significantly reduces the efficiency of replay protection. For a given tag length, GCM-SST has strictly better security properties than GCM. GCM allows universal forgery with lower complexity than GCM-SST, even when nonces are not reused. Implementations <span class="bcp14">SHOULD</span> add randomness to the nonce by XORing a unique number like a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks <span>[<a href="#Bellare" class="cite xref">Bellare</a>]</span> and is for example implemented in TLS 1.3 <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, OSCORE <span>[<a href="#RFC8613" class="cite xref">RFC8613</a>]</span>, and <span>[<a href="#Ascon" class="cite xref">Ascon</a>]</span>. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-256-GCM-SST.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">Refer to <a href="#onemany" class="auto internal xref">Section 5.6</a> for considerations on using GCM-SST in multicast or broadcast scenarios. Unless otherwise specified, formulas for expected number of forgeries apply to unicast scenarios.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-1">GCM-SST introduces an additional authentication subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follow the recommendations in <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>. Inoue et al. <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span> and Naito et al. <span>[<a href="#Naito" class="cite xref">Naito</a>]</span> establish the security of GCM-SST in the single- and multi-user settings, including under nonce randomization and nonce-based key derivation.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-2">GCM-SST is designed for use in security protocols with replay protection. Each key <span class="bcp14">MUST</span> be chosen uniformly at random. GCM-SST <span class="bcp14">MUST</span> be used in a nonce-respecting setting: for a given key, a nonce <span class="bcp14">MUST</span> be used at most once in the encryption function and at most once in a successful decryption function call. The nonce <span class="bcp14">MAY</span> be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. The reuse of nonces in successful encryption and decryption function calls enables universal forgery, as demonstrated by <span>[<a href="#Joux" class="cite xref">Joux</a>]</span>, <span>[<a href="#Lindell" class="cite xref">Lindell</a>]</span>, <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span>, and <span>[<a href="#Naito" class="cite xref">Naito</a>]</span>, and so GCM-SST <span class="bcp14">MUST</span> be used with replay protection. Additionally, GCM-SST <span class="bcp14">MUST NOT</span> be used with random nonces, as this significantly reduces the efficiency of replay protection. Implementations <span class="bcp14">SHOULD</span> add randomness to the nonce by XORing a unique number such as a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks <span>[<a href="#Bellare" class="cite xref">Bellare</a>]</span> and is implemented, for example, in TLS 1.3 <span>[<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>, OSCORE <span>[<a href="#RFC8613" class="cite xref">RFC8613</a>]</span>, and <span>[<a href="#Ascon" class="cite xref">Ascon</a>]</span>. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-GCM-SST.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">Refer to <a href="#onemany" class="auto internal xref">Section 5.6</a> for considerations on using GCM-SST in multicast or broadcast scenarios. Unless otherwise specified, formulas for the expected number of forgeries apply to unicast scenarios.<a href="#section-5-3" class="pilcrow">¶</a></p>
 <div id="Int">
 <section id="section-5.1">
         <h3 id="name-integrity">
