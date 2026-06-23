@@ -634,9 +634,7 @@ Steps:
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce.
-
-Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks.
 
 ## Encoding (ct, tag) Tuples
 
@@ -740,11 +738,11 @@ The confidentiality offered by GCM-SST against active attackers is directly link
 
 ## Weak keys
 
-In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and H<sub>2</sub> are zero, so called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If H<sub>2</sub> is zero, the authentication tag does not depend on P and A. Due to the masking with M, there are no obvious ways to detect this condition for an attacker, and the specification admits this possibility rather than complicating the flow with additional checks and regeneration of values. In AES-GCM-SST, H and H<sub>2</sub> are generated with a permutation on different input, so H and H<sub>2</sub> cannot both be zero.
+In general, there is a very small possibility in GCM-SST that either or both of the subkeys H and H<sub>2</sub> are zero, so-called weak keys. If H is zero, the authentication tag depends only on the length of P and A and not on their content. If H<sub>2</sub> is zero, the authentication tag does not depend on P and A. Due to the masking with M, there are no obvious ways to detect this condition for an attacker, and the specification admits this possibility rather than complicating implementations with additional checks and regeneration of values. In AES-GCM-SST, H and H<sub>2</sub> are generated with a permutation on different inputs, so H and H<sub>2</sub> cannot both be zero.
 
 ## Replay Protection
 
-The details of the replay protection mechanism is determined by the security protocol utilizing GCM-SST. If the nonce includes a sequence number, it can be used for replay protection. Alternatively, a separate sequence number can be used, provided there is a one-to-one mapping between sequence numbers and nonces. The choice of a replay protection mechanism depends on factors such as the expected degree of packet reordering, as well as protocol and implementation details. For examples of replay protection mechanisms, see {{RFC4303}} and {{RFC6479}}. Implementing replay protection by requiring ciphertexts to arrive in order and terminating the connection if a single decryption fails is NOT RECOMMENDED as this approach reduces robustness and availability while exposing the system to denial-of-service attacks {{Robust}}.
+The details of the replay protection mechanism are determined by the security protocol utilizing GCM-SST. If the nonce includes a sequence number, it can be used for replay protection. Alternatively, a separate sequence number can be used, provided there is a one-to-one mapping between sequence numbers and nonces. The choice of a replay protection mechanism depends on factors such as the expected degree of packet reordering, as well as protocol and implementation details. For examples of replay protection mechanisms, see {{RFC4303}} and {{RFC6479}}. Implementing replay protection by requiring ciphertexts to arrive in order and terminating the connection if a single decryption fails is NOT RECOMMENDED, as this approach reduces robustness and availability while exposing the system to denial-of-service attacks {{Robust}}.
 
 ## Comparison with ChaCha20-Poly1305 and AES-GCM {#Comp}
 
