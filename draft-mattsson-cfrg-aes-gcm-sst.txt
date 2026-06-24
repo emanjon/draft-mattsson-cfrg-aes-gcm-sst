@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 25 December 2026                              J. Preuß Mattsson
+Expires: 26 December 2026                              J. Preuß Mattsson
                                                                 Ericsson
-                                                            23 June 2026
+                                                            24 June 2026
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 December 2026.
+   This Internet-Draft will expire on 26 December 2026.
 
 Copyright Notice
 
@@ -601,16 +601,16 @@ Table of Contents
    be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When
    tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability
    is bounded by ≈ 1 / 2^(tag_length) [Nyberg].  The tags in the AEAD
-   algorithms listed in Section 4.3 therefore have an almost perfect
-   security level.  This is significantly better than GCM where the
+   algorithms listed in Section 4.3 therefore achieve near-ideal forgery
+   probabilities.  This is significantly better than GCM where the
    security level is only tag_length - log2(ℓ) bits [GCM].  For a graph
-   of the forgery probability, refer to Fig. 3 in [Inoue].  As one can
-   note, for 128-bit tags and long messages, the forgery probability is
-   not close to ideal and similar to GCM [GCM].  If tag verification
-   fails, the plaintext and expected_tag MUST NOT be given as output.
-   In GCM-SST, the full_tag is independent of the specified tag length
-   unless the application explicitly incorporates tag length into the
-   keystream or the nonce.
+   of the forgery probability, refer to Fig. 3 in [Inoue].  For 128-bit
+   tags and long messages, the forgery probability is not close to ideal
+   and similar to GCM [GCM].  If tag verification fails, the plaintext
+   and expected_tag MUST NOT be given as output.  In GCM-SST, the
+   full_tag is independent of the specified tag length unless the
+   application explicitly incorporates tag length into the keystream or
+   the nonce.
 
    The expected number of forgeries, when tag_length < 128 - log2(ℓ)
    bits, depends on the keystream generator.  For an ideal keystream
@@ -618,14 +618,14 @@ Table of Contents
    where v is the number of decryption queries, which is ideal.  For
    AES-GCM-SST, the expected number of forgeries is ≈ δ_128 ⋅ v /
    2^(tag_length), where the Bernstein bound factor δ_b ⪅ 1 + (q + v)^2
-   ⋅ ℓ^2 / 2^(b+1), which is ideal when δ_128 ≈ 1.  This far outperforms
-   AES-GCM, where the expected number of forgeries is ≈ δ_128 ⋅ v^2 ⋅ ℓ
-   / 2^(tag_length+1).  For Rijndael-GCM-SST, the expected number of
-   forgeries is ≈ δ_256 ⋅ v / 2^(tag_length) ≈ v / 2^(tag_length), which
-   is ideal.  For further details on the integrity advantages and
-   expected number of forgeries for GCM and GCM-SST, see [Iwata],
-   [Inoue], [Bernstein], and [Multiple].  BSI states that an ideal MAC
-   with a 96-bit tag length is considered acceptable for most
+   ⋅ ℓ^2 / 2^(b+1), which is ideal when δ_128 ≈ 1.  AES-GCM-SST far
+   outperforms AES-GCM, where the expected number of forgeries is ≈
+   δ_128 ⋅ v^2 ⋅ ℓ / 2^(tag_length+1).  For Rijndael-GCM-SST, the
+   expected number of forgeries is ≈ δ_256 ⋅ v / 2^(tag_length) ≈ v /
+   2^(tag_length), which is ideal.  For further details on the integrity
+   advantages and expected number of forgeries for GCM and GCM-SST, see
+   [Iwata], [Inoue], [Bernstein], and [Multiple].  BSI states that an
+   ideal MAC with a 96-bit tag length is considered acceptable for most
    applications [BSI], a requirement that GCM-SST with 96-bit tags
    satisfies when δ ≈ 1.  Achieving a comparable level of security with
    GCM, CCM, or Poly1305 is nearly impossible.
@@ -634,7 +634,7 @@ Table of Contents
 
    The confidentiality offered by GCM-SST against passive attackers
    depends on the keystream generator.  For block ciphers in counter
-   mode it is determined by the birthday bound, with AES-based ciphers
+   mode, it is determined by the birthday bound, with AES-based ciphers
    particularly constrained by their narrow 128-bit block size.  For
    AES-GCM-SST, the confidentiality is equal to AES-GCM [GCM].
    Regardless of key length, an attacker can mount a distinguishing
@@ -696,8 +696,8 @@ Table of Contents
    mechanisms, see [RFC4303] and [RFC6479].  Implementing replay
    protection by requiring ciphertexts to arrive in order and
    terminating the connection if a single decryption fails is NOT
-   RECOMMENDED, as this approach reduces robustness and availability
-   while exposing the system to denial-of-service attacks [Robust].
+   RECOMMENDED, as this approach reduces robustness and availability and
+   exposes the system to denial-of-service attacks [Robust].
 
 5.5.  Comparison with ChaCha20-Poly1305 and AES-GCM
 
@@ -798,7 +798,7 @@ Table of Contents
 
           Table 4: Comparison of confidentiality against passive
             attackers among Rijndael-GCM-SST, SNOW 5G-GCM-SST,
-          ChaCha20-Poly1305, and AES- 256-GCM. σ is is the total
+           ChaCha20-Poly1305, and AES- 256-GCM. σ is the total
                plaintext length measured in 128-bit chunks.
 
 5.6.  Multicast and Broadcast
