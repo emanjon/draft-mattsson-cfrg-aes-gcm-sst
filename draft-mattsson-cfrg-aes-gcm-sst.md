@@ -109,7 +109,7 @@ informative:
         ins: John Kelsey
     date: November 2024
 
-  Bellare:
+  Bellare17:
     target: https://eprint.iacr.org/2016/564.pdf
     title: "The Multi-User Security of Authenticated Encryption: AES-GCM in TLS 1.3"
     author:
@@ -119,7 +119,7 @@ informative:
         ins: B. Tackmann
     date: November 2017
 
-  Bellare:
+  Bellare19:
     target: https://eprint.iacr.org/2019/624.pdf
     title: "Nonces are Noticed: AEAD Revisited"
     author:
@@ -634,7 +634,7 @@ Steps:
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks.
 
 ## Encoding (ct, tag) Tuples
 
@@ -718,7 +718,7 @@ Refer to Sections {{Int}}{: format="counter"}, {{Conf}}{: format="counter"}, and
 
 GCM-SST introduces an additional authentication subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follow the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} and Naito et al. {{Naito}} establish the security of GCM-SST in the single- and multi-user settings, including under nonce randomization and nonce-based key derivation.
 
-GCM-SST is designed for use in security protocols with replay protection. Each key MUST be chosen uniformly at random. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST be used at most once in the encryption function and at most once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. The reuse of nonces in successful encryption and decryption function calls enables universal forgery, as demonstrated by {{Joux}}, {{Lindell}}, {{Inoue}}, and {{Naito}}, and so GCM-SST MUST be used with replay protection. Additionally, GCM-SST MUST NOT be used with random nonces, as this significantly reduces the efficiency of replay protection. Implementations SHOULD add randomness to the nonce by XORing a unique number such as a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks {{Bellare}} and is implemented, for example, in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-GCM-SST.
+GCM-SST is designed for use in security protocols with replay protection. Each key MUST be chosen uniformly at random. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST be used at most once in the encryption function and at most once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. The reuse of nonces in successful encryption and decryption function calls enables universal forgery, as demonstrated by {{Joux}}, {{Lindell}}, {{Inoue}}, and {{Naito}}, and so GCM-SST MUST be used with replay protection. Additionally, GCM-SST MUST NOT be used with random nonces, as this significantly reduces the efficiency of replay protection. Implementations SHOULD add randomness to the nonce by XORing a unique number such as a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks {{Bellare17}} and is implemented, for example, in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-GCM-SST.
 
 Refer to {{onemany}} for considerations on using GCM-SST in multicast or broadcast scenarios. Unless otherwise specified, formulas for the expected number of forgeries apply to unicast scenarios.
 
