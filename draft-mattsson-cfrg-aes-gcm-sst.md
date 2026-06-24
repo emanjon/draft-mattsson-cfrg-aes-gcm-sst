@@ -304,6 +304,16 @@ informative:
         ins: M. Westerlund
     date: May 2015
 
+  Maximov:
+    target: https://eprint.iacr.org/2017/889.pdf
+    title: "On Fast Multiplication in Binary Finite Fields and Optimal Primitive Polynomials over GF(2)"
+    author:
+      -
+        ins: A. Maximov
+      -
+        ins: H. Sjöberg
+    date: September 2017
+
   Milenage-256:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4244
     title: "Specification of the MILENAGE-256 algorithm set"
@@ -698,7 +708,7 @@ Refer to {{onemany}} for considerations on using GCM-SST in multicast or broadca
 
 The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is significantly better than GCM, where the security level is only tag_length - log2(ℓ) bits {{GCM}}. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability is not close to ideal and similar to GCM {{GCM}}. If tag verification fails, the plaintext and expected_tag MUST NOT be given as output. In GCM-SST, the full_tag is independent of the specified tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
 
-The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depends on the keystream generator. Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
+The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depends on the keystream generator. For block ciphers in counter mode, it is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
 {: style=""}
 * E(F) ≈ v / 2<sup>tag_length</sup>   ,
@@ -706,7 +716,7 @@ The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depend
 where v is the number of decryption function invocations. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST far outperforms AES-GCM, where
 
 {: style=""}
-* E(F) ≈ δ<sub>128</sub> ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup>   .
+* E(F) ≈ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup>   .
 
 For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Inoue}}, {{Naito}}, {{Bernstein}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
@@ -714,7 +724,7 @@ For further details on the integrity advantages and expected number of forgeries
 
 The confidentiality offered by GCM-SST against passive attackers depends on the keystream generator. For block ciphers in counter mode, it is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. For AES-GCM-SST, the confidentiality is equal to AES-GCM {{GCM}}. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. McGrew, Leurent, and Sibleyras {{Impossible}}{{Difference}} demonstrate that for block ciphers in counter mode, an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logarithmic factors) as distinguishing attacks. However, Preuß Mattsson {{Entropy}} demonstrated that an attacker cannot recover more than ≈ σ<sup>2</sup> / 2<sup>b</sup> bits of the plaintext, where b is the block size. Given the constraints outlined in {{instances}}, an attacker cannot recover more than 0.0007 bits of AES-GCM-SST plaintexts.
 
-While Rijndael-256 in counter mode can provide 128-bit confidentiality for plaintexts much larger than 2<sup>36</sup> bytes, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Degabriele}} or other alternatives such as {{SMAC}}.
+While Rijndael-256 in counter mode can provide 128-bit confidentiality for plaintexts much larger than 2<sup>36</sup> bytes, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Maximov}}{{Degabriele}} or other alternatives such as {{SMAC}}.
 
 The confidentiality offered by GCM-SST against active attackers is directly linked to the forgery probability. Depending on the protocol and application, forgeries can significantly compromise privacy, in addition to affecting integrity and authenticity. It MUST be assumed that attackers always receive feedback on the success or failure of their forgery attempts. Therefore, attacks on integrity, authenticity, and confidentiality MUST all be carefully evaluated when selecting an appropriate tag length.
 
@@ -759,7 +769,7 @@ The details of the replay protection mechanism are determined by the security pr
 
 While GCM-SST offers stronger security properties than GCM for a given tag length in multicast or broadcast contexts, it does not behave exactly like an ideal MAC. With an ideal MAC, a successful forgery against one recipient allows the attacker to reuse the same forgery against all other recipients. In contrast, with GCM, a successful forgery against one recipient enables the attacker to generate an unlimited number of new forgeries for all recipients.
 
-With GCM-SST, a few successful forgeries against a few recipients allow the attacker to create one new forgery for all other recipients. While the total number of forgeries in GCM-SST matches that of an ideal MAC, the diversity of these forgeries is higher. To achieve one distinct forgery per recipient with an ideal MAC, the attacker would need to send on average 2<sup>tag_length</sup> forgery attempts to each recipient. GCM-SST performs equally well or better than an ideal MAC with length tag_length - log2(r), where r is the number of recipients. Thus, in one-to-many scenarios with replay protection, the expected number of distinct forgeries is ≈ v ⋅ r / 2<sup>tag_length</sup>, and the effective tag length of GCM-SST is t - log2(r).
+With GCM-SST, a few successful forgeries against a few recipients allow the attacker to create one new forgery for all other recipients. While the total number of forgeries in GCM-SST matches that of an ideal MAC, the diversity of these forgeries is higher. To achieve one distinct forgery per recipient with an ideal MAC, the attacker would need to send on average 2<sup>tag_length</sup> forgery attempts to each recipient. GCM-SST performs equally well or better than an ideal MAC with length tag_length - log2(r), where r is the number of recipients. Thus, in one-to-many scenarios with replay protection, the expected number of distinct forgeries is ≈ v ⋅ r / 2<sup>tag_length</sup>.
 
 # IANA Considerations
 
