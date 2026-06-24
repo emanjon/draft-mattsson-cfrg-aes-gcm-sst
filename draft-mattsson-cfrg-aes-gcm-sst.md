@@ -74,21 +74,70 @@ informative:
   I-D.ietf-moq-transport:
   I-D.irtf-cfrg-aegis-aead:
 
-  UIA2:
-    target: https://www.gsma.com/solutions-and-impact/technologies/security/wp-content/uploads/2019/05/uea2uia2d1v21.pdf
-    title: "UEA2 and UIA2 Specification"
-    author:
-      -
-        ins: ETSI SAGE
-    date: March 2009
+  ACM:
+    target: https://certification.enisa.europa.eu/document/download/a845662b-aee0-484e-9191-890c4cfa7aaa_en
+    title: "Agreed Cryptographic Mechanisms"
+    date: April 2025
 
-  EIA3:
-    target: https://www.gsma.com/solutions-and-impact/technologies/security/wp-content/uploads/2019/05/EEA3_EIA3_specification_v1_8.pdf
-    title: "128-EEA3 and 128-EIA3 Specification"
+  AEZ:
+    target: https://eprint.iacr.org/2014/793.pdf
+    title: "Robust Authenticated-Encryption: AEZ and the Problem that it Solves"
     author:
       -
-        ins: ETSI SAGE
-    date: January 2019
+        ins: Viet Tung Hoang
+      -
+        ins: Ted Krovetz
+      -
+        ins: Phillip Rogaway
+    date: March, 2017
+
+  Ascon:
+    target: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-232.ipd.pdf
+    title: "Ascon-Based Lightweight Cryptography Standards for Constrained Devices"
+    seriesinfo:
+      "NIST": "Special Publication 800-232 Initial Public Draft"
+    author:
+      -
+        ins: Meltem Sönmez Turan
+      -
+        ins: Kerry A. McKay
+      -
+        ins: Donghoon Chang
+      -
+        ins: Jinkeon Kang
+      -
+        ins: John Kelsey
+    date: November 2024
+
+  Bellare:
+    target: https://eprint.iacr.org/2016/564.pdf
+    title: "The Multi-User Security of Authenticated Encryption: AES-GCM in TLS 1.3"
+    author:
+      -
+        ins: M. Bellare
+      -
+        ins: B. Tackmann
+    date: November 2017
+
+  Bellare:
+    target: https://eprint.iacr.org/2019/624.pdf
+    title: "Nonces are Noticed: AEAD Revisited"
+    author:
+      -
+        ins: Mihir Bellare
+      -
+        ins: Ruth Ng
+      -
+        ins: Björn Tackmann
+    date: November 2019
+
+  Bernstein:
+    target: https://cr.yp.to/antiforgery/permutations-20050323.pdf
+    title: "Stronger Security Bounds for Permutations"
+    author:
+      -
+        ins: Daniel J. Bernstein
+    date: March 2005
 
   BSI:
     target: https://www.bsi.bund.de/SharedDocs/Downloads/EN/BSI/Publications/TechGuidelines/TG02102/BSI-TR-02102-1.html
@@ -97,20 +146,27 @@ informative:
       "BSI": "Technical Guideline TR-02102-1"
     date: January 2026
 
-  ACM:
-    target: https://certification.enisa.europa.eu/document/download/a845662b-aee0-484e-9191-890c4cfa7aaa_en
-    title: "Agreed Cryptographic Mechanisms"
-    date: April 2025
-
-  Multiple:
-    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/multi-forge-01.pdf
-    title: "Multiple Forgery Attacks Against Message Authentication Codes"
+  Comments38B:
+    target: https://csrc.nist.gov/csrc/media/Projects/crypto-publication-review-project/documents/initial-comments/sp800-38b-initial-public-comments-2024.pdf
+    title: "Public Comments on SP 800-38B"
     author:
       -
-        ins: David McGrew
+        ins: NIST
+    date: September 2024
+
+  Degabriele:
+    target: https://doi.org/10.3929/ethz-b-000654260
+    title: "SoK: Efficient Design and Implementation of Polynomial Hash Functions over Prime Fields"
+    author:
       -
-        ins: Scott Fluhrer
-    date: May 2005
+        ins: J. Degabriele
+      -
+        ins: J. Gilcher
+      -
+        ins: J. Govinden
+      -
+        ins: K. Paterson
+    date: May 2024
 
   Difference:
     target: https://link.springer.com/chapter/10.1007/978-3-319-78375-8_24
@@ -122,6 +178,68 @@ informative:
         ins: Ferdinand Sibleyras
     date: March 2018
 
+  Drucker:
+    target: https://rd.springer.com/chapter/10.1007/978-3-030-97652-1_18
+    title: "Software Optimization of Rijndael for Modern x86-64 Platforms"
+    author:
+      -
+        ins: Nir Drucker
+      -
+        ins: Shay Gueron
+    date: May 2022
+
+  EIA3:
+    target: https://www.gsma.com/solutions-and-impact/technologies/security/wp-content/uploads/2019/05/EEA3_EIA3_specification_v1_8.pdf
+    title: "128-EEA3 and 128-EIA3 Specification"
+    author:
+      -
+        ins: ETSI SAGE
+    date: January 2019
+
+  Entropy:
+    target: https://eprint.iacr.org/2024/1111.pdf
+    title: "Collision-Based Attacks on Block Cipher Modes - Exploiting Collisions and Their Absence"
+    author:
+      -
+        ins: J. Preuß Mattsson
+    date: February 2025
+
+  Ferguson:
+    target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/CWC-GCM/Ferguson2.pdf
+    title: "Authentication weaknesses in GCM"
+    author:
+      -
+        ins: N. Ferguson
+    date: May 2005
+
+  GCM:
+    target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
+    title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
+    seriesinfo:
+      "NIST": "Special Publication 800-38D"
+    author:
+      -
+        ins: M. Dworkin
+    date: November 2007
+
+  GCM-Update:
+    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/gcm-update.pdf
+    title: "GCM Update"
+    author:
+      -
+        ins: D. McGrew
+      -
+        ins: J. Viega
+    date: May 2005
+
+  Gueron:
+    target: https://csrc.nist.gov/csrc/media/Presentations/2023/constructions-based-on-the-aes-round/images-media/sess-5-gueron-bcm-workshop-2023.pdf
+    title: "Constructions based on the AES Round and Polynomial Multiplication that are Efficient on Modern Processor Architectures"
+    author:
+      -
+        ins: S. Gueron
+    date: October 2023
+
   Impossible:
     target: https://eprint.iacr.org/2012/623.pdf
     title: "Impossible plaintext cryptanalysis and probable-plaintext collision attacks of 64-bit block cipher modes"
@@ -129,20 +247,6 @@ informative:
       -
         ins: David McGrew
     date: November 2012
-
-  Reforge:
-    target: https://eprint.iacr.org/2017/332.pdf
-    title: "Reforgeability of Authenticated Encryption Schemes"
-    author:
-      -
-        ins: Christian Forler
-      -
-        ins: Eik List
-      -
-        ins: Stefan Lucks
-      -
-        ins: Jakob Wenzel
-    date: April 2017
 
   Inoue:
     target: https://eprint.iacr.org/2024/1928.pdf
@@ -158,18 +262,6 @@ informative:
         ins: Kazuhiko Minematsu
     date: November 2024
 
-  Naito:
-    target: https://doi.org/10.1007/978-3-032-08124-7_3
-    title: "The Multi-user Security of GCM-SST and Further Enhancements"
-    author:
-      -
-        ins: Yusuke Naito
-      -
-        ins: Yu Sasaki
-      -
-        ins: Takeshi Sugawara
-    date: October 2025
-
   Iwata:
     target: https://eprint.iacr.org/2012/438.pdf
     title: "Breaking and Repairing GCM Security Proofs"
@@ -182,43 +274,61 @@ informative:
         ins: Kazuhiko Minematsu
     date: August 2012
 
-  Bernstein:
-    target: https://cr.yp.to/antiforgery/permutations-20050323.pdf
-    title: "Stronger Security Bounds for Permutations"
+  Joux:
+    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf
+    title: "Authentication Failures in NIST version of GCM"
     author:
       -
-        ins: Daniel J. Bernstein
-    date: March 2005
+        ins: A. Joux
+    date: April 2006
 
-  Drucker:
-    target: https://rd.springer.com/chapter/10.1007/978-3-030-97652-1_18
-    title: "Software Optimization of Rijndael for Modern x86-64 Platforms"
+  Lindell:
+    target: https://mailarchive.ietf.org/arch/browse/cfrg/?gbt=1&index=cWpv0QgX2ltkWhtd3R9pEW7E1CA
+    title: "Comment on AES-GCM-SST"
     author:
       -
-        ins: Nir Drucker
-      -
-        ins: Shay Gueron
-    date: May 2022
+        ins: Y. Lindell
+    date: May 2024
 
-  Bellare:
-    target: https://eprint.iacr.org/2019/624.pdf
-    title: "Nonces are Noticed: AEAD Revisited"
+  Mattsson:
+    target: https://eprint.iacr.org/2015/477.pdf
+    title: "Authentication Key Recovery on Galois/Counter Mode (GCM)"
     author:
       -
-        ins: Mihir Bellare
+        ins: J. Mattsson
       -
-        ins: Ruth Ng
-      -
-        ins: Björn Tackmann
-    date: November 2019
+        ins: M. Westerlund
+    date: May 2015
 
-  Procter:
-    target: https://eprint.iacr.org/2014/613.pdf
-    title: "A Security Analysis of the Composition of ChaCha20 and Poly1305"
+  Milenage-256:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4244
+    title: "Specification of the MILENAGE-256 algorithm set"
     author:
       -
-        ins: Gordon Procter
-    date: August 2014
+        ins: 3GPP
+    date: January 2025
+
+  Multiple:
+    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/multi-forge-01.pdf
+    title: "Multiple Forgery Attacks Against Message Authentication Codes"
+    author:
+      -
+        ins: David McGrew
+      -
+        ins: Scott Fluhrer
+    date: May 2005
+
+  Naito:
+    target: https://doi.org/10.1007/978-3-032-08124-7_3
+    title: "The Multi-user Security of GCM-SST and Further Enhancements"
+    author:
+      -
+        ins: Yusuke Naito
+      -
+        ins: Yu Sasaki
+      -
+        ins: Takeshi Sugawara
+    date: October 2025
 
   NCA4:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4220
@@ -244,37 +354,17 @@ informative:
         ins: 3GPP
     date: March 2026
 
-  Milenage-256:
-    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4244
-    title: "Specification of the MILENAGE-256 algorithm set"
+  Nyberg:
+    target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf
+    title: "Galois MAC with forgery probability close to ideal"
     author:
       -
-        ins: 3GPP
-    date: January 2025
-
-  Plans:
-    target: https://csrc.nist.gov/pubs/sp/800/197/iprd
-    title: "NIST Proposes to Standardize a Wider Variant of AES"
-    author:
+        ins: K. Nyberg
       -
-        ins: NIST
-    date: December 2024
-
-  Comments38B:
-    target: https://csrc.nist.gov/csrc/media/Projects/crypto-publication-review-project/documents/initial-comments/sp800-38b-initial-public-comments-2024.pdf
-    title: "Public Comments on SP 800-38B"
-    author:
+        ins: H. Gilbert
       -
-        ins: NIST
-    date: September 2024
-
-  Sec5G:
-    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3169
-    title: "Security architecture and procedures for 5G System"
-    author:
-      -
-        ins: 3GPP TS 33.501
-    date: March 2026
+        ins: M. Robshaw
+    date: June 2005
 
   PDCP:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3196
@@ -284,35 +374,63 @@ informative:
         ins: 3GPP TS 38.323
     date: January 2026
 
-  Entropy:
-    target: https://eprint.iacr.org/2024/1111.pdf
-    title: "Collision-Based Attacks on Block Cipher Modes - Exploiting Collisions and Their Absence"
+  Plans:
+    target: https://csrc.nist.gov/pubs/sp/800/197/iprd
+    title: "NIST Proposes to Standardize a Wider Variant of AES"
     author:
       -
-        ins: J. Preuß Mattsson
-    date: February 2025
+        ins: NIST
+    date: December 2024
 
-  Lindell:
-    target: https://mailarchive.ietf.org/arch/browse/cfrg/?gbt=1&index=cWpv0QgX2ltkWhtd3R9pEW7E1CA
-    title: "Comment on AES-GCM-SST"
+  Procter:
+    target: https://eprint.iacr.org/2014/613.pdf
+    title: "A Security Analysis of the Composition of ChaCha20 and Poly1305"
     author:
       -
-        ins: Y. Lindell
-    date: May 2024
+        ins: Gordon Procter
+    date: August 2014
 
-  Degabriele:
-    target: https://doi.org/10.3929/ethz-b-000654260
-    title: "SoK: Efficient Design and Implementation of Polynomial Hash Functions over Prime Fields"
+  Reforge:
+    target: https://eprint.iacr.org/2017/332.pdf
+    title: "Reforgeability of Authenticated Encryption Schemes"
     author:
       -
-        ins: J. Degabriele
+        ins: Christian Forler
       -
-        ins: J. Gilcher
+        ins: Eik List
       -
-        ins: J. Govinden
+        ins: Stefan Lucks
       -
-        ins: K. Paterson
-    date: May 2024
+        ins: Jakob Wenzel
+    date: April 2017
+
+  Revise:
+    target: https://csrc.nist.gov/news/2023/proposal-to-revise-sp-800-38d
+    title: "Announcement of Proposal to Revise SP 800-38D"
+    author:
+      -
+        ins: NIST
+    date: August 2023
+
+  Robust:
+    target: https://link.springer.com/article/10.1007/s00145-023-09489-9
+    title: "Robust Channels: Handling Unreliable Networks in the Record Layers of QUIC and DTLS 1.3"
+    author:
+      -
+        ins: M. Fischlin
+      -
+        ins: F. Günther
+      -
+        ins: C. Janson
+    date: January 2024
+
+  Sec5G:
+    target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=3169
+    title: "Security architecture and procedures for 5G System"
+    author:
+      -
+        ins: 3GPP TS 33.501
+    date: March 2026
 
   SMAC:
     target: https://eprint.iacr.org/2024/819
@@ -327,38 +445,6 @@ informative:
       -
         ins: T. Johansson
     date: June 2024
-
-  AEZ:
-    target: https://eprint.iacr.org/2014/793.pdf
-    title: "Robust Authenticated-Encryption: AEZ and the Problem that it Solves"
-    author:
-      -
-        ins: Viet Tung Hoang
-      -
-        ins: Ted Krovetz
-      -
-        ins: Phillip Rogaway
-    date: March, 2017
-
-  Robust:
-    target: https://link.springer.com/article/10.1007/s00145-023-09489-9
-    title: "Robust Channels: Handling Unreliable Networks in the Record Layers of QUIC and DTLS 1.3"
-    author:
-      -
-        ins: M. Fischlin
-      -
-        ins: F. Günther
-      -
-        ins: C. Janson
-    date: January 2024
-
-  Revise:
-    target: https://csrc.nist.gov/news/2023/proposal-to-revise-sp-800-38d
-    title: "Announcement of Proposal to Revise SP 800-38D"
-    author:
-      -
-        ins: NIST
-    date: August 2023
 
   SNOW:
     target: https://eprint.iacr.org/2021/236
@@ -398,99 +484,13 @@ informative:
         ins: J. Preuß Mattsson
     date: October 2023
 
-  GCM:
-    target: https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-38d.pdf
-    title: "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
-    seriesinfo:
-      "NIST": "Special Publication 800-38D"
+  UIA2:
+    target: https://www.gsma.com/solutions-and-impact/technologies/security/wp-content/uploads/2019/05/uea2uia2d1v21.pdf
+    title: "UEA2 and UIA2 Specification"
     author:
       -
-        ins: M. Dworkin
-    date: November 2007
-
-  Ascon:
-    target: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-232.ipd.pdf
-    title: "Ascon-Based Lightweight Cryptography Standards for Constrained Devices"
-    seriesinfo:
-      "NIST": "Special Publication 800-232 Initial Public Draft"
-    author:
-      -
-        ins: Meltem Sönmez Turan
-      -
-        ins: Kerry A. McKay
-      -
-        ins: Donghoon Chang
-      -
-        ins: Jinkeon Kang
-      -
-        ins: John Kelsey
-    date: November 2024
-
-  GCM-Update:
-    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/cwc-gcm/gcm-update.pdf
-    title: "GCM Update"
-    author:
-      -
-        ins: D. McGrew
-      -
-        ins: J. Viega
-    date: May 2005
-
-  Gueron:
-    target: https://csrc.nist.gov/csrc/media/Presentations/2023/constructions-based-on-the-aes-round/images-media/sess-5-gueron-bcm-workshop-2023.pdf
-    title: "Constructions based on the AES Round and Polynomial Multiplication that are Efficient on Modern Processor Architectures"
-    author:
-      -
-        ins: S. Gueron
-    date: October 2023
-
-  Ferguson:
-    target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/CWC-GCM/Ferguson2.pdf
-    title: "Authentication weaknesses in GCM"
-    author:
-      -
-        ins: N. Ferguson
-    date: May 2005
-
-  Joux:
-    target: https://csrc.nist.gov/csrc/media/projects/block-cipher-techniques/documents/bcm/comments/800-38-series-drafts/gcm/joux_comments.pdf
-    title: "Authentication Failures in NIST version of GCM"
-    author:
-      -
-        ins: A. Joux
-    date: April 2006
-
-  Nyberg:
-    target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf
-    title: "Galois MAC with forgery probability close to ideal"
-    author:
-      -
-        ins: K. Nyberg
-      -
-        ins: H. Gilbert
-      -
-        ins: M. Robshaw
-    date: June 2005
-
-  Mattsson:
-    target: https://eprint.iacr.org/2015/477.pdf
-    title: "Authentication Key Recovery on Galois/Counter Mode (GCM)"
-    author:
-      -
-        ins: J. Mattsson
-      -
-        ins: M. Westerlund
-    date: May 2015
-
-  Bellare:
-    target: https://eprint.iacr.org/2016/564.pdf
-    title: "The Multi-User Security of Authenticated Encryption: AES-GCM in TLS 1.3"
-    author:
-      -
-        ins: M. Bellare
-      -
-        ins: B. Tackmann
-    date: November 2017
+        ins: ETSI SAGE
+    date: March 2009
 
 --- abstract
 
