@@ -20,7 +20,7 @@ Abstract
    algorithm that corrects known weaknesses in AES-GCM.  GCM-SST can be
    used with any keystream generator, not only 128-bit block ciphers.
    The main differences from GCM are the introduction of a second
-   authentication subkey H_2, per-nonce derivation of both H and HH_2,
+   authentication subkey H_2, per-nonce derivation of both H and H_2,
    and the replacement of GHASH with POLYVAL.  Together, these changes
    yield authentication tags with near-ideal forgery probabilities,
    including reforgeability resistance.  All registered instances have
