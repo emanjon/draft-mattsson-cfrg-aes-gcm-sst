@@ -883,9 +883,9 @@ Table of Contents
               <https://nvlpubs.nist.gov/nistpubs/SpecialPublications/
               NIST.SP.800-232.ipd.pdf>.
 
-   [Bellare]  Bellare, M. and B. Tackmann, "The Multi-User Security of
-              Authenticated Encryption: AES-GCM in TLS 1.3", November
-              2017, <https://eprint.iacr.org/2016/564.pdf>.
+   [Bellare]  Mihir Bellare, Ruth Ng, and Björn Tackmann, "Nonces are
+              Noticed: AEAD Revisited", November 2019,
+              <https://eprint.iacr.org/2019/624.pdf>.
 
    [Bernstein]
               Daniel J Bernstein, "Stronger Security Bounds for
