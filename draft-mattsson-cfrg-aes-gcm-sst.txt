@@ -17,7 +17,7 @@ Abstract
 
    This document defines Galois Counter Mode with Strong Secure Tags
    (GCM-SST), an Authenticated Encryption with Associated Data (AEAD)
-   algorithm that addresses known weaknesses in GCM.  GCM-SST can be
+   algorithm that addresses two known weaknesses in GCM.  GCM-SST can be
    used with any keystream generator, not only 128-bit block ciphers.
    The main differences from GCM are the introduction of a second
    authentication subkey H_2, per-nonce derivation of both H and H_2,
@@ -546,7 +546,11 @@ Table of Contents
 
    The first constraint aligns with [ACM] and ensures that an attacker
    cannot recover more than ≈ 1 / 2^10.47 ≈ 0.0007 bits across all
-   plaintexts [Entropy].  The second constraint ensures that δ ≈ 1.
+   plaintexts [Entropy].  The second constraint ensures that δ ≈ 1.  The
+   Bernstein bound factor δ ⪅ 1 + (Q_MAX + V_MAX)^2 ⋅ (P_MAX + A_MAX)^2
+   / 2^(n+1), where n is the block size, depends on the total number of
+   block-cipher invocations, which we upper-bound by ⪅ (Q_MAX + V_MAX) ⋅
+   (P_MAX + A_MAX).
 
    To align with zero-trust principles and minimize the impact of key
    compromise, protocols using GCM-SST SHOULD enforce rekeying well
