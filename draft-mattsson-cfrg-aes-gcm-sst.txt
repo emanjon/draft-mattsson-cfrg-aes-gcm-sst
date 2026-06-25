@@ -207,7 +207,9 @@ Table of Contents
 
    GCM-SST was originally developed by ETSI SAGE. 3GPP has standardized
    GCM-SST for use with SNOW 5G [NCA4], AES-256 [NCA5], and ZUC-256
-   [NCA6] in 3GPP TS 35.240–35.248.
+   [NCA6] in 3GPP TS 35.240–35.248.  Security proofs for GCM-SST in
+   single- and multi-user settings are provided by Inoue et al.  [Inoue]
+   and Naito et al.  [Naito].
 
 2.  Conventions and Definitions
 
