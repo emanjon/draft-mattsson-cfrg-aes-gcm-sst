@@ -533,7 +533,7 @@ Table of Contents
    encryption and decryption queries play equivalent roles in the
    Bernstein bound factor δ, it follows that Q_MAX ≤ V_MAX.
 
-   All protocols employing GCM-SST MAY impose stricter limits on P_MAX,
+   Protocols employing GCM-SST MAY impose stricter limits on P_MAX,
    A_MAX, Q_MAX, and V_MAX than those specified here.  Protocols using
    AES-GCM-SST MUST enforce limits sufficient to ensure:
 
