@@ -547,7 +547,7 @@ The keystream generator produces a keystream Z consisting of 128-bit chunks. The
 
 In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag.
 
-Both the encryption and decryption functions are defined only on inputs comprising a whole number of bytes. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{Campagna}}, {{Inoue}}, and {{Naito}}.
+Both the encryption and decryption functions are defined only on inputs comprising a whole number of bytes. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{Campagna}}.
 
 For every computational procedure specified in this document, a conforming implementation MAY replace the given steps with any mathematically equivalent steps, provided the output is correct for every valid input.
 
@@ -661,7 +661,7 @@ where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 
 Nine AEAD algorithm instances are defined below, following the format of {{RFC5116}}. These instances use AES-GCM-SST or Rijndael-GCM-SST with tag lengths of 48, 96, or 112 bits.
 
-| Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | tag length (bits) |
+| Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | Tag length (bits) |
 | AEAD_AES_128_GCM_SST_6 | 16 | 2<sup>36</sup> - 48 | 48 |
 | AEAD_AES_128_GCM_SST_12 | 16 | 2<sup>35</sup> | 96 |
 | AEAD_AES_128_GCM_SST_14 | 16 | 2<sup>19</sup> | 112 |
