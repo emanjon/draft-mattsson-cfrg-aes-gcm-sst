@@ -17,9 +17,9 @@ Abstract
 
    This document defines Galois Counter Mode with Strong Secure Tags
    (GCM-SST), an Authenticated Encryption with Associated Data (AEAD)
-   algorithm that corrects known weaknesses in GCM.  GCM-SST can be used
-   with any keystream generator, not only 128-bit block ciphers.  The
-   main differences from GCM are the introduction of a second
+   algorithm that addresses known weaknesses in GCM.  GCM-SST can be
+   used with any keystream generator, not only 128-bit block ciphers.
+   The main differences from GCM are the introduction of a second
    authentication subkey H_2, per-nonce derivation of both H and H_2,
    and the replacement of GHASH with POLYVAL.  Together, these changes
    yield authentication tags with near-ideal forgery probabilities,
@@ -534,9 +534,7 @@ Table of Contents
    2^16, such as QUIC [RFC9000], and always δ ≈ 1 for Rijndael-GCM-SST.
    In addition to bounding δ, the Q_MAX constraint establishes a minimum
    complexity for distinguishing attacks and an upper bound on the
-   fraction of plaintext bits recoverable by an attacker.  Since
-   encryption and decryption queries play equivalent roles in the
-   Bernstein bound factor δ, it follows that Q_MAX ≤ V_MAX.
+   fraction of plaintext bits recoverable by an attacker.
 
    Protocols employing GCM-SST MAY impose stricter limits on P_MAX,
    A_MAX, Q_MAX, and V_MAX than those specified here.  Protocols using
@@ -604,12 +602,10 @@ Table of Contents
    probabilities.  This is significantly better than GCM, where the
    security level is only tag_length - log2(ℓ) bits [GCM].  For a graph
    of the forgery probability, refer to Fig. 3 in [Inoue].  For 128-bit
-   tags and long messages, the forgery probability is not close to ideal
-   and similar to GCM [GCM].  If tag verification fails, the plaintext
-   and expected_tag MUST NOT be given as output.  In GCM-SST, the
-   full_tag is independent of the specified tag length unless the
-   application explicitly incorporates tag length into the keystream or
-   the nonce.
+   tags and long messages, the forgery probability of GCM-SST is not
+   ideal and comparable to that of GCM [GCM].  In GCM-SST, the full_tag
+   is independent of the specified tag length unless the application
+   explicitly incorporates tag length into the keystream or the nonce.
 
    The expected number of forgeries, when tag_length < 128 - log2(ℓ)
    bits, depends on the keystream generator.  For block ciphers in
@@ -658,13 +654,13 @@ Table of Contents
    Given the constraints outlined in Section 4.3, an attacker cannot
    recover more than 0.0007 bits of AES-GCM-SST plaintexts.
 
-   While Rijndael-256 in counter mode can provide 128-bit
-   confidentiality for plaintexts much larger than 2^36 bytes, GHASH and
-   POLYVAL do not offer adequate integrity for long plaintexts.  To
-   ensure robust integrity for long plaintexts, an AEAD mode would need
-   to replace POLYVAL with a MAC that has better security properties,
-   such as a Carter-Wegman MAC in a larger field [Maximov][Degabriele]
-   or other alternatives such as [SMAC].
+   While Rijndael-256 in counter mode can provide high confidentiality
+   for plaintexts much larger than 2^36 bytes, GHASH and POLYVAL do not
+   offer adequate integrity for long plaintexts.  To ensure robust
+   integrity for long plaintexts, an AEAD mode would need to replace
+   POLYVAL with a MAC that has better security properties, such as a
+   Carter-Wegman MAC in a larger field [Maximov][Degabriele] or other
+   alternatives such as [SMAC].
 
    The confidentiality offered by GCM-SST against active attackers is
    directly linked to the forgery probability.  Depending on the
