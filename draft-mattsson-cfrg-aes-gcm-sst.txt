@@ -428,7 +428,10 @@ Table of Contents
    for the same nonce.  Replay protection MAY be performed either before
    step 1 or during step 11.  Protocols with nonce-hiding mechanisms
    [Bellare19], such as QUIC [RFC9001], implement replay protection
-   after decryption to mitigate timing side-channel attacks.
+   after decryption to mitigate timing side-channel attacks.  If tag
+   validation or replay protection fails, intermediate values such as H,
+   H_2, M, Z, P, X, full_tag, and expected_tag, MUST be destroyed
+   (zeroized).
 
 3.3.  Encoding (ct, tag) Tuples
 
