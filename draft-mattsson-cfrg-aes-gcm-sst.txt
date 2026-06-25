@@ -545,6 +545,13 @@ Table of Contents
    cannot recover more than ≈ 1 / 2^10.47 ≈ 0.0007 bits across all
    plaintexts [Entropy].  The second constraint ensures that δ ≈ 1.
 
+   To align with zero-trust principles and minimize the impact of key
+   compromise, protocols using GCM-SST SHOULD enforce rekeying well
+   before reaching the cryptographic limits.  Modern guidance recommends
+   rekeying via ephemeral key exchange providing Forward Secrecy (FS)
+   and Post-Compromise Security (PCS) after 1 hour or 2^{30}–2^{37}
+   bytes [RFC4253][ANSSI].
+
 5.  Security Considerations
 
    GCM-SST introduces an additional authentication subkey H_2, alongside
