@@ -733,7 +733,7 @@ Table of Contents
      ChaCha20-Poly1305, and AES-GCM in unicast security protocols with
        replay protection. v is the number of decryption queries, ℓ is
       the maximum length of plaintext and associated data, measured in
-            128-bit chunks, and δ is the Bernstein bound factor.
+                              128-bit chunks.
 
    Table 3 compares the integrity of GCM-SST, ChaCha20-Poly1305
    [RFC8439], and AES-GCM [RFC5116] in unicast QUIC [RFC9000][RFC9001],
