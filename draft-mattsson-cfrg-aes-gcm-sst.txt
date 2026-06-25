@@ -296,7 +296,7 @@ Table of Contents
    Both the encryption and decryption functions are defined only on
    inputs comprising a whole number of bytes.  Figures illustrating the
    GCM-SST encryption and decryption functions can be found in
-   [Campagna], [Inoue], and [Naito].
+   [Campagna].
 
    For every computational procedure specified in this document, a
    conforming implementation MAY replace the given steps with any
@@ -474,7 +474,7 @@ Table of Contents
    with tag lengths of 48, 96, or 112 bits.
 
     +==========================+=========+===============+============+
-    | Name                     |   K_LEN | P_MAX = A_MAX | tag length |
+    | Name                     |   K_LEN | P_MAX = A_MAX | Tag length |
     |                          | (bytes) |       (bytes) |     (bits) |
     +==========================+=========+===============+============+
     | AEAD_AES_128_GCM_SST_6   |      16 |     2^36 - 48 |         48 |
