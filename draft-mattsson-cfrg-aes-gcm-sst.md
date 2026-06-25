@@ -721,10 +721,10 @@ The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depend
 {: style=""}
 * E(F) ≈ v / 2<sup>tag_length</sup>   ,
 
-where v is the number of decryption function invocations. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST far outperforms AES-GCM, where
+where v is the number of decryption function invocations. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST ignificantly outperforms AES-GCM, where for AES-GCM (assuming δ≈1) the expected number of forgeries is
 
 {: style=""}
-* E(F) ≈ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup>   .
+* E(F) ≈ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup>   .
 
 For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Inoue}}, {{Naito}}, {{Bernstein}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
