@@ -63,6 +63,7 @@ normative:
 informative:
 
   RFC3711:
+  RFC4253:
   RFC4303:
   RFC6479:
   RFC8439:
@@ -90,6 +91,11 @@ informative:
       -
         ins: Phillip Rogaway
     date: March, 2017
+
+  ANSSI:
+    target: https://messervices.cyber.gouv.fr/documents-guides/NT_IPsec_EN.pdf
+    title: "Recommendations for securing networks with IPsec"
+    date: August 2015
 
   Ascon:
     target: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-232.ipd.pdf
