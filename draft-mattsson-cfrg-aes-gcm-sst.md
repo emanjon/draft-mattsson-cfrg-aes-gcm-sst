@@ -702,7 +702,7 @@ All protocols employing GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MA
 
 The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1.
 
-To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2^{30}–2^{37} bytes {{RFC4253}}{{ANSSI}}.
+To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
 # Security Considerations {#Security}
 
