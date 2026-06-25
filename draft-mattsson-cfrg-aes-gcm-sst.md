@@ -625,7 +625,7 @@ Steps:
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks.
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks. If tag validation or replay protection fails, intermediate values such as H, H<sub>2</sub>, M, Z, P, X, full_tag, and expected_tag, MUST be destroyed (zeroized).
 
 ## Encoding (ct, tag) Tuples
 
