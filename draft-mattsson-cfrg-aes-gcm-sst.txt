@@ -549,8 +549,8 @@ Table of Contents
    compromise, protocols using GCM-SST SHOULD enforce rekeying well
    before reaching the cryptographic limits.  Modern guidance recommends
    rekeying via ephemeral key exchange providing Forward Secrecy (FS)
-   and Post-Compromise Security (PCS) after 1 hour or 2^{30}–2^{37}
-   bytes [RFC4253][ANSSI].
+   and Post-Compromise Security (PCS) after 1 hour or 2^30–2^37 bytes
+   [RFC4253][ANSSI].
 
 5.  Security Considerations
 
