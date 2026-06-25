@@ -490,7 +490,7 @@ informative:
 
 --- abstract
 
-This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that addresses known weaknesses in GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H<sub>2</sub>, per-nonce derivation of both H and H<sub>2</sub>, and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2<sup>tag_length</sup>, a property GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and has hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256.
+This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that addresses two known weaknesses in GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H<sub>2</sub>, per-nonce derivation of both H and H<sub>2</sub>, and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2<sup>tag_length</sup>, a property GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and has hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256.
 
 --- middle
 
@@ -700,7 +700,7 @@ Protocols employing GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, a
 * Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
 * (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>66</sup>
 
-The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1.
+The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + (Q_MAX + V_MAX)<sup>2</sup> ⋅ (P_MAX + A_MAX)<sup>2</sup> / 2<sup>n+1</sup>, where n is the block size, depends on the total number of block-cipher invocations, which we upper-bound by ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
