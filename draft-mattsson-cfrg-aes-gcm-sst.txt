@@ -864,6 +864,10 @@ Table of Contents
               Solves", March 2017,
               <https://eprint.iacr.org/2014/793.pdf>.
 
+   [ANSSI]    "Recommendations for securing networks with IPsec", August
+              2015, <https://messervices.cyber.gouv.fr/documents-guides/
+              NT_IPsec_EN.pdf>.
+
    [Ascon]    Meltem Sönmez Turan, Kerry A McKay, Donghoon Chang,
               Jinkeon Kang, and John Kelsey, "Ascon-Based Lightweight
               Cryptography Standards for Constrained Devices",
@@ -1059,6 +1063,10 @@ Table of Contents
               Norrman, "The Secure Real-time Transport Protocol (SRTP)",
               RFC 3711, DOI 10.17487/RFC3711, March 2004,
               <https://www.rfc-editor.org/rfc/rfc3711>.
+
+   [RFC4253]  Ylonen, T. and C. Lonvick, Ed., "The Secure Shell (SSH)
+              Transport Layer Protocol", RFC 4253, DOI 10.17487/RFC4253,
+              January 2006, <https://www.rfc-editor.org/rfc/rfc4253>.
 
    [RFC4303]  Kent, S., "IP Encapsulating Security Payload (ESP)",
               RFC 4303, DOI 10.17487/RFC4303, December 2005,
