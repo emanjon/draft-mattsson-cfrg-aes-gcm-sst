@@ -988,8 +988,11 @@ The version of GCM-SST specified in this document imposes stricter security cons
 
 Changes from -18 to -19:
 
-* Removed 3GPP LSs and WID and replaced with technical specifications
-* Reference to Naito et al. proving mu-security of GCM-SST
+* Removed 3GPP LSs and WIDs and replaced with technical specifications.
+* Reference to Naito et al. proving mu-security of GCM-SST.
+* Guidance to frequently rekey with FS and PCS to limit impact of key	compromise.
+* Requirement to destroy (zeroize) ntermediate values.
+* E(F) formula for GCM is only known when δ ≈ 1.
 * Editorial changes
 
 Changes from -17 to -18:
