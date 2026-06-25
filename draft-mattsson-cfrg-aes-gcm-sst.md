@@ -702,6 +702,8 @@ All protocols employing GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MA
 
 The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 1 / 2<sup>10.47</sup> ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1.
 
+To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2^{30}–2^{37} bytes {{RFC4253}}{{ANSSI}}.
+
 # Security Considerations {#Security}
 
 GCM-SST introduces an additional authentication subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follow the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} and Naito et al. {{Naito}} establish the security of GCM-SST in the single- and multi-user settings, including under nonce randomization and nonce-based key derivation.
