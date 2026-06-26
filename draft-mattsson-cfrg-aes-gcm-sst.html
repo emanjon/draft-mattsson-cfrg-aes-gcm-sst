@@ -9,7 +9,7 @@
 <meta content="Alexander Maximov" name="author">
 <meta content="John Preuß Mattsson" name="author">
 <meta content="
-       This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that addresses two known weaknesses in GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H 2 , per-nonce derivation of both H and H 2 , and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2 tag_length , a property GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and has hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256. 
+       This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that addresses two known weaknesses of GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H 2 , per-nonce derivation of both H and H 2 , and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2 tag_length , a property that GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and provides hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256. 
     " name="description">
 <meta content="xml2rfc 3.34.0" name="generator">
 <meta content="next generation" name="keyword">
@@ -1053,7 +1053,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Campagna, et al.</td>
-<td class="center">Expires 27 December 2026</td>
+<td class="center">Expires 28 December 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg {
 <dd class="internet-draft">draft-mattsson-cfrg-aes-gcm-sst-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-06-25" class="published">25 June 2026</time>
+<time datetime="2026-06-26" class="published">26 June 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-12-27">27 December 2026</time></dd>
+<dd class="expires"><time datetime="2026-12-28">28 December 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1092,7 +1092,7 @@ svg {
 <h1 id="title">Galois Counter Mode with Strong Secure Tags (GCM-SST)</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that addresses two known weaknesses in GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H<sub>2</sub>, per-nonce derivation of both H and H<sub>2</sub>, and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2<sup>tag_length</sup>, a property GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and has hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document defines Galois Counter Mode with Strong Secure Tags (GCM-SST), an Authenticated Encryption with Associated Data (AEAD) algorithm that addresses two known weaknesses of GCM. GCM-SST can be used with any keystream generator, not only 128-bit block ciphers. The main differences from GCM are the introduction of a second authentication subkey H<sub>2</sub>, per-nonce derivation of both H and H<sub>2</sub>, and the replacement of GHASH with POLYVAL. Together, these changes yield authentication tags with near-ideal forgery probabilities, including reforgeability resistance. All registered instances have an expected number of forgeries E(F) ≈ v / 2<sup>tag_length</sup>, a property that GCM is far from providing. GCM-SST is designed for security protocols with replay protection such as TLS, QUIC, SRTP, and PDCP, and provides hardware and software performance comparable to GCM. This document registers nine AEAD algorithm instances using AES and Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112 bits. GCM-SST has been standardized by 3GPP for use with SNOW 5G, AES-256, and ZUC-256.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1129,7 +1129,7 @@ svg {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 27 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 28 December 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">

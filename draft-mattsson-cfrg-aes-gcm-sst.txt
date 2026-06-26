@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 27 December 2026                              J. Preuß Mattsson
+Expires: 28 December 2026                              J. Preuß Mattsson
                                                                 Ericsson
-                                                            25 June 2026
+                                                            26 June 2026
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -17,7 +17,7 @@ Abstract
 
    This document defines Galois Counter Mode with Strong Secure Tags
    (GCM-SST), an Authenticated Encryption with Associated Data (AEAD)
-   algorithm that addresses two known weaknesses in GCM.  GCM-SST can be
+   algorithm that addresses two known weaknesses of GCM.  GCM-SST can be
    used with any keystream generator, not only 128-bit block ciphers.
    The main differences from GCM are the introduction of a second
    authentication subkey H_2, per-nonce derivation of both H and H_2,
@@ -25,10 +25,10 @@ Abstract
    yield authentication tags with near-ideal forgery probabilities,
    including reforgeability resistance.  All registered instances have
    an expected number of forgeries E(F) ≈ v / 2^(tag_length), a property
-   GCM is far from providing.  GCM-SST is designed for security
+   that GCM is far from providing.  GCM-SST is designed for security
    protocols with replay protection such as TLS, QUIC, SRTP, and PDCP,
-   and has hardware and software performance comparable to GCM.  This
-   document registers nine AEAD algorithm instances using AES and
+   and provides hardware and software performance comparable to GCM.
+   This document registers nine AEAD algorithm instances using AES and
    Rijndael-256 in counter mode, with tag lengths of 48, 96, and 112
    bits.  GCM-SST has been standardized by 3GPP for use with SNOW 5G,
    AES-256, and ZUC-256.
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 December 2026.
+   This Internet-Draft will expire on 28 December 2026.
 
 Copyright Notice
 
