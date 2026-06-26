@@ -204,11 +204,11 @@ Table of Contents
    substantially higher throughput in pure hardware while retaining the
    advantage of being a mode of operation for AES.
 
-   GCM-SST was originally developed by ETSI SAGE. 3GPP has standardized
-   GCM-SST for use with SNOW 5G [NCA4], AES-256 [NCA5], and ZUC-256
-   [NCA6] in 3GPP TS 35.240–35.248.  Security proofs for GCM-SST in
-   single- and multi-user settings are provided by Inoue et al.  [Inoue]
-   and Naito et al.  [Naito].
+   GCM-SST was originally developed by ETSI SAGE and subsequently
+   standardized by 3GPP for use with SNOW 5G [NCA4], AES-256 [NCA5], and
+   ZUC-256 [NCA6] in 3GPP TS 35.240–35.248.  Security proofs for GCM-SST
+   in single- and multi-user settings are provided by Inoue et al.
+   [Inoue] and Naito et al.  [Naito].
 
 2.  Conventions and Definitions
 
@@ -420,7 +420,9 @@ Table of Contents
 
    10.  Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 
-   11.  If N passes replay protection, return P
+   11.  If N fails replay protection, return an error and abort
+
+   12.  Return P
 
    The comparison of tag and expected_tag in step 9 MUST be performed in
    constant time to prevent information leakage about the position of
