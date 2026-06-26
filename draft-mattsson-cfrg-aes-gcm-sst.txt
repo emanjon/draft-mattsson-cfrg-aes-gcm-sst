@@ -524,10 +524,6 @@ Table of Contents
    1 / 2^(tag_length) for all permitted plaintext and associated data
    lengths [Nyberg].
 
-   Like [RFC5116], AES-GCM-SST and Rijndael-GCM-SST require a fixed
-   nonce length (N_MIN = N_MAX): 96 bits for AES-GCM-SST and 224 bits
-   for Rijndael-GCM-SST.
-
    The V_MAX constraint ensures that the Bernstein bound factor
    satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈
    2^16, such as QUIC [RFC9000], and always δ ≈ 1 for Rijndael-GCM-SST.
