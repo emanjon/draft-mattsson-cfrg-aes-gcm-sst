@@ -514,9 +514,9 @@ Table of Contents
       for AES-GCM-SST and 2^88 for Rijndael-GCM-SST.
 
    The values of P_MAX and A_MAX are more restrictive than the
-   corresponding limits in [RFC5116] for GCM.  To ensure a forgery
-   probability close to ideal even for maximum-length plaintexts and
-   associated data, this document sets:
+   corresponding limits in [RFC5116] for GCM.  To ensure a near-ideal
+   forgery probability close to ideal even for maximum-length plaintexts
+   and associated data, this document sets:
 
       P_MAX = A_MAX = min(2^(131 - tag_length), 2^36 - 48)
 
@@ -580,16 +580,16 @@ Table of Contents
    encryption and decryption function calls enables universal forgery,
    as demonstrated by [Joux], [Lindell], [Inoue], and [Naito], and so
    GCM-SST MUST be used with replay protection.  Additionally, GCM-SST
-   MUST NOT be used with random nonces, as this significantly reduces
-   the efficiency of replay protection.  Implementations SHOULD add
-   randomness to the nonce by XORing a unique number such as a sequence
-   number with a per-key random secret salt of the same length as the
-   nonce.  This significantly improves security against precomputation
-   attacks and multi-key attacks [Bellare17] and is implemented, for
-   example, in TLS 1.3 [RFC8446], OSCORE [RFC8613], and [Ascon].  By
-   increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-
-   SST can offer significantly greater security against precomputation
-   and multi-key attacks compared to AES-GCM-SST.
+   MUST NOT be used with random nonces, because they significantly
+   reduce the efficiency of replay protection.  Implementations SHOULD
+   add randomness to the nonce by XORing a unique number such as a
+   sequence number with a per-key random secret salt of the same length
+   as the nonce.  This significantly improves security against
+   precomputation attacks and multi-key attacks [Bellare17] and is
+   implemented, for example, in TLS 1.3 [RFC8446], OSCORE [RFC8613], and
+   [Ascon].  By increasing the nonce length from 96 bits to 224 bits,
+   Rijndael-GCM-SST can offer significantly greater security against
+   precomputation and multi-key attacks compared to AES-GCM-SST.
 
    Refer to Section 5.6 for considerations on using GCM-SST in multicast
    or broadcast scenarios.  Unless otherwise specified, formulas for the
@@ -622,7 +622,7 @@ Table of Contents
 
    where v is the number of decryption function invocations.  Following
    the constraints in Section 4.3, AES-GCM-SST and Rijndael-GCM-SST
-   achieve this ideal.  AES-GCM-SST ignificantly outperforms AES-GCM,
+   achieve this ideal.  AES-GCM-SST significantly outperforms AES-GCM,
    where for AES-GCM (assuming δ≈1) the expected number of forgeries is
 
       E(F) ≈ v^2 ⋅ ℓ / 2^(tag_length+1) .
@@ -708,10 +708,10 @@ Table of Contents
 
    Table 2 compares the integrity of GCM-SST, ChaCha20-Poly1305
    [RFC8439], and AES-GCM [RFC5116] in unicast security protocols with
-   replay protection, where v represents the number of decryption
-   queries.  In Poly1305 and GCM, the forgery probability depends on ℓ =
-   (P_MAX + A_MAX) / 16 + 1.  In AES-based algorithms, the Bernstein
-   bound introduces a factor δ ⪅ 1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  GCM-SST
+   replay protection, where v denotes the number of decryption queries.
+   In Poly1305 and GCM, the forgery probability depends on ℓ = (P_MAX +
+   A_MAX) / 16 + 1.  In AES-based algorithms, the Bernstein bound
+   introduces a factor δ ⪅ 1 + (q + v)^2 ⋅ ℓ^2 / 2^129.  GCM-SST
    requires δ ≈ 1, a property not mandated by GCM.  Notably, GCM does
    not provide any reforgeability resistance, which significantly
    increases the expected number of forgeries.  Refer to [Procter],
@@ -822,8 +822,7 @@ Table of Contents
    attacker would need to send on average 2^(tag_length) forgery
    attempts to each recipient.  GCM-SST performs equally well or better
    than an ideal MAC with length tag_length - log2(r), where r is the
-   number of recipients.  Thus, in one-to-many scenarios with replay
-   protection.
+   number of recipients.
 
 6.  IANA Considerations
 
