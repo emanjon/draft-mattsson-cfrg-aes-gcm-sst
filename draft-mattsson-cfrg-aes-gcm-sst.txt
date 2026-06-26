@@ -234,7 +234,7 @@ Table of Contents
 
    *  tag is the authentication tag
 
-   *  tag_length is the length of tag in bits
+   *  tag_length is the authentication tag length, in bits
 
    *  = is the assignment operator
 
@@ -246,8 +246,8 @@ Table of Contents
 
    *  len(x) is the length of x in bits
 
-   *  zeropad(x) right-pads a byte string x with zeroes to a multiple of
-      128 bits
+   *  zeropad(x) right-pads the byte string x with zeros to a multiple
+      of 128 bits
 
    *  truncate(x, t) retains the first t bits of x and discards the
       remainder
@@ -283,15 +283,16 @@ Table of Contents
    of all parameters depend on the keystream generator.
 
    The keystream generator produces a keystream Z consisting of 128-bit
-   chunks.  The first three chunks Z[0], Z[1], and Z[2] are used as the
-   three subkeys H, H_2, and M, respectively.  The subsequent chunks
-   Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
+   chunks.  The first three chunks Z[0], Z[1], and Z[2] are used as
+   authentication subkeys H and H₂, and masking subkey M, respectively.
+   The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt
+   the plaintext.
 
    In place of GHASH [GCM], GCM-SST uses the POLYVAL function from AES-
    GCM-SIV [RFC8452], which yields more efficient software
    implementations on little-endian architectures.  GHASH and POLYVAL
    can be defined in terms of one another, as shown in [RFC8452].  The
-   subkeys H and H_2 are field elements used as POLYVAL inputs, while
+   subkeys H and H_2 are field elements used as inputs to POLYVAL, while
    the subkey M is used for the final masking of the tag.
 
    Both the encryption and decryption functions are defined only on
@@ -367,8 +368,7 @@ Table of Contents
 
    The decryption function Decrypt(K, N, A, ct, tag) decrypts a
    ciphertext, verifies that the authentication tag is correct, and
-   returns the plaintext on success, or an error if the tag verification
-   fails.
+   returns the plaintext on success or an error otherwise.
 
    Prerequisites and security requirements:
 
@@ -431,7 +431,7 @@ Table of Contents
    [Bellare19], such as QUIC [RFC9001], implement replay protection
    after decryption to mitigate timing side-channel attacks.  If tag
    validation or replay protection fails, intermediate values such as H,
-   H_2, M, Z, P, X, full_tag, and expected_tag, MUST be destroyed
+   H_2, M, Z, P, X, full_tag, and expected_tag MUST be destroyed
    (zeroized).
 
 3.3.  Encoding (ct, tag) Tuples
@@ -513,10 +513,10 @@ Table of Contents
    *  V_MAX (maximum number of decryption function invocations) is 2^48
       for AES-GCM-SST and 2^88 for Rijndael-GCM-SST.
 
-   The values of P_MAX and A_MAX are lower than the corresponding limits
-   in [RFC5116] for GCM.  To ensure a forgery probability close to ideal
-   even for maximum-length plaintexts and associated data, this document
-   sets:
+   The values of P_MAX and A_MAX are more restrictive than the
+   corresponding limits in [RFC5116] for GCM.  To ensure a forgery
+   probability close to ideal even for maximum-length plaintexts and
+   associated data, this document sets:
 
       P_MAX = A_MAX = min(2^(131 - tag_length), 2^36 - 48)
 
