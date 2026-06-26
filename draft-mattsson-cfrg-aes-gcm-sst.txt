@@ -131,10 +131,9 @@ Table of Contents
    identified two weaknesses in GCM's authentication function
    [Ferguson].  The first significantly increases the forgery
    probability.  The second allows recovery of the authentication subkey
-   H upon a successful forgery, enabling an attacker to forge subsequent
-   messages consistently, a property known as reforgeability failure.
-   Both weaknesses affect all tag lengths, but are especially damaging
-   with short tags.
+   H upon a successful forgery, enabling arbitrary subsequent forgeries,
+   a property known as reforgeability failure.  Both weaknesses affect
+   all tag lengths, but are especially damaging with short tags.
 
    Nyberg et al.  [Nyberg] showed that small, theoretically grounded
    changes would mitigate these weaknesses.  NIST did not adopt this
@@ -172,38 +171,38 @@ Table of Contents
    to GCM.
 
    This document defines GCM with Strong Secure Tags (GCM-SST), an AEAD
-   algorithm that addresses the weaknesses described above.  GCM-SST can
-   be used with any keystream generator, not only 128-bit block ciphers.
-   The main differences from GCM [GCM] are: the introduction of a second
-   authentication subkey H_2; per-nonce derivation of H and H_2; and the
-   replacement of GHASH with POLYVAL [RFC8452].  Together, these changes
-   yield truncated tags with near-ideal forgery probabilities, even
-   against multiple forgery attacks, see Section 5.  GCM-SST is designed
-   for use in security protocols with replay protection such as TLS
-   [RFC8446], QUIC [RFC9000], SRTP [RFC3711], and PDCP [PDCP].  In
-   unicast settings with replay protection, GCM-SST's authentication tag
-   behaves as an ideal MAC with full reforgeability resistance.
-   Compared to Poly1305 [RFC8439] and GCM [RFC5116], GCM-SST achieves
-   stronger integrity with less overhead.  Its hardware and software
-   performance is comparable to GCM; in software, the two additional AES
-   invocations are offset by POLYVAL's advantage over GHASH on little-
-   endian architectures.  GCM-SST preserves GCM's additive encryption
-   structure, enabling efficient pipelining on modern processors
-   [GCM-Update][Gueron].
+   algorithm that addresses these weaknesses described above.  GCM-SST
+   can be used with any keystream generator, not only 128-bit block
+   ciphers.  The main differences from GCM [GCM] are: the introduction
+   of a second authentication subkey H_2; per-nonce derivation of H and
+   H_2; and the replacement of GHASH with POLYVAL [RFC8452].  Together,
+   these changes yield truncated tags with near-ideal forgery
+   probabilities, even against multiple forgery attacks, see Section 5.
+   GCM-SST is designed for use in security protocols with replay
+   protection such as TLS [RFC8446], QUIC [RFC9000], SRTP [RFC3711], and
+   PDCP [PDCP].  In unicast settings with replay protection, GCM-SST's
+   authentication tag behaves as an ideal MAC with full reforgeability
+   resistance.  Compared to Poly1305 [RFC8439] and GCM [RFC5116], GCM-
+   SST achieves stronger integrity with less overhead.  Its hardware and
+   software performance is comparable to GCM; in software, the two
+   additional AES invocations are offset by POLYVAL's advantage over
+   GHASH on little-endian architectures.  GCM-SST preserves GCM's
+   additive encryption structure, enabling efficient pipelining on
+   modern processors [GCM-Update][Gueron].
 
    This document also registers GCM-SST instances using AES [AES] and
    Rijndael with 256-bit keys and blocks (Rijndael-256) [Rijndael] in
    counter mode, with tag lengths of 48, 96, and 112 bits (see
-   Section 4).  All registered instances produce authentication tags
-   that behave as ideal MACs, with an expected number of forgeries E(F)
-   ≈ v / 2^(tag_length), a property expected of a modern AEAD, and one
-   GCM is far from providing.  Rijndael-256 is already standardized by
-   3GPP for authentication and key generation [Milenage-256] and is
-   planned for NIST standardization [Plans].  Rijndael-256 performs well
-   on modern x86-64 platforms with AES-NI and VAES instructions
-   [Drucker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST
-   offers substantially higher throughput in pure hardware while
-   retaining the advantage of being a mode of operation for AES.
+   Section 4).  All registered instances have an expected number of
+   forgeries E(F) ≈ v / 2^tag_length, matching the behavior of an ideal
+   MAC.  This is a property expected of a modern AEAD but one that GCM
+   is far from providing.  Rijndael-256 is already standardized by 3GPP
+   for authentication and key generation [Milenage-256] and is planned
+   for NIST standardization [Plans].  Rijndael-256 performs well on
+   modern x86-64 platforms with AES-NI and VAES instructions [Drucker].
+   Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST offers
+   substantially higher throughput in pure hardware while retaining the
+   advantage of being a mode of operation for AES.
 
    GCM-SST was originally developed by ETSI SAGE. 3GPP has standardized
    GCM-SST for use with SNOW 5G [NCA4], AES-256 [NCA5], and ZUC-256
