@@ -683,7 +683,7 @@ The following parameters apply to all the instances:
 
 * V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>88</sup> for Rijndael-GCM-SST.
 
-The values of P_MAX and A_MAX are more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
+The values of P_MAX and A_MAX are more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a near-ideal forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
 
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
@@ -708,7 +708,7 @@ To align with zero-trust principles and minimize the impact of key compromise, p
 
 GCM-SST introduces an additional authentication subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follow the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} and Naito et al. {{Naito}} establish the security of GCM-SST in the single- and multi-user settings, including under nonce randomization and nonce-based key derivation.
 
-GCM-SST is designed for use in security protocols with replay protection. Each key MUST be chosen uniformly at random. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST be used at most once in the encryption function and at most once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. The reuse of nonces in successful encryption and decryption function calls enables universal forgery, as demonstrated by {{Joux}}, {{Lindell}}, {{Inoue}}, and {{Naito}}, and so GCM-SST MUST be used with replay protection. Additionally, GCM-SST MUST NOT be used with random nonces, as this significantly reduces the efficiency of replay protection. Implementations SHOULD add randomness to the nonce by XORing a unique number such as a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks {{Bellare17}} and is implemented, for example, in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-GCM-SST.
+GCM-SST is designed for use in security protocols with replay protection. Each key MUST be chosen uniformly at random. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST be used at most once in the encryption function and at most once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. The reuse of nonces in successful encryption and decryption function calls enables universal forgery, as demonstrated by {{Joux}}, {{Lindell}}, {{Inoue}}, and {{Naito}}, and so GCM-SST MUST be used with replay protection. Additionally, GCM-SST MUST NOT be used with random nonces, because they significantly reduce the efficiency of replay protection. Implementations SHOULD add randomness to the nonce by XORing a unique number such as a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation attacks and multi-key attacks {{Bellare17}} and is implemented, for example, in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-GCM-SST.
 
 Refer to {{onemany}} for considerations on using GCM-SST in multicast or broadcast scenarios. Unless otherwise specified, formulas for the expected number of forgeries apply to unicast scenarios.
 
@@ -721,7 +721,7 @@ The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depend
 {: style=""}
 * E(F) ≈ v / 2<sup>tag_length</sup>   ,
 
-where v is the number of decryption function invocations. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST ignificantly outperforms AES-GCM, where for AES-GCM (assuming δ≈1) the expected number of forgeries is
+where v is the number of decryption function invocations. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM, where for AES-GCM (assuming δ≈1) the expected number of forgeries is
 
 {: style=""}
 * E(F) ≈ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup>   .
@@ -746,7 +746,7 @@ The details of the replay protection mechanism are determined by the security pr
 
 ## Comparison with ChaCha20-Poly1305 and AES-GCM {#Comp}
 
-{{comp1}} compares the integrity of GCM-SST, ChaCha20-Poly1305 {{RFC8439}}, and AES-GCM {{RFC5116}} in unicast security protocols with replay protection, where v represents the number of decryption queries. In Poly1305 and GCM, the forgery probability depends on ℓ = (P_MAX + A_MAX) / 16 + 1. In AES-based algorithms, the Bernstein bound introduces a factor δ ⪅ 1 + (q + v)<sup>2</sup> ⋅ ℓ<sup>2</sup> / 2<sup>129</sup>. GCM-SST requires δ ≈ 1, a property not mandated by GCM. Notably, GCM does not provide any reforgeability resistance, which significantly increases the expected number of forgeries. Refer to {{Procter}}, {{Iwata}}, and {{Multiple}} for further details.
+{{comp1}} compares the integrity of GCM-SST, ChaCha20-Poly1305 {{RFC8439}}, and AES-GCM {{RFC5116}} in unicast security protocols with replay protection, where v denotes the number of decryption queries. In Poly1305 and GCM, the forgery probability depends on ℓ = (P_MAX + A_MAX) / 16 + 1. In AES-based algorithms, the Bernstein bound introduces a factor δ ⪅ 1 + (q + v)<sup>2</sup> ⋅ ℓ<sup>2</sup> / 2<sup>129</sup>. GCM-SST requires δ ≈ 1, a property not mandated by GCM. Notably, GCM does not provide any reforgeability resistance, which significantly increases the expected number of forgeries. Refer to {{Procter}}, {{Iwata}}, and {{Multiple}} for further details.
 
 | Name | Tag length (bytes) | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
 | GCM_SST_14 | 14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | v / 2<sup>112</sup> |
@@ -777,7 +777,7 @@ The details of the replay protection mechanism are determined by the security pr
 
 While GCM-SST offers stronger security properties than GCM for a given tag length in multicast or broadcast contexts, it does not behave exactly like an ideal MAC. With an ideal MAC, a successful forgery against one recipient allows the attacker to reuse the same forgery against all other recipients. In contrast, with GCM, a successful forgery against one recipient enables the attacker to generate an unlimited number of new forgeries for all recipients.
 
-With GCM-SST, a few successful forgeries against a few recipients allow the attacker to create one new forgery for all other recipients. While the total number of forgeries in GCM-SST matches that of an ideal MAC, the diversity of these forgeries is higher. To achieve one distinct forgery per recipient with an ideal MAC, the attacker would need to send on average 2<sup>tag_length</sup> forgery attempts to each recipient. GCM-SST performs equally well or better than an ideal MAC with length tag_length - log2(r), where r is the number of recipients. Thus, in one-to-many scenarios with replay protection.
+With GCM-SST, a few successful forgeries against a few recipients allow the attacker to create one new forgery for all other recipients. While the total number of forgeries in GCM-SST matches that of an ideal MAC, the diversity of these forgeries is higher. To achieve one distinct forgery per recipient with an ideal MAC, the attacker would need to send on average 2<sup>tag_length</sup> forgery attempts to each recipient. GCM-SST performs equally well or better than an ideal MAC with length tag_length - log2(r), where r is the number of recipients.
 
 # IANA Considerations
 
