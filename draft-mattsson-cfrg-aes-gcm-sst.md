@@ -521,13 +521,13 @@ The following notation is used in the document:
 * Z is the keystream
 * ct is the ciphertext
 * tag is the authentication tag
-* tag_length is the length of tag in bits
+* tag_length is the authentication tag length, in bits
 * = is the assignment operator
 * ≠ is the inequality operator
 * x \|\| y is concatenation of the byte strings x and y
 * ⊕ is the bitwise exclusive-OR (XOR) operator
 * len(x) is the length of x in bits
-* zeropad(x) right-pads a byte string x with zeroes to a multiple of 128 bits
+* zeropad(x) right-pads the byte string x with zeros to a multiple of 128 bits
 * truncate(x, t) retains the first t bits of x and discards the remainder
 * n is the number of 128-bit chunks in zeropad(P)
 * m is the number of 128-bit chunks in zeropad(A)
@@ -543,9 +543,9 @@ This section defines the GCM-SST AEAD algorithm following the recommendations of
 
 GCM-SST adheres to the AEAD interface defined in {{RFC5116}}. The encryption function takes four variable-length byte string parameters: a secret key K, a nonce N, associated data A, and a plaintext P. The keystream generator is instantiated with K and N. The keystream MAY depend on P and A. The minimum and maximum lengths of all parameters depend on the keystream generator.
 
-The keystream generator produces a keystream Z consisting of 128-bit chunks. The first three chunks Z[0], Z[1], and Z[2] are used as the three subkeys H, H<sub>2</sub>, and M, respectively. The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
+The keystream generator produces a keystream Z consisting of 128-bit chunks. The first three chunks Z[0], Z[1], and Z[2] are used as authentication subkeys H and H₂, and masking subkey M, respectively. The subsequent chunks Z[3], Z[4], ..., Z[n + 2] are used to encrypt the plaintext.
 
-In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as POLYVAL inputs, while the subkey M is used for the final masking of the tag.
+In place of GHASH {{GCM}}, GCM-SST uses the POLYVAL function from AES-GCM-SIV {{RFC8452}}, which yields more efficient software implementations on little-endian architectures. GHASH and POLYVAL can be defined in terms of one another, as shown in {{RFC8452}}. The subkeys H and H<sub>2</sub> are field elements used as inputs to POLYVAL, while the subkey M is used for the final masking of the tag.
 
 Both the encryption and decryption functions are defined only on inputs comprising a whole number of bytes. Figures illustrating the GCM-SST encryption and decryption functions can be found in {{Campagna}}.
 
@@ -591,7 +591,7 @@ The encoding of L aligns with existing implementations of GCM.
 
 ## Authenticated Decryption Function
 
-The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success, or an error if the tag verification fails.
+The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifies that the authentication tag is correct, and returns the plaintext on success or an error otherwise.
 
 Prerequisites and security requirements:
 
@@ -625,7 +625,7 @@ Steps:
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
 11. If N passes replay protection, return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks. If tag validation or replay protection fails, intermediate values such as H, H<sub>2</sub>, M, Z, P, X, full_tag, and expected_tag, MUST be destroyed (zeroized).
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks. If tag validation or replay protection fails, intermediate values such as H, H<sub>2</sub>, M, Z, P, X, full_tag, and expected_tag MUST be destroyed (zeroized).
 
 ## Encoding (ct, tag) Tuples
 
@@ -683,7 +683,7 @@ The following parameters apply to all the instances:
 
 * V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>88</sup> for Rijndael-GCM-SST.
 
-The values of P_MAX and A_MAX are lower than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
+The values of P_MAX and A_MAX are more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
 
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
