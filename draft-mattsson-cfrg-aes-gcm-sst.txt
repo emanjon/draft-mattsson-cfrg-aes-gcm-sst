@@ -588,9 +588,8 @@ Table of Contents
    Rijndael-GCM-SST can offer significantly greater security against
    precomputation and multi-key attacks compared to AES-GCM-SST.
 
-   Refer to Section 5.6 for considerations on using GCM-SST in multicast
-   or broadcast scenarios.  Unless otherwise specified, formulas for the
-   expected number of forgeries apply to unicast scenarios.
+   Unless otherwise specified, formulas for the expected number of
+   forgeries apply to unicast scenarios.
 
 5.1.  Integrity
 
