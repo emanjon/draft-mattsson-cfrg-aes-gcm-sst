@@ -506,7 +506,7 @@ This document defines GCM with Strong Secure Tags (GCM-SST), an AEAD algorithm t
 
 This document also registers GCM-SST instances using AES {{AES}} and Rijndael with 256-bit keys and blocks (Rijndael-256) {{Rijndael}} in counter mode, with tag lengths of 48, 96, and 112 bits (see {{AES-GCM-SST}}). All registered instances have an expected number of forgeries E(F) ≈ v / 2^tag_length, matching the behavior of an ideal MAC. This is a property expected of a modern AEAD but one that GCM is far from providing. Rijndael-256 is already standardized by 3GPP for authentication and key generation {{Milenage-256}} and is planned for NIST standardization {{Plans}}. Rijndael-256 performs well on modern x86-64 platforms with AES-NI and VAES instructions {{Drucker}}. Compared to AEGIS {{I-D.irtf-cfrg-aegis-aead}}, AES-GCM-SST offers substantially higher throughput in pure hardware while retaining the advantage of being a mode of operation for AES.
 
-GCM-SST was originally developed by ETSI SAGE. 3GPP has standardized GCM-SST for use with SNOW 5G {{NCA4}}, AES-256 {{NCA5}}, and ZUC-256 {{NCA6}} in 3GPP TS 35.240–35.248. Security proofs for GCM-SST in single- and multi-user settings are provided by Inoue et al. {{Inoue}} and Naito et al. {{Naito}}.
+GCM-SST was originally developed by ETSI SAGE and subsequently standardized by 3GPP for use with SNOW 5G {{NCA4}}, AES-256 {{NCA5}}, and ZUC-256 {{NCA6}} in 3GPP TS 35.240–35.248. Security proofs for GCM-SST in single- and multi-user settings are provided by Inoue et al. {{Inoue}} and Naito et al. {{Naito}}.
 
 # Conventions and Definitions
 
@@ -623,7 +623,8 @@ Steps:
 8. Let expected_tag = truncate(full_tag, tag_length)
 9. If tag ≠ expected_tag, return an error and abort
 10. Let P = ct ⊕ truncate(Z[3:n + 2], len(ct))
-11. If N passes replay protection, return P
+11. If N fails replay protection, return an error and abort
+12. Return P
 
 The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks. If tag validation or replay protection fails, intermediate values such as H, H<sub>2</sub>, M, Z, P, X, full_tag, and expected_tag MUST be destroyed (zeroized).
 
