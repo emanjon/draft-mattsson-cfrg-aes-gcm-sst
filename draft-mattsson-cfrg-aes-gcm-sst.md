@@ -508,7 +508,7 @@ This document also registers GCM-SST instances using AES {{AES}} and Rijndael wi
 
 GCM-SST was originally developed by ETSI SAGE and subsequently standardized by 3GPP for use with SNOW 5G {{NCA4}}, AES-256 {{NCA5}}, and ZUC-256 {{NCA6}} in 3GPP TS 35.240–35.248. Security proofs for GCM-SST in single- and multi-user settings are provided by Inoue et al. {{Inoue}} and Naito et al. {{Naito}}.
 
-{{GCM-SST}} specifies GCM-SST. {{AES-GCM-SST}} registers AEAD algorithms using AES and Rijndael-256. {{Security}} discusses security considerations.
+{{GCM-SST}} specifies GCM-SST, {{AES-GCM-SST}} registers AEAD algorithms using AES and Rijndael-256, and {{Security}} discusses security considerations.
 
 # Conventions and Definitions
 
