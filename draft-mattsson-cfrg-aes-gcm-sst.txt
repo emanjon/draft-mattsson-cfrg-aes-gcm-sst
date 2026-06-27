@@ -193,8 +193,8 @@ Table of Contents
    Rijndael with 256-bit keys and blocks (Rijndael-256) [Rijndael] in
    counter mode, with tag lengths of 48, 96, and 112 bits.  All
    registered instances have an expected number of forgeries E(F) ≈ v /
-   2^tag_length, matching the behavior of an ideal MAC.  This is a
-   property expected of a modern AEAD but one that GCM is far from
+   2sup>tag_length</sup>, matching the behavior of an ideal MAC.  This
+   is a property expected of a modern AEAD but one that GCM is far from
    providing.  Rijndael-256 is already standardized by 3GPP for
    authentication and key generation [Milenage-256] and is planned for
    NIST standardization [Plans].  Rijndael-256 performs well on modern
