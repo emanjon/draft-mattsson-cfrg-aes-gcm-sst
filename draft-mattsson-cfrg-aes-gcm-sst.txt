@@ -548,8 +548,9 @@ Table of Contents
    cannot recover more than ≈ 0.0007 bits across all plaintexts
    [Entropy].  The second constraint ensures that δ ≈ 1.  The Bernstein
    bound factor δ ⪅ 1 + σ^2 / 2^(b+1), where b is the block size,
-   depends on the total number of block-cipher invocations, which we
-   conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
+   depends on the total number of block-cipher invocations
+   [Bernstein][Iwata], which we conservatively upper-bound as σ ⪅ (Q_MAX
+   + V_MAX) ⋅ (P_MAX + A_MAX).
 
    To align with zero-trust principles and minimize the impact of key
    compromise, protocols using GCM-SST SHOULD enforce rekeying well
