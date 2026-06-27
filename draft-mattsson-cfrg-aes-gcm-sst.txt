@@ -568,7 +568,7 @@ Table of Contents
    successful forgeries.  These changes are based on proven theoretical
    constructions and follow the recommendations in [Nyberg].  Inoue et
    al.  [Inoue] and Naito et al.  [Naito] establish the security of GCM-
-   SST in the single- and multi-user settings, including under nonce
+   SST in the single- and multi-key settings, including under nonce
    randomization and nonce-based key derivation.
 
    GCM-SST is designed for use in security protocols with replay
