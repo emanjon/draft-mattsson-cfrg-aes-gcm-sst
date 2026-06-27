@@ -611,12 +611,13 @@ Table of Contents
    the application explicitly incorporates tag length into the keystream
    or the nonce.
 
-   The expected number of forgeries depends on the keystream generator.
-   For block ciphers in counter mode, it is determined by the birthday
-   bound, with AES-based ciphers particularly constrained by their
-   narrow 128-bit block size.  Assuming a sufficiently large key size
-   such that brute-force key-recovery attacks can be neglected, a strong
-   integrity mechanism should satisfy
+   When tag_length < 128 - log2(ℓ) bits, the expected number of
+   forgeries depends on the properties of the keystream generator.  For
+   block ciphers in counter mode, it is governed by the birthday bound,
+   with AES-based ciphers particularly constrained by their narrow
+   128-bit block size.  Assuming a sufficiently large key size such that
+   brute-force key-recovery attacks can be neglected, a strong integrity
+   mechanism should satisfy
 
       E(F) ≈ v / 2^(tag_length) ,
 
@@ -639,7 +640,7 @@ Table of Contents
 
    The confidentiality offered by GCM-SST against passive attackers
    depends on the keystream generator.  For block ciphers in counter
-   mode, it is determined by the birthday bound, with AES-based ciphers
+   mode, it is governed by the birthday bound, with AES-based ciphers
    particularly constrained by their narrow 128-bit block size.  For
    AES-GCM-SST, the confidentiality is equal to AES-GCM [GCM].
    Regardless of key length, an attacker can mount a distinguishing
