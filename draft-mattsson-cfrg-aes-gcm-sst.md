@@ -674,7 +674,7 @@ Nine AEAD algorithm instances are defined below, following the format of {{RFC51
 | AEAD_RIJNDAEL_GCM_SST_6 | 32 | 2<sup>36</sup> - 48 | 48 |
 | AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
 | AEAD_RIJNDAEL_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
-{: #iana-algs title="AEAD Algorithms" cols="l r r r"}
+{: #iana-algs title="AEAD Algorithm Instances for AES-GCM-SST and Rijndael-GCM-SST" cols="l r r r"}
 
 The following parameters apply to all the instances:
 
