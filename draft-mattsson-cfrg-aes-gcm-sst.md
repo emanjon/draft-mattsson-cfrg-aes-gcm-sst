@@ -692,7 +692,7 @@ This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup
 
 The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
-Protocols employing GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here. Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
+Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here. Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
 * Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
