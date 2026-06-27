@@ -779,7 +779,7 @@ Table of Contents
    Table 4 compares the confidentiality of Rijndael-GCM-SST, AES-256-
    GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 [RFC8439], all of
    which use 256-bit keys, against passive attackers.  The
-   confidentiality of block ciphers in counter mode is determined by the
+   confidentiality of block ciphers in counter mode is governed by the
    birthday bound, with AES-based ciphers particularly constrained by
    their narrow 128-bit block size.  While plaintext-recovery attacks on
    block ciphers in counter mode have a complexity similar to
