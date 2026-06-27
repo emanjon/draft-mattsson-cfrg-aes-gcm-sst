@@ -762,7 +762,7 @@ The details of the replay protection mechanism are determined by the security pr
 | GCM | 16 | 1 / 2<sup>116</sup> | 1 | v<sup>2</sup>&nbsp;/&nbsp;2<sup>117</sup> |
 {: #comp2 title="Comparison of integrity among GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes." cols="l r r r r"}
 
-{{comp3}} compares the confidentiality of Rijndael-GCM-SST, AES-256-GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 {{RFC8439}}, all of which use 256-bit keys, against passive attackers. The confidentiality of block ciphers in counter mode is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. While plaintext-recovery attacks on block ciphers in counter mode have a complexity similar to distinguishing attacks, the attacker cannot recover more than ≈ (σ<sub>E</sub>)<sup>2</sup> / 2<sup>b</sup> bits of the plaintexts {{Entropy}}.
+{{comp3}} compares the confidentiality of Rijndael-GCM-SST, AES-256-GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 {{RFC8439}}, all of which use 256-bit keys, against passive attackers. The confidentiality of block ciphers in counter mode is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. While plaintext-recovery attacks on block ciphers in counter mode have a complexity similar to distinguishing attacks, the attacker cannot recover more than ≈ (σ<sub>E</sub>)<sup>2</sup> / 2<sup>b</sup> bits of the plaintexts {{Entropy}}.
 
 | Name | Key size (bits) | Complexity of distinguishing attacks |
 | CHACHA20_POLY1305 | 256 | 2<sup>256</sup> |
