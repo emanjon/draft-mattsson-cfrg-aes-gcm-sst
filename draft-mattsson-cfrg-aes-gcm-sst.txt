@@ -612,12 +612,12 @@ Table of Contents
    or the nonce.
 
    When tag_length < 128 - log2(ℓ) bits, the expected number of
-   forgeries depends on the properties of the keystream generator.  For
-   block ciphers in counter mode, it is governed by the birthday bound,
-   with AES-based ciphers particularly constrained by their narrow
-   128-bit block size.  Assuming a sufficiently large key size such that
-   brute-force key-recovery attacks can be neglected, a strong integrity
-   mechanism should satisfy
+   forgeries only depends on the properties of the keystream generator.
+   For block ciphers in counter mode, it is governed by the birthday
+   bound, with AES-based ciphers particularly constrained by their
+   narrow 128-bit block size.  Assuming a sufficiently large key size
+   such that brute-force key-recovery attacks can be neglected, a strong
+   integrity mechanism should satisfy
 
       E(F) ≈ v / 2^(tag_length) ,
 
