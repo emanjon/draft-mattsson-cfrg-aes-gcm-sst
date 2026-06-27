@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 28 December 2026                              J. Preuß Mattsson
+Expires: 29 December 2026                              J. Preuß Mattsson
                                                                 Ericsson
-                                                            26 June 2026
+                                                            27 June 2026
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 28 December 2026.
+   This Internet-Draft will expire on 29 December 2026.
 
 Copyright Notice
 
@@ -171,24 +171,24 @@ Table of Contents
    to GCM.
 
    This document defines GCM with Strong Secure Tags (GCM-SST), an AEAD
-   algorithm that addresses these weaknesses described above.  GCM-SST
-   can be used with any keystream generator, not only 128-bit block
-   ciphers.  The main differences from GCM [GCM] are: the introduction
-   of a second authentication subkey H_2; per-nonce derivation of H and
-   H_2; and the replacement of GHASH with POLYVAL [RFC8452].  Together,
-   these changes yield truncated tags with near-ideal forgery
-   probabilities, even against multiple forgery attacks, see Section 5.
-   GCM-SST is designed for use in security protocols with replay
-   protection such as TLS [RFC8446], QUIC [RFC9000], SRTP [RFC3711], and
-   PDCP [PDCP].  In unicast settings with replay protection, GCM-SST's
-   authentication tag behaves as an ideal MAC with full reforgeability
-   resistance.  Compared to Poly1305 [RFC8439] and GCM [RFC5116], GCM-
-   SST achieves stronger integrity with less overhead.  Its hardware and
-   software performance is comparable to GCM; in software, the two
-   additional AES invocations are offset by POLYVAL's advantage over
-   GHASH on little-endian architectures.  GCM-SST preserves GCM's
-   additive encryption structure, enabling efficient pipelining on
-   modern processors [GCM-Update][Gueron].
+   algorithm that addresses these weaknesses.  GCM-SST can be used with
+   any keystream generator, not only 128-bit block ciphers.  The main
+   differences from GCM [GCM] are: the introduction of a second
+   authentication subkey H_2; per-nonce derivation of H and H_2; and the
+   replacement of GHASH with POLYVAL [RFC8452].  Together, these changes
+   yield truncated tags with near-ideal forgery probabilities, even
+   against multiple forgery attacks, see Section 5.  GCM-SST is designed
+   for use in security protocols with replay protection such as TLS
+   [RFC8446], QUIC [RFC9000], SRTP [RFC3711], and PDCP [PDCP].  In
+   unicast settings with replay protection, GCM-SST's authentication tag
+   behaves as an ideal MAC with full reforgeability resistance.
+   Compared to Poly1305 [RFC8439] and GCM [RFC5116], GCM-SST achieves
+   stronger integrity with less overhead.  Its hardware and software
+   performance is comparable to GCM; in software, the two additional AES
+   invocations are offset by POLYVAL's advantage over GHASH on little-
+   endian architectures.  GCM-SST preserves GCM's additive encryption
+   structure, enabling efficient pipelining on modern processors
+   [GCM-Update][Gueron].
 
    This document also registers GCM-SST instances using AES [AES] and
    Rijndael with 256-bit keys and blocks (Rijndael-256) [Rijndael] in
