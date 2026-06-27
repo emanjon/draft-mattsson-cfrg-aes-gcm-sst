@@ -708,13 +708,12 @@ Table of Contents
 
    Table 2 compares the integrity of GCM-SST, ChaCha20-Poly1305
    [RFC8439], and AES-GCM [RFC5116] in unicast security protocols with
-   replay protection, where v denotes the number of decryption queries.
-   In both Poly1305 and GCM, the forgery probability depends on ℓ; in
-   GCM it additionally involves the Bernstein bound factor δ. GCM-SST
-   requires δ ≈ 1, a property that GCM does not mandate.  Furthermore,
-   GCM provides no reforgeability resistance, which substantially
-   increases the expected number of forgeries.  See [Procter], [Iwata],
-   and [Multiple] for further details.
+   replay protection.  In both Poly1305 and GCM, the forgery probability
+   depends on ℓ; in GCM it additionally involves the Bernstein bound
+   factor δ. GCM-SST requires δ ≈ 1, a property that GCM does not
+   mandate.  Furthermore, GCM provides no reforgeability resistance,
+   which substantially increases the expected number of forgeries.  See
+   [Procter], [Iwata], and [Multiple] for further details.
 
    +============+=======+==============+=============+=================+
    | Name       |    Tag|      Forgery |     Forgery | Expected number |
