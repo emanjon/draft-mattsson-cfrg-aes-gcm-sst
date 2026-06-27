@@ -502,7 +502,8 @@ Table of Contents
     | AEAD_RIJNDAEL_GCM_SST_14 |      32 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
 
-                          Table 1: AEAD Algorithms
+      Table 1: AEAD Algorithm Instances for AES-GCM-SST and Rijndael-
+                                  GCM-SST
 
    The following parameters apply to all the instances:
 
