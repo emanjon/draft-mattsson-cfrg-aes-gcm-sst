@@ -712,9 +712,9 @@ Unless otherwise specified, formulas for the expected number of forgeries apply 
 
 ## Integrity {#Int}
 
-The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is significantly better than GCM, where the security level is only tag_length - log2(ℓ) bits {{GCM}}. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability of GCM-SST is not ideal and comparable to that of GCM {{GCM}}. In GCM-SST, the full_tag is independent of the specified tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
+The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When tag_length < 128 - log2(ℓ) bits, the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is significantly better than GCM, where the worst-case forgery probability is bounded by only ℓ / 2^tag_length [GCM]. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability of GCM-SST is not ideal and comparable to that of GCM {{GCM}}. In GCM-SST, the full_tag is independent of the specified tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
 
-The expected number of forgeries, when tag_length < 128 - log2(ℓ) bits, depends on the keystream generator. For block ciphers in counter mode, it is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
+The expected number of forgeries depends on the keystream generator. For block ciphers in counter mode, it is determined by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
 {: style=""}
 * E(F) ≈ v / 2<sup>tag_length</sup>   ,
@@ -724,7 +724,7 @@ where v is the number of decryption function invocations. Following the constrai
 {: style=""}
 * E(F) ≈ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup>   .
 
-For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Inoue}}, {{Naito}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
+For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Inoue}}, {{Naito}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when tag_length < 128 - log2(ℓ) bits and δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
 ## Confidentiality {#Conf}
 
