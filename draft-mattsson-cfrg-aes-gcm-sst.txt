@@ -209,8 +209,8 @@ Table of Contents
    in single- and multi-user settings are provided by Inoue et al.
    [Inoue] and Naito et al.  [Naito].
 
-   Section 3 specifies GCM-SST.  Section 4 registers AEAD algorithms
-   using AES and Rijndael-256.  Section 5 discusses security
+   Section 3 specifies GCM-SST, Section 4 registers AEAD algorithms
+   using AES and Rijndael-256, and Section 5 discusses security
    considerations.
 
 2.  Conventions and Definitions
