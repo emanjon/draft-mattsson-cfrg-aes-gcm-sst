@@ -696,7 +696,7 @@ Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX,
 
 {: style=""}
 * Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
-* (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>66</sup>
+* (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>64</sup>
 
 The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
