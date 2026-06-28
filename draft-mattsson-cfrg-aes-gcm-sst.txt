@@ -445,7 +445,7 @@ Table of Contents
    separate structures or encode both as a single byte string C.  In the
    latter case, the tag MUST immediately follow the ciphertext:
 
-      C = ct || tag
+      C = ct || tag .
 
 4.  AES and Rijndael-256 in GCM-SST
 
@@ -457,7 +457,7 @@ Table of Contents
    When GCM-SST is instantiated with AES (AES-GCM-SST), the keystream
    generator is AES in counter mode
 
-      Z[i] = ENC(K, N || BE32(i))
+      Z[i] = ENC(K, N || BE32(i)) ,
 
    where ENC is the AES Cipher function [AES].  The use of big-endian
    counters aligns with existing AES counter mode implementations.
@@ -467,9 +467,9 @@ Table of Contents
    When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST),
    the keystream generator is Rijndael-256 in counter mode
 
-      Z[2i] = ENC(K, N || BE32(i))[0]
+      Z[2i] = ENC(K, N || BE32(i))[0] ,
 
-      Z[2i+1] = ENC(K, N || BE32(i))[1]
+      Z[2i+1] = ENC(K, N || BE32(i))[1] ,
 
    where ENC is the Rijndael-256 Cipher function [Rijndael].
 
@@ -524,7 +524,7 @@ Table of Contents
    forgery probability close to ideal even for maximum-length plaintexts
    and associated data, this document sets:
 
-      P_MAX = A_MAX = min(2^(131 - tag_length), 2^29 ⋅ b - 48)
+      P_MAX = A_MAX = min(2^(131 - tag_length), 2^29 ⋅ b - 48) ,
 
    where b is the block size.  This implies that the worst-case forgery
    probability is bounded by ≈ 1 / 2^(tag_length) for all permitted
@@ -541,9 +541,9 @@ Table of Contents
    P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here.  Protocols
    using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
-      Q_MAX ⋅ P_MAX ⪅ 2^63
+      Q_MAX ⋅ P_MAX ⪅ 2^63 ,
 
-      (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2^64
+      (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2^64 .
 
    The first constraint aligns with [ACM] and ensures that an attacker
    cannot recover more than ≈ 0.0007 bits across all plaintexts
