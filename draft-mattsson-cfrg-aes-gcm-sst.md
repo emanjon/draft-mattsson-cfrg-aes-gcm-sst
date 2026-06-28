@@ -724,7 +724,7 @@ Unless otherwise specified, formulas for the expected number of forgeries apply 
 ## Integrity {#Int}
 
 The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When tag_length < 128 - log2(ℓ) bits, the forgery probability is ≈ 1 / 2<sup>tag_length</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is significantly improvement over GCM, where the forgery probability is bounded by ⪅ δ ⋅ ℓ / 2<sup>tag_length</sup> {{GCM}}{{Iwata}}. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability of GCM-SST is no longer ideal and becomes comparable to that of GCM. In GCM-SST, the full_tag is independent of the specified tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
-  
+
 The expected number of forgeries depends on the properties of the keystream generator. For block ciphers in counter mode, it is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
 {: style=""}
