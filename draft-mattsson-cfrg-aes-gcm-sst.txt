@@ -526,9 +526,9 @@ Table of Contents
 
       P_MAX = A_MAX = min(2^(131 - tag_length), 2^29 ⋅ b - 48) ,
 
-   where b is the block size.  This implies that the worst-case forgery
-   probability is bounded by ≈ 1 / 2^(tag_length) for all permitted
-   plaintext and associated data lengths [Nyberg].
+   where b is the block size in bits.  This implies that the worst-case
+   forgery probability is bounded by ≈ 1 / 2^(tag_length) for all
+   permitted plaintext and associated data lengths [Nyberg].
 
    The V_MAX constraint ensures that the Bernstein bound factor
    satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈
