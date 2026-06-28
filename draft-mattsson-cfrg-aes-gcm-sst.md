@@ -671,7 +671,7 @@ Nine AEAD algorithm instances are defined below, following the format of {{RFC51
 | AEAD_AES_256_GCM_SST_6 | 32 | 2<sup>36</sup> - 48 | 48 |
 | AEAD_AES_256_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
 | AEAD_AES_256_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
-| AEAD_RIJNDAEL_GCM_SST_6 | 32 | 2<sup>36</sup> - 48 | 48 |
+| AEAD_RIJNDAEL_GCM_SST_6 | 32 | 2<sup>37</sup> - 48 | 48 |
 | AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
 | AEAD_RIJNDAEL_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
 {: #iana-algs title="AEAD Algorithm Instances for AES-GCM-SST and Rijndael-GCM-SST" cols="l r r r"}
@@ -686,9 +686,9 @@ The following parameters apply to all the instances:
 The values of P_MAX and A_MAX are more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a near-ideal forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
 
 {: style=""}
-* P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)
+* P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>29</sup> ⋅ b - 48)
 
-This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}.
+where b is the block size. This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}.
 
 The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
@@ -698,12 +698,13 @@ Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX,
 * Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
 * (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>66</sup>
 
-The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup>, where b is the block size, depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
+The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
 {::comment}
 P_MAX = A_MAX <≈ 2^(131 - tag_length) ensures that ℓ <≈ 2^(128 - tag_length)
+The 2<sup>29</sup> ⋅ b - 48 limit is based on the 32-bit counter size
 2^63 bytes is 2^59 AES blocks aligning with ACM recommendation of 2^(b/2-5)
 0.0007 ≈ 1 / 2^10.47 ≈ (2^59)^2 / 2^129 / ln 4
 2^66 bytes is 2^63 AES blocks and 2^63 << 2^(b+1)/2 = 2^64.5
