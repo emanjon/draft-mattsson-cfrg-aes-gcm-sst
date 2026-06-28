@@ -635,7 +635,7 @@ The comparison of tag and expected_tag in step 9 MUST be performed in constant t
 Applications MAY store the ciphertext and the authentication tag in separate structures or encode both as a single byte string C. In the latter case, the tag MUST immediately follow the ciphertext:
 
 {: style=""}
-* C = ct \|\| tag
+* C = ct \|\| tag   .
 
 # AES and Rijndael-256 in GCM-SST {#AES-GCM-SST}
 
@@ -646,7 +646,7 @@ This section defines instantiations of GCM-SST using AES and Rijndael-256.
 When GCM-SST is instantiated with AES (AES-GCM-SST), the keystream generator is AES in counter mode
 
 {: style=""}
-* Z[i] = ENC(K, N \|\| BE32(i))
+* Z[i] = ENC(K, N \|\| BE32(i))   ,
 
 where ENC is the AES Cipher function {{AES}}. The use of big-endian counters aligns with existing AES counter mode implementations.
 
@@ -655,8 +655,8 @@ where ENC is the AES Cipher function {{AES}}. The use of big-endian counters ali
 When GCM-SST is instantiated with Rijndael-256 (Rijndael-GCM-SST), the keystream generator is Rijndael-256 in counter mode
 
 {: style=""}
-* Z[2i]   = ENC(K, N \|\| BE32(i))[0]
-* Z[2i+1] = ENC(K, N \|\| BE32(i))[1]
+* Z[2i]   = ENC(K, N \|\| BE32(i))[0]   ,
+* Z[2i+1] = ENC(K, N \|\| BE32(i))[1]   ,
 
 where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 
@@ -686,7 +686,7 @@ The following parameters apply to all the instances:
 The values of P_MAX and A_MAX are more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a near-ideal forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
 
 {: style=""}
-* P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>29</sup> ⋅ b - 48)
+* P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>29</sup> ⋅ b - 48)   ,
 
 where b is the block size. This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}.
 
@@ -695,8 +695,8 @@ The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 
 Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here. Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
-* Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>
-* (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>64</sup>
+* Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>   ,
+* (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>64</sup>   .
 
 The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
