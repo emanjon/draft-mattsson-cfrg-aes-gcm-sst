@@ -514,10 +514,10 @@ Table of Contents
       tag_length / 8 bytes.
 
    *  Q_MAX (maximum number of encryption function invocations) is 2^32
-      for AES-GCM-SST and 2^88 for Rijndael-GCM-SST.
+      for AES-GCM-SST and 2^64 for Rijndael-GCM-SST.
 
    *  V_MAX (maximum number of decryption function invocations) is 2^48
-      for AES-GCM-SST and 2^88 for Rijndael-GCM-SST.
+      for AES-GCM-SST and 2^85 for Rijndael-GCM-SST.
 
    The values of P_MAX and A_MAX are more restrictive than the
    corresponding limits in [RFC5116] for GCM.  To ensure a near-ideal
