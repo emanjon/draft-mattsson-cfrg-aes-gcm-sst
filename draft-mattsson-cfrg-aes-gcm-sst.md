@@ -680,8 +680,8 @@ The following parameters apply to all the instances:
 
 * N_MIN = N_MAX (minimum and maximum nonce length) is 12 bytes for AES-GCM-SST and 28 bytes for Rijndael-GCM-SST.
 * C_MAX (maximum ciphertext length, including the tag) is P_MAX + tag_length / 8 bytes.
-* Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>88</sup> for Rijndael-GCM-SST.
-* V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>88</sup> for Rijndael-GCM-SST.
+* Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>64</sup> for Rijndael-GCM-SST.
+* V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>85</sup> for Rijndael-GCM-SST.
 
 The values of P_MAX and A_MAX are more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a near-ideal forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
 
@@ -708,7 +708,8 @@ P_MAX = A_MAX <≈ 2^(131 - tag_length) ensures that ℓ <≈ 2^(128 - tag_lengt
 The 2<sup>29</sup> ⋅ b - 48 limit is based on the 32-bit counter size
 2^63 bytes is 2^59 AES blocks aligning with ACM recommendation of 2^(b/2-5)
 0.0007 ≈ 1 / 2^10.47 ≈ (2^59)^2 / 2^129 / ln 4
-2^64 bytes is 2^60 AES blocks and 2^60 << 2^(b+1)/2 = 2^64.5
+2^64 ensures that σ <≈ 2^60 << 2^(b+1)/2 = 2^64.5
+2^85 ensures that σ <≈ 2^124 << 2^(b+1)/2 = 2^128.5
 2^30–2^37 bytes is approximately 1–100 GB
 {:/}
 
