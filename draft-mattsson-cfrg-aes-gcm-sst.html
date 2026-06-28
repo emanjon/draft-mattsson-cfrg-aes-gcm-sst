@@ -1679,7 +1679,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <tr>
               <td class="text-left" rowspan="1" colspan="1">AEAD_RIJNDAEL_GCM_SST_6</td>
               <td class="text-right" rowspan="1" colspan="1">32</td>
-              <td class="text-right" rowspan="1" colspan="1">2<sup>36</sup> - 48</td>
+              <td class="text-right" rowspan="1" colspan="1">2<sup>37</sup> - 48</td>
               <td class="text-right" rowspan="1" colspan="1">48</td>
             </tr>
             <tr>
@@ -1717,10 +1717,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-4.3-5">The values of P_MAX and A_MAX are more restrictive than the corresponding limits in <span>[<a href="#RFC5116" class="cite xref">RFC5116</a>]</span> for GCM. To ensure a near-ideal forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:<a href="#section-4.3-5" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-4.3-6.1">
-            <p id="section-4.3-6.1.1">P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>36</sup> - 48)<a href="#section-4.3-6.1.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-6.1.1">P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>29</sup> ⋅ b - 48)<a href="#section-4.3-6.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.3-7">This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>.<a href="#section-4.3-7" class="pilcrow">¶</a></p>
+<p id="section-4.3-7">where b is the block size. This implies that the worst-case forgery probability is bounded by ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths <span>[<a href="#Nyberg" class="cite xref">Nyberg</a>]</span>.<a href="#section-4.3-7" class="pilcrow">¶</a></p>
 <p id="section-4.3-8">The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.<a href="#section-4.3-8" class="pilcrow">¶</a></p>
 <p id="section-4.3-9">Protocols employing Rijndael-GCM-SST <span class="bcp14">MAY</span> impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here. Protocols using AES-GCM-SST <span class="bcp14">MUST</span> enforce limits sufficient to ensure:<a href="#section-4.3-9" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
@@ -1731,7 +1731,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-4.3-10.2.1">(Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>66</sup><a href="#section-4.3-10.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.3-11">The first constraint aligns with <span>[<a href="#ACM" class="cite xref">ACM</a>]</span> and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts <span>[<a href="#Entropy" class="cite xref">Entropy</a>]</span>. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup>, where b is the block size, depends on the total number of block-cipher invocations <span>[<a href="#Bernstein" class="cite xref">Bernstein</a>]</span><span>[<a href="#Iwata" class="cite xref">Iwata</a>]</span>, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).<a href="#section-4.3-11" class="pilcrow">¶</a></p>
+<p id="section-4.3-11">The first constraint aligns with <span>[<a href="#ACM" class="cite xref">ACM</a>]</span> and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts <span>[<a href="#Entropy" class="cite xref">Entropy</a>]</span>. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations <span>[<a href="#Bernstein" class="cite xref">Bernstein</a>]</span><span>[<a href="#Iwata" class="cite xref">Iwata</a>]</span>, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).<a href="#section-4.3-11" class="pilcrow">¶</a></p>
 <p id="section-4.3-12">To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST <span class="bcp14">SHOULD</span> enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes <span>[<a href="#RFC4253" class="cite xref">RFC4253</a>]</span><span>[<a href="#ANSSI" class="cite xref">ANSSI</a>]</span>.<a href="#section-4.3-12" class="pilcrow">¶</a></p>
 </section>
 </div>

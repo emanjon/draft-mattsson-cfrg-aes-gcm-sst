@@ -495,7 +495,7 @@ Table of Contents
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_14  |      32 |          2^19 |        112 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_6  |      32 |     2^36 - 48 |         48 |
+    | AEAD_RIJNDAEL_GCM_SST_6  |      32 |     2^37 - 48 |         48 |
     +--------------------------+---------+---------------+------------+
     | AEAD_RIJNDAEL_GCM_SST_12 |      32 |          2^35 |         96 |
     +--------------------------+---------+---------------+------------+
@@ -524,11 +524,11 @@ Table of Contents
    forgery probability close to ideal even for maximum-length plaintexts
    and associated data, this document sets:
 
-      P_MAX = A_MAX = min(2^(131 - tag_length), 2^36 - 48)
+      P_MAX = A_MAX = min(2^(131 - tag_length), 2^29 ⋅ b - 48)
 
-   This implies that the worst-case forgery probability is bounded by ≈
-   1 / 2^(tag_length) for all permitted plaintext and associated data
-   lengths [Nyberg].
+   where b is the block size.  This implies that the worst-case forgery
+   probability is bounded by ≈ 1 / 2^(tag_length) for all permitted
+   plaintext and associated data lengths [Nyberg].
 
    The V_MAX constraint ensures that the Bernstein bound factor
    satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈
@@ -548,10 +548,9 @@ Table of Contents
    The first constraint aligns with [ACM] and ensures that an attacker
    cannot recover more than ≈ 0.0007 bits across all plaintexts
    [Entropy].  The second constraint ensures that δ ≈ 1.  The Bernstein
-   bound factor δ ⪅ 1 + σ^2 / 2^(b+1), where b is the block size,
-   depends on the total number of block-cipher invocations
-   [Bernstein][Iwata], which we conservatively upper-bound as σ ⪅ (Q_MAX
-   + V_MAX) ⋅ (P_MAX + A_MAX).
+   bound factor δ ⪅ 1 + σ^2 / 2^(b+1) depends on the total number of
+   block-cipher invocations [Bernstein][Iwata], which we conservatively
+   upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
    To align with zero-trust principles and minimize the impact of key
    compromise, protocols using GCM-SST SHOULD enforce rekeying well
