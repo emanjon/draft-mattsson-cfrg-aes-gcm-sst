@@ -701,6 +701,9 @@ Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX,
 The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup>, where b is the block size, depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
+{::comment}
+2^30–2^37 bytes is approximately 1–100 GB
+{:/}
 
 # Security Considerations {#Security}
 
