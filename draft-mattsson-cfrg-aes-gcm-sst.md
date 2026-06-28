@@ -737,6 +737,14 @@ where v is the number of decryption function invocations. Following the constrai
 
 For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Inoue}}, {{Naito}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when ℓ ⪅ 2<sup>32</sup> and δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
+{::comment}
+(1) For GCM it is known that Adv ⪅ δ ⋅ v ⋅ ℓ / 2<sup>tag_length</sup> [Iwata]
+(2) For GCM it is known that assuming δ ≈ 1, forgery probability ≈ ℓ / 2<sup>tag_length</sup> [Ferguson]
+(3) For GCM it is known that assuming δ ≈ 1, E(F) ≈ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup> [McGrew]
+(4) The bound (1) can be used to show that forgery probability ⪅ δ ⋅ ℓ / 2<sup>tag_length</sup>
+(5) The bound (4) can be used to show that E(F) ⪅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>tag_length+1</sup>
+{:/}
+
 ## Confidentiality {#Conf}
 
 The confidentiality offered by GCM-SST against passive attackers depends on the keystream generator. For block ciphers in counter mode, it is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. For AES-GCM-SST, the confidentiality is equal to AES-GCM {{GCM}}. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ<sub>E</sub>, where σ<sub>E</sub> ⪅ P_MAX ⋅ Q_MAX / 16 is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ<sub>E</sub>. McGrew, Leurent, and Sibleyras {{Impossible}}{{Difference}} demonstrate that for block ciphers in counter mode, an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logarithmic factors) as distinguishing attacks. However, Preuß Mattsson {{Entropy}} demonstrated that an attacker cannot recover more than ≈ (σ<sub>E</sub>)<sup>2</sup> / 2<sup>b</sup> bits of the plaintext, where b is the block size. Given the constraints outlined in {{instances}}, an attacker cannot recover more than 0.0007 bits of AES-GCM-SST plaintexts.
