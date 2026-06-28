@@ -703,11 +703,12 @@ The first constraint aligns with {{ACM}} and ensures that an attacker cannot rec
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
 {::comment}
+Q_MAX = 2^32 is taken from the GCM invocation limit
 P_MAX = A_MAX <≈ 2^(131 - tag_length) ensures that ℓ <≈ 2^(128 - tag_length)
 The 2<sup>29</sup> ⋅ b - 48 limit is based on the 32-bit counter size
 2^63 bytes is 2^59 AES blocks aligning with ACM recommendation of 2^(b/2-5)
 0.0007 ≈ 1 / 2^10.47 ≈ (2^59)^2 / 2^129 / ln 4
-2^66 bytes is 2^63 AES blocks and 2^63 << 2^(b+1)/2 = 2^64.5
+2^64 bytes is 2^60 AES blocks and 2^60 << 2^(b+1)/2 = 2^64.5
 2^30–2^37 bytes is approximately 1–100 GB
 {:/}
 
