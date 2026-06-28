@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 29 December 2026                              J. Preuß Mattsson
+Expires: 30 December 2026                              J. Preuß Mattsson
                                                                 Ericsson
-                                                            27 June 2026
+                                                            28 June 2026
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 December 2026.
+   This Internet-Draft will expire on 30 December 2026.
 
 Copyright Notice
 
