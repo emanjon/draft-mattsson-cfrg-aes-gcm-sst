@@ -1728,7 +1728,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-4.3-10.1.1">Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup><a href="#section-4.3-10.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal ulEmpty" id="section-4.3-10.2">
-            <p id="section-4.3-10.2.1">(Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>66</sup><a href="#section-4.3-10.2.1" class="pilcrow">¶</a></p>
+            <p id="section-4.3-10.2.1">(Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>64</sup><a href="#section-4.3-10.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-4.3-11">The first constraint aligns with <span>[<a href="#ACM" class="cite xref">ACM</a>]</span> and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts <span>[<a href="#Entropy" class="cite xref">Entropy</a>]</span>. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations <span>[<a href="#Bernstein" class="cite xref">Bernstein</a>]</span><span>[<a href="#Iwata" class="cite xref">Iwata</a>]</span>, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).<a href="#section-4.3-11" class="pilcrow">¶</a></p>

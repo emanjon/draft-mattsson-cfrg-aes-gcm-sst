@@ -543,7 +543,7 @@ Table of Contents
 
       Q_MAX ⋅ P_MAX ⪅ 2^63
 
-      (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2^66
+      (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2^64
 
    The first constraint aligns with [ACM] and ensures that an attacker
    cannot recover more than ≈ 0.0007 bits across all plaintexts
