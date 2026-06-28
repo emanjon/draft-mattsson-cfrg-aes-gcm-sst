@@ -623,9 +623,9 @@ Table of Contents
    where v is the number of decryption function invocations.  Following
    the constraints in Section 4.3, AES-GCM-SST and Rijndael-GCM-SST
    achieve this ideal.  AES-GCM-SST significantly outperforms AES-GCM,
-   where for AES-GCM (assuming δ≈1) the expected number of forgeries is
+   for which the expected number of forgeries is bounded by:
 
-      E(F) ≈ v^2 ⋅ ℓ / 2^(tag_length+1) .
+      E(F) ⪅ δ ⋅ v^2 ⋅ ℓ / 2^(tag_length+1) .
 
    For further details on the integrity advantages and expected number
    of forgeries for GCM and GCM-SST, see [Iwata], [Inoue], [Naito], and
