@@ -535,7 +535,9 @@ Table of Contents
    probability of ≈ 1 / 2^(tag_length) for all permitted plaintext and
    associated data lengths [Nyberg], this document sets:
 
-      P_MAX = A_MAX = min(2^(131 - tag_length), 2^32 ⋅ b / 8 - 48) .
+      P_MAX = A_MAX = min(2^(131 - tag_length), 2^32 ⋅ b / 8 - 48) ,
+
+   where b is the block size in bits.
 
    The V_MAX constraint ensures that the Bernstein bound factor
    satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈
