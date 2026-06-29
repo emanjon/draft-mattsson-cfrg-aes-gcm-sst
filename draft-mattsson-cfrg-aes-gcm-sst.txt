@@ -523,7 +523,7 @@ Table of Contents
    recovery attacks can be neglected, a strong integrity mechanism
    should satisfy
 
-      E(F) ≈ V / 2^(tag_length) ,
+      E(F) ≈ v / 2^(tag_length) ,
 
    for all permitted numbers of invocations, message lengths, and tag
    lengths.  The limits specified for AES-GCM-SST and Rijndael-GCM-SST
