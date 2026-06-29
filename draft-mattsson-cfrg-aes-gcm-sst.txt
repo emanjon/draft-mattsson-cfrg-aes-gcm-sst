@@ -826,9 +826,11 @@ Table of Contents
    that of an ideal MAC, the diversity of these forgeries is higher.  To
    achieve one distinct forgery per recipient with an ideal MAC, the
    attacker would need to send on average 2^(tag_length) forgery
-   attempts to each recipient.  GCM-SST performs equally well or better
-   than an ideal MAC with length tag_length - log2(r), where r is the
-   number of recipients.
+   attempts to each recipient.  In one-to-many scenarios with replay
+   protection and r recipients, the expected number of distinct
+   forgeries is ≈ v ⋅ r / 2^(tag_length).  Thus, GCM-SST provides
+   security equivalent to or better than an ideal MAC with length
+   tag_length - log2(r).
 
 6.  IANA Considerations
 
