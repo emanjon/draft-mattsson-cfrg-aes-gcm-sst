@@ -632,7 +632,7 @@ The comparison of tag and expected_tag in step 9 MUST be performed in constant t
 
 ## Encoding (ct, tag) Tuples
 
-Applications MAY store the ciphertext and the authentication tag in separate structures or encode both as a single byte string C. In the latter case, the tag MUST immediately follow the ciphertext:
+Applications MAY store the ciphertext and the authentication tag in separate structures or encode both as a single byte string C. In the latter case, the tag MUST immediately follow the ciphertext ct:
 
 {: style=""}
 * C = ct \|\| tag   .
