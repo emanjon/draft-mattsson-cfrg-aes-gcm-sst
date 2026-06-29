@@ -536,8 +536,8 @@ Table of Contents
       P_MAX = A_MAX = min(2^(131 - tag_length), 2^32 ⋅ b / 8 - 48) ,
 
    where b is the block size in bits.  This implies that the worst-case
-   forgery probability is bounded by ≈ 1 / 2^(tag_length) for all
-   permitted plaintext and associated data lengths [Nyberg].
+   forgery probability is ≈ 1 / 2^(tag_length) for all permitted
+   plaintext and associated data lengths [Nyberg].
 
    The V_MAX constraint ensures that the Bernstein bound factor
    satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈
@@ -607,7 +607,7 @@ Table of Contents
 5.1.  Integrity
 
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
-   be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16.  When
+   be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When
    tag_length ⪅ 128 - log2(ℓ) bits, the forgery probability is ≈ 1 /
    2^(tag_length) [Nyberg].  The tags in the AEAD algorithms listed in
    Section 4.3 therefore achieve near-ideal forgery probabilities.  This
