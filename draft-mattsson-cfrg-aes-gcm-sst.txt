@@ -94,7 +94,7 @@ Table of Contents
    5.  Security Considerations
      5.1.  Integrity
      5.2.  Confidentiality
-     5.3.  Weak keys
+     5.3.  Weak Keys
      5.4.  Replay Protection
      5.5.  Comparison with ChaCha20-Poly1305 and AES-GCM
      5.6.  Multicast and Broadcast
@@ -656,7 +656,7 @@ Table of Contents
    chunks.  In contrast, the confidentiality offered by Rijndael-GCM-SST
    against passive attackers is significantly higher.  The complexity of
    distinguishing attacks for Rijndael-GCM-SST is approximately 2^258 /
-   σ_E.  McGrew, Leurent, and Sibleyras [Impossible][Difference]
+   σ_E.  McGrew [Impossible] and Leurent and Sibleyras [Difference]
    demonstrate that for block ciphers in counter mode, an attacker with
    partial knowledge of the plaintext can execute plaintext-recovery
    attacks against counter mode with roughly the same complexity (up to
@@ -683,7 +683,7 @@ Table of Contents
    integrity, authenticity, and confidentiality MUST all be carefully
    evaluated when selecting an appropriate tag length.
 
-5.3.  Weak keys
+5.3.  Weak Keys
 
    In general, there is a very small possibility in GCM-SST that either
    or both of the subkeys H and H_2 are zero, so-called weak keys.  If H
