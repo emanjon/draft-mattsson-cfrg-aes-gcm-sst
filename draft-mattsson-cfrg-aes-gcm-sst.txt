@@ -187,7 +187,7 @@ Table of Contents
    to GCM; in software, the two additional AES invocations are offset by
    POLYVAL's advantage over GHASH on little-endian architectures.  GCM-
    SST preserves GCM's additive encryption structure, enabling efficient
-   pipelining on modern processors [GCM-Update][Gueron].
+   implementations on modern processors [GCM-Update][Gueron].
 
    This document also registers GCM-SST instances using AES [AES] and
    Rijndael with 256-bit keys and blocks (Rijndael-256) [Rijndael] in
@@ -605,15 +605,15 @@ Table of Contents
 5.1.  Integrity
 
    The GCM-SST tag_length SHOULD NOT be smaller than 4 bytes and cannot
-   be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When
-   tag_length ⪅ 128 - log2(ℓ) bits, the forgery probability is ≈ 1 /
-   2^(tag_length) [Nyberg].  The tags in the AEAD algorithms listed in
-   Section 4.3 therefore achieve near-ideal forgery probabilities.  This
-   is significantly improvement over GCM, where the forgery probability
-   is bounded by ⪅ δ ⋅ ℓ / 2^(tag_length) [GCM][Iwata].  For a graph of
-   the forgery probability, refer to Fig. 3 in [Inoue].  For 128-bit
-   tags and long messages, the forgery probability of GCM-SST is no
-   longer ideal and becomes comparable to that of GCM.  In GCM-SST, the
+   be larger than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When ℓ ⪅
+   2^(128 - tag_length), the forgery probability is ≈ 1 / 2^(tag_length)
+   [Nyberg].  The tags in the AEAD algorithms listed in Section 4.3
+   therefore achieve near-ideal forgery probabilities.  This is
+   significantly improvement over GCM, where the forgery probability is
+   bounded by ⪅ δ ⋅ ℓ / 2^(tag_length) [GCM][Iwata].  For a graph of the
+   forgery probability, refer to Fig. 3 in [Inoue].  For 128-bit tags
+   and long messages, the forgery probability of GCM-SST is no longer
+   ideal and becomes comparable to that of GCM.  In GCM-SST, the
    full_tag is independent of the tag length unless the application
    explicitly incorporates tag length into the keystream or the nonce.
 
