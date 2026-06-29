@@ -191,17 +191,19 @@ Table of Contents
 
    This document also registers GCM-SST instances using AES [AES] and
    Rijndael with 256-bit keys and blocks (Rijndael-256) [Rijndael] in
-   counter mode, with tag lengths of 48, 96, and 112 bits.  All
-   registered instances have an expected number of forgeries E(F) ≈ v /
+   counter mode, with tag lengths of 48, 96, and 112 bits.  These
+   instances address the strong industry demand for fast authenticated
+   encryption with minimal overhead and strong security.  All registered
+   instances achieve an expected number of forgeries E(F) ≈ v /
    2^(tag_length), matching the behavior of an ideal MAC.  This is a
-   property expected of a modern AEAD but one that GCM is far from
-   providing.  Rijndael-256 is already standardized by 3GPP for
-   authentication and key generation [Milenage-256] and is planned for
-   NIST standardization [Plans].  Rijndael-256 performs well on modern
-   x86-64 platforms with AES-NI and VAES instructions [Drucker].
-   Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST offers
-   substantially higher throughput in pure hardware while retaining the
-   advantage of being a mode of operation for AES.
+   property expected of a modern AEAD but one that GCM does not provide.
+   Rijndael-256 is already standardized by 3GPP for authentication and
+   key generation [Milenage-256] and is planned for NIST standardization
+   [Plans].  On modern x86-64 platforms with AES-NI and VAES
+   instructions, Rijndael-256 performs efficiently [Drucker].  Compared
+   to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST offers substantially
+   higher throughput in dedicated hardware while retaining the advantage
+   of being a mode of operation for AES.
 
    GCM-SST was originally developed by ETSI SAGE and subsequently
    standardized by 3GPP for use with SNOW 5G [NCA4], AES-256 [NCA5], and
