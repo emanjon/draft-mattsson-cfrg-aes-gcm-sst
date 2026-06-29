@@ -834,9 +834,7 @@ Table of Contents
    attacker would need to send on average 2^(tag_length) forgery
    attempts to each recipient.  In one-to-many scenarios with replay
    protection and r recipients, the expected number of distinct
-   forgeries is ≈ v ⋅ r / 2^(tag_length).  Thus, GCM-SST provides
-   security equivalent to or better than an ideal MAC of tag_length -
-   log2(r) bits.
+   forgeries is ≈ v ⋅ r / 2^(tag_length).
 
 6.  IANA Considerations
 
