@@ -17,7 +17,7 @@ Abstract
 
    This document defines Galois Counter Mode with Strong Secure Tags
    (GCM-SST), an Authenticated Encryption with Associated Data (AEAD)
-   algorithm that addresses three weaknesses of GCM.  GCM-SST can be
+   algorithm that addresses several weaknesses of GCM.  GCM-SST can be
    used with any keystream generator, not only 128-bit block ciphers.
    The main differences from GCM are the introduction of a second
    authentication subkey H_2, per-nonce derivation of both H and H_2,
