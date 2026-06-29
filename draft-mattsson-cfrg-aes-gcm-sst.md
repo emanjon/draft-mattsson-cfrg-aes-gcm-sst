@@ -686,7 +686,7 @@ The following parameters apply to all the instances:
 Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
 {: style=""}
-* E(F) ≈ V / 2<sup>tag_length</sup> ,
+* E(F) ≈ v / 2<sup>tag_length</sup> ,
 
 for all permitted numbers of invocations, message lengths, and tag lengths. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this and are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensures a forgery probability of ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths [Nyberg], this document sets:¶
 
