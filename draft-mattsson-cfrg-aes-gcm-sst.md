@@ -681,7 +681,7 @@ The following parameters apply to all the instances:
 * N_MIN = N_MAX (minimum and maximum nonce length) is 12 bytes for AES-GCM-SST and 28 bytes for Rijndael-GCM-SST.
 * C_MAX (maximum ciphertext length, including the tag) is P_MAX + tag_length / 8 bytes.
 * Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>64</sup> for Rijndael-GCM-SST.
-* V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>85</sup> for Rijndael-GCM-SST.
+* V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>84</sup> for Rijndael-GCM-SST.
 
 Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
@@ -700,10 +700,9 @@ The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 
 Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here. Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
-* Q_MAX ⋅ P_MAX ⪅ 2<sup>63</sup>   ,
-* (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>64</sup>   .
+* (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>63</sup>   .
 
-The first constraint aligns with {{ACM}} and ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}}. The second constraint ensures that δ ≈ 1. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which we conservatively upper-bound as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
+This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
