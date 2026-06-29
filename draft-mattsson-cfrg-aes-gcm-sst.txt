@@ -533,7 +533,7 @@ Table of Contents
    achieve this and are therefore more restrictive than the
    corresponding limits in [RFC5116] for GCM.  To ensure a forgery
    probability of ≈ 1 / 2^(tag_length) for all permitted plaintext and
-   associated data lengths [Nyberg], this document sets:¶
+   associated data lengths [Nyberg], this document sets:
 
       P_MAX = A_MAX = min(2^(131 - tag_length), 2^32 ⋅ b / 8 - 48) .
 
