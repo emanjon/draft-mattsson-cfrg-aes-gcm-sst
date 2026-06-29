@@ -683,14 +683,14 @@ The following parameters apply to all the instances:
 * Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>64</sup> for Rijndael-GCM-SST.
 * V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>85</sup> for Rijndael-GCM-SST.
 
-Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, the design goal of AES-GCM-SST and Rijndael-GCM-SST is to provide near-ideal integrity. Specifically, the limits specified in this document are chosen so that the expected number of successful forgeries satisfies
+Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
 {: style=""}
 * E(F) ≈ V / 2<sup>tag_length</sup> ,
 
-for all permitted numbers of invocations, message lengths, and tag lengths.
+for all permitted numbers of invocations, message lengths, and tag lengths. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this and are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM.
 
-The values of P_MAX and A_MAX are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a near-ideal forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
+To ensure a near-ideal forgery probability close to ideal even for maximum-length plaintexts and associated data, this document sets:
 
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
