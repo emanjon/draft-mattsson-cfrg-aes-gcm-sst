@@ -256,7 +256,7 @@ Table of Contents
    *  zeropad(x) right-pads the byte string x with zeros to a multiple
       of 128 bits
 
-   *  truncate(x, t) retains the first t bits of x and discards the
+   *  truncate(x, y) retains the first y bits of x and discards the
       remainder
 
    *  n is the number of 128-bit chunks in zeropad(P)
@@ -608,12 +608,12 @@ Table of Contents
 
 5.1.  Integrity
 
-   The GCM-SST t SHOULD NOT be smaller than 4 bytes and cannot be larger
-   than 16 bytes.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When ℓ ⪅ 2^(128 -
-   t), the forgery probability is ≈ 1 / 2^t [Nyberg].  The tags in the
-   AEAD algorithms listed in Section 4.3 therefore achieve near-ideal
-   forgery probabilities.  This is a significant improvement over GCM,
-   where the forgery probability is bounded by ⪅ δ ⋅ ℓ / 2^t
+   The GCM-SST tag length SHOULD NOT be smaller than 32 bits and cannot
+   be larger than 128 bits.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.  When ℓ ⪅
+   2^(128 - t), the forgery probability is ≈ 1 / 2^t [Nyberg].  The tags
+   in the AEAD algorithms listed in Section 4.3 therefore achieve near-
+   ideal forgery probabilities.  This is a significant improvement over
+   GCM, where the forgery probability is bounded by ⪅ δ ⋅ ℓ / 2^t
    [GCM][Iwata].  For a graph of the forgery probability, refer to Fig.
    3 in [Inoue].  For 128-bit tags and long messages, the forgery
    probability of GCM-SST is no longer ideal and becomes comparable to
