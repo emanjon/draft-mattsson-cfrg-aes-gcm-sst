@@ -561,7 +561,7 @@ Prerequisites and security requirements:
 
 * The key MUST be chosen uniformly at random.
 * For a given key, each nonce MUST be unique; random nonces MUST NOT be used.
-* Each key MUST be restricted to a single t.
+* Each key MUST be restricted to a single tag length t.
 * Supported input and output lengths MUST be defined.
 
 Inputs:
