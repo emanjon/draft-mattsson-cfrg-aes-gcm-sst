@@ -1340,7 +1340,7 @@ Change Log
    *  Guidance to frequently rekey with FS and PCS to limit impact of
       key compromise.
 
-   *  Requirement to destroy (zeroize) ntermediate values.
+   *  Requirement to destroy (zeroize) intermediate values.
 
    *  E(F) formula for GCM is only known when δ ≈ 1.
 
