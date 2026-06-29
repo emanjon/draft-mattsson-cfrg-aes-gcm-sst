@@ -176,20 +176,21 @@ Table of Contents
    algorithm that addresses these weaknesses.  GCM-SST can be used with
    any keystream generator, not only 128-bit block ciphers.  The main
    differences from GCM [GCM] are: the introduction of a second
-   authentication subkey H_2; per-nonce derivation of H and H_2; and the
-   replacement of GHASH with POLYVAL [RFC8452].  Together, these changes
-   yield truncated tags with near-ideal forgery probabilities, even
-   against multiple forgery attacks.  GCM-SST is designed for use in
-   security protocols with replay protection such as TLS [RFC8446], QUIC
-   [RFC9000], SRTP [RFC3711], and PDCP [PDCP].  In unicast settings with
-   replay protection, GCM-SST's authentication tag behaves as an ideal
-   MAC with full reforgeability resistance.  Compared to Poly1305
-   [RFC8439] and GCM [RFC5116], GCM-SST achieves stronger integrity with
-   less overhead.  Its hardware and software performance is comparable
-   to GCM; in software, the two additional AES invocations are offset by
-   POLYVAL's advantage over GHASH on little-endian architectures.  GCM-
-   SST preserves GCM's additive encryption structure, enabling efficient
-   implementations on modern processors [GCM-Update][Gueron].
+   authentication subkey H_2; per-nonce derivation of H and H_2;
+   stricter usage limits; and the replacement of GHASH with POLYVAL
+   [RFC8452].  Together, these changes yield truncated tags with near-
+   ideal forgery probabilities, even against multiple forgery attacks.
+   GCM-SST is designed for use in security protocols with replay
+   protection such as TLS [RFC8446], QUIC [RFC9000], SRTP [RFC3711], and
+   PDCP [PDCP].  In unicast settings with replay protection, GCM-SST's
+   authentication tag behaves as an ideal MAC with full reforgeability
+   resistance.  Compared to Poly1305 [RFC8439] and GCM [RFC5116], GCM-
+   SST achieves stronger integrity with less overhead.  Its hardware and
+   software performance is comparable to GCM; in software, the two
+   additional AES invocations are offset by POLYVAL's advantage over
+   GHASH on little-endian architectures.  GCM-SST preserves GCM's
+   additive encryption structure, enabling efficient implementations on
+   modern processors [GCM-Update][Gueron].
 
    This document also registers GCM-SST instances using AES [AES] and
    Rijndael with 256-bit keys and blocks (Rijndael-256) [Rijndael] in
