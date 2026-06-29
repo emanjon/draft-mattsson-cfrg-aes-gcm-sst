@@ -145,11 +145,11 @@ Table of Contents
    shorter than 96 bits [Revise], but has not addressed the underlying
    authentication weaknesses.  A third weakness is that GCM does not
    impose sufficiently strict limits on the number of invocations and
-   message lengths.  Even with 96-bit tags, AES-GCM [GCM] offers only a
-   forgery probability of 2^-39, and with 128-bit tags in QUIC
-   [RFC9001], the expected number of forgeries, E(F), exceeds that of an
-   ideal 65-bit MAC.  Reforgeability resistance is a core design
-   criterion in modern AEAD schemes [Reforge][AEZ].
+   the lengths of plaintext and associated data.  Even with 96-bit tags,
+   AES-GCM [GCM] offers only a forgery probability of 2^-39, and with
+   128-bit tags in QUIC [RFC9001], the expected number of forgeries,
+   E(F), exceeds that of an ideal 65-bit MAC.  Reforgeability resistance
+   is a core design criterion in modern AEAD schemes [Reforge][AEZ].
 
    Short tags are widely used: 32-bit tags are standard in most radio
    link layers including 5G [Sec5G], 64-bit tags are very common in IoT
