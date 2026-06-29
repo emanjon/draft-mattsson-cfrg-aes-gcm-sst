@@ -688,7 +688,7 @@ Assuming a sufficiently large key size such that brute-force key-recovery attack
 {: style=""}
 * E(F) ≈ v / 2<sup>tag_length</sup> ,
 
-for all permitted numbers of invocations, message lengths, and tag lengths. This is how users expect MAC algorithms to behave. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this and are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability of ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths [Nyberg], this document sets:¶
+for all permitted numbers of invocations, message lengths, and tag lengths. This is how users expect MAC algorithms to behave. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this and are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability of ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths [Nyberg], this document sets:
 
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   .
