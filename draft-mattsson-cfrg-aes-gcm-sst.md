@@ -628,7 +628,7 @@ Steps:
 11. If N fails replay protection, return an error and abort
 12. Return P
 
-The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that a plaintext has not been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks. If tag validation or replay protection fails, intermediate values such as H, H<sub>2</sub>, M, Z, P, X, full_tag, and expected_tag MUST be destroyed (zeroized).
+The comparison of tag and expected_tag in step 9 MUST be performed in constant time to prevent information leakage about the position of the first mismatched byte. For a given key, a plaintext MUST NOT be returned unless it is certain that no plaintext has previously been returned for the same nonce. Replay protection MAY be performed either before step 1 or during step 11. Protocols with nonce-hiding mechanisms {{Bellare19}}, such as QUIC {{RFC9001}}, implement replay protection after decryption to mitigate timing side-channel attacks. If tag validation or replay protection fails, intermediate values such as H, H<sub>2</sub>, M, Z, P, X, full_tag, and expected_tag MUST be destroyed (zeroized).
 
 ## Encoding (ct, tag) Tuples
 
@@ -768,7 +768,7 @@ The details of the replay protection mechanism are determined by the security pr
 
 ## Comparison with ChaCha20-Poly1305 and AES-GCM {#Comp}
 
-{{comp1}} compares the integrity of GCM-SST, ChaCha20-Poly1305 {{RFC8439}}, and AES-GCM {{RFC5116}} in unicast security protocols with replay protection. In both Poly1305 and GCM, the forgery probability depends on ℓ; in GCM it additionally involves the Bernstein bound factor δ. GCM-SST requires δ ≈ 1, a property that GCM does not mandate. Furthermore, GCM provides no reforgeability resistance, which substantially increases the expected number of forgeries. See {{Procter}}, {{Iwata}}, and {{Multiple}} for further details.
+{{comp1}} compares the integrity of GCM-SST, ChaCha20-Poly1305 {{RFC8439}}, and AES-GCM {{RFC5116}} in unicast security protocols with replay protection. In both Poly1305 and GCM, the forgery probability depends on ℓ; in GCM, it additionally involves the Bernstein bound factor δ. GCM-SST requires δ ≈ 1, a property that GCM does not mandate. Furthermore, GCM provides no reforgeability resistance, which substantially increases the expected number of forgeries. See {{Procter}}, {{Iwata}}, and {{Multiple}} for further details.
 
 | Name | Tag length (bytes) | Forgery probability before first forgery | Forgery probability after first forgery| Expected number of forgeries |
 | GCM_SST_14 | 14 | 1 / 2<sup>112</sup> | 1 / 2<sup>112</sup> | v / 2<sup>112</sup> |
