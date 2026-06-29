@@ -683,12 +683,15 @@ The following parameters apply to all the instances:
 * Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>64</sup> for Rijndael-GCM-SST.
 * V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>84</sup> for Rijndael-GCM-SST.
 
+
 Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
 {: style=""}
 * E(F) ≈ v / 2<sup>tag_length</sup> ,
 
-for all permitted numbers of invocations, message lengths, and tag lengths. This is how users expect MAC algorithms to behave. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this and are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensure a forgery probability of ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths [Nyberg], this document sets:
+for all permitted numbers of invocations, message lengths, and tag lengths. This is how users expect MAC algorithms to behave. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this property and are therefore more restrictive than the corresponding limits for GCM in {{RFC5116}}.
+
+To ensure a forgery probability of ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths [Nyberg], this document sets:
 
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
@@ -709,11 +712,10 @@ To align with zero-trust principles and minimize the impact of key compromise, p
 {::comment}
 Q_MAX = 2^32 is taken from the GCM invocation limit
 P_MAX = A_MAX <≈ 2^(131 - tag_length) ensures that ℓ <≈ 2^(128 - tag_length)
-The 2<sup>29</sup> ⋅ b - 48 limit is based on the 32-bit counter size
 2^63 bytes is 2^59 AES blocks aligning with ACM recommendation of 2^(b/2-5)
 0.0007 ≈ 1 / 2^10.47 ≈ (2^59)^2 / 2^129 / ln 4
-2^64 ensures that σ <≈ 2^60 << 2^(b+1)/2 = 2^64.5
-2^85 ensures that σ <≈ 2^124 << 2^(b+1)/2 = 2^128.5
+2^63 ensures that σ <≈ 2^59 << 2^(b+1)/2 = 2^64.5
+2^84 ensures that σ <≈ 2^123 << 2^(b+1)/2 = 2^128.5
 2^30–2^37 bytes is approximately 1–100 GB
 {:/}
 
