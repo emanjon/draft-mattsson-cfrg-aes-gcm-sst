@@ -688,12 +688,10 @@ Assuming a sufficiently large key size such that brute-force key-recovery attack
 {: style=""}
 * E(F) ≈ V / 2<sup>tag_length</sup> ,
 
-for all permitted numbers of invocations, message lengths, and tag lengths. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this and are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM. To maintain a near-ideal forgery probability, this document sets:
+for all permitted numbers of invocations, message lengths, and tag lengths. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this and are therefore more restrictive than the corresponding limits in {{RFC5116}} for GCM. To ensures a forgery probability of ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths [Nyberg], this document sets:¶
 
 {: style=""}
-* P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
-
-where b is the block size in bits. This ensures a forgery probability of ≈ 1 / 2<sup>tag_length</sup> for all permitted plaintext and associated data lengths {{Nyberg}}.
+* P_MAX = A_MAX = min(2<sup>131 - tag_length</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   .
 
 The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
