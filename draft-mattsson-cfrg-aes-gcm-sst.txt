@@ -565,7 +565,7 @@ Table of Contents
 
 5.  Security Considerations
 
-   GCM-SST introduces an second authentication subkey H_2, alongside the
+   GCM-SST introduces a second authentication subkey H_2, alongside the
    subkey H.  The inclusion of H_2 enables truncated tags with forgery
    probabilities close to ideal.  Both H and H_2 are derived for each
    nonce, which significantly decreases the probability of multiple
