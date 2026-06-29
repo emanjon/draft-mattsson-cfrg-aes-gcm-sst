@@ -530,7 +530,7 @@ The following notation is used in the document:
 * ⊕ is the bitwise exclusive-OR (XOR) operator
 * len(x) is the length of x in bits
 * zeropad(x) right-pads the byte string x with zeros to a multiple of 128 bits
-* truncate(x, t) retains the first t bits of x and discards the remainder
+* truncate(x, y) retains the first y bits of x and discards the remainder
 * n is the number of 128-bit chunks in zeropad(P)
 * m is the number of 128-bit chunks in zeropad(A)
 * POLYVAL is defined in {{RFC8452}}
@@ -729,7 +729,7 @@ Unless otherwise specified, formulas for the expected number of forgeries apply 
 
 ## Integrity {#Int}
 
-The GCM-SST t SHOULD NOT be smaller than 4 bytes and cannot be larger than 16 bytes. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When ℓ ⪅ 2<sup>128 - t</sup>, the forgery probability is ≈ 1 / 2<sup>t</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is a significant improvement over GCM, where the forgery probability is bounded by ⪅ δ ⋅ ℓ / 2<sup>t</sup> {{GCM}}{{Iwata}}. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability of GCM-SST is no longer ideal and becomes comparable to that of GCM. In GCM-SST, the full_tag is independent of the tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
+The GCM-SST tag length SHOULD NOT be smaller than 32 bits and cannot be larger than 128 bits. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When ℓ ⪅ 2<sup>128 - t</sup>, the forgery probability is ≈ 1 / 2<sup>t</sup> {{Nyberg}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is a significant improvement over GCM, where the forgery probability is bounded by ⪅ δ ⋅ ℓ / 2<sup>t</sup> {{GCM}}{{Iwata}}. For a graph of the forgery probability, refer to Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability of GCM-SST is no longer ideal and becomes comparable to that of GCM. In GCM-SST, the full_tag is independent of the tag length unless the application explicitly incorporates tag length into the keystream or the nonce.
 
 The expected number of forgeries depends on the keystream generator. For block ciphers in counter mode, it is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
