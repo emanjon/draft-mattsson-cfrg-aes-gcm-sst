@@ -533,7 +533,7 @@ Table of Contents
 
       P_MAX = A_MAX = min(2^(131 - tag_length), 2^32 ⋅ b / 8 - 48) ,
 
-   where b is the block size in bits.  This ensures a worst-case forgery
+   where b is the block size in bits.  This ensures a forgery
    probability of ≈ 1 / 2^(tag_length) for all permitted plaintext and
    associated data lengths [Nyberg].
 
