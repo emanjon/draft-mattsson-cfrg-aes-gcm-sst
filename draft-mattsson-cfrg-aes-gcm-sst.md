@@ -686,7 +686,7 @@ The following parameters apply to all the instances:
 Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, the design goal of AES-GCM-SST and Rijndael-GCM-SST is to provide near-ideal integrity. Specifically, the limits specified in this document are chosen so that the expected number of successful forgeries satisfies
 
 {: style=""}
-E(F) ≈ V / 2<sup>tag_length</sup> ,
+* E(F) ≈ V / 2<sup>tag_length</sup> ,
 
 for all permitted numbers of invocations, message lengths, and tag lengths.
 
@@ -722,7 +722,7 @@ The 2<sup>29</sup> ⋅ b - 48 limit is based on the 32-bit counter size
 
 # Security Considerations {#Security}
 
-GCM-SST introduces an additional authentication subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follow the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} and Naito et al. {{Naito}} establish the security of GCM-SST in the single- and multi-key settings, including under nonce randomization and nonce-based key derivation.
+GCM-SST introduces an second authentication subkey H<sub>2</sub>, alongside the subkey H. The inclusion of H<sub>2</sub> enables truncated tags with forgery probabilities close to ideal. Both H and H<sub>2</sub> are derived for each nonce, which significantly decreases the probability of multiple successful forgeries. These changes are based on proven theoretical constructions and follow the recommendations in {{Nyberg}}. Inoue et al. {{Inoue}} and Naito et al. {{Naito}} establish the security of GCM-SST in the single- and multi-key settings, including under nonce randomization and nonce-based key derivation.
 
 GCM-SST is designed for use in security protocols with replay protection. Each key MUST be chosen uniformly at random. GCM-SST MUST be used in a nonce-respecting setting: for a given key, a nonce MUST be used at most once in the encryption function and at most once in a successful decryption function call. The nonce MAY be public or predictable. It can be a counter, the output of a permutation, or a generator with a long period. The reuse of nonces in successful encryption and decryption function calls enables universal forgery, as demonstrated by {{Joux}}, {{Lindell}}, {{Inoue}}, and {{Naito}}, and so GCM-SST MUST be used with replay protection. Additionally, GCM-SST MUST NOT be used with random nonces, because they significantly reduce the efficiency of replay protection. Implementations SHOULD add randomness to the nonce by XORing a unique number such as a sequence number with a per-key random secret salt of the same length as the nonce. This significantly improves security against precomputation and multi-key attacks {{Bellare17}} and is implemented, for example, in TLS 1.3 {{RFC8446}}, OSCORE {{RFC8613}}, and {{Ascon}}. By increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer significantly greater security against precomputation and multi-key attacks compared to AES-GCM-SST.
 
