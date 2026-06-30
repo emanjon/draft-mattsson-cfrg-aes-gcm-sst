@@ -617,10 +617,17 @@ Table of Contents
    increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-
    SST can offer significantly greater security against precomputation
    and multi-key attacks compared to AES-GCM-SST.  GCM-SST does not aim
-   for nonce-misuse resistance.  Like GCM, it derives its keystream in a
-   single pass, avoiding the two-pass, non-online structure that nonce-
-   misuse-resistant algorithms require.  NIST is addressing nonce-misuse
-   resistance through the planned Accordions [Accordions].
+   for full nonce-misuse resistance [NMR].  Like GCM, it derives its
+   keystream in a single pass, avoiding the two-pass, non-online
+   structure that nonce-misuse-resistant algorithms require.  NIST is
+   addressing nonce-misuse resistance through the planned Accordions
+   [Accordions].
+
+   GCM-SST does not aim for full nonce-misuse resistance.  Like GCM, it
+   derives its keystream in a single pass, avoiding the two-pass, non-
+   online structure that nonce-misuse-resistant algorithms require.
+   NIST is addressing nonce-misuse resistance through the planned
+   Accordions [Accordions].
 
    Unless otherwise specified, formulas for the expected number of
    forgeries apply to unicast scenarios.
