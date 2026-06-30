@@ -554,9 +554,7 @@ Table of Contents
    complexity for distinguishing attacks and an upper bound on the
    fraction of plaintext bits recoverable by an attacker.
 
-   Protocols employing Rijndael-GCM-SST MAY impose stricter limits on
-   P_MAX, A_MAX, Q_MAX, and V_MAX than those specified here.  Protocols
-   using AES-GCM-SST MUST enforce limits sufficient to ensure:
+   Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
       (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2^63 .
 
@@ -566,7 +564,15 @@ Table of Contents
    across all plaintexts [Entropy] and that δ ⪅ 1.0005.  The Bernstein
    bound factor δ ⪅ 1 + σ^2 / 2^(b+1) depends on the total number of
    block-cipher invocations [Bernstein][Iwata], which this document
-   conservatively upper-bounds as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
+   conservatively upper-bounds as σ ⪅ (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX)
+   ⋅ (b / 8).
+
+   For AES, the 128-bit block size means σ ⪅ 2^59 is not guaranteed by
+   the limits given in Section 4.3 alone; protocols need to choose
+   between Q_MAX and P_MAX to satisfy this bound.  For Rijndael-256, the
+   256-bit block size already guarantees σ ⪅ 2^123 at the limits given
+   in Section 4.3.  Protocols employing Rijndael-GCM-SST MAY impose
+   stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
 
    To align with zero-trust principles and minimize the impact of key
    compromise, protocols using GCM-SST SHOULD enforce rekeying well
