@@ -589,13 +589,16 @@ Table of Contents
    successful forgeries.  These changes are based on proven theoretical
    constructions and follow the recommendations in [Nyberg].  Inoue et
    al.  [Inoue] prove that GCM-SST achieves its v / 2^t design goal in
-   the single-key setting.  Because the subkeys in GCM-SST are nonce-
-   dependent, any confidentiality or integrity advantage gained against
-   one nonce does not carry over to a different, fresh nonce: GCM-SST
-   recovers its full security as soon as a new nonce is used.  Naito et
-   al.  [Naito] extend this analysis to prove that GCM-SST achieves its
-   v / 2^t design goal in the multi-key setting as well, including when
-   combined with nonce randomization and nonce-based key derivation.
+   the single-key setting, and that it provides nonce-misuse resilience
+   [NMRL].  Because the subkeys in GCM-SST are derived independently per
+   nonce, any confidentiality or integrity advantage an adversary gains
+   against one nonce — whether through nonce misuse or a successful
+   forgery attempt — does not carry over to a different, fresh nonce:
+   GCM-SST recovers its full security as soon as such a nonce is no
+   longer in use.  Naito et al.  [Naito] extend this analysis to prove
+   that GCM-SST achieves its v / 2^t design goal in the multi-key
+   setting as well, including when combined with nonce randomization and
+   nonce-based key derivation.
 
    GCM-SST is designed for use in security protocols with replay
    protection.  Each key MUST be chosen uniformly at random.  GCM-SST
