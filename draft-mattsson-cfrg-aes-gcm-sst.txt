@@ -136,20 +136,19 @@ Table of Contents
    all tag lengths, but are especially damaging with short tags.
 
    Nyberg et al.  [Nyberg] showed that small, theoretically grounded
-   changes would mitigate these weaknesses.  NIST did not adopt this
-   advice and instead imposed ad hoc restrictions for short tags,
-   without justification for parameter choices or claimed security
-   levels.  Mattsson et al.  [Mattsson] later showed that attackers can
-   nearly always observe whether a forgery succeeded, contradicting
-   NIST's assumptions.  NIST is now planning to remove support for tags
-   shorter than 96 bits [Revise], but has not addressed the underlying
-   authentication weaknesses.  A third weakness is that GCM does not
-   impose sufficiently strict limits on the number of invocations and
-   the lengths of plaintext and associated data.  Even with 96-bit tags,
-   AES-GCM [GCM] offers only a forgery probability of 2^-39, and with
-   128-bit tags in QUIC [RFC9001], the expected number of forgeries,
-   E(F), exceeds that of an ideal 65-bit MAC.  Reforgeability resistance
-   is a core design criterion in modern AEAD schemes [Reforge][AEZ].
+   changes would mitigate these weaknesses, but NIST instead imposed ad
+   hoc restrictions for short tags.  Mattsson et al.  [Mattsson] later
+   showed that attackers can nearly always observe whether a forgery
+   succeeded, contradicting NIST's assumptions.  NIST is now planning to
+   remove support for tags shorter than 96 bits [Revise], but has not
+   addressed the underlying authentication weaknesses.  A third weakness
+   is that GCM does not impose sufficiently strict limits on the number
+   of invocations and the lengths of plaintext and associated data.
+   Even with 96-bit tags, AES-GCM [GCM] offers only a forgery
+   probability of 2^-39, and with 128-bit tags in QUIC [RFC9001], the
+   expected number of forgeries, E(F), is worse than that of an ideal
+   65-bit MAC.  Reforgeability resistance is a core design criterion in
+   modern AEAD schemes [Reforge][AEZ].
 
    Short tags are widely used: 32-bit tags are standard in most radio
    link layers including 5G [Sec5G], 64-bit tags are very common in IoT
@@ -160,16 +159,16 @@ Table of Contents
    ms of audio, forgery of individual packets is imperceptible.  Due to
    its weaknesses, GCM is typically not used with short tags, forcing a
    choice between the overhead of unnecessarily long tags
-   [I-D.ietf-moq-transport] and the cost of much slower constructions
-   such as AES-CTR with HMAC [RFC3711][RFC9605].  Short tags are also
-   useful in packets whose payloads are secured at higher layers, in
-   protocols where security is given by the sum of tag lengths, and in
-   constrained radio networks where low bandwidth limits forgery
-   attempts.  For all these applications, it is essential that the MAC
-   behaves ideally: the forgery probability should be ≈ 1 / 2^t even
-   after many encryptions, many forgery attempts, and a successful
-   forgery.  CCM [RFC5116] achieves near-ideal probabilities with short
-   tags but at a performance penalty relative to GCM.
+   [I-D.ietf-moq-transport] and much slower constructions such as AES-
+   CTR with HMAC [RFC3711][RFC9605].  Short tags are also useful in
+   packets whose payloads are secured at higher layers, in protocols
+   where security is given by the sum of tag lengths, and in constrained
+   radio networks where low bandwidth limits forgery attempts.  For all
+   these applications, it is essential that the MAC behaves ideally: the
+   forgery probability should be ≈ 1 / 2^t even after many encryptions,
+   many forgery attempts, and a successful forgery.  CCM [RFC5116]
+   achieves near-ideal probabilities with short tags but at a
+   performance penalty relative to GCM.
 
    This document defines GCM with Strong Secure Tags (GCM-SST), an AEAD
    algorithm that addresses these weaknesses.  GCM-SST can be used with
