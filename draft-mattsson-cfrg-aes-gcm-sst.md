@@ -75,6 +75,14 @@ informative:
   I-D.ietf-moq-transport:
   I-D.irtf-cfrg-aegis-aead:
 
+  Accordions:
+    target: https://csrc.nist.gov/pubs/sp/800/197/a/iprd
+    title: "NIST Launches Development of Cryptographic Accordions"
+    author:
+      -
+        ins: NIST
+    date: June 2025
+
   ACM:
     target: https://certification.enisa.europa.eu/document/download/a845662b-aee0-484e-9191-890c4cfa7aaa_en
     title: "Agreed Cryptographic Mechanisms"
