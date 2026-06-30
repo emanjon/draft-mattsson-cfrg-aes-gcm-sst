@@ -242,6 +242,10 @@ Table of Contents
 
    *  t is the authentication tag length, in bits
 
+   *  b is the block size, in bits
+
+   *  v is the number of forgery attempts
+
    *  = is the assignment operator
 
    *  ≠ is the inequality operator

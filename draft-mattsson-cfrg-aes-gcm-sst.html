@@ -1343,46 +1343,52 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-2-3.8.1">t is the authentication tag length, in bits<a href="#section-2-3.8.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.9">
-          <p id="section-2-3.9.1">= is the assignment operator<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.9.1">b is the block size, in bits<a href="#section-2-3.9.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.10">
-          <p id="section-2-3.10.1">≠ is the inequality operator<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.10.1">v is the number of forgery attempts<a href="#section-2-3.10.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.11">
-          <p id="section-2-3.11.1">x || y is concatenation of the byte strings x and y<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.11.1">= is the assignment operator<a href="#section-2-3.11.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.12">
-          <p id="section-2-3.12.1">⊕ is the bitwise exclusive-OR (XOR) operator<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.12.1">≠ is the inequality operator<a href="#section-2-3.12.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.13">
-          <p id="section-2-3.13.1">len(x) is the length of x in bits<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.13.1">x || y is concatenation of the byte strings x and y<a href="#section-2-3.13.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.14">
-          <p id="section-2-3.14.1">zeropad(x) right-pads the byte string x with zeros to a multiple of 128 bits<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.14.1">⊕ is the bitwise exclusive-OR (XOR) operator<a href="#section-2-3.14.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.15">
-          <p id="section-2-3.15.1">truncate(x, y) retains the first y bits of x and discards the remainder<a href="#section-2-3.15.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.15.1">len(x) is the length of x in bits<a href="#section-2-3.15.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.16">
-          <p id="section-2-3.16.1">n is the number of 128-bit chunks in zeropad(P)<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.16.1">zeropad(x) right-pads the byte string x with zeros to a multiple of 128 bits<a href="#section-2-3.16.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.17">
-          <p id="section-2-3.17.1">m is the number of 128-bit chunks in zeropad(A)<a href="#section-2-3.17.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.17.1">truncate(x, y) retains the first y bits of x and discards the remainder<a href="#section-2-3.17.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.18">
-          <p id="section-2-3.18.1">POLYVAL is defined in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span><a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.18.1">n is the number of 128-bit chunks in zeropad(P)<a href="#section-2-3.18.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.19">
-          <p id="section-2-3.19.1">BE32(x) is the big-endian encoding of 32-bit integer x<a href="#section-2-3.19.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.19.1">m is the number of 128-bit chunks in zeropad(A)<a href="#section-2-3.19.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.20">
-          <p id="section-2-3.20.1">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.20.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.20.1">POLYVAL is defined in <span>[<a href="#RFC8452" class="cite xref">RFC8452</a>]</span><a href="#section-2-3.20.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.21">
-          <p id="section-2-3.21.1">V[x] is the 128-bit chunk at index x in array V; the first chunk has index 0<a href="#section-2-3.21.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.21.1">BE32(x) is the big-endian encoding of 32-bit integer x<a href="#section-2-3.21.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-2-3.22">
-          <p id="section-2-3.22.1">V[x:y] is the range of 128-bit chunks at indices x through y in array V<a href="#section-2-3.22.1" class="pilcrow">¶</a></p>
+          <p id="section-2-3.22.1">LE64(x) is the little-endian encoding of 64-bit integer x<a href="#section-2-3.22.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.23">
+          <p id="section-2-3.23.1">V[x] is the 128-bit chunk at index x in array V; the first chunk has index 0<a href="#section-2-3.23.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-3.24">
+          <p id="section-2-3.24.1">V[x:y] is the range of 128-bit chunks at indices x through y in array V<a href="#section-2-3.24.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
