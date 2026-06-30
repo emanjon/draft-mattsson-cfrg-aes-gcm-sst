@@ -568,9 +568,9 @@ Table of Contents
    For AES, the 128-bit block size means σ ⪅ 2^59 is not guaranteed by
    the limits given in Section 4.3 alone; protocols need to choose
    between Q_MAX and P_MAX to satisfy this bound.  For Rijndael-256, the
-   256-bit block size already guarantees σ ⪅ 2^123 at the limits given
-   in Section 4.3.  Protocols employing Rijndael-GCM-SST MAY impose
-   stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
+   256-bit block size already guarantees σ ⪅ 2^123.  Protocols employing
+   Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX,
+   and V_MAX.
 
    To align with zero-trust principles and minimize the impact of key
    compromise, protocols using GCM-SST SHOULD enforce rekeying well
