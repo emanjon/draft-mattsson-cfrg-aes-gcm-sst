@@ -666,7 +666,7 @@ where ENC is the Rijndael-256 Cipher function {{Rijndael}}.
 
 Nine AEAD algorithm instances are defined below, following the format of {{RFC5116}}. These instances use AES-GCM-SST or Rijndael-GCM-SST with tag lengths of 48, 96, or 112 bits.
 
-| Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | Tag length (bits) |
+| Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | Tag length t (bits) |
 | AEAD_AES_128_GCM_SST_6 | 16 | 2<sup>36</sup> - 48 | 48 |
 | AEAD_AES_128_GCM_SST_12 | 16 | 2<sup>35</sup> | 96 |
 | AEAD_AES_128_GCM_SST_14 | 16 | 2<sup>19</sup> | 112 |
