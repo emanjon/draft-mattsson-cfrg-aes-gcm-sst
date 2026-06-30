@@ -1446,7 +1446,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.1-7.1.1">Ciphertext ct (variable-length byte string)<a href="#section-3.1-7.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.1-7.2">
-            <p id="section-3.1-7.2.1">tag (a byte string of length t bits)<a href="#section-3.1-7.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.1-7.2.1">tag (a byte string of length t / 8)<a href="#section-3.1-7.2.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-3.1-8">Steps:<a href="#section-3.1-8" class="pilcrow">¶</a></p>
@@ -1497,7 +1497,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-3.1.1">The calculation of the plaintext P (step 10) <span class="bcp14">MAY</span> be done in parallel with tag verification (steps 3–9). If tag verification fails, the plaintext P <span class="bcp14">MUST NOT</span> be given as output.<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-3.2">
-            <p id="section-3.2-3.2.1">Each key <span class="bcp14">MUST</span> be restricted to a single t.<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-3.2.1">Each key <span class="bcp14">MUST</span> be restricted to a single tag length t.<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-3.3">
             <p id="section-3.2-3.3.1">Supported input and output lengths <span class="bcp14">MUST</span> be defined.<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
@@ -1518,7 +1518,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-3.2-5.4.1">Ciphertext ct (variable-length byte string)<a href="#section-3.2-5.4.1" class="pilcrow">¶</a></p>
 </li>
           <li class="normal" id="section-3.2-5.5">
-            <p id="section-3.2-5.5.1">tag (a byte string of length t bits)<a href="#section-3.2-5.5.1" class="pilcrow">¶</a></p>
+            <p id="section-3.2-5.5.1">tag (a byte string of length t / 8)<a href="#section-3.2-5.5.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-3.2-6">Outputs:<a href="#section-3.2-6" class="pilcrow">¶</a></p>

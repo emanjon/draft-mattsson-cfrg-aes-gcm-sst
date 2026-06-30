@@ -348,7 +348,7 @@ Table of Contents
 
    *  Ciphertext ct (variable-length byte string)
 
-   *  tag (a byte string of length t bits)
+   *  tag (a byte string of length t / 8)
 
    Steps:
 
@@ -387,7 +387,7 @@ Table of Contents
       parallel with tag verification (steps 3–9).  If tag verification
       fails, the plaintext P MUST NOT be given as output.
 
-   *  Each key MUST be restricted to a single t.
+   *  Each key MUST be restricted to a single tag length t.
 
    *  Supported input and output lengths MUST be defined.
 
@@ -401,7 +401,7 @@ Table of Contents
 
    *  Ciphertext ct (variable-length byte string)
 
-   *  tag (a byte string of length t bits)
+   *  tag (a byte string of length t / 8)
 
    Outputs:
 
