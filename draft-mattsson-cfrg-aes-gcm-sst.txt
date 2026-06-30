@@ -564,7 +564,7 @@ Table of Contents
    across all plaintexts [Entropy] and that δ ⪅ 1.0005.  The Bernstein
    bound factor δ ⪅ 1 + σ^2 / 2^(b+1) depends on the total number of
    block-cipher invocations [Bernstein][Iwata], which this document
-   conservatively upper-bounds as σ ⪅ (Q_MAX + V_MAX) ⋅ 16 ⋅ P_MAX / b.
+   conservatively upper-bounds using (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
 
    For AES, the 128-bit block size means σ ⪅ 2^59 is not guaranteed by
    the limits given in Section 4.3 alone; protocols need to choose
