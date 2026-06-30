@@ -200,11 +200,12 @@ Table of Contents
    an ideal MAC.  This is a property expected of a modern AEAD but one
    that GCM does not provide.  Rijndael-256 is already standardized by
    3GPP for authentication and key generation [Milenage-256] and is
-   planned for NIST standardization [Plans].  On modern x86-64 platforms
-   with AES-NI and VAES instructions, Rijndael-256 performs efficiently
-   [Drucker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST
-   offers substantially higher throughput in dedicated hardware while
-   retaining the advantage of being a mode of operation for AES.
+   planned for NIST standardization [AES-WIDE].  On modern x86-64
+   platforms with AES-NI and VAES instructions, Rijndael-256 performs
+   efficiently [Drucker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead],
+   AES-GCM-SST offers substantially higher throughput in dedicated
+   hardware while retaining the advantage of being a mode of operation
+   for AES.
 
    GCM-SST was originally developed by ETSI SAGE and subsequently
    standardized by 3GPP for use with SNOW 5G [NCA4], AES-256 [NCA5], and
@@ -889,6 +890,10 @@ Table of Contents
               <https://certification.enisa.europa.eu/document/download/
               a845662b-aee0-484e-9191-890c4cfa7aaa_en>.
 
+   [AES-WIDE] NIST, "NIST Proposes to Standardize a Wider Variant of
+              AES", December 2024,
+              <https://csrc.nist.gov/pubs/sp/800/197/iprd>.
+
    [AEZ]      Viet Tung Hoang, Ted Krovetz, and Phillip Rogaway, "Robust
               Authenticated-Encryption: AEZ and the Problem that it
               Solves", March 2017,
@@ -1071,10 +1076,6 @@ Table of Contents
               (PDCP) specification", January 2026,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=3196>.
-
-   [Plans]    NIST, "NIST Proposes to Standardize a Wider Variant of
-              AES", December 2024,
-              <https://csrc.nist.gov/pubs/sp/800/197/iprd>.
 
    [Procter]  Gordon Procter, "A Security Analysis of the Composition of
               ChaCha20 and Poly1305", August 2014,
