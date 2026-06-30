@@ -584,7 +584,7 @@ Inputs:
 Outputs:
 
 * Ciphertext ct (variable-length byte string)
-* tag (a byte string of length t bits)
+* tag (a byte string of length t / 8)
 
 Steps:
 
@@ -608,7 +608,7 @@ The decryption function Decrypt(K, N, A, ct, tag) decrypts a ciphertext, verifie
 Prerequisites and security requirements:
 
 * The calculation of the plaintext P (step 10) MAY be done in parallel with tag verification (steps 3–9). If tag verification fails, the plaintext P MUST NOT be given as output.
-* Each key MUST be restricted to a single t.
+* Each key MUST be restricted to a single tag length t.
 * Supported input and output lengths MUST be defined.
 
 Inputs:
@@ -617,7 +617,7 @@ Inputs:
 * Nonce N (variable-length byte string)
 * Associated data A (variable-length byte string)
 * Ciphertext ct (variable-length byte string)
-* tag (a byte string of length t bits)
+* tag (a byte string of length t / 8)
 
 Outputs:
 
