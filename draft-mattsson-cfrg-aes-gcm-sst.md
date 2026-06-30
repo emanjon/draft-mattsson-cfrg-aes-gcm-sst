@@ -390,6 +390,28 @@ informative:
         ins: 3GPP
     date: March 2026
 
+  NMR:
+    target: https://eprint.iacr.org/2006/221.pdf
+    title: "Deterministic Authenticated-Encryption: A Provable-Security Treatment of the Key-Wrap Problem"
+    author:
+      -
+        ins: P. Rogaway
+      -
+        ins: T. Shrimpton
+    date: August 2007
+
+  NMRL:
+    target: https://doi.org/10.1007/978-3-319-63697-9_1
+    title: "Boosting Authenticated Encryption Robustness with Minimal Modifications"
+    author:
+      -
+        ins: T. Ashur
+      -
+        ins: O. Dunkelman
+      -
+        ins: A. Luykx
+    date: August 2007
+
   Nyberg:
     target: https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-Techniques/documents/BCM/Comments/general-comments/papers/Nyberg_Gilbert_and_Robshaw.pdf
     title: "Galois MAC with forgery probability close to ideal"
@@ -439,6 +461,18 @@ informative:
       -
         ins: NIST
     date: August 2023
+
+  Robust:
+    target: https://link.springer.com/article/10.1007/s00145-023-09489-9
+    title: "Robust Channels: Handling Unreliable Networks in the Record Layers of QUIC and DTLS 1.3"
+    author:
+      -
+        ins: M. Fischlin
+      -
+        ins: F. Günther
+      -
+        ins: C. Janson
+    date: January 2024
 
   Robust:
     target: https://link.springer.com/article/10.1007/s00145-023-09489-9
