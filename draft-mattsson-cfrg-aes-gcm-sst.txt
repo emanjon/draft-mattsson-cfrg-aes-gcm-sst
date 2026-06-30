@@ -886,6 +886,11 @@ Table of Contents
 
 7.2.  Informative References
 
+   [Accordions]
+              NIST, "NIST Launches Development of Cryptographic
+              Accordions", June 2025,
+              <https://csrc.nist.gov/pubs/sp/800/197/a/iprd>.
+
    [ACM]      "Agreed Cryptographic Mechanisms", April 2025,
               <https://certification.enisa.europa.eu/document/download/
               a845662b-aee0-484e-9191-890c4cfa7aaa_en>.
