@@ -708,7 +708,7 @@ Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds as σ ⪅  (Q_MAX + V_MAX) ⋅ 16 ⋅ P_MAX / b.
 
-For AES, the 128-bit block size means σ ⪅ 2<sup>59</sup> is not guaranteed by the limits given in {{instances}} alone; protocols need to choose between Q_MAX and P_MAX to satisfy this bound. For Rijndael-256, the 256-bit block size already guarantees σ ⪅ 2<sup>123</sup> at the limits given in {{instances}}. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
+For AES, the 128-bit block size means σ ⪅ 2<sup>59</sup> is not guaranteed by the limits given in {{instances}} alone; protocols need to choose between Q_MAX and P_MAX to satisfy this bound. For Rijndael-256, the 256-bit block size already guarantees σ ⪅ 2<sup>123</sup>. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
 
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
