@@ -1080,6 +1080,16 @@ Table of Contents
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=4224>.
 
+   [NMR]      Rogaway, P. and T. Shrimpton, "Deterministic
+              Authenticated-Encryption: A Provable-Security Treatment of
+              the Key-Wrap Problem", August 2007,
+              <https://eprint.iacr.org/2006/221.pdf>.
+
+   [NMRL]     Ashur, T., Dunkelman, O., and A. Luykx, "Boosting
+              Authenticated Encryption Robustness with Minimal
+              Modifications", August 2007,
+              <https://doi.org/10.1007/978-3-319-63697-9_1>.
+
    [Nyberg]   Nyberg, K., Gilbert, H., and M. Robshaw, "Galois MAC with
               forgery probability close to ideal", June 2005,
               <https://csrc.nist.gov/CSRC/media/Projects/Block-Cipher-
