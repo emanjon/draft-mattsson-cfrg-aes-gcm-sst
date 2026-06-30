@@ -524,6 +524,8 @@ The following notation is used in the document:
 * ct is the ciphertext
 * tag is the authentication tag
 * t is the authentication tag length, in bits
+* b is the block size, in bits
+* v is the number of forgery attempts
 * = is the assignment operator
 * ≠ is the inequality operator
 * x \|\| y is concatenation of the byte strings x and y
