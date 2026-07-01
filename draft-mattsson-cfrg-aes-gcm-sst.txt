@@ -596,10 +596,10 @@ Table of Contents
    against one nonce, whether through nonce misuse or a successful
    forgery attempt, does not carry over to a different, fresh nonce:
    GCM-SST recovers its full security as soon as such a nonce is no
-   longer in use.  Naito et al.  [Naito] extend this analysis to prove
-   that GCM-SST achieves its v / 2^t design goal in the multi-key
-   setting as well, including when combined with nonce randomization and
-   nonce-based key derivation.
+   longer in use.  Naito et al.  [Naito] derive a tighter single-key
+   bound and further prove that GCM-SST achieves its v / 2^t design goal
+   in the multi-key setting, including when combined with nonce
+   randomization and nonce-based key derivation.
 
    GCM-SST is designed for use in security protocols with replay
    protection.  Each key MUST be chosen uniformly at random.  GCM-SST
@@ -609,23 +609,22 @@ Table of Contents
    predictable.  It can be a counter, the output of a permutation, or a
    generator with a long period.  The reuse of nonces in successful
    encryption and decryption function calls enables universal forgery,
-   as demonstrated by [Joux], [Lindell], [Inoue], and [Naito], and so
-   GCM-SST MUST be used with replay protection.  Additionally, GCM-SST
-   MUST NOT be used with random nonces, because they significantly
-   reduce the efficiency of replay protection.  Implementations SHOULD
-   add randomness to the nonce by XORing a unique number such as a
-   sequence number with a per-key random secret salt of the same length
-   as the nonce.  This significantly improves security against
-   precomputation and multi-key attacks [Bellare17] and is implemented,
-   for example, in TLS 1.3 [RFC8446], OSCORE [RFC8613], and [Ascon].  By
-   increasing the nonce length from 96 bits to 224 bits, Rijndael-GCM-
-   SST can offer significantly greater security against precomputation
-   and multi-key attacks compared to AES-GCM-SST.  GCM-SST does not aim
-   for full nonce-misuse resistance [NMR].  Like GCM, it derives its
-   keystream in a single pass, avoiding the two-pass, non-online
-   structure that nonce-misuse-resistant algorithms require.  NIST is
-   addressing nonce-misuse resistance through the planned Accordions
-   [Accordions].
+   as demonstrated by [Joux], [Lindell], and [Inoue], and so GCM-SST
+   MUST be used with replay protection.  Additionally, GCM-SST MUST NOT
+   be used with random nonces, because they significantly reduce the
+   efficiency of replay protection.  Implementations SHOULD add
+   randomness to the nonce by XORing a unique number such as a sequence
+   number with a per-key random secret salt of the same length as the
+   nonce.  This significantly improves security against precomputation
+   and multi-key attacks [Bellare17] and is implemented, for example, in
+   TLS 1.3 [RFC8446], OSCORE [RFC8613], and [Ascon].  By increasing the
+   nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer
+   significantly greater security against precomputation and multi-key
+   attacks compared to AES-GCM-SST.  GCM-SST does not aim for full
+   nonce-misuse resistance [NMR].  Like GCM, it derives its keystream in
+   a single pass, avoiding the two-pass, non-online structure that
+   nonce-misuse-resistant algorithms require.  NIST is addressing nonce-
+   misuse resistance through the planned Accordions [Accordions].
 
    Unless otherwise specified, formulas for the expected number of
    forgeries apply to unicast scenarios.
@@ -634,16 +633,16 @@ Table of Contents
 
    The GCM-SST tag length t SHOULD NOT be smaller than 32 bits and
    cannot be larger than 128 bits.  Let ℓ = (P_MAX + A_MAX) / 16 + 1.
-   When ℓ ⪅ 2^(128 - t), the forgery probability is ≈ 1 / 2^t [Nyberg].
-   The tags in the AEAD algorithms listed in Section 4.3 therefore
-   achieve near-ideal forgery probabilities.  This is a significant
-   improvement over GCM, where the forgery probability is bounded by ⪅ δ
-   ⋅ ℓ / 2^t [GCM][Iwata].  For a graph of the forgery probability
-   assuming δ ≈ 1, see Fig. 3 in [Inoue].  For 128-bit tags and long
-   messages, the forgery probability of GCM-SST is no longer ideal and
-   becomes comparable to that of GCM.  In GCM-SST, the full_tag is
-   independent of t unless the application explicitly incorporates t
-   into the keystream or the nonce.
+   When ℓ ≪ 2^(128 - t), the forgery probability is ≈ 1 / 2^t
+   [Nyberg][Inoue].  The tags in the AEAD algorithms listed in
+   Section 4.3 therefore achieve near-ideal forgery probabilities.  This
+   is a significant improvement over GCM, where the forgery probability
+   is bounded by ⪅ δ ⋅ ℓ / 2^t [GCM][Iwata].  For a graph of the forgery
+   probability assuming δ ≈ 1, see Fig. 3 in [Inoue].  For 128-bit tags
+   and long messages, the forgery probability of GCM-SST is no longer
+   ideal and becomes comparable to that of GCM.  In GCM-SST, the
+   full_tag is independent of t unless the application explicitly
+   incorporates t into the keystream or the nonce.
 
    The expected number of forgeries depends on the keystream generator.
    For block ciphers in counter mode, it is governed by the birthday
