@@ -748,12 +748,12 @@ Assuming a sufficiently large key size such that brute-force key-recovery attack
 
 for all permitted invocation counts, plaintext lengths, associated data lengths, and tag lengths. This is how users expect MAC algorithms to behave, i.e., the behavior of an ideal MAC. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this property and are therefore more restrictive than the corresponding limits for GCM in {{RFC5116}}.
 
-To ensure that v / 2<sup>t</sup> is the dominant term in the integrity advantage for all permitted plaintext and associated data lengths [Inoue], this document sets:
+To ensure that v / 2<sup>t</sup> is the dominant term in the integrity advantage {{Inoue}} for all permitted plaintext and associated data lengths, this document sets:
 
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>128 - t</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
 
-where b is the block size in bits. so that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
+where b is the block size in bits, so that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
 
 The constraints ensures that the Bernstein bound factor satisfies δ ≈ 1. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
