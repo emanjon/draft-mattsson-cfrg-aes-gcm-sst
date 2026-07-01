@@ -791,7 +791,7 @@ The expected number of forgeries depends on the keystream generator. For block c
 {: style=""}
 * E(F) ≈ v / 2<sup>t</sup>   ,
 
-where v is the number of decryption function invocations. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM, for which the expected number of forgeries is bounded by:
+where v is the number of forgery attempts. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM, for which the expected number of forgeries is bounded by:
 
 {: style=""}
 * E(F) ⪅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>t+1</sup>   .
@@ -831,7 +831,7 @@ The details of the replay protection mechanism are determined by the security pr
 | GCM_SST_12 | 12 | 1 / 2<sup>96</sup> | 1 / 2<sup>96</sup> | v / 2<sup>96</sup> |
 | POLY1305 | 16 | ℓ / 2<sup>103</sup> | ℓ / 2<sup>103</sup> | v ⋅ ℓ / 2<sup>103</sup> |
 | GCM | 16 | ℓ / 2<sup>128</sup> | 1 | v<sup>2</sup>&nbsp;⋅&nbsp;ℓ&nbsp;/&nbsp;2<sup>129</sup> |
-{: #comp1 title="Comparison of integrity among GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast security protocols with replay protection. v is the number of decryption queries, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks. The GCM values assume δ ≈ 1; when this condition does not hold, the GCM values are worse than those shown." cols="l r r r r"}
+{: #comp1 title="Comparison of integrity among GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast security protocols with replay protection. v is the number of forgery attempts, ℓ is the maximum length of plaintext and associated data, measured in 128-bit chunks. The GCM values assume δ ≈ 1; when this condition does not hold, the GCM values are worse than those shown." cols="l r r r r"}
 
 {{comp2}} compares the integrity of GCM-SST, ChaCha20-Poly1305 {{RFC8439}}, and AES-GCM {{RFC5116}} in unicast QUIC {{RFC9000}}{{RFC9001}}, a security protocol with mandatory replay protection, and where the combined size of plaintext and associated data is less than ≈ 2<sup>16</sup> bytes (ℓ ≈ 2<sup>12</sup>). GCM_SST_14 and GCM_SST_12 provide better integrity than ChaCha20-Poly1305 {{RFC8439}} and AES-GCM {{RFC5116}}, while also reducing overhead by 2–4 bytes. For GCM-SST and ChaCha20-Poly1305, the expected number of forgeries is linear in v when replay protection is employed. ChaCha20-Poly1305 achieves a security level equivalent to that of an ideal MAC with a length of 91 bits. For AES-GCM, replay protection does not mitigate reforgeries, the expected number of forgeries grows quadratically with v, and GCM provides significantly worse integrity than GCM-SST and ChaCha20-Poly1305 unless v is kept very small. With v = 2<sup>52</sup> as allowed for AES-GCM in QUIC {{RFC9001}}, the expected number of forgeries for AES-GCM exceeds that of an ideal 65-bit MAC.
 
