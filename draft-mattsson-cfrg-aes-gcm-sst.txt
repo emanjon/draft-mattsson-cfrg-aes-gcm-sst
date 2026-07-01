@@ -540,12 +540,12 @@ Table of Contents
    corresponding limits for GCM in [RFC5116].
 
    To ensure that v / 2^t is the dominant term in the integrity
-   advantage for all permitted plaintext and associated data lengths
-   [Inoue], this document sets:
+   advantage [Inoue] for all permitted plaintext and associated data
+   lengths, this document sets:
 
       P_MAX = A_MAX = min(2^(128 - t), 2^32 ⋅ b / 8 - 48) ,
 
-   where b is the block size in bits. so that the integrity advantage is
+   where b is the block size in bits, so that the integrity advantage is
    ≈ δ ⋅ v / 2^t.
 
    The constraints ensures that the Bernstein bound factor satisfies δ ≈
