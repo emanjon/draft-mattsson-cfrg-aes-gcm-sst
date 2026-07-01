@@ -366,6 +366,20 @@ informative:
         ins: Takeshi Sugawara
     date: October 2025
 
+  Niwa:
+    target: https://eprint.iacr.org/2015/214.pdf
+    title: "GCM Security Bounds Reconsidered"
+    author:
+      -
+        ins: Yuichi Niwa
+      -
+        ins: Keisuke Ohashi
+      -
+        ins: Kazuhiko Minematsu
+      -
+        ins: Tetsu Iwata
+    date: March 2015
+
   NCA4:
     target: https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=4220
     title: "Specification of the Snow 5G based 256-bits algorithm set"
@@ -775,7 +789,7 @@ Unless otherwise specified, formulas for the expected number of forgeries apply 
 
 ## Integrity {#Int}
 
-The GCM-SST tag length t SHOULD NOT be smaller than 32 bits and cannot be larger than 128 bits. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When ℓ ≪ 2<sup>128 - t</sup>, the forgery probability is ≈ 1 / 2<sup>t</sup> {{Nyberg}}{{Inoue}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is a significant improvement over GCM, where the forgery probability is bounded by ⪅ δ ⋅ ℓ / 2<sup>t</sup> {{GCM}}{{Iwata}}. For a graph of the forgery probability assuming δ ≈ 1, see Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability of GCM-SST is no longer ideal and becomes comparable to that of GCM. In GCM-SST, the full_tag is independent of t unless the application explicitly incorporates t into the keystream or the nonce.
+The GCM-SST tag length t SHOULD NOT be smaller than 32 bits and cannot be larger than 128 bits. Let ℓ = (P_MAX + A_MAX) / 16 + 1. When ℓ ≪ 2<sup>128 - t</sup>, the forgery probability is ≈ 1 / 2<sup>t</sup> {{Nyberg}}{{Inoue}}. The tags in the AEAD algorithms listed in {{instances}} therefore achieve near-ideal forgery probabilities. This is a significant improvement over GCM {{GCM}}, where the forgery probability is bounded by ⪅ δ ⋅ ℓ / 2<sup>t</sup> {{GCM}}{{Iwata}}. For a graph of the forgery probability assuming δ ≈ 1, see Fig. 3 in {{Inoue}}. For 128-bit tags and long messages, the forgery probability of GCM-SST is no longer ideal and becomes comparable to that of GCM. In GCM-SST, the full_tag is independent of t unless the application explicitly incorporates t into the keystream or the nonce.
 
 The expected number of forgeries depends on the keystream generator. For block ciphers in counter mode, it is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
@@ -787,7 +801,7 @@ where v is the number of decryption function invocations. Following the constrai
 {: style=""}
 * E(F) ⪅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>t+1</sup>   .
 
-For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Inoue}}, {{Naito}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when ℓ ⪅ 2<sup>32</sup> and δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
+For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Niwa}}, {{Inoue}}, {{Naito}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when ℓ ⪅ 2<sup>32</sup> and δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
 {::comment}
 (1) For GCM it is known that Adv ⪅ δ ⋅ v ⋅ ℓ / 2<sup>t</sup> [Iwata]
