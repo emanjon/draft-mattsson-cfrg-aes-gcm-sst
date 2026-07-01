@@ -710,14 +710,14 @@ Nine AEAD algorithm instances are defined below, following the format of {{RFC51
 
 | Name | K_LEN (bytes) | P_MAX = A_MAX (bytes) | Tag length t (bits) |
 | AEAD_AES_128_GCM_SST_6 | 16 | 2<sup>36</sup> - 48 | 48 |
-| AEAD_AES_128_GCM_SST_12 | 16 | 2<sup>35</sup> | 96 |
-| AEAD_AES_128_GCM_SST_14 | 16 | 2<sup>19</sup> | 112 |
+| AEAD_AES_128_GCM_SST_12 | 16 | 2<sup>32</sup> | 96 |
+| AEAD_AES_128_GCM_SST_14 | 16 | 2<sup>16</sup> | 112 |
 | AEAD_AES_256_GCM_SST_6 | 32 | 2<sup>36</sup> - 48 | 48 |
-| AEAD_AES_256_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
-| AEAD_AES_256_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
+| AEAD_AES_256_GCM_SST_12 | 32 | 2<sup>32</sup> | 96 |
+| AEAD_AES_256_GCM_SST_14 | 32 | 2<sup>16</sup> | 112 |
 | AEAD_RIJNDAEL_GCM_SST_6 | 32 | 2<sup>37</sup> - 48 | 48 |
-| AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>35</sup> | 96 |
-| AEAD_RIJNDAEL_GCM_SST_14 | 32 | 2<sup>19</sup> | 112 |
+| AEAD_RIJNDAEL_GCM_SST_12 | 32 | 2<sup>32</sup> | 96 |
+| AEAD_RIJNDAEL_GCM_SST_14 | 32 | 2<sup>16</sup> | 112 |
 {: #iana-algs title="AEAD Algorithm Instances for AES-GCM-SST and Rijndael-GCM-SST" cols="l r r r"}
 
 The following parameters apply to all the instances:
@@ -734,12 +734,12 @@ Assuming a sufficiently large key size such that brute-force key-recovery attack
 
 for all permitted invocation counts, plaintext lengths, associated data lengths, and tag lengths. This is how users expect MAC algorithms to behave, i.e., the behavior of an ideal MAC. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this property and are therefore more restrictive than the corresponding limits for GCM in {{RFC5116}}.
 
-To ensure a forgery probability of ≈ 1 / 2<sup>t</sup> for all permitted plaintext and associated data lengths [Nyberg], this document sets:
+To ensure v / 2<sup>t</sup> is the dominant term in the integrity advantage for all permitted plaintext and associated data lengths [Inoue], this document sets:
 
 {: style=""}
-* P_MAX = A_MAX = min(2<sup>131 - t</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
+* P_MAX = A_MAX = min(2<sup>128 - t</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
 
-where b is the block size in bits.
+where b is the block size in bits. This makes ℓ ≈ (P_MAX + A_MAX) / 16 ≪ 2^(128 - t), which makes the v ⋅ ℓ / 2n(2<sup>128</sup> term of Inoue et al.'s bound [Inoue, Theorem 4] negligible compared to v / 2<sup>t</sup>.
 
 The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
