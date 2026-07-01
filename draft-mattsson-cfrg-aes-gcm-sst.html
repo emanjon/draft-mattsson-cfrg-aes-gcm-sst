@@ -1733,7 +1733,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-4.3-9.1.1">P_MAX = A_MAX = min(2<sup>128 - t</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,<a href="#section-4.3-9.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-4.3-10">where b is the block size in bits. so that the overall integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.<a href="#section-4.3-10" class="pilcrow">¶</a></p>
+<p id="section-4.3-10">where b is the block size in bits. so that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.<a href="#section-4.3-10" class="pilcrow">¶</a></p>
 <p id="section-4.3-11">The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC <span>[<a href="#RFC9000" class="cite xref">RFC9000</a>]</span>, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.<a href="#section-4.3-11" class="pilcrow">¶</a></p>
 <p id="section-4.3-12">Protocols using AES-GCM-SST <span class="bcp14">MUST</span> enforce limits sufficient to ensure:<a href="#section-4.3-12" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
