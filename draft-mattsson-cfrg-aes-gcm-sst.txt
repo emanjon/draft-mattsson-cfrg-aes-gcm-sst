@@ -609,14 +609,15 @@ Table of Contents
    encryption and decryption function calls enables universal forgery,
    as demonstrated by [Joux], [Lindell], and [Inoue], and so GCM-SST
    MUST be used with replay protection.  Additionally, GCM-SST MUST NOT
-   be used with random nonces, because they significantly reduce the
-   efficiency of replay protection.  Implementations SHOULD add
-   randomness to the nonce by XORing a unique number such as a sequence
-   number with a per-key random secret salt of the same length as the
-   nonce.  This significantly improves security against precomputation
-   and multi-key attacks [Bellare17] and is implemented, for example, in
-   TLS 1.3 [RFC8446], OSCORE [RFC8613], and [Ascon].  By increasing the
-   nonce length from 96 bits to 224 bits, Rijndael-GCM-SST can offer
+   be used with random nonces: besides reducing the efficiency of replay
+   protection, they introduce a nonce-collision probability that
+   degrades securoty bounds.  Implementations SHOULD add randomness to
+   the nonce by XORing a unique number such as a sequence number with a
+   per-key random secret salt of the same length as the nonce.  This
+   significantly improves security against precomputation and multi-key
+   attacks [Bellare17] and is implemented, for example, in TLS 1.3
+   [RFC8446], OSCORE [RFC8613], and [Ascon].  By increasing the nonce
+   length from 96 bits to 224 bits, Rijndael-GCM-SST can offer
    significantly greater security against precomputation and multi-key
    attacks compared to AES-GCM-SST.  GCM-SST does not aim for full
    nonce-misuse resistance [NMR].  Like GCM, it derives its keystream in
