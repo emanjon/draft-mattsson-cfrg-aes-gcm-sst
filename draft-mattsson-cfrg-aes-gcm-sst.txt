@@ -200,12 +200,11 @@ Table of Contents
    an ideal MAC.  This is a property expected of a modern AEAD but one
    that GCM does not provide.  Rijndael-256 is already standardized by
    3GPP for authentication and key generation [Milenage-256] and is
-   planned for NIST standardization [AES-WIDE].  On modern x86-64
-   platforms with AES-NI and VAES instructions, Rijndael-256 performs
-   efficiently [Drucker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead],
-   AES-GCM-SST offers substantially higher throughput in dedicated
-   hardware while retaining the advantage of being a mode of operation
-   for AES.
+   planned for NIST standardization [AES-WIDE].  On modern x86 platforms
+   with AES-NI and VAES instructions, Rijndael-256 performs efficiently
+   [Drucker].  Compared to AEGIS [I-D.irtf-cfrg-aegis-aead], AES-GCM-SST
+   offers substantially higher throughput in dedicated hardware while
+   retaining the advantage of being a mode of operation for AES.
 
    GCM-SST was originally developed by ETSI SAGE and subsequently
    standardized by 3GPP for use with SNOW 5G [NCA4], AES-256 [NCA5], and
