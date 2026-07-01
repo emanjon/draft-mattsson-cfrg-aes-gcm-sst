@@ -523,7 +523,7 @@ Table of Contents
    *  Q_MAX (maximum number of encryption function invocations) is 2^32
       for AES-GCM-SST and 2^64 for Rijndael-GCM-SST.
 
-   *  V_MAX (maximum number of decryption function invocations) is 2^48
+   *  V_MAX (maximum number of decryption function invocations) is 2^47
       for AES-GCM-SST and 2^84 for Rijndael-GCM-SST.
 
    Assuming a sufficiently large key size such that brute-force key-
