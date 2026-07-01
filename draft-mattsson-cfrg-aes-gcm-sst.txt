@@ -555,7 +555,7 @@ Table of Contents
 
    Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
-      Q_MAX ⋅ (P_MAX + A_MAX) + V_MAX ⪅ 2^63 .
+      Q_MAX ⋅ (P_MAX + A_MAX) / 16 + V_MAX ⪅ 2^59 .
 
    This aligns with the European [ACM] recommendation of limiting the
    total number of block-cipher invocations to at most 2^(b/2-5).  It
