@@ -636,12 +636,12 @@ Table of Contents
    When ℓ ≪ 2^(128 - t), the forgery probability is ≈ 1 / 2^t
    [Nyberg][Inoue].  The tags in the AEAD algorithms listed in
    Section 4.3 therefore achieve near-ideal forgery probabilities.  This
-   is a significant improvement over GCM, where the forgery probability
-   is bounded by ⪅ δ ⋅ ℓ / 2^t [GCM][Iwata].  For a graph of the forgery
-   probability assuming δ ≈ 1, see Fig. 3 in [Inoue].  For 128-bit tags
-   and long messages, the forgery probability of GCM-SST is no longer
-   ideal and becomes comparable to that of GCM.  In GCM-SST, the
-   full_tag is independent of t unless the application explicitly
+   is a significant improvement over GCM [GCM], where the forgery
+   probability is bounded by ⪅ δ ⋅ ℓ / 2^t [GCM][Iwata].  For a graph of
+   the forgery probability assuming δ ≈ 1, see Fig. 3 in [Inoue].  For
+   128-bit tags and long messages, the forgery probability of GCM-SST is
+   no longer ideal and becomes comparable to that of GCM.  In GCM-SST,
+   the full_tag is independent of t unless the application explicitly
    incorporates t into the keystream or the nonce.
 
    The expected number of forgeries depends on the keystream generator.
@@ -661,12 +661,12 @@ Table of Contents
       E(F) ⪅ δ ⋅ v^2 ⋅ ℓ / 2^(t+1) .
 
    For further details on the integrity advantages and expected number
-   of forgeries for GCM and GCM-SST, see [Iwata], [Inoue], [Naito], and
-   [Multiple].  BSI states that an ideal MAC with a 96-bit tag length is
-   considered acceptable for most applications [BSI], a requirement that
-   GCM-SST with 96-bit tags satisfies when ℓ ⪅ 2^32 and δ ≈ 1.
-   Achieving a comparable level of security with GCM, CCM, or Poly1305
-   is nearly impossible.
+   of forgeries for GCM and GCM-SST, see [Iwata], [Niwa], [Inoue],
+   [Naito], and [Multiple].  BSI states that an ideal MAC with a 96-bit
+   tag length is considered acceptable for most applications [BSI], a
+   requirement that GCM-SST with 96-bit tags satisfies when ℓ ⪅ 2^32 and
+   δ ≈ 1.  Achieving a comparable level of security with GCM, CCM, or
+   Poly1305 is nearly impossible.
 
 5.2.  Confidentiality
 
@@ -1083,6 +1083,10 @@ Table of Contents
               set", March 2026,
               <https://portal.3gpp.org/desktopmodules/Specifications/
               SpecificationDetails.aspx?specificationId=4224>.
+
+   [Niwa]     Yuichi Niwa, Keisuke Ohashi, Kazuhiko Minematsu, and Tetsu
+              Iwata, "GCM Security Bounds Reconsidered", March 2015,
+              <https://eprint.iacr.org/2015/214.pdf>.
 
    [NMR]      Rogaway, P. and T. Shrimpton, "Deterministic
               Authenticated-Encryption: A Provable-Security Treatment of
