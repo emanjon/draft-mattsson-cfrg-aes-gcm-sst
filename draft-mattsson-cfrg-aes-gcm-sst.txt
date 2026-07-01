@@ -492,21 +492,21 @@ Table of Contents
     +==========================+=========+===============+============+
     | AEAD_AES_128_GCM_SST_6   |      16 |     2^36 - 48 |         48 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_128_GCM_SST_12  |      16 |          2^35 |         96 |
+    | AEAD_AES_128_GCM_SST_12  |      16 |          2^32 |         96 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_128_GCM_SST_14  |      16 |          2^19 |        112 |
+    | AEAD_AES_128_GCM_SST_14  |      16 |          2^16 |        112 |
     +--------------------------+---------+---------------+------------+
     | AEAD_AES_256_GCM_SST_6   |      32 |     2^36 - 48 |         48 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_12  |      32 |          2^35 |         96 |
+    | AEAD_AES_256_GCM_SST_12  |      32 |          2^32 |         96 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_AES_256_GCM_SST_14  |      32 |          2^19 |        112 |
+    | AEAD_AES_256_GCM_SST_14  |      32 |          2^16 |        112 |
     +--------------------------+---------+---------------+------------+
     | AEAD_RIJNDAEL_GCM_SST_6  |      32 |     2^37 - 48 |         48 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_12 |      32 |          2^35 |         96 |
+    | AEAD_RIJNDAEL_GCM_SST_12 |      32 |          2^32 |         96 |
     +--------------------------+---------+---------------+------------+
-    | AEAD_RIJNDAEL_GCM_SST_14 |      32 |          2^19 |        112 |
+    | AEAD_RIJNDAEL_GCM_SST_14 |      32 |          2^16 |        112 |
     +--------------------------+---------+---------------+------------+
 
       Table 1: AEAD Algorithm Instances for AES-GCM-SST and Rijndael-
@@ -539,12 +539,15 @@ Table of Contents
    this property and are therefore more restrictive than the
    corresponding limits for GCM in [RFC5116].
 
-   To ensure a forgery probability of ≈ 1 / 2^t for all permitted
-   plaintext and associated data lengths [Nyberg], this document sets:
+   To ensure v / 2^t is the dominant term in the integrity advantage for
+   all permitted plaintext and associated data lengths [Inoue], this
+   document sets:
 
-      P_MAX = A_MAX = min(2^(131 - t), 2^32 ⋅ b / 8 - 48) ,
+      P_MAX = A_MAX = min(2^(128 - t), 2^32 ⋅ b / 8 - 48) ,
 
-   where b is the block size in bits.
+   where b is the block size in bits.  This makes ℓ ≈ (P_MAX + A_MAX) /
+   16 ≪ 2^(128 - t), which makes the v ⋅ ℓ / 2n(2^128 term of Inoue et
+   al.'s bound [Inoue, Theorem 4] negligible compared to v / 2^t.
 
    The V_MAX constraint ensures that the Bernstein bound factor
    satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈
