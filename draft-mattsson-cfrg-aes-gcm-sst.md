@@ -739,7 +739,7 @@ To ensure that v / 2<sup>t</sup> is the dominant term in the integrity advantage
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>128 - t</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
 
-where b is the block size in bits. so that the overall integrity advantage is ≈ δ ⋅ v / 2^<sup>t</sup>.
+where b is the block size in bits. so that the overall integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
 
 The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
