@@ -546,7 +546,7 @@ Table of Contents
       P_MAX = A_MAX = min(2^(128 - t), 2^32 ⋅ b / 8 - 48) ,
 
    where b is the block size in bits. so that the overall integrity
-   advantage is ≈ δ ⋅ v / 2^^t.
+   advantage is ≈ δ ⋅ v / 2^t.
 
    The V_MAX constraint ensures that the Bernstein bound factor
    satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈
