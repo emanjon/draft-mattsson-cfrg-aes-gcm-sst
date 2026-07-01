@@ -155,9 +155,9 @@ Table of Contents
    appear frequently in media encryption.  Audio packets are small,
    numerous, and ephemeral, making them highly sensitive to
    cryptographic overhead; since each packet typically encodes only 20
-   ms of audio, forgery of individual packets is imperceptible.  Due to
-   its weaknesses, GCM is typically not used with short tags, forcing a
-   choice between the overhead of unnecessarily long tags
+   ms of audio, forgery of individual packets is and barely noticeable.
+   Due to its weaknesses, GCM is typically not used with short tags,
+   forcing a choice between the overhead of unnecessarily long tags
    [I-D.ietf-moq-transport] and much slower constructions such as AES-
    CTR with HMAC [RFC3711][RFC9605].  Short tags are also useful in
    packets whose payloads are secured at higher layers, in protocols
