@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 1 January 2027                                J. Preuß Mattsson
+Expires: 2 January 2027                                J. Preuß Mattsson
                                                                 Ericsson
-                                                            30 June 2026
+                                                             1 July 2026
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -66,7 +66,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 January 2027.
+   This Internet-Draft will expire on 2 January 2027.
 
 Copyright Notice
 
@@ -625,12 +625,6 @@ Table of Contents
    structure that nonce-misuse-resistant algorithms require.  NIST is
    addressing nonce-misuse resistance through the planned Accordions
    [Accordions].
-
-   GCM-SST does not aim for full nonce-misuse resistance.  Like GCM, it
-   derives its keystream in a single pass, avoiding the two-pass, non-
-   online structure that nonce-misuse-resistant algorithms require.
-   NIST is addressing nonce-misuse resistance through the planned
-   Accordions [Accordions].
 
    Unless otherwise specified, formulas for the expected number of
    forgeries apply to unicast scenarios.
