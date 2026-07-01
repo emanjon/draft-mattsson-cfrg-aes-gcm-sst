@@ -760,9 +760,9 @@ The constraints ensures that the Bernstein bound factor satisfies δ ≈ 1. In a
 Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
-* Q_MAX ⋅ (P_MAX + A_MAX) / 16 + V_MAX ⪅ 2<sup>59</sup>   .
+* a = Q_MAX ⋅ (P_MAX + A_MAX) / 16 + V_MAX ⪅ 2<sup>59</sup>   .
 
-This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ ⪅ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on the number of block-cipher invocations a {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds using Q_MAX ⋅ (P_MAX + A_MAX) + V_MAX, using the bounds in {{Naito}}.
+This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ ⪅ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on the number of block-cipher invocations a {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds using Q_MAX ⋅ (P_MAX + A_MAX) + V_MAX, based on the bounds in {{Naito}}.
 
 For AES, the 128-bit block size means a ⪅ 2<sup>59</sup> is not guaranteed by the limits given in {{instances}} alone; protocols need to choose between Q_MAX and P_MAX to satisfy this bound. For Rijndael-256, the 256-bit block size already guarantees a ⪅ 2<sup>123</sup>. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
 
