@@ -725,7 +725,7 @@ The following parameters apply to all the instances:
 * N_MIN = N_MAX (minimum and maximum nonce length) is 12 bytes for AES-GCM-SST and 28 bytes for Rijndael-GCM-SST.
 * C_MAX (maximum ciphertext length, including the tag) is P_MAX + t / 8 bytes.
 * Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>64</sup> for Rijndael-GCM-SST.
-* V_MAX (maximum number of decryption function invocations) is 2<sup>48</sup> for AES-GCM-SST and 2<sup>84</sup> for Rijndael-GCM-SST.
+* V_MAX (maximum number of decryption function invocations) is 2<sup>47</sup> for AES-GCM-SST and 2<sup>84</sup> for Rijndael-GCM-SST.
 
 Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
@@ -756,7 +756,8 @@ To align with zero-trust principles and minimize the impact of key compromise, p
 
 {::comment}
 Q_MAX = 2^32 is taken from the GCM invocation limit
-P_MAX = A_MAX <≈ 2^(131 - t) ensures that ℓ <≈ 2^(128 - t)
+V_MAX = 2^47 ensures that σ <≈ 2^59 for ℓ <≈ 2^16
+P_MAX = A_MAX <≈ 2^(128 - t) ensures that ℓ/2^128 << 2^t (chosen so that forgery probability is 1 / 2^95.83)
 2^63 bytes is 2^59 AES blocks aligning with ACM recommendation of 2^(b/2-5)
 0.0007 ≈ 1 / 2^10.47 ≈ (2^59)^2 / 2^129 / ln 4
 2^63 ensures that σ <≈ 2^59 << 2^(b+1)/2 = 2^64.5
