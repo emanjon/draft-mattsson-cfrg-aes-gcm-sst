@@ -760,7 +760,7 @@ TThe constraints ensures that the Bernstein bound factor satisfies δ ≈ 1. In 
 Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
-* Q_MAX ⋅ (P_MAX + A_MAX) + V_MAX ⪅ 2<sup>63</sup>   .
+* Q_MAX ⋅ (P_MAX + A_MAX) / 16 + V_MAX ⪅ 2<sup>59</sup>   .
 
 This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ ⪅ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on the number of block-cipher invocations a {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds using Q_MAX ⋅ (P_MAX + A_MAX) + V_MAX, using the bounds in {{Naito}}.
 
