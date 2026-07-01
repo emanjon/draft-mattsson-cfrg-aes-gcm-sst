@@ -755,14 +755,12 @@ To ensure that v / 2<sup>t</sup> is the dominant term in the integrity advantage
 
 where b is the block size in bits, so that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
 
-The constraints ensures that the Bernstein bound factor satisfies δ ≈ 1. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
-
-Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
+To ensure that the Bernstein bound factor satisfies δ ≈ 1, protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
 * Q_MAX ⋅ P_MAX / 16 + V_MAX ⪅ 2<sup>59</sup>   .
 
-This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ(a) ≈ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on varaiable a {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds using Q_MAX ⋅ P_MAX / 16 + V_MAX, using the bounds in {{Naito}}.
+In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker. This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ(a) ≈ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on varaiable a {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds using Q_MAX ⋅ P_MAX / 16 + V_MAX, using the bounds in {{Naito}}.
 
 For AES, the 128-bit block size means a ⪅ 2<sup>59</sup> is not guaranteed by the limits given in {{instances}} alone; protocols need to choose between Q_MAX and P_MAX to satisfy this bound. For Rijndael-256, the 256-bit block size already guarantees a ⪅ 2<sup>123</sup>. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
 
@@ -770,12 +768,9 @@ To align with zero-trust principles and minimize the impact of key compromise, p
 
 {::comment}
 Q_MAX = 2^32 is taken from the GCM invocation limit
-V_MAX = 2^47 ensures that σ <≈ 2^59 for ℓ <≈ 2^16
 P_MAX = A_MAX <≈ 2^(128 - t) ensures that ℓ/2^128 << 2^t (chosen so that forgery probability is 1 / 2^95.83)
-2^63 bytes is 2^59 AES blocks aligning with ACM recommendation of 2^(b/2-5)
 0.0007 ≈ 1 / 2^10.47 ≈ (2^59)^2 / 2^129 / ln 4
-2^63 ensures that σ <≈ 2^59 << 2^(b+1)/2 = 2^64.5
-2^84 ensures that σ <≈ 2^123 << 2^(b+1)/2 = 2^128.5
+2^59 << 2^(b+1)/2 = 2^64.5
 2^30–2^37 bytes is approximately 1–100 GB
 {:/}
 
