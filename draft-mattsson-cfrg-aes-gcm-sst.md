@@ -755,7 +755,7 @@ To ensure that v / 2<sup>t</sup> is the dominant term in the integrity advantage
 
 where b is the block size in bits. so that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
 
-TThe constraints ensures that the Bernstein bound factor satisfies δ ≈ 1. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
+The constraints ensures that the Bernstein bound factor satisfies δ ≈ 1. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
 Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
