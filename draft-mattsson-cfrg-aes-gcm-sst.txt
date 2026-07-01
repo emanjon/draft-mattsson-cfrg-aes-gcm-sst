@@ -171,7 +171,7 @@ Table of Contents
 
    This document defines GCM with Strong Secure Tags (GCM-SST), an AEAD
    algorithm that addresses these weaknesses.  GCM-SST can be used with
-   any keystream generator, not only 128-bit block ciphers.  The main
+   any keystream generator, not only 128-bit block ciphers.  The
    differences from GCM [GCM] are: the introduction of a second
    authentication subkey H_2, per-nonce derivation of H and H_2,
    stricter usage limits, fixed-length deterministic nonces, and the
