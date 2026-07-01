@@ -739,7 +739,7 @@ The following parameters apply to all the instances:
 * N_MIN = N_MAX (minimum and maximum nonce length) is 12 bytes for AES-GCM-SST and 28 bytes for Rijndael-GCM-SST.
 * C_MAX (maximum ciphertext length, including the tag) is P_MAX + t / 8 bytes.
 * Q_MAX (maximum number of encryption function invocations) is 2<sup>32</sup> for AES-GCM-SST and 2<sup>64</sup> for Rijndael-GCM-SST.
-* V_MAX (maximum number of decryption function invocations) is 2<sup>47</sup> for AES-GCM-SST and 2<sup>84</sup> for Rijndael-GCM-SST.
+* V_MAX (maximum number of decryption function invocations) is 2<sup>62</sup> for AES-GCM-SST and 2<sup>123</sup> for Rijndael-GCM-SST.
 
 Assuming a sufficiently large key size such that brute-force key-recovery attacks can be neglected, a strong integrity mechanism should satisfy
 
@@ -755,16 +755,16 @@ To ensure that v / 2<sup>t</sup> is the dominant term in the integrity advantage
 
 where b is the block size in bits. so that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
 
-The V_MAX constraint ensures that the Bernstein bound factor satisfies δ ≈ 1 for AES-GCM-SST in protocols where P_MAX + A_MAX ≈ 2<sup>16</sup>, such as QUIC {{RFC9000}}, and always δ ≈ 1 for Rijndael-GCM-SST. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
+TThe constraints ensures that the Bernstein bound factor satisfies δ ≈ 1. In addition to bounding δ, the Q_MAX constraint establishes a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker.
 
 Protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
 
 {: style=""}
-* (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX) ⪅ 2<sup>63</sup>   .
+* Q_MAX ⋅ (P_MAX + A_MAX) + V_MAX ⪅ 2<sup>63</sup>   .
 
-This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ ⪅ 1 + σ<sup>2</sup> / 2<sup>b+1</sup> depends on the total number of block-cipher invocations {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds using (Q_MAX + V_MAX) ⋅ (P_MAX + A_MAX).
+This aligns with the European {{ACM}} recommendation of limiting the total number of block-cipher invocations to at most 2<sup>b/2-5</sup>. It ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005. The Bernstein bound factor δ ⪅ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on the number of block-cipher invocations a {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds using Q_MAX ⋅ (P_MAX + A_MAX) + V_MAX, using the bounds in {{Naito}}.
 
-For AES, the 128-bit block size means σ ⪅ 2<sup>59</sup> is not guaranteed by the limits given in {{instances}} alone; protocols need to choose between Q_MAX and P_MAX to satisfy this bound. For Rijndael-256, the 256-bit block size already guarantees σ ⪅ 2<sup>123</sup>. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
+For AES, the 128-bit block size means a ⪅ 2<sup>59</sup> is not guaranteed by the limits given in {{instances}} alone; protocols need to choose between Q_MAX and P_MAX to satisfy this bound. For Rijndael-256, the 256-bit block size already guarantees a ⪅ 2<sup>123</sup>. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
 
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
@@ -813,7 +813,7 @@ For further details on the integrity advantages and expected number of forgeries
 
 ## Confidentiality {#Conf}
 
-The confidentiality offered by GCM-SST against passive attackers depends on the keystream generator. For block ciphers in counter mode, it is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. For AES-GCM-SST, the confidentiality is equal to AES-GCM {{GCM}}. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ<sub>E</sub>, where σ<sub>E</sub> ⪅ P_MAX ⋅ Q_MAX / 16 is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ<sub>E</sub>. McGrew {{Impossible}} and Leurent and Sibleyras {{Difference}} demonstrate that for block ciphers in counter mode, an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logarithmic factors) as distinguishing attacks. However, Preuß Mattsson {{Entropy}} demonstrated that an attacker cannot recover more than ≈ (σ<sub>E</sub>)<sup>2</sup> / 2<sup>b</sup> bits of the plaintext. Given the constraints outlined in {{instances}}, an attacker cannot recover more than 0.0007 bits of AES-GCM-SST plaintexts.
+The confidentiality offered by GCM-SST against passive attackers depends on the keystream generator. For block ciphers in counter mode, it is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. For AES-GCM-SST, the confidentiality is equal to AES-GCM {{GCM}}. Regardless of key length, an attacker can mount a distinguishing attack with a complexity of approximately 2<sup>129</sup> / σ, where σ ⪅ P_MAX ⋅ Q_MAX / 16 is the total plaintext length measured in 128-bit chunks. In contrast, the confidentiality offered by Rijndael-GCM-SST against passive attackers is significantly higher. The complexity of distinguishing attacks for Rijndael-GCM-SST is approximately 2<sup>258</sup> / σ. McGrew {{Impossible}} and Leurent and Sibleyras {{Difference}} demonstrate that for block ciphers in counter mode, an attacker with partial knowledge of the plaintext can execute plaintext-recovery attacks against counter mode with roughly the same complexity (up to logarithmic factors) as distinguishing attacks. However, Preuß Mattsson {{Entropy}} demonstrated that an attacker cannot recover more than ≈ (σ)<sup>2</sup> / 2<sup>b</sup> bits of the plaintext. Given the constraints outlined in {{instances}}, an attacker cannot recover more than 0.0007 bits of AES-GCM-SST plaintexts.
 
 While Rijndael-256 in counter mode can provide high confidentiality for plaintexts much larger than 2<sup>36</sup> bytes, GHASH and POLYVAL do not offer adequate integrity for long plaintexts. To ensure robust integrity for long plaintexts, an AEAD mode would need to replace POLYVAL with a MAC that has better security properties, such as a Carter-Wegman MAC in a larger field {{Maximov}}{{Degabriele}} or other alternatives such as {{SMAC}}.
 
@@ -847,13 +847,13 @@ The details of the replay protection mechanism are determined by the security pr
 | GCM | 16 | 1 / 2<sup>116</sup> | 1 | v<sup>2</sup>&nbsp;/&nbsp;2<sup>117</sup> |
 {: #comp2 title="Comparison of integrity among GCM-SST, ChaCha20-Poly1305, and AES-GCM in unicast QUIC, where the maximum packet size is 65536 bytes. The GCM values assume δ ≈ 1; when this condition does not hold, the GCM values are worse than those shown." cols="l r r r r"}
 
-{{comp3}} compares the confidentiality of Rijndael-GCM-SST, AES-256-GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 {{RFC8439}}, all of which use 256-bit keys, against passive attackers. The confidentiality of block ciphers in counter mode is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. While plaintext-recovery attacks on block ciphers in counter mode have a complexity similar to distinguishing attacks, the attacker cannot recover more than ≈ (σ<sub>E</sub>)<sup>2</sup> / 2<sup>b</sup> bits of the plaintexts {{Entropy}}.
+{{comp3}} compares the confidentiality of Rijndael-GCM-SST, AES-256-GCM-SST, SNOW 5G-GCM-SST, and ChaCha20-Poly1305 {{RFC8439}}, all of which use 256-bit keys, against passive attackers. The confidentiality of block ciphers in counter mode is governed by the birthday bound, with AES-based ciphers particularly constrained by their narrow 128-bit block size. While plaintext-recovery attacks on block ciphers in counter mode have a complexity similar to distinguishing attacks, the attacker cannot recover more than ≈ (σ)<sup>2</sup> / 2<sup>b</sup> bits of the plaintexts {{Entropy}}.
 
 | Name | Key size (bits) | Complexity of distinguishing attacks |
 | CHACHA20_POLY1305 | 256 | 2<sup>256</sup> |
 | SNOW_5G_GCM_SST | 256 | 2<sup>256</sup> |
-| RIJNDAEL_GCM_SST | 256 | ≈ 2<sup>258</sup> / σ<sub>E</sub> |
-| AES_256_GCM_SST | 256 | ≈ 2<sup>129</sup> / σ<sub>E</sub> |
+| RIJNDAEL_GCM_SST | 256 | ≈ 2<sup>258</sup> / σ |
+| AES_256_GCM_SST | 256 | ≈ 2<sup>129</sup> / σ |
 {: #comp3 title="Comparison of confidentiality against passive attackers among Rijndael-GCM-SST, SNOW 5G-GCM-SST, ChaCha20-Poly1305, and AES-256-GCM-SST. σ_E is the total plaintext length measured in 128-bit chunks." cols="l c c"}
 
 ## Multicast and Broadcast {#onemany}
