@@ -593,8 +593,8 @@ Table of Contents
    the single-key setting, and that it provides nonce-misuse resilience
    [NMRL].  Because the subkeys in GCM-SST are derived independently per
    nonce, any confidentiality or integrity advantage an adversary gains
-   against one nonce — whether through nonce misuse or a successful
-   forgery attempt — does not carry over to a different, fresh nonce:
+   against one nonce, whether through nonce misuse or a successful
+   forgery attempt, does not carry over to a different, fresh nonce:
    GCM-SST recovers its full security as soon as such a nonce is no
    longer in use.  Naito et al.  [Naito] extend this analysis to prove
    that GCM-SST achieves its v / 2^t design goal in the multi-key
