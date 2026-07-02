@@ -698,7 +698,7 @@ Table of Contents
    bits of AES-GCM-SST plaintexts.
 
    While Rijndael-256 in counter mode can provide high confidentiality
-   for plaintexts much larger than 2^36 bytes, GHASH and POLYVAL do not
+   for plaintexts much larger than 2^37 bytes, GHASH and POLYVAL do not
    offer adequate integrity for long plaintexts.  To ensure robust
    integrity for long plaintexts, an AEAD mode would need to replace
    POLYVAL with a MAC that has better security properties, such as a
