@@ -764,7 +764,7 @@ To ensure that the Bernstein bound factor satisfies δ ≈ 1, protocols using AE
 {: style=""}
 * Q_MAX ⋅ P_MAX / 16 + V_MAX ⪅ 2<sup>59</sup>   .
 
-The Bernstein bound factor δ(a) ≈ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on varaiable a {{Bernstein}}{{Iwata}}, which this document conservatively upper-bounds by Q_MAX ⋅ P_MAX / 16 + V_MAX, following the analysis in {{Naito}}. For AES, the 128-bit block size means that protocols need to choose between Q_MAX and P_MAX to satisfy δ ≈ 1. For Rijndael-256, the 256-bit block size already guarantees δ ≈ 1. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
+The Bernstein bound factor δ(a) ≈ 1 + a<sup>2</sup> / 2<sup>b+1</sup> depends on variable a {{Iwata}}{{Bernstein}}, which this document conservatively upper-bounds by Q_MAX ⋅ P_MAX / 16 + V_MAX, following the analysis in {{Naito}}. For AES, the 128-bit block size implies that achieving δ ≈ 1 requires balancing the constraints on Q_MAX and P_MAX to satisfy δ ≈ 1. For Rijndael-256, the 256-bit block size already guarantees δ ≈ 1. Protocols employing Rijndael-GCM-SST MAY impose stricter limits on P_MAX, A_MAX, Q_MAX, and V_MAX.
 
 In addition to bounding δ, the Q_MAX and P_MAX constraints establish a minimum complexity for distinguishing attacks and an upper bound on the fraction of plaintext bits recoverable by an attacker. This aligns with the European {{ACM}} recommendation of limiting the number of block-cipher invocations to 2<sup>b/2-5</sup>. This ensures that an attacker cannot recover more than ≈ 0.0007 bits across all plaintexts {{Entropy}} and that δ ⪅ 1.0005.
 
