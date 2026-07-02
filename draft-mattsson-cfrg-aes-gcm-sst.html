@@ -1792,7 +1792,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-5.1-4">where v is the number of forgery attempts. Following the constraints in <a href="#instances" class="auto internal xref">Section 4.3</a>, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM <span>[<a href="#GCM" class="cite xref">GCM</a>]</span>, for which the expected number of forgeries (assuming deterministic 96-bit nonces) is bounded by:<a href="#section-5.1-4" class="pilcrow">¶</a></p>
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-5.1-5.1">
-            <p id="section-5.1-5.1.1">E(F) ⪅ 0.5 ⋅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>t</sup>   .<a href="#section-5.1-5.1.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-5.1.1">E(F) ⪅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>t+1</sup>   .<a href="#section-5.1-5.1.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 <p id="section-5.1-6">For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see <span>[<a href="#Iwata" class="cite xref">Iwata</a>]</span>, <span>[<a href="#Niwa" class="cite xref">Niwa</a>]</span>, <span>[<a href="#Inoue" class="cite xref">Inoue</a>]</span>, <span>[<a href="#Naito" class="cite xref">Naito</a>]</span>, and <span>[<a href="#Multiple" class="cite xref">Multiple</a>]</span>. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications <span>[<a href="#BSI" class="cite xref">BSI</a>]</span>, a requirement that GCM-SST with 96-bit tags satisfies when ℓ ⪅ 2<sup>32</sup> and δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.<a href="#section-5.1-6" class="pilcrow">¶</a></p>

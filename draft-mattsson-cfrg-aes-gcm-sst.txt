@@ -664,7 +664,7 @@ Table of Contents
    expected number of forgeries (assuming deterministic 96-bit nonces)
    is bounded by:
 
-      E(F) ⪅ 0.5 ⋅ δ ⋅ v^2 ⋅ ℓ / 2^t .
+      E(F) ⪅ δ ⋅ v^2 ⋅ ℓ / 2^(t+1) .
 
    For further details on the integrity advantages and expected number
    of forgeries for GCM and GCM-SST, see [Iwata], [Niwa], [Inoue],
