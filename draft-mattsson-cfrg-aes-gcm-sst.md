@@ -796,10 +796,10 @@ The expected number of forgeries depends on the keystream generator. For block c
 {: style=""}
 * E(F) ≈ v / 2<sup>t</sup>   ,
 
-where v is the number of forgery attempts. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM, for which the expected number of forgeries is bounded by:
+where v is the number of forgery attempts. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM, for which the expected number of forgeries (assuming deterministic 96-bit nonces) is bounded by:
 
 {: style=""}
-* E(F) ⪅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>t+1</sup>   .
+* E(F) ⪅ 0.5 ⋅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>t</sup>   .
 
 For further details on the integrity advantages and expected number of forgeries for GCM and GCM-SST, see {{Iwata}}, {{Niwa}}, {{Inoue}}, {{Naito}}, and {{Multiple}}. BSI states that an ideal MAC with a 96-bit tag length is considered acceptable for most applications {{BSI}}, a requirement that GCM-SST with 96-bit tags satisfies when ℓ ⪅ 2<sup>32</sup> and δ ≈ 1. Achieving a comparable level of security with GCM, CCM, or Poly1305 is nearly impossible.
 
