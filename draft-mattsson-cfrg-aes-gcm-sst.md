@@ -771,8 +771,9 @@ In addition to bounding δ, the Q_MAX and P_MAX constraints establish a minimum 
 To align with zero-trust principles and minimize the impact of key compromise, protocols using GCM-SST SHOULD enforce rekeying well before reaching the cryptographic limits. Modern guidance recommends rekeying via ephemeral key exchange providing Forward Secrecy (FS) and Post-Compromise Security (PCS) after 1 hour or 2<sup>30</sup>–2<sup>37</sup> bytes {{RFC4253}}{{ANSSI}}.
 
 {::comment}
-Q_MAX = 2^32 is taken from the GCM invocation limit
-P_MAX = A_MAX <≈ 2^(128 - t) ensures that ℓ/2^128 << 2^t (chosen so that forgery probability is 1 / 2^95.83)
+Q_MAX = 2^32 and 2^64 is taken from the GCM and wGCM invocation limit
+P_MAX = A_MAX <≈ 2^(128 - t) ensures that ℓ/2^128 << 1 / 2^t. 2^-t + 2^-(t+3) is not optimal, but chosen so that P_MAX is 2^16 and 2^32. The forgery probability is 1 / 2^95.83
+The Naito bound use the fact that (ql + v)^2 > (ql)^2 + v^2
 0.0007 ≈ 1 / 2^10.47 ≈ (2^59)^2 / 2^129 / ln 4
 2^59 << 2^(b+1)/2 = 2^64.5
 2^30–2^37 bytes is approximately 1–100 GB
