@@ -561,16 +561,18 @@ Table of Contents
 
       Q_MAX ⋅ P_MAX / 16 + V_MAX ⪅ 2^59 .
 
-   In addition to bounding δ, the Q_MAX constraint establishes a minimum
-   complexity for distinguishing attacks and an upper bound on the
-   fraction of plaintext bits recoverable by an attacker.  This aligns
-   with the European [ACM] recommendation of limiting the total number
-   of block-cipher invocations to at most 2^(b/2-5).  It ensures that an
+   In addition to bounding δ, the Q_MAX and P_MAX constraints establish
+   a minimum complexity for distinguishing attacks and an upper bound on
+   the fraction of plaintext bits recoverable by an attacker.  This
+   aligns with the European [ACM] recommendation of limiting the number
+   of block-cipher invocations to 2^(b/2-5).  This ensures that an
    attacker cannot recover more than ≈ 0.0007 bits across all plaintexts
-   [Entropy] and that δ ⪅ 1.0005.  The Bernstein bound factor δ(a) ≈ 1 +
-   a^2 / 2^(b+1) depends on varaiable a [Bernstein][Iwata], which this
-   document conservatively upper-bounds using Q_MAX ⋅ P_MAX / 16 +
-   V_MAX, using the bounds in [Naito].
+   [Entropy] and that δ ⪅ 1.0005.
+
+   The Bernstein bound factor δ(a) ≈ 1 + a^2 / 2^(b+1) depends on
+   varaiable a [Bernstein][Iwata], which this document conservatively
+   upper-bounds using Q_MAX ⋅ P_MAX / 16 + V_MAX, using the bounds in
+   [Naito].
 
    For AES, the 128-bit block size means a ⪅ 2^59 is not guaranteed by
    the limits given in Section 4.3 alone; protocols need to choose
