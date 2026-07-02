@@ -617,7 +617,7 @@ Table of Contents
    MUST be used with replay protection.  Additionally, GCM-SST MUST NOT
    be used with random nonces: besides reducing the efficiency of replay
    protection, they introduce a nonce-collision probability that
-   degrades securoty bounds.  Implementations SHOULD add randomness to
+   degrades security bounds.  Implementations SHOULD add randomness to
    the nonce by XORing a unique number such as a sequence number with a
    per-key random secret salt of the same length as the nonce.  This
    significantly improves security against precomputation and multi-key
