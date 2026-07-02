@@ -1389,7 +1389,7 @@ Change Log
    Changes from -18 to -19:
 
    *  3GPP standardization status updated from prospective to completed,
-      now citing final TS 35.240-35.248 specifications instead of WIDs
+      now citing final TS 35.240–35.248 specifications instead of WIDs
       and Liaison Statements.
 
    *  Added a more complete description of 3GPP NCA4, NCA5, NCA6.
@@ -1413,7 +1413,7 @@ Change Log
       NIST SP 800-38D (stricter usage limits, fixed-length deterministic
       nonces).
 
-   *  Corrected the GCM formulas: E(F) ⪅ δ * v^2 * l / 2^(t+1) is a
+   *  Corrected the GCM formulas: E(F) ⪅ δ ⋅ v^2 ⋅ l / 2^(t+1) is a
       bound; other formulas assume δ ≈ 1 as well as deterministic 96-bit
       nonces.
 
