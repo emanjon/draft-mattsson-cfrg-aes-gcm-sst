@@ -5,9 +5,9 @@
 Crypto Forum                                                 M. Campagna
 Internet-Draft                                       Amazon Web Services
 Intended status: Informational                                A. Maximov
-Expires: 2 January 2027                                J. Preuß Mattsson
+Expires: 3 January 2027                                J. Preuß Mattsson
                                                                 Ericsson
-                                                             1 July 2026
+                                                             2 July 2026
 
 
          Galois Counter Mode with Strong Secure Tags (GCM-SST)
@@ -65,7 +65,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2027.
+   This Internet-Draft will expire on 3 January 2027.
 
 Copyright Notice
 
@@ -81,6 +81,8 @@ Copyright Notice
 Table of Contents
 
    1.  Introduction
+     1.1.  Background and Motivation
+     1.2.  Galois Counter Mode with Strong Secure Tags (GCM-SST)
    2.  Conventions and Definitions
    3.  Galois Counter Mode with Strong Secure Tags (GCM-SST)
      3.1.  Authenticated Encryption Function
@@ -122,6 +124,8 @@ Table of Contents
    Authors' Addresses
 
 1.  Introduction
+
+1.1.  Background and Motivation
 
    AES in Galois Counter Mode (AES-GCM) [GCM] is a widely deployed
    Authenticated Encryption with Associated Data (AEAD) algorithm
@@ -168,6 +172,8 @@ Table of Contents
    bits, even after many encryptions, many forgery attempts, and a
    successful forgery.  CCM [RFC5116] achieves near-ideal probabilities
    with short tags but at a performance penalty relative to GCM.
+
+1.2.  Galois Counter Mode with Strong Secure Tags (GCM-SST)
 
    This document defines GCM with Strong Secure Tags (GCM-SST), an AEAD
    algorithm that addresses these weaknesses.  GCM-SST can be used with
