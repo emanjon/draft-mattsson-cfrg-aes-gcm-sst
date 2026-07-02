@@ -661,9 +661,10 @@ Table of Contents
    where v is the number of forgery attempts.  Following the constraints
    in Section 4.3, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal.
    AES-GCM-SST significantly outperforms AES-GCM, for which the expected
-   number of forgeries is bounded by:
+   number of forgeries (assuming deterministic 96-bit nonces) is bounded
+   by:
 
-      E(F) ⪅ δ ⋅ v^2 ⋅ ℓ / 2^(t+1) .
+      E(F) ⪅ 0.5 ⋅ δ ⋅ v^2 ⋅ ℓ / 2^t .
 
    For further details on the integrity advantages and expected number
    of forgeries for GCM and GCM-SST, see [Iwata], [Niwa], [Inoue],
