@@ -1086,13 +1086,13 @@ The version of GCM-SST specified in this document imposes stricter security cons
 Changes from -18 to -19:
 
 * 3GPP standardization status updated from prospective to completed, now citing final TS 35.240-35.248 specifications instead of WIDs and Liaison Statements.
-* Added a more complete description of 3GPP NCA4, NCA5, NCA6
+* Added a more complete description of 3GPP NCA4, NCA5, NCA6.
 * New citation to Naito et al. for a tighter single-key bound and a proof of the multi-key bound, and a more complete description of Inoue et al.'s single-key security results.
 * Significantly revised usage limits (P_MAX, A_MAX, Q_MAX, V_MAX) with clearer motivation for P_MAX and the δ ≈ 1 condition.
 * Restructured decryption steps so that replay-protection failure is an explicit abort step, and added a requirement to zeroize intermediate values on tag or replay failure.
 * Added zero-trust key compromise rekeying considerations.
 * Added nonce-misuse resilience discussion.
-* Added a more complete description of technical changes compared to NIST SP 800-38D
+* Added a more complete description of technical changes compared to NIST SP 800-38D (stricter usage limits, fixed-length deterministic nonces).
 * Corrected the GCM formulas: E(F) ⪅ δ * v^2 * l / 2^(t+1) is a bound; other formulas assume δ ≈ 1 as well as deterministic 96-bit nonces.
 * Substantial editorial changes including terminology cleanup (tag_length -> t, octet string -> byte string).
 
