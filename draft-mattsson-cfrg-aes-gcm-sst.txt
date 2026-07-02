@@ -1188,7 +1188,12 @@ Table of Contents
               new stand-alone MAC construct called SMAC", June 2024,
               <https://eprint.iacr.org/2024/819>.
 
-   [SNOW]     Ekdahl, P., Johansson, T., Maximov, A., and J. Yang,
+   [SNOW-Axn] Wang, D., Maximov, A., Ekdahl, P., and T. Johansson,
+              "Pushing to the limits: SNOW-Axn – a fast AEAD stream
+              cipher in aggregated mode", May 2026,
+              <https://cic.iacr.org/p/3/1/31/pdf>.
+
+   [SNOW-Vi]  Ekdahl, P., Johansson, T., Maximov, A., and J. Yang,
               "SNOW-Vi: an extreme performance variant of SNOW-V for
               lower grade CPUs", March 2021,
               <https://eprint.iacr.org/2021/236>.
@@ -1367,9 +1372,10 @@ Appendix B.  Compatibility with 3GPP Algorithms
    inputs, whereas this specification is restricted to byte-aligned
    inputs.  They also provide more detailed specifications for nonce
    construction based on 3GPP protocol requirements.  SNOW 5G is
-   functionally equivalent to SNOW-Vi [SNOW], except that the finite-
+   functionally equivalent to SNOW-Vi [SNOW-Vi], except that the finite-
    state machine (FSM) adders have been changed from 32-bit to 16-bit
-   operations to increase the complexity of correlation attacks.
+   operations to increase the complexity of correlation attacks while
+   also improving implementation efficiency [SNOW-Axn].
 
    The version of GCM-SST specified in this document imposes stricter
    security considerations and constraints than the ETSI SAGE
