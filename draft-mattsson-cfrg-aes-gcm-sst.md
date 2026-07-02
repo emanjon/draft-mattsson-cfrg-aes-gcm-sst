@@ -796,7 +796,7 @@ The expected number of forgeries depends on the keystream generator. For block c
 {: style=""}
 * E(F) ≈ v / 2<sup>t</sup>   ,
 
-where v is the number of forgery attempts. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM, for which the expected number of forgeries (assuming deterministic 96-bit nonces) is bounded by:
+where v is the number of forgery attempts. Following the constraints in {{instances}}, AES-GCM-SST and Rijndael-GCM-SST achieve this ideal. AES-GCM-SST significantly outperforms AES-GCM {{GCM}}, for which the expected number of forgeries (assuming deterministic 96-bit nonces) is bounded by:
 
 {: style=""}
 * E(F) ⪅ 0.5 ⋅ δ ⋅ v<sup>2</sup> ⋅ ℓ / 2<sup>t</sup>   .
