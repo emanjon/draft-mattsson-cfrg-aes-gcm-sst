@@ -750,16 +750,16 @@ Assuming a sufficiently large key size such that brute-force key-recovery attack
 {: style=""}
 * E(F) ≈ v / 2<sup>t</sup> ,
 
-for all permitted invocation counts, plaintext lengths, associated data lengths, and tag lengths. This is how users expect MAC algorithms to behave, i.e., the behavior of an ideal MAC. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this property and are therefore more restrictive than the corresponding limits for GCM in {{RFC5116}}.
+for all permitted invocation counts, plaintext lengths, associated data lengths, and tag lengths. This is how users expect MAC algorithms to behave, i.e., the behavior of an ideal MAC. The limits specified for AES-GCM-SST and Rijndael-GCM-SST are chosen to achieve this property in unicast settings with replay protection and are therefore more restrictive than the corresponding limits for GCM in {{RFC5116}}.
 
 To ensure that v / 2<sup>t</sup> is the dominant term in the integrity advantage {{Inoue}} for all permitted plaintext and associated data lengths, this document sets:
 
 {: style=""}
 * P_MAX = A_MAX = min(2<sup>128 - t</sup>, 2<sup>32</sup> ⋅ b / 8 - 48)   ,
 
-where b is the block size in bits, so that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
+where b is the block size in bits. This ensures that the integrity advantage is ≈ δ ⋅ v / 2<sup>t</sup>.
 
-To ensure that the Bernstein bound factor satisfies δ ≈ 1, protocols using AES-GCM-SST MUST enforce limits sufficient to ensure:
+To ensure that the Bernstein bound factor satisfies δ ≈ 1, protocols using AES-GCM-SST MUST enforce stricter limits on Q_MAX and/or P_MAX such that:
 
 {: style=""}
 * Q_MAX ⋅ P_MAX / 16 + V_MAX ⪅ 2<sup>59</sup>   .
