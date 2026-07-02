@@ -19,7 +19,7 @@ keyword:
 venue:
   group: "Crypto Forum"
   type: "Research Group"
-  mail: "cfrg@ietf.org"
+  mail: "cfrg@irtf.org"
   arch: "https://mailarchive.ietf.org/arch/browse/cfrg"
   github: "emanjon/draft-mattsson-cfrg-aes-gcm-sst"
   latest: "https://emanjon.github.io/draft-mattsson-cfrg-aes-gcm-sst/draft-mattsson-cfrg-aes-gcm-sst.html"
